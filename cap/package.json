@@ -1,0 +1,40 @@
+{
+  "name": "cap",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^4.4.4",
+    "express": "^4",
+    "@sap/hana-client": "^2.6",
+    "uuid": "^8.3.1",
+    "swagger-ui-express": "^4.1.5",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "sqlite3": "^5"
+  },
+  "scripts": {
+    "hana": "cds deploy --to hana:starwars --auto-undeploy",
+    "start": "cds run",
+    "build": "cds build/all --clean",
+    "load": "node convertData"
+  },
+  "cds": {
+    "preview": {
+      "ui5": {
+        "version": "1.84.0"
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    }
+  }
+}
