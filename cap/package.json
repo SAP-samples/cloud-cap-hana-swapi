@@ -20,6 +20,7 @@
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
     "start": "cds run",
     "build": "cds build/all --clean",
+    "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "load": "node convertData"
   },
   "cds": {
