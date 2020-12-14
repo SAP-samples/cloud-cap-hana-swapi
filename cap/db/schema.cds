@@ -26,9 +26,19 @@ entity Film : cuid, managed {
 }
 
 annotate Film with @(title : '{i18n>Film}') {
+    ID            @(
+        Core.Computed,
+        Common.Text : {
+            $value                 : title,
+            ![@UI.TextArrangement] : #TextOnly
+        }
+    );
     title         @title : '{i18n>title}';
     episode_id    @title : '{i18n>episode_id}';
-    opening_crawl @title : '{i18n>opening_crawl}';
+    opening_crawl @(
+        title            : '{i18n>opening_crawl}',
+        UI.MultiLineText : true
+    );
     director      @title : '{i18n>director}';
     producer      @title : '{i18n>producer}';
     release_date  @title : '{i18n>release_date}';
@@ -39,10 +49,37 @@ annotate Film with @(title : '{i18n>Film}') {
     species       @title : '{i18n>species}';
 }
 
-entity Film2People {
-    key film   : Association to Film;
-    key people : Association to People;
+entity Film2People : cuid {
+    film   : Association to Film;
+    people : Association to People;
 }
+
+annotate Film2People with {
+    ID     @Core.Computed;
+    film   @(
+        Common.Text                     : {
+            $value                 : film.title,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Film',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'film_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'title'
+            },]
+        }
+    );
+    people @Common.Text : {
+        $value                 : people.name,
+        ![@UI.TextArrangement] : #TextOnly
+    };
+};
 
 entity Film2Planets {
     key film   : Association to Film;
@@ -74,7 +111,7 @@ entity People : cuid, managed {
     birth_year : String;
     gender     : String;
     homeworld  : Association to Planet;
-    films      : Association to many Film2People
+    films      : Composition of many Film2People
                      on films.people = $self;
     species    : Association to many Species2People
                      on species.people = $self;
@@ -83,6 +120,26 @@ entity People : cuid, managed {
     starships  : Association to many Starship2Pilot
                      on starships.pilot = $self;
 }
+
+define view genders as
+    select from People distinct {
+        key gender
+    };
+
+define view hairColors as
+    select from People distinct {
+        key hair_color
+    };
+
+define view eyeColors as
+    select from People distinct {
+        key eye_color
+    };
+
+define view skinColors as
+    select from People distinct {
+        key skin_color
+    };
 
 annotate People with @(
     title              : '{i18n>People}',
@@ -95,21 +152,80 @@ annotate People with @(
 
     }, ]
 ) {
-    name       @title : '{i18n>peopleName}';
+    ID         @Core.Computed;
+    name       @(
+        title                           : '{i18n>peopleName}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'People',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'name',
+                ValueListProperty : 'name'
+            }]
+        }
+    );
     height     @title : '{i18n>height}';
     mass       @title : '{i18n>mass}';
-    hair_color @title : '{i18n>hair_color}';
-    skin_color @title : '{i18n>skin_color}';
-    eye_color  @title : '{i18n>eye_color}';
+    hair_color @(
+        title                           : '{i18n>hair_color}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'hairColors',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'hair_color',
+                ValueListProperty : 'hair_color'
+            }]
+        }
+    );
+    skin_color @(
+        title                           : '{i18n>skin_color}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'skinColors',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'skin_color',
+                ValueListProperty : 'skin_color'
+            }]
+        }
+    );
+    eye_color  @(
+        title                           : '{i18n>eye_color}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'eyeColors',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'eye_color',
+                ValueListProperty : 'eye_color'
+            }]
+        }
+    );
     birth_year @title : '{i18n>birth_year}';
-    gender     @title : '{i18n>gender}';
-    //homeworld  @Common.Text : homeworld.name;
+    gender     @(
+        title                           : '{i18n>gender}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'genders',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'gender',
+                ValueListProperty : 'gender'
+            }]
+        }
+    );
     homeworld  @(
         title            : '{i18n>homeworld}',
-        Common.Text      : homeworld.name,
+        Common.Text      : {
+            $value                 : homeworld.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
         Common.ValueList : {
-            CollectionPath : 'Planet',
-            Parameters     : [
+            CollectionPath  : 'Planet',
+            SearchSupported : true,
+            Parameters      : [
             {
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'homeworld_ID',
