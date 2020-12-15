@@ -283,6 +283,7 @@ async function init() {
     try {
         const db = await cds.connect.to('db', { model: global.__base + "/gen/srv/srv/csn.json", })
 
+        // eslint-disable-next-line no-unused-vars
         let [dummy, people, planets, films, species, starships, vehicles, transports]
             = await Promise.all([
                 clearDB(db),
@@ -295,14 +296,14 @@ async function init() {
                 readFile('transport.json')
             ])
 
-        await Promise.all([
+         await Promise.all([
             filmsLoad(db, films, people, planets, species, starships, vehicles),
             peopleLoad(db, people, planets),
             planetsLoad(db, planets),
             starshipLoad(db, starships, transports, people),
             vehiclesLoad(db, vehicles, transports, people),
             speciesLoad(db, species, planets, people)
-        ])
+        ]) 
 
         console.log(`Done`)
         process.exit()
