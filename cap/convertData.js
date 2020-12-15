@@ -306,7 +306,7 @@ async function init() {
         ]) 
 
         console.log(`Done`)
-        process.exit()
+     //   process.exit()
     } catch (error) {
         console.error(error)
         process.exit()

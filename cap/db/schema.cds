@@ -59,6 +59,8 @@ annotate Film with @(
     species       @title : '{i18n>species}';
 }
 
+
+
 entity Film2People : cuid {
     film   : Association to Film;
     people : Association to People;
@@ -71,6 +73,7 @@ annotate Film2People with {
             $value                 : film.title,
             ![@UI.TextArrangement] : #TextOnly
         },
+        title                           : '{i18n>title}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
             CollectionPath : 'Film',
@@ -94,8 +97,8 @@ annotate Film2People with {
 };
 
 entity Film2Planets : cuid {
-    key film   : Association to Film;
-    key planet : Association to Planet;
+     film   : Association to Film;
+     planet : Association to Planet;
 }
 
 annotate Film2Planets with {
@@ -126,14 +129,15 @@ annotate Film2Planets with {
         ![@UI.TextArrangement] : #TextOnly
     };
 };
+
 entity Film2Starships : cuid {
-    key film     : Association to Film;
-    key starship : Association to Starship;
+     film     : Association to Film;
+     starship : Association to Starship;
 }
 
 annotate Film2Starships with {
-    ID     @Core.Computed;
-    film   @(
+    ID       @Core.Computed;
+    film     @(
         Common.Text                     : {
             $value                 : film.title,
             ![@UI.TextArrangement] : #TextOnly
@@ -159,13 +163,15 @@ annotate Film2Starships with {
         ![@UI.TextArrangement] : #TextOnly
     };
 };
-entity Film2Vehicles: cuid {
-    key film    : Association to Film;
-    key vehicle : Association to Vehicles;
+
+entity Film2Vehicles : cuid {
+     film    : Association to Film;
+     vehicle : Association to Vehicles;
 }
+
 annotate Film2Vehicles with {
-    ID     @Core.Computed;
-    film   @(
+    ID      @Core.Computed;
+    film    @(
         Common.Text                     : {
             $value                 : film.title,
             ![@UI.TextArrangement] : #TextOnly
@@ -191,9 +197,10 @@ annotate Film2Vehicles with {
         ![@UI.TextArrangement] : #TextOnly
     };
 };
+
 entity Film2Species : cuid {
-    key film   : Association to Film;
-    key specie : Association to Species;
+     film   : Association to Film;
+     specie : Association to Species;
 }
 
 annotate Film2Species with {
@@ -224,6 +231,7 @@ annotate Film2Species with {
         ![@UI.TextArrangement] : #TextOnly
     };
 };
+
 entity People : cuid, managed {
     name       : String;
     height     : String;
@@ -236,11 +244,11 @@ entity People : cuid, managed {
     homeworld  : Association to Planet;
     films      : Composition of many Film2People
                      on films.people = $self;
-    species    : Association to many Species2People
+    species    : Composition of many Species2People
                      on species.people = $self;
-    vehicles   : Association to many Vehicle2Pilot
+    vehicles   : Composition of many Vehicle2Pilot
                      on vehicles.pilot = $self;
-    starships  : Association to many Starship2Pilot
+    starships  : Composition of many Starship2Pilot
                      on starships.pilot = $self;
 }
 
@@ -437,8 +445,8 @@ annotate Planet with @(
 
 @cds.odata.valuelist
 entity Planet2People : cuid {
-    key planet : Association to Planet;
-    key people : Association to People;
+     planet : Association to Planet;
+     people : Association to People;
 }
 
 annotate Planet2People with {
@@ -452,6 +460,7 @@ annotate Planet2People with {
         ![@UI.TextArrangement] : #TextOnly
     };
 };
+
 entity Species : cuid, managed {
     name             : String;
     classification   : String;
@@ -469,7 +478,16 @@ entity Species : cuid, managed {
                            on films.specie = $self;
 }
 
-annotate Species with @(title : '{i18n>Species}') {
+annotate Species with @(title : '{i18n>Species}',
+UI.TextArrangement : #TextOnly,
+    cds.odata.valuelist,
+    Common.SemanticKey : [name],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : name
+
+    }]
+    ) {
     ID               @(
         Core.Computed,
         Common.Text : {
@@ -491,18 +509,35 @@ annotate Species with @(title : '{i18n>Species}') {
     films            @title : '{i18n>films}';
 }
 
-entity Species2People :cuid {
-    key species : Association to Species;
-    key people  : Association to People;
+entity Species2People : cuid {
+     species : Association to Species;
+     people  : Association to People;
 }
 
 annotate Species2People with {
-    ID     @Core.Computed;
-    species @Common.Text : {
+    ID      @Core.Computed;
+    species @(Common.Text : {
         $value                 : species.name,
         ![@UI.TextArrangement] : #TextOnly
-    };
-    people @Common.Text : {
+    },
+        title                           : '{i18n>Species}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Species',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'species_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            ]
+        }
+    );
+    people  @Common.Text : {
         $value                 : people.name,
         ![@UI.TextArrangement] : #TextOnly
     };
@@ -528,7 +563,16 @@ entity Starship : cuid, managed {
                                  on pilots.starship = $self;
 }
 
-annotate Starship with @(title : '{i18n>Starship}') {
+annotate Starship with @(title : '{i18n>Starship}', 
+    UI.TextArrangement : #TextOnly,
+    cds.odata.valuelist,
+    Common.SemanticKey : [name],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : name
+
+    }]
+) {
     ID                     @(
         Core.Computed,
         Common.Text : {
@@ -554,22 +598,44 @@ annotate Starship with @(title : '{i18n>Starship}') {
 }
 
 
-entity Starship2Pilot :cuid {
-    key starship : Association to Starship;
-    key pilot    : Association to People;
+entity Starship2Pilot : cuid {
+     starship : Association to Starship;
+     pilot    : Association to People;
 }
 
 annotate Starship2Pilot with {
-    ID     @Core.Computed;
-    starship @Common.Text : {
+    ID       @Core.Computed;
+    starship @(Common.Text : {
         $value                 : starship.name,
         ![@UI.TextArrangement] : #TextOnly
-    };
-    pilot @Common.Text : {
+    },
+        title                           : '{i18n>starshipName}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Starship',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'starship_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'model'
+            }            
+            ]
+        }
+    );
+    pilot    @Common.Text : {
         $value                 : pilot.name,
         ![@UI.TextArrangement] : #TextOnly
     };
 };
+
 entity Vehicles : cuid, managed {
     name                   : String;
     model                  : String;
@@ -588,7 +654,16 @@ entity Vehicles : cuid, managed {
                                  on pilots.vehicle = $self;
 }
 
-annotate Vehicles with @(title : '{i18n>Vehicles}') {
+annotate Vehicles with @(title : '{i18n>Vehicles}', 
+    UI.TextArrangement : #TextOnly,
+    cds.odata.valuelist,
+    Common.SemanticKey : [name],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : name
+
+    }]
+) {
     ID                     @(
         Core.Computed,
         Common.Text : {
@@ -612,17 +687,38 @@ annotate Vehicles with @(title : '{i18n>Vehicles}') {
 }
 
 entity Vehicle2Pilot : cuid {
-    key vehicle : Association to Vehicles;
-    key pilot   : Association to People;
+     vehicle : Association to Vehicles;
+     pilot   : Association to People;
 }
 
 annotate Vehicle2Pilot with {
-    ID     @Core.Computed;
-    vehicle @Common.Text : {
+    ID      @Core.Computed;
+    vehicle @(Common.Text : {
         $value                 : vehicle.name,
         ![@UI.TextArrangement] : #TextOnly
-    };
-    pilot @Common.Text : {
+    },
+        title                           : '{i18n>vehicleName}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Vehicles',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'vehicle_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'model'
+            },                
+            ]
+        }
+    );
+    pilot   @Common.Text : {
         $value                 : pilot.name,
         ![@UI.TextArrangement] : #TextOnly
     };
