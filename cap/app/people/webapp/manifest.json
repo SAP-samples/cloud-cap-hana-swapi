@@ -1,0 +1,166 @@
+{
+    "_version": "1.29.0",
+    "sap.app": {
+        "id": "star.wars.people",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/StarWarsPeople/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "offline": false,
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "ui5template.fiorielements.v4.lrop",
+            "version": "1.0.0"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui.generic.app": {
+        "settings": {
+            "objectPageHeaderType": "Dynamic",
+            "showDraftToggle": true,
+            "flexibleColumnLayout": {
+                "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+            }
+        }
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "dependencies": {
+            "minUI5Version": "1.76.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "PeopleList",
+                    "target": "PeopleList"
+                },
+                {
+                    "pattern": "People({key}):?query:",
+                    "name": "PeopleObjectPage",
+                    "target": "PeopleObjectPage"
+                },
+                {
+                    "pattern": "People({key})/films({key2}):?query:",
+                    "name": "Film2PeopleObjectPage",
+                    "target": "Film2PeopleObjectPage"
+                }
+            ],
+            "targets": {
+                "PeopleList": {
+                    "type": "Component",
+                    "id": "PeopleList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "People",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "People": {
+                                    "detail": {
+                                        "route": "PeopleObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "PeopleObjectPage": {
+                    "type": "Component",
+                    "id": "PeopleObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "People",
+                            "navigation": {
+                                "films": {
+                                    "detail": {
+                                        "route": "Film2PeopleObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Film2PeopleObjectPage": {
+                    "type": "Component",
+                    "id": "Film2PeopleObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Film2People"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.platform.abap": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.platform.hcp": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.fiori": {
+        "_version": "1.1.0",
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

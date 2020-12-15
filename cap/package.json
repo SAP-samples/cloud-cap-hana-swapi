@@ -14,6 +14,7 @@
     "cors": "^2.8.5"
   },
   "devDependencies": {
+    "@sap/ux-specification": "^1.84.0",
     "sqlite3": "^5"
   },
   "scripts": {
@@ -37,5 +38,8 @@
         "kind": "hana"
       }
     }
-  }
+  },
+  "sapux": [
+    "app\\people"
+  ]
 }
