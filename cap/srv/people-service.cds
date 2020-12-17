@@ -6,7 +6,7 @@ service StarWarsPeople @(path : '/StarWarsPeople') {
     entity Film           as projection on StarWars.Film;
 
     @odata.draft.enabled : true
-    entity People         as projection on StarWars.People;
+    entity People         as projection on StarWars.People {*, homeworld: redirected to Planet};
 
     @readonly : true
     entity Planet         as projection on StarWars.Planet;

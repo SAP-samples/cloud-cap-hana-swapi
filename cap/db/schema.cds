@@ -16,23 +16,24 @@ entity Film : cuid, managed {
         V     = 5;
         VI    = 6;
         VII   = 7;
-        VIII  = 9;
-        IX    = 10;
+        VIII  = 8;
+        IX    = 9;
+        X     = 10;
         OTHER = 0;
     };
     opening_crawl : String;
     director      : String;
     producer      : String;
     release_date  : Date;
-    characters    : Association to many Film2People
+    characters    : Composition of many Film2People
                         on characters.film = $self;
-    planets       : Association to many Film2Planets
+    planets       : Composition of many Film2Planets
                         on planets.film = $self;
-    starships     : Association to many Film2Starships
+    starships     : Composition of many Film2Starships
                         on starships.film = $self;
-    vehicles      : Association to many Film2Vehicles
+    vehicles      : Composition of many Film2Vehicles
                         on vehicles.film = $self;
-    species       : Association to many Film2Species
+    species       : Composition of many Film2Species
                         on species.film = $self;
 }
 
@@ -54,10 +55,36 @@ annotate Film with @(
             ![@UI.TextArrangement] : #TextOnly
         }
     );
-    title         @title : '{i18n>title}';
+    title         @(
+        title                           : '{i18n>title}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Film',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'title',
+                ValueListProperty : 'title'
+            }]
+        }
+    );
     episode_id    @(
-        title : '{i18n>episode_id}',
-        assert.enum
+        title                           : '{i18n>episode_id}',
+        assert.enum,
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'FilmEpisodeDesc',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'episode_id',
+                ValueListProperty : 'episode_id'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'episodeIDDesc'
+            }
+            ]
+        }
     );
     opening_crawl @(
         title            : '{i18n>opening_crawl}',
@@ -105,6 +132,59 @@ define view producers as
         key producer
     };
 
+define view FilmEpisodeDesc as
+    select from Film {
+        key ID,
+            episode_id,
+            title,
+            @title : '{i18n>episodeIDDesc}'
+            case
+                when
+                    episode_id = 1
+                then
+                    'I'
+                when
+                    episode_id = 2
+                then
+                    'II'
+                when
+                    episode_id = 3
+                then
+                    'III'
+                when
+                    episode_id = 4
+                then
+                    'IV'
+                when
+                    episode_id = 5
+                then
+                    'V'
+                when
+                    episode_id = 6
+                then
+                    'VI'
+                when
+                    episode_id = 7
+                then
+                    'VII'
+                when
+                    episode_id = 8
+                then
+                    'VIII'
+                when
+                    episode_id = 9
+                then
+                    'IX'
+                when
+                    episode_id = 10
+                then
+                    'X'
+                else
+                    'Other'
+
+            end as![episodeIDDesc] : String
+    };
+
 entity Film2People : cuid {
     film   : Association to Film;
     people : Association to People;
@@ -134,10 +214,28 @@ annotate Film2People with {
             ]
         }
     );
-    people @Common.Text : {
-        $value                 : people.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    people @(
+        Common.Text                     : {
+            $value                 : people.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        title                           : '{i18n>People}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'People',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'people_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            ]
+        }
+    );
 };
 
 entity Film2Planets : cuid {
@@ -153,6 +251,7 @@ annotate Film2Planets with {
             ![@UI.TextArrangement] : #TextOnly
         },
         Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
@@ -168,10 +267,29 @@ annotate Film2Planets with {
             ]
         }
     );
-    planet @Common.Text : {
-        $value                 : planet.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    planet @(
+        Common.Text                     : {
+            $value                 : planet.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Planet}',
+        Common.ValueList                : {
+            CollectionPath : 'Planet',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'planet_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'terrain'
+            },
+            ]
+        }
+
+    );
 };
 
 entity Film2Starships : cuid {
@@ -187,6 +305,7 @@ annotate Film2Starships with {
             ![@UI.TextArrangement] : #TextOnly
         },
         Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
@@ -202,10 +321,28 @@ annotate Film2Starships with {
             ]
         }
     );
-    starship @Common.Text : {
-        $value                 : starship.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    starship @(
+        Common.Text                     : {
+            $value                 : starship.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Starship}',
+        Common.ValueList                : {
+            CollectionPath : 'Starship',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'starship_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'model'
+            },
+            ]
+        }
+    );
 };
 
 entity Film2Vehicles : cuid {
@@ -221,6 +358,7 @@ annotate Film2Vehicles with {
             ![@UI.TextArrangement] : #TextOnly
         },
         Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
@@ -236,10 +374,28 @@ annotate Film2Vehicles with {
             ]
         }
     );
-    vehicle @Common.Text : {
-        $value                 : vehicle.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    vehicle @(
+        Common.Text                     : {
+            $value                 : vehicle.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Vehicle}',
+        Common.ValueList                : {
+            CollectionPath : 'Vehicles',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'vehicle_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'model'
+            },
+            ]
+        }
+    );
 };
 
 entity Film2Species : cuid {
@@ -255,6 +411,7 @@ annotate Film2Species with {
             ![@UI.TextArrangement] : #TextOnly
         },
         Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
@@ -270,10 +427,36 @@ annotate Film2Species with {
             ]
         }
     );
-    specie @Common.Text : {
-        $value                 : specie.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    specie @(
+        Common.Text                     : {
+            $value                 : specie.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Species}',
+        Common.ValueList                : {
+            CollectionPath : 'Species',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'specie_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'classification'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'language'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'homeworld.name'
+            }
+            ]
+        }
+    );
 };
 
 entity People : cuid, managed {
@@ -448,9 +631,9 @@ entity Planet : cuid, managed {
     climate         : String;
     terrain         : String;
     surface_water   : String;
-    films           : Association to many Film2Planets
+    films           : Composition of many Film2Planets
                           on films.planet = $self;
-    residents       : Association to many Planet2People
+    residents       : Composition of many Planet2People
                           on residents.planet = $self;
 }
 
@@ -472,16 +655,47 @@ annotate Planet with @(
         }
     );
     name            @(
-        title          : '{i18n>planetName}',
-        Common.TextFor : ID
+        title                           : '{i18n>planetName}',
+        Common.TextFor                  : ID,
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Planet',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'name',
+                ValueListProperty : 'name'
+            }]
+        }
     );
     diameter        @title : '{i18n>diameter}';
     rotation_period @title : '{i18n>rotation_period}';
     orbital_period  @title : '{i18n>orbital_period}';
     gravity         @title : '{i18n>gravity}';
     population      @title : '{i18n>population}';
-    climate         @title : '{i18n>climate}';
-    terrain         @title : '{i18n>terrain}';
+    climate         @(
+        title                           : '{i18n>climate}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'climate',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'climate',
+                ValueListProperty : 'climate'
+            }]
+        }
+    );
+    terrain         @(
+        title                           : '{i18n>terrain}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'terrain',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'terrain',
+                ValueListProperty : 'terrain'
+            }]
+        }
+    );
     surface_water   @title : '{i18n>surface_water}';
     films           @title : '{i18n>films}';
     residents       @title : '{i18n>residents}';
@@ -495,15 +709,61 @@ entity Planet2People : cuid {
 
 annotate Planet2People with {
     ID     @Core.Computed;
-    planet @Common.Text : {
-        $value                 : planet.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
-    people @Common.Text : {
-        $value                 : people.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    planet @(
+        Common.Text                     : {
+            $value                 : planet.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>planetName}',
+        Common.ValueList                : {
+            CollectionPath : 'Planet',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'planet_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            ]
+        }
+    );
+    people @(
+        Common.Text                     : {
+            $value                 : people.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>residents}',
+        Common.ValueList                : {
+            CollectionPath : 'People',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'people_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            ]
+        }
+    );
 };
+
+define view climate as
+    select from Planet distinct {
+        key climate
+    };
+
+define view terrain as
+    select from Planet distinct {
+        key terrain
+    };
 
 entity Species : cuid, managed {
     name             : String;
@@ -516,11 +776,41 @@ entity Species : cuid, managed {
     eye_colors       : String;
     homeworld        : Association to Planet;
     language         : String;
-    people           : Association to many Species2People
+    people           : Composition of many Species2People
                            on people.species = $self;
-    films            : Association to many Film2Species
+    films            : Composition of many Film2Species
                            on films.specie = $self;
 }
+
+define view classification as
+    select from Species distinct {
+        key classification
+    };
+
+define view designation as
+    select from Species distinct {
+        key designation
+    };
+
+define view hair_colors as
+    select from Species distinct {
+        key hair_colors
+    };
+
+define view skin_colors as
+    select from Species distinct {
+        key skin_colors
+    };
+
+define view language as
+    select from Species distinct {
+        key language
+    };
+
+define view eye_colors as
+    select from Species distinct {
+        key eye_colors
+    };
 
 annotate Species with @(
     title              : '{i18n>Species}',
@@ -540,16 +830,126 @@ annotate Species with @(
             ![@UI.TextArrangement] : #TextOnly
         }
     );
-    name             @title : '{i18n>speciesName}';
-    classification   @title : '{i18n>classification}';
-    designation      @title : '{i18n>designation}';
+    name             @(
+        title                           : '{i18n>speciesName}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Species',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'name',
+                ValueListProperty : 'name'
+            }]
+        }
+    );
+    classification   @(
+        title                           : '{i18n>classification}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'classification',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'classification',
+                ValueListProperty : 'classification'
+            }]
+        }
+    );
+    designation      @(
+        title                           : '{i18n>designation}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'designation',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'designation',
+                ValueListProperty : 'designation'
+            }]
+        }
+    );
     average_height   @title : '{i18n>average_height}';
     average_lifespan @title : '{i18n>average_lifespan}';
-    hair_colors      @title : '{i18n>hair_colors}';
-    skin_colors      @title : '{i18n>skin_colors}';
-    eye_colors       @title : '{i18n>eye_colors}';
-    homeworld        @title : '{i18n>homeworld}';
-    language         @title : '{i18n>language}';
+    hair_colors      @(
+        title                           : '{i18n>hair_color}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'hair_colors',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'hair_colors',
+                ValueListProperty : 'hair_colors'
+            }]
+        }
+    );
+    skin_colors      @(
+        title                           : '{i18n>skin_color}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'skin_colors',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'skin_colors',
+                ValueListProperty : 'skin_colors'
+            }]
+        }
+    );
+    eye_colors       @(
+        title                           : '{i18n>eye_color}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'eye_colors',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'eye_colors',
+                ValueListProperty : 'eye_colors'
+            }]
+        }
+    );
+    homeworld        @(
+        title            : '{i18n>homeworld}',
+        Common.Text      : {
+            $value                 : homeworld.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueList : {
+            CollectionPath  : 'Planet',
+            SearchSupported : true,
+            Parameters      : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'homeworld_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'climate'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'terrain'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'population'
+            }
+            ]
+        }
+    );
+    language         @(
+        title                           : '{i18n>language}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'language',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'language',
+                ValueListProperty : 'language'
+            }]
+        }
+    );
     people           @title : '{i18n>people}';
     films            @title : '{i18n>films}';
 }
@@ -583,10 +983,28 @@ annotate Species2People with {
             ]
         }
     );
-    people  @Common.Text : {
-        $value                 : people.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    people  @(
+        Common.Text                     : {
+            $value                 : people.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>People}',
+        Common.ValueList                : {
+            CollectionPath : 'People',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'people_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            ]
+        }
+    );
 };
 
 entity Starship : cuid, managed {
@@ -603,9 +1021,9 @@ entity Starship : cuid, managed {
     MGLT                   : String;
     cargo_capacity         : String;
     consumables            : String;
-    films                  : Association to many Film2Starships
+    films                  : Composition of many Film2Starships
                                  on films.starship = $self;
-    pilots                 : Association to many Starship2Pilot
+    pilots                 : Composition of many Starship2Pilot
                                  on pilots.starship = $self;
 }
 
@@ -627,10 +1045,54 @@ annotate Starship with @(
             ![@UI.TextArrangement] : #TextOnly
         }
     );
-    name                   @title : '{i18n>starshipName}';
-    model                  @title : '{i18n>model}';
-    starship_class         @title : '{i18n>starship_class}';
-    manufacturer           @title : '{i18n>manufacturer}';
+    name                   @(
+        title                           : '{i18n>starshipName}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Starship',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'name',
+                ValueListProperty : 'name'
+            }]
+        }
+    );
+    model                  @(
+        title                           : '{i18n>model}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'ssModels',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'model',
+                ValueListProperty : 'model'
+            }]
+        }
+    );
+    starship_class         @(
+        title                           : '{i18n>starship_class}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'ssClass',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'starship_class',
+                ValueListProperty : 'starship_class'
+            }]
+        }
+    );
+    manufacturer           @(
+        title                           : '{i18n>manufacturer}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'ssManufacturer',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'manufacturer',
+                ValueListProperty : 'manufacturer'
+            }]
+        }
+    );
     cost_in_credits        @title : '{i18n>cost_in_credits}';
     length                 @title : '{i18n>length}';
     crew                   @title : '{i18n>crew}';
@@ -644,6 +1106,20 @@ annotate Starship with @(
     pilots                 @title : '{i18n>starshipPilots}';
 }
 
+define view ssModels as
+    select from Starship distinct {
+        key model
+    };
+
+define view ssClass as
+    select from Starship distinct {
+        key starship_class
+    };
+
+define view ssManufacturer as
+    select from Starship distinct {
+        key manufacturer
+    };
 
 entity Starship2Pilot : cuid {
     starship : Association to Starship;
@@ -678,10 +1154,28 @@ annotate Starship2Pilot with {
             ]
         }
     );
-    pilot    @Common.Text : {
-        $value                 : pilot.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    pilot    @(
+        Common.Text                     : {
+            $value                 : pilot.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        title                           : '{i18n>Pilot}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'People',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'pilot_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            ]
+        }
+    );
 };
 
 entity Vehicles : cuid, managed {
@@ -696,9 +1190,9 @@ entity Vehicles : cuid, managed {
     max_atmosphering_speed : String;
     cargo_capacity         : String;
     consumables            : String;
-    films                  : Association to many Film2Vehicles
+    films                  : Composition of many Film2Vehicles
                                  on films.vehicle = $self;
-    pilots                 : Association to many Vehicle2Pilot
+    pilots                 : Composition of many Vehicle2Pilot
                                  on pilots.vehicle = $self;
 }
 
@@ -720,10 +1214,54 @@ annotate Vehicles with @(
             ![@UI.TextArrangement] : #TextOnly
         }
     );
-    name                   @title : '{i18n>vehicleName}';
-    model                  @title : '{i18n>vehicleModel}';
-    vehicle_class          @title : '{i18n>vehicle_class}';
-    manufacturer           @title : '{i18n>vehicleManufacturer}';
+    name                   @(
+        title                           : '{i18n>vehicleName}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Vehicles',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'name',
+                ValueListProperty : 'name'
+            }]
+        }
+    );
+    model                  @(
+        title                           : '{i18n>model}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'vModels',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'model',
+                ValueListProperty : 'model'
+            }]
+        }
+    );
+    vehicle_class          @(
+        title                           : '{i18n>vehicle_class}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'vClass',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'vehicle_class',
+                ValueListProperty : 'vehicle_class'
+            }]
+        }
+    );
+    manufacturer           @(
+        title                           : '{i18n>manufacturer}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'vManufacturer',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'manufacturer',
+                ValueListProperty : 'manufacturer'
+            }]
+        }
+    );
     cost_in_credits        @title : '{i18n>vehicleCost_in_credits}';
     length                 @title : '{i18n>vehicleLength}';
     crew                   @title : '{i18n>vehicleCrew}';
@@ -734,6 +1272,22 @@ annotate Vehicles with @(
     films                  @title : '{i18n>vehicleFilms}';
     pilots                 @title : '{i18n>vehiclePilots}';
 }
+
+
+define view vModels as
+    select from Vehicles distinct {
+        key model
+    };
+
+define view vClass as
+    select from Vehicles distinct {
+        key vehicle_class
+    };
+
+define view vManufacturer as
+    select from Vehicles distinct {
+        key manufacturer
+    };
 
 entity Vehicle2Pilot : cuid {
     vehicle : Association to Vehicles;
@@ -768,8 +1322,26 @@ annotate Vehicle2Pilot with {
             ]
         }
     );
-    pilot   @Common.Text : {
-        $value                 : pilot.name,
-        ![@UI.TextArrangement] : #TextOnly
-    };
+    pilot   @(
+        Common.Text                     : {
+            $value                 : pilot.name,
+            ![@UI.TextArrangement] : #TextOnly
+        },
+        title                           : '{i18n>Pilot}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'People',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : 'pilot_ID',
+                ValueListProperty : 'ID'
+            },
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            },
+            ]
+        }
+    );
 };
