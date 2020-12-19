@@ -38,15 +38,15 @@ The projects described above have fallen out of maintenance but still offered th
 
 ## Requirements
 
-[SAP Cloud Application Programming November 2020 (4.4.5) or higher](https://cap.cloud.sap/docs/releases/nov20)
-[Node.js](https://nodejs.org/en/)
-[Swagger UI for Express](https://www.npmjs.com/package/swagger-ui-express)
+* [SAP Cloud Application Programming November 2020 (4.4.5) or higher](https://cap.cloud.sap/docs/releases/nov20)
+* [Node.js](https://nodejs.org/en/)
+* [Swagger UI for Express](https://www.npmjs.com/package/swagger-ui-express)
 
 ## Download and Installation
 
 The original data model and data source files are in in the [oldPython\resources](./oldPython/resources/) folder.
 
-The rest of the operations can be performed within the [\cap\](./cap/) folder and there are scripts in the [package.json](./cap/package.json) file major operations.
+The rest of the operations can be performed within the [cap](./cap/) folder and there are scripts in the [package.json](./cap/package.json#L20) file major operations.
 
 You can use `npm run build` to perform the cds build and should be ran before deployment to HANA or whenever you make changes to the data model.
 
