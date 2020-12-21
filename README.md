@@ -38,7 +38,7 @@ The projects described above have fallen out of maintenance but still offered th
 
 ## Requirements
 
-* [SAP Cloud Application Programming November 2020 (4.4.5) or higher](https://cap.cloud.sap/docs/releases/nov20)
+* [SAP Cloud Application Programming November 2020 (4.4.6) or higher](https://cap.cloud.sap/docs/releases/nov20)
 * [Node.js](https://nodejs.org/en/)
 * [Swagger UI for Express](https://www.npmjs.com/package/swagger-ui-express)
 
