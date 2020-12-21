@@ -58,11 +58,11 @@ The command `npm start` or `cds run` will start the service running locally. It 
 
 From the Cloud Application Programming Model preview (which opens locally when using `npm start` or `cds run`), you can access the Swagger UI test tool (with entity diagrams), test the OData services or metadata calls directly in the browser, or access the Fiori preview UI for each of the main entities.
 
-[CDS Test Page](images/cds_test_page.png)
+![CDS Test Page](images/cds_test_page.png)
 
-[Fiori Preview List](images/Fiori_Preview_List.png)
+![Fiori Preview List](images/Fiori_Preview_List.png)
 
-[Fiori Preveiw Overview Edit](images/Fiori_Preview_Overview_Edit.png)
+![Fiori Preveiw Overview Edit](images/Fiori_Preview_Overview_Edit.png)
 
 ## Known Issues
 
