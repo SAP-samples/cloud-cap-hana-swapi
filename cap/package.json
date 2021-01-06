@@ -1,16 +1,16 @@
 {
   "name": "cap",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
+  "version": "1.0.1",
+  "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
+  "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
+  "license": "Apache-2.0",
+  "private": false,
   "dependencies": {
-    "@sap/cds": "^4.4.6",
+    "@sap/cds": "^4.4",
     "express": "^4",
-    "@sap/hana-client": "^2.6",
-    "uuid": "^8.3.1",
-    "swagger-ui-express": "^4.1.5",
+    "@sap/hana-client": "^2.7",
+    "uuid": "^8.3",
+    "swagger-ui-express": "^4.1",
     "cors": "^2.8.5"
   },
   "devDependencies": {
@@ -20,14 +20,15 @@
   "scripts": {
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
     "start": "cds run",
-    "build": "cds build/all --clean",
+    "build": "cds build",
+    "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "load": "node convertData"
   },
   "cds": {
     "preview": {
       "ui5": {
-        "version": "1.85.1"
+        "version": "1.85.2"
       }
     },
     "hana": {

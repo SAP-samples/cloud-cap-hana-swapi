@@ -26,6 +26,13 @@ cds
       next()
     }, swaggerUi.serve, swaggerUi.setup())
     addLinkToIndexHtml(service, apiPath)
+
+    app.use('/model/', async(req, res) => {
+      const csn = await cds.load('db')  
+      const model = cds.reflect(csn)
+      res.type('json')
+      res.send(JSON.stringify(model))
+    })
   })
 
 async function toOpenApiDoc(service, cache) {
