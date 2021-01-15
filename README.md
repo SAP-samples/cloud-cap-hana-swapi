@@ -54,7 +54,7 @@ You can run `npm run hana` to deploy the content to your HANA database.  Just be
 
 You can run the command `npm run load`. This command will read the original JSON data files from the source project and load them into your HANA database using Cloud Application Programming Model [CQL](https://cap.cloud.sap/docs/cds/cql). The loading script is [convertData.js](./cap/convertData.js)
 
-The command `npm start` or `cds run` will start the service running locally. It will open the standard CAP test page where you expolore the OData Services or the Fiori UI.
+The command `npm start` or `cds run` will start the service running locally. It will open the standard CAP test page where you can explore the OData Services or the Fiori UI.
 
 From the Cloud Application Programming Model preview (which opens locally when using `npm start` or `cds run`), you can access the Swagger UI test tool (with entity diagrams), test the OData services or metadata calls directly in the browser, or access the Fiori preview UI for each of the main entities.
 
