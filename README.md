@@ -50,7 +50,7 @@ The rest of the operations can be performed within the [cap](./cap/) folder and 
 
 You can use `npm run build` to perform the cds build and should be ran before deployment to HANA or whenever you make changes to the data model.
 
-You can run `npm run hana` to deploy the content to your HANA database.  Just be sure from the terminal that you are logged into the cf/xs cli and targeting the Account/Org/Space where you want the content to live. By defualt this command will create an HDI Container instance named **starwars**.
+You can run `npm run hana` to deploy the content to your HANA database.  Just be sure from the terminal that you are logged into the cf/xs cli and targeting the Account/Org/Space where you want the content to live. By default this command will create an HDI Container instance named **starwars**.
 
 You can run the command `npm run load`. This command will read the original JSON data files from the source project and load them into your HANA database using Cloud Application Programming Model [CQL](https://cap.cloud.sap/docs/cds/cql). The loading script is [convertData.js](./cap/convertData.js)
 
