@@ -66,7 +66,17 @@ From the Cloud Application Programming Model preview (which opens locally when u
 
 ## Known Issues
 
-None
+If you receive an error like the following when running the convertData script
+
+```json
+[Error: SQLITE_BUSY: database is locked] {
+  errno: 5,
+  code: 'SQLITE_BUSY',
+  query: 'DELETE FROM star_wars_People'
+}
+```
+
+This is caused by the parallel nature of the loading of the data in SQLite.  The default script with its parallel loading works fine when you use HANA as the target persistence. However if you are using SQLite for your tempoary testing persistence, then you can use the alternative convertDataLite script instead. 
 
 ## How to obtain support
 
