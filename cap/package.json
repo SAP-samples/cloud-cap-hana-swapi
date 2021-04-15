@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@sap/cds": "^4.6.5",
+    "@sap/cds": "^5.0",
     "@sap/hana-client": "^2.7.26",
     "cors": "^2.8.5",
     "express": "^4",
