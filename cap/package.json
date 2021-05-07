@@ -6,8 +6,9 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@sap/cds": "^5.0",
-    "@sap/hana-client": "^2.7.26",
+    "@sap/cds": "^5.0.6",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.6.2",
+    "@sap/hana-client": "^2.8.20",
     "cors": "^2.8.5",
     "express": "^4",
     "swagger-ui-express": "^4.1",
@@ -24,7 +25,7 @@
   "cds": {
     "preview": {
       "ui5": {
-        "version": "1.85.2"
+        "version": "1.89.0"
       }
     },
     "hana": {

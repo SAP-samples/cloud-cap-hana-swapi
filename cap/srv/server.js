@@ -9,6 +9,7 @@ const readFile = promisify(require('fs').readFile)
 const swaggerUi = require('swagger-ui-express')
 const cds = require('@sap/cds')
 const cors = require('cors')
+const proxy = require('@sap/cds-odata-v2-adapter-proxy')
 
 const debug = cds.debug('openapi')
 let app, docCache = {}
@@ -17,6 +18,10 @@ cds
   .on('bootstrap', _app => {
     app = _app
     app.use(cors())  // allow to be called from e.g. editor.swagger.io
+
+    //OData V2
+    app.use(proxy())
+
   })
   .on('serving', service => {
     const apiPath = '/api-docs' + service.path
@@ -27,8 +32,8 @@ cds
     }, swaggerUi.serve, swaggerUi.setup())
     addLinkToIndexHtml(service, apiPath)
 
-    app.use('/model/', async(req, res) => {
-      const csn = await cds.load('db')  
+    app.use('/model/', async (req, res) => {
+      const csn = await cds.load('db')
       const model = cds.reflect(csn)
       res.type('json')
       res.send(JSON.stringify(model))
