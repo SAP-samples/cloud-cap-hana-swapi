@@ -8,6 +8,7 @@ namespace star.wars;
 
 entity Film : cuid, managed {
     title         : String;
+    @assert.range
     episode_id    : Integer enum {
         I     = 1;
         II    = 2;
