@@ -23,6 +23,11 @@
     "load": "node convertData"
   },
   "cds": {
+    "i18n": {
+      "folders": [
+        "_i18n"
+      ]
+    },
     "preview": {
       "ui5": {
         "version": "1.91.0"
