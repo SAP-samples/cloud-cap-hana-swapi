@@ -1,3 +1,7 @@
+# Intro
+* https://github.com/SAP-samples/cloud-cap-hana-swapi
+* https://swapi.dev/
+  
 ## Enums
 * https://cap.cloud.sap/docs/cds/cdl#enums
 * Film.episode_id
