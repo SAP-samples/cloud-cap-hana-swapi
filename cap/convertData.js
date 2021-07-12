@@ -281,7 +281,9 @@ async function filmsLoad(db, films, people, planets, species, starships, vehicle
 
 async function init() {
     try {
-        const db = await cds.connect.to('db', { model: global.__base + "/gen/srv/srv/csn.json", })
+        const modelPath = path.join(global.__base, '/gen/srv/srv/csn.json')
+        console.log(`Model Location: ${modelPath}`)
+        const db = await cds.connect.to('db', { model: modelPath, })
 
         // eslint-disable-next-line no-unused-vars
         let [dummy, people, planets, films, species, starships, vehicles, transports]

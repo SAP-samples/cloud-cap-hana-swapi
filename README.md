@@ -1,6 +1,7 @@
 # cloud-cap-hana-swapi - bi-directional, many-to-many SAP Cloud Application Programming Model example
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-cap-hana-swapi)](https://api.reuse.software/info/github.com/SAP-samples/cloud-cap-hana-swapi)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/SAP-samples/cloud-cap-hana-swapi)
 
 ## Description
 
@@ -38,8 +39,8 @@ The projects described above have fallen out of maintenance but still offered th
 
 ## Requirements
 
-* [SAP Cloud Application Programming November 2020 (4.4.6) or higher](https://cap.cloud.sap/docs/releases/nov20)
-* [Node.js](https://nodejs.org/en/)
+* [SAP Cloud Application Programming July 2021 (5.3.0) or higher](https://cap.cloud.sap/docs/releases/july21)
+* [Node.js 12 or 14](https://nodejs.org/en/)
 * [Swagger UI for Express](https://www.npmjs.com/package/swagger-ui-express)
 
 ## Download and Installation
