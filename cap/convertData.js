@@ -282,6 +282,7 @@ async function filmsLoad(db, films, people, planets, species, starships, vehicle
 async function init() {
     try {
         const modelPath = path.join(global.__base, '/gen/srv/srv/csn.json')
+        cds.log(`Model Location - CDS Log: ${modelPath}`)
         console.log(`Model Location: ${modelPath}`)
         const db = await cds.connect.to('db', { model: modelPath, })
 

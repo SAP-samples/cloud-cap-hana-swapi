@@ -43,6 +43,15 @@
       "db": {
         "kind": "hana"
       }
+    },
+    "features": {
+      "preserve_computed": true,
+      "kibana_formatter": true,
+      "audit_personal_data": true,
+      "optimized_search": true
+    },
+    "log": {
+      "service": true
     }
   },
   "sapux": [
