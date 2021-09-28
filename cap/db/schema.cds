@@ -460,6 +460,7 @@ annotate Film2Species with {
     );
 };
 
+@cds.autoexpose: true
 entity People : cuid, managed {
     name       : String;
     height     : String;
@@ -766,6 +767,7 @@ define view terrain as
         key terrain
     };
 
+
 entity Species : cuid, managed {
     name             : String;
     classification   : String;
@@ -1008,6 +1010,7 @@ annotate Species2People with {
     );
 };
 
+@cds.autoexpose: true
 entity Starship : cuid, managed {
     name                   : String;
     model                  : String;
@@ -1179,6 +1182,7 @@ annotate Starship2Pilot with {
     );
 };
 
+@cds.autoexpose: true
 entity Vehicles : cuid, managed {
     name                   : String;
     model                  : String;

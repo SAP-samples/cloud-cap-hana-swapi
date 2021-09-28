@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Service for namespace StarWarsPlanet",
-    "description": "This service is located at [/StarWarsPlanet/](/StarWarsPlanet/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Planet{bg:lightslategray}],[Planet]0..1-*[Film2Planets],[Planet]++-0..1>[DraftAdministrativeData],[Planet]-0..1>[Planet],[People{bg:lightslategray}],[People]-0..1>[Planet],[People]0..1-*[Film2People],[Film{bg:lightslategray}],[Film]0..1-*[Film2People],[Film2Planets{bg:lightslategray}],[Film2Planets]*-0..1[Film],[Film2Planets]++-0..1>[DraftAdministrativeData],[Film2Planets]-0..1>[Film2Planets],[Planet2People{bg:lightslategray}],[Planet2People]*-0..1[Planet],[Planet2People]-0..1>[People],[Planet2People]++-0..1>[DraftAdministrativeData],[Planet2People]-0..1>[Planet2People],[climate{bg:lightslategray}],[terrain{bg:lightslategray}],[Film2People{bg:lightslategray}],[Species2People{bg:lightslategray}],[Species2People]*-0..1[People],[Vehicle2Pilot{bg:lightslategray}],[Vehicle2Pilot]*-0..1[People],[Starship2Pilot{bg:lightslategray}],[Starship2Pilot]*-0..1[People],[Film2Starships{bg:lightslategray}],[Film2Starships]*-0..1[Film],[Film2Vehicles{bg:lightslategray}],[Film2Vehicles]*-0..1[Film],[Film2Species{bg:lightslategray}],[Film2Species]*-0..1[Film],[DraftAdministrativeData{bg:lightslategray}],[Film2Species%20{bg:lawngreen}]++-*>[Film2Species],[Film2Vehicles%20{bg:lawngreen}]++-*>[Film2Vehicles],[Film2Starships%20{bg:lawngreen}]++-*>[Film2Starships],[Starship2Pilot%20{bg:lawngreen}]++-*>[Starship2Pilot],[Vehicle2Pilot%20{bg:lawngreen}]++-*>[Vehicle2Pilot],[Species2People%20{bg:lawngreen}]++-*>[Species2People],[Film2People%20{bg:lawngreen}]++-*>[Film2People],[terrain%20{bg:lawngreen}]++-*>[terrain],[climate%20{bg:lawngreen}]++-*>[climate],[Planet2People%20{bg:lawngreen}]++-*>[Planet2People],[Film2Planets%20{bg:lawngreen}]++-*>[Film2Planets],[Film%20{bg:lawngreen}]++-*>[Film],[People%20{bg:lawngreen}]++-*>[People],[Planet%20{bg:lawngreen}]++-*>[Planet])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
+    "description": "This service is located at [/StarWarsPlanet/](/StarWarsPlanet/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Planet{bg:lightslategray}],[Planet]0..1-*[Film2Planets],[Planet]++-0..1>[DraftAdministrativeData],[Planet]-0..1>[Planet],[People{bg:lightslategray}],[People]-0..1>[Planet],[People]0..1-*[Film2People],[Film{bg:lightslategray}],[Film]0..1-*[Film2People],[Film2Planets{bg:lightslategray}],[Film2Planets]*-0..1[Film],[Film2Planets]++-0..1>[DraftAdministrativeData],[Film2Planets]-0..1>[Film2Planets],[Planet2People{bg:lightslategray}],[Planet2People]*-0..1[Planet],[Planet2People]-0..1>[People],[Planet2People]++-0..1>[DraftAdministrativeData],[Planet2People]-0..1>[Planet2People],[climate{bg:lightslategray}],[terrain{bg:lightslategray}],[Film2People{bg:lightslategray}],[Species2People{bg:lightslategray}],[Species2People]*-0..1[People],[Vehicle2Pilot{bg:lightslategray}],[Vehicle2Pilot]*-0..1[People],[Starship2Pilot{bg:lightslategray}],[Starship2Pilot]*-0..1[People],[Film2Starships{bg:lightslategray}],[Film2Starships]*-0..1[Film],[Film2Vehicles{bg:lightslategray}],[Film2Vehicles]*-0..1[Film],[Film2Species{bg:lightslategray}],[Film2Species]*-0..1[Film],[Vehicles{bg:lightslategray}],[Vehicles]0..1-*[Film2Vehicles],[Vehicles]0..1-*[Vehicle2Pilot],[Starship{bg:lightslategray}],[Starship]0..1-*[Film2Starships],[Starship]0..1-*[Starship2Pilot],[DraftAdministrativeData{bg:lightslategray}],[Starship%20{bg:lawngreen}]++-*>[Starship],[Vehicles%20{bg:lawngreen}]++-*>[Vehicles],[Film2Species%20{bg:lawngreen}]++-*>[Film2Species],[Film2Vehicles%20{bg:lawngreen}]++-*>[Film2Vehicles],[Film2Starships%20{bg:lawngreen}]++-*>[Film2Starships],[Starship2Pilot%20{bg:lawngreen}]++-*>[Starship2Pilot],[Vehicle2Pilot%20{bg:lawngreen}]++-*>[Vehicle2Pilot],[Species2People%20{bg:lawngreen}]++-*>[Species2People],[Film2People%20{bg:lawngreen}]++-*>[Film2People],[terrain%20{bg:lawngreen}]++-*>[terrain],[climate%20{bg:lawngreen}]++-*>[climate],[Planet2People%20{bg:lawngreen}]++-*>[Planet2People],[Film2Planets%20{bg:lawngreen}]++-*>[Film2Planets],[Film%20{bg:lawngreen}]++-*>[Film],[People%20{bg:lawngreen}]++-*>[People],[Planet%20{bg:lawngreen}]++-*>[Planet])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
   "servers": [
@@ -52,6 +52,12 @@
     },
     {
       "name": "Film2Species"
+    },
+    {
+      "name": "Vehicles"
+    },
+    {
+      "name": "Starship"
     }
   ],
   "paths": {
@@ -2225,6 +2231,7 @@
                 "type": "string",
                 "enum": [
                   "*",
+                  "vehicle",
                   "pilot"
                 ]
               }
@@ -2385,6 +2392,7 @@
                 "type": "string",
                 "enum": [
                   "*",
+                  "starship",
                   "pilot"
                 ]
               }
@@ -3104,7 +3112,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "film"
+                  "film",
+                  "starship"
                 ]
               }
             }
@@ -3264,7 +3273,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "film"
+                  "film",
+                  "vehicle"
                 ]
               }
             }
@@ -6637,6 +6647,7 @@
                 "type": "string",
                 "enum": [
                   "*",
+                  "vehicle",
                   "pilot"
                 ]
               }
@@ -6754,6 +6765,7 @@
                 "type": "string",
                 "enum": [
                   "*",
+                  "vehicle",
                   "pilot"
                 ]
               }
@@ -6809,6 +6821,94 @@
         "responses": {
           "204": {
             "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Vehicle2Pilot({ID})/vehicle": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve vehicle of a vehicle2 pilot.",
+        "tags": [
+          "Vehicle2Pilot",
+          "Vehicles"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "vehicle_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved vehicle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Vehicles"
+                }
+              }
+            }
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -6983,6 +7083,7 @@
                 "type": "string",
                 "enum": [
                   "*",
+                  "starship",
                   "pilot"
                 ]
               }
@@ -7100,6 +7201,7 @@
                 "type": "string",
                 "enum": [
                   "*",
+                  "starship",
                   "pilot"
                 ]
               }
@@ -7155,6 +7257,96 @@
         "responses": {
           "204": {
             "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Starship2Pilot({ID})/starship": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve starship of a starship2 pilot.",
+        "tags": [
+          "Starship2Pilot",
+          "Starship"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "starship_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "hyperdrive_rating",
+                  "MGLT",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved starship",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Starship"
+                }
+              }
+            }
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -7329,7 +7521,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "film"
+                  "film",
+                  "starship"
                 ]
               }
             }
@@ -7446,7 +7639,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "film"
+                  "film",
+                  "starship"
                 ]
               }
             }
@@ -7594,6 +7788,96 @@
         }
       }
     },
+    "/Film2Starships({ID})/starship": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve starship of a film2 starship.",
+        "tags": [
+          "Film2Starships",
+          "Starship"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "starship_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "hyperdrive_rating",
+                  "MGLT",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved starship",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Starship"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
     "/Film2Vehicles": {
       "get": {
         "summary": "Retrieve a list of film2 vehicles.",
@@ -7672,7 +7956,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "film"
+                  "film",
+                  "vehicle"
                 ]
               }
             }
@@ -7789,7 +8074,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "film"
+                  "film",
+                  "vehicle"
                 ]
               }
             }
@@ -7927,6 +8213,94 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StarWarsPlanet.Film"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Film2Vehicles({ID})/vehicle": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve vehicle of a film2 vehicle.",
+        "tags": [
+          "Film2Vehicles",
+          "Vehicles"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "vehicle_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved vehicle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Vehicles"
                 }
               }
             }
@@ -8270,6 +8644,1280 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/StarWarsPlanet.Film"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Vehicles": {
+      "get": {
+        "summary": "Retrieve a list of vehicles.",
+        "tags": [
+          "Vehicles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "createdAt",
+                  "createdAt desc",
+                  "createdBy",
+                  "createdBy desc",
+                  "modifiedAt",
+                  "modifiedAt desc",
+                  "modifiedBy",
+                  "modifiedBy desc",
+                  "name",
+                  "name desc",
+                  "model",
+                  "model desc",
+                  "vehicle_class",
+                  "vehicle_class desc",
+                  "manufacturer",
+                  "manufacturer desc",
+                  "cost_in_credits",
+                  "cost_in_credits desc",
+                  "length",
+                  "length desc",
+                  "crew",
+                  "crew desc",
+                  "passengers",
+                  "passengers desc",
+                  "max_atmosphering_speed",
+                  "max_atmosphering_speed desc",
+                  "cargo_capacity",
+                  "cargo_capacity desc",
+                  "consumables",
+                  "consumables desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "vehicle_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved vehicles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Vehicles",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StarWarsPlanet.Vehicles"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single vehicle.",
+        "tags": [
+          "Vehicles"
+        ],
+        "requestBody": {
+          "description": "New vehicle",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Vehicles-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created vehicle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Vehicles"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Vehicles({ID})": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a single vehicle.",
+        "tags": [
+          "Vehicles"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "vehicle_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved vehicle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Vehicles"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change a single vehicle.",
+        "tags": [
+          "Vehicles"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Vehicles-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a single vehicle.",
+        "tags": [
+          "Vehicles"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Vehicles({ID})/films": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a list of films of a vehicle.",
+        "tags": [
+          "Vehicles",
+          "Film2Vehicles"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "film_ID",
+                  "film_ID desc",
+                  "vehicle_ID",
+                  "vehicle_ID desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "film_ID",
+                  "vehicle_ID"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "film",
+                  "vehicle"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved films",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Film2Vehicles",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StarWarsPlanet.Film2Vehicles"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single film of a vehicle.",
+        "tags": [
+          "Vehicles",
+          "Film2Vehicles"
+        ],
+        "requestBody": {
+          "description": "New film",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Film2Vehicles-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created film",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Film2Vehicles"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Vehicles({ID})/pilots": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a list of pilots of a vehicle.",
+        "tags": [
+          "Vehicles",
+          "Vehicle2Pilot"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "vehicle_ID",
+                  "vehicle_ID desc",
+                  "pilot_ID",
+                  "pilot_ID desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "vehicle_ID",
+                  "pilot_ID"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "vehicle",
+                  "pilot"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved pilots",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Vehicle2Pilot",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StarWarsPlanet.Vehicle2Pilot"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single pilot of a vehicle.",
+        "tags": [
+          "Vehicles",
+          "Vehicle2Pilot"
+        ],
+        "requestBody": {
+          "description": "New pilot",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Vehicle2Pilot-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created pilot",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Vehicle2Pilot"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Starship": {
+      "get": {
+        "summary": "Retrieve a list of starship.",
+        "tags": [
+          "Starship"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "createdAt",
+                  "createdAt desc",
+                  "createdBy",
+                  "createdBy desc",
+                  "modifiedAt",
+                  "modifiedAt desc",
+                  "modifiedBy",
+                  "modifiedBy desc",
+                  "name",
+                  "name desc",
+                  "model",
+                  "model desc",
+                  "starship_class",
+                  "starship_class desc",
+                  "manufacturer",
+                  "manufacturer desc",
+                  "cost_in_credits",
+                  "cost_in_credits desc",
+                  "length",
+                  "length desc",
+                  "crew",
+                  "crew desc",
+                  "passengers",
+                  "passengers desc",
+                  "max_atmosphering_speed",
+                  "max_atmosphering_speed desc",
+                  "hyperdrive_rating",
+                  "hyperdrive_rating desc",
+                  "MGLT",
+                  "MGLT desc",
+                  "cargo_capacity",
+                  "cargo_capacity desc",
+                  "consumables",
+                  "consumables desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "starship_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "hyperdrive_rating",
+                  "MGLT",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved starship",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Starship",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StarWarsPlanet.Starship"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single starship.",
+        "tags": [
+          "Starship"
+        ],
+        "requestBody": {
+          "description": "New starship",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Starship-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created starship",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Starship"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Starship({ID})": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a single starship.",
+        "tags": [
+          "Starship"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "model",
+                  "starship_class",
+                  "manufacturer",
+                  "cost_in_credits",
+                  "length",
+                  "crew",
+                  "passengers",
+                  "max_atmosphering_speed",
+                  "hyperdrive_rating",
+                  "MGLT",
+                  "cargo_capacity",
+                  "consumables"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "films",
+                  "pilots"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved starship",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Starship"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change a single starship.",
+        "tags": [
+          "Starship"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Starship-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a single starship.",
+        "tags": [
+          "Starship"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Starship({ID})/films": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a list of films of a starship.",
+        "tags": [
+          "Starship",
+          "Film2Starships"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "film_ID",
+                  "film_ID desc",
+                  "starship_ID",
+                  "starship_ID desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "film_ID",
+                  "starship_ID"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "film",
+                  "starship"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved films",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Film2Starships",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StarWarsPlanet.Film2Starships"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single film of a starship.",
+        "tags": [
+          "Starship",
+          "Film2Starships"
+        ],
+        "requestBody": {
+          "description": "New film",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Film2Starships-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created film",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Film2Starships"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Starship({ID})/pilots": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a list of pilots of a starship.",
+        "tags": [
+          "Starship",
+          "Starship2Pilot"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "ID desc",
+                  "starship_ID",
+                  "starship_ID desc",
+                  "pilot_ID",
+                  "pilot_ID desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "starship_ID",
+                  "pilot_ID"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "starship",
+                  "pilot"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved pilots",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Starship2Pilot",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StarWarsPlanet.Starship2Pilot"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single pilot of a starship.",
+        "tags": [
+          "Starship",
+          "Starship2Pilot"
+        ],
+        "requestBody": {
+          "description": "New pilot",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StarWarsPlanet.Starship2Pilot-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created pilot",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPlanet.Starship2Pilot"
                 }
               }
             }
@@ -9444,6 +11092,14 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           },
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Vehicles"
+              }
+            ],
+            "nullable": true
+          },
           "vehicle_ID": {
             "type": "string",
             "format": "uuid",
@@ -9470,6 +11126,14 @@
         "title": "Vehicle2Pilot (for create)",
         "type": "object",
         "properties": {
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Vehicles-create"
+              }
+            ],
+            "nullable": true
+          },
           "vehicle_ID": {
             "type": "string",
             "format": "uuid",
@@ -9519,6 +11183,14 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           },
+          "starship": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Starship"
+              }
+            ],
+            "nullable": true
+          },
           "starship_ID": {
             "type": "string",
             "format": "uuid",
@@ -9545,6 +11217,14 @@
         "title": "Starship2Pilot (for create)",
         "type": "object",
         "properties": {
+          "starship": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Starship-create"
+              }
+            ],
+            "nullable": true
+          },
           "starship_ID": {
             "type": "string",
             "format": "uuid",
@@ -9608,6 +11288,14 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           },
+          "starship": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Starship"
+              }
+            ],
+            "nullable": true
+          },
           "starship_ID": {
             "type": "string",
             "format": "uuid",
@@ -9632,6 +11320,14 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "starship": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Starship-create"
+              }
+            ],
             "nullable": true
           },
           "starship_ID": {
@@ -9683,6 +11379,14 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           },
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Vehicles"
+              }
+            ],
+            "nullable": true
+          },
           "vehicle_ID": {
             "type": "string",
             "format": "uuid",
@@ -9707,6 +11411,14 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPlanet.Vehicles-create"
+              }
+            ],
             "nullable": true
           },
           "vehicle_ID": {
@@ -9806,6 +11518,448 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        }
+      },
+      "StarWarsPlanet.Vehicles": {
+        "title": "Vehicles",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Film2Vehicles"
+            }
+          },
+          "films@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "pilots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Vehicle2Pilot"
+            }
+          },
+          "pilots@odata.count": {
+            "$ref": "#/components/schemas/count"
+          }
+        }
+      },
+      "StarWarsPlanet.Vehicles-create": {
+        "title": "Vehicles (for create)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Film2Vehicles-create"
+            }
+          },
+          "pilots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Vehicle2Pilot-create"
+            }
+          }
+        }
+      },
+      "StarWarsPlanet.Vehicles-update": {
+        "title": "Vehicles (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "StarWarsPlanet.Starship": {
+        "title": "Starship",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "starship_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "MGLT": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Film2Starships"
+            }
+          },
+          "films@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "pilots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Starship2Pilot"
+            }
+          },
+          "pilots@odata.count": {
+            "$ref": "#/components/schemas/count"
+          }
+        }
+      },
+      "StarWarsPlanet.Starship-create": {
+        "title": "Starship (for create)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "starship_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "MGLT": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Film2Starships-create"
+            }
+          },
+          "pilots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsPlanet.Starship2Pilot-create"
+            }
+          }
+        }
+      },
+      "StarWarsPlanet.Starship-update": {
+        "title": "Starship (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "starship_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "MGLT": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
             "nullable": true
           }
         }

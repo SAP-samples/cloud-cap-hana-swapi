@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Service for namespace StarWarsPeople",
-    "description": "This service is located at [/StarWarsPeople/](/StarWarsPeople/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Film{bg:lightslategray}],[Film]0..1-*[Film2People],[People{bg:lightslategray}],[People]-0..1>[Planet],[People]0..1-*[Film2People],[People]++-0..1>[DraftAdministrativeData],[People]-0..1>[People],[Planet{bg:lightslategray}],[Planet]0..1-*[Film2Planets],[Species{bg:lightslategray}],[Species]-0..1>[Planet],[Species]0..1-*[Species2People],[Species]0..1-*[Film2Species],[Starship{bg:lightslategray}],[Starship]0..1-*[Film2Starships],[Starship]0..1-*[Starship2Pilot],[Vehicles{bg:lightslategray}],[Vehicles]0..1-*[Film2Vehicles],[Vehicles]0..1-*[Vehicle2Pilot],[genders{bg:lightslategray}],[hairColors{bg:lightslategray}],[eyeColors{bg:lightslategray}],[skinColors{bg:lightslategray}],[Film2People{bg:lightslategray}],[Film2People]++-0..1>[DraftAdministrativeData],[Film2People]-0..1>[Film2People],[Species2People{bg:lightslategray}],[Species2People]*-0..1[People],[Species2People]++-0..1>[DraftAdministrativeData],[Species2People]-0..1>[Species2People],[Starship2Pilot{bg:lightslategray}],[Starship2Pilot]*-0..1[People],[Starship2Pilot]++-0..1>[DraftAdministrativeData],[Starship2Pilot]-0..1>[Starship2Pilot],[Vehicle2Pilot{bg:lightslategray}],[Vehicle2Pilot]*-0..1[People],[Vehicle2Pilot]++-0..1>[DraftAdministrativeData],[Vehicle2Pilot]-0..1>[Vehicle2Pilot],[Film2Planets{bg:lightslategray}],[Film2Planets]*-0..1[Film],[Film2Starships{bg:lightslategray}],[Film2Starships]*-0..1[Film],[Film2Vehicles{bg:lightslategray}],[Film2Vehicles]*-0..1[Film],[Film2Species{bg:lightslategray}],[Film2Species]*-0..1[Film],[Planet2People{bg:lightslategray}],[Planet2People]*-0..1[Planet],[DraftAdministrativeData{bg:lightslategray}],[Planet2People%20{bg:lawngreen}]++-*>[Planet2People],[Film2Species%20{bg:lawngreen}]++-*>[Film2Species],[Film2Vehicles%20{bg:lawngreen}]++-*>[Film2Vehicles],[Film2Starships%20{bg:lawngreen}]++-*>[Film2Starships],[Film2Planets%20{bg:lawngreen}]++-*>[Film2Planets],[Vehicle2Pilot%20{bg:lawngreen}]++-*>[Vehicle2Pilot],[Starship2Pilot%20{bg:lawngreen}]++-*>[Starship2Pilot],[Species2People%20{bg:lawngreen}]++-*>[Species2People],[Film2People%20{bg:lawngreen}]++-*>[Film2People],[skinColors%20{bg:lawngreen}]++-*>[skinColors],[eyeColors%20{bg:lawngreen}]++-*>[eyeColors],[hairColors%20{bg:lawngreen}]++-*>[hairColors],[genders%20{bg:lawngreen}]++-*>[genders],[Vehicles%20{bg:lawngreen}]++-*>[Vehicles],[Starship%20{bg:lawngreen}]++-*>[Starship],[Species%20{bg:lawngreen}]++-*>[Species],[Planet%20{bg:lawngreen}]++-*>[Planet],[People%20{bg:lawngreen}]++-*>[People],[Film%20{bg:lawngreen}]++-*>[Film])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
+    "description": "This service is located at [/StarWarsPeople/](/StarWarsPeople/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Film{bg:lightslategray}],[Film]0..1-*[Film2People],[People{bg:lightslategray}],[People]-0..1>[Planet],[People]0..1-*[Film2People],[People]++-0..1>[DraftAdministrativeData],[People]-0..1>[People],[Planet{bg:lightslategray}],[Planet]0..1-*[Film2Planets],[Species{bg:lightslategray}],[Species]-0..1>[Planet],[Species]0..1-*[Species2People],[Species]0..1-*[Film2Species],[Starship{bg:lightslategray}],[Starship]0..1-*[Film2Starships],[Starship]0..1-*[Starship2Pilot],[Vehicles{bg:lightslategray}],[Vehicles]0..1-*[Film2Vehicles],[Vehicles]0..1-*[Vehicle2Pilot],[genders{bg:lightslategray}],[hairColors{bg:lightslategray}],[eyeColors{bg:lightslategray}],[skinColors{bg:lightslategray}],[Film2People{bg:lightslategray}],[Film2People]++-0..1>[DraftAdministrativeData],[Film2People]-0..1>[Film2People],[Species2People{bg:lightslategray}],[Species2People]*-0..1[People],[Species2People]++-0..1>[DraftAdministrativeData],[Species2People]-0..1>[Species2People],[Starship2Pilot{bg:lightslategray}],[Starship2Pilot]*-0..1[People],[Starship2Pilot]++-0..1>[DraftAdministrativeData],[Starship2Pilot]-0..1>[Starship2Pilot],[Vehicle2Pilot{bg:lightslategray}],[Vehicle2Pilot]*-0..1[People],[Vehicle2Pilot]++-0..1>[DraftAdministrativeData],[Vehicle2Pilot]-0..1>[Vehicle2Pilot],[Film2Planets{bg:lightslategray}],[Film2Planets]*-0..1[Film],[Film2Starships{bg:lightslategray}],[Film2Starships]*-0..1[Film],[Film2Vehicles{bg:lightslategray}],[Film2Vehicles]*-0..1[Film],[Film2Species{bg:lightslategray}],[Film2Species]*-0..1[Film],[Planet2People{bg:lightslategray}],[Planet2People]*-0..1[Planet],[Planet2People]-0..1>[People],[DraftAdministrativeData{bg:lightslategray}],[Planet2People%20{bg:lawngreen}]++-*>[Planet2People],[Film2Species%20{bg:lawngreen}]++-*>[Film2Species],[Film2Vehicles%20{bg:lawngreen}]++-*>[Film2Vehicles],[Film2Starships%20{bg:lawngreen}]++-*>[Film2Starships],[Film2Planets%20{bg:lawngreen}]++-*>[Film2Planets],[Vehicle2Pilot%20{bg:lawngreen}]++-*>[Vehicle2Pilot],[Starship2Pilot%20{bg:lawngreen}]++-*>[Starship2Pilot],[Species2People%20{bg:lawngreen}]++-*>[Species2People],[Film2People%20{bg:lawngreen}]++-*>[Film2People],[skinColors%20{bg:lawngreen}]++-*>[skinColors],[eyeColors%20{bg:lawngreen}]++-*>[eyeColors],[hairColors%20{bg:lawngreen}]++-*>[hairColors],[genders%20{bg:lawngreen}]++-*>[genders],[Vehicles%20{bg:lawngreen}]++-*>[Vehicles],[Starship%20{bg:lawngreen}]++-*>[Starship],[Species%20{bg:lawngreen}]++-*>[Species],[Planet%20{bg:lawngreen}]++-*>[Planet],[People%20{bg:lawngreen}]++-*>[People],[Film%20{bg:lawngreen}]++-*>[Film])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
   "servers": [
@@ -3339,7 +3339,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "planet"
+                  "planet",
+                  "people"
                 ]
               }
             }
@@ -11616,7 +11617,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "planet"
+                  "planet",
+                  "people"
                 ]
               }
             }
@@ -11733,7 +11735,8 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "planet"
+                  "planet",
+                  "people"
                 ]
               }
             }
@@ -11877,6 +11880,255 @@
           },
           "4XX": {
             "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Planet2People({ID})/people": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve people of a planet2 person.",
+        "tags": [
+          "Planet2People",
+          "People"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "name",
+                  "height",
+                  "mass",
+                  "hair_color",
+                  "skin_color",
+                  "eye_color",
+                  "birth_year",
+                  "gender",
+                  "homeworld_ID",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "homeworld",
+                  "films",
+                  "species",
+                  "vehicles",
+                  "starships",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved people",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StarWarsPeople.People"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Planet2People({ID})/people/StarWarsPeople.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Planet2People"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/StarWarsPeople.People"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Planet2People({ID})/people/StarWarsPeople.draftActivate": {
+      "post": {
+        "summary": "Invoke action draftActivate",
+        "tags": [
+          "Planet2People"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/StarWarsPeople.People"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          }
+        ]
+      }
+    },
+    "/Planet2People({ID})/people/StarWarsPeople.draftEdit": {
+      "post": {
+        "summary": "Invoke action draftEdit",
+        "tags": [
+          "Planet2People"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/StarWarsPeople.People"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "PreserveChanges": {
+                    "type": "boolean",
+                    "nullable": true
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -14098,6 +14350,14 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           },
+          "people": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPeople.People"
+              }
+            ],
+            "nullable": true
+          },
           "people_ID": {
             "type": "string",
             "format": "uuid",
@@ -14122,6 +14382,14 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsPeople.People-create"
+              }
+            ],
             "nullable": true
           },
           "people_ID": {
