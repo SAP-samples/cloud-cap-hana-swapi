@@ -6,6 +6,7 @@ using {
 
 namespace star.wars;
 
+@cds.persistence.journal
 entity Film : cuid, managed {
     title         : String;
     @assert.range
