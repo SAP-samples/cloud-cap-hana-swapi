@@ -1,27 +1,28 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
     "@graphql-tools/schema": "^8.3.1",
-    "@sap/cds": "^5.6.3",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
-    "@sap/hana-client": "^2.10.20",
+    "@sap/cds": "^5.7.4",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.4",
+    "@sap/hana-client": "^2.11.14",
     "cors": "^2.8.5",
     "express": "^4",
     "express-graphql": "^0.12.0",
-    "graphql": "^16.0.1",
-    "swagger-ui-express": "^4.1",
+    "graphql": "^14.7.0",
+    "swagger-ui-express": "^4.3",
     "uuid": "^8.3"
   },
   "engines": {
     "node": "^12.18.0  || ^14.0.0 || ^16.0.0 "
   },
   "scripts": {
-    "hana": "cds deploy --to hana:starwars --auto-undeploy",
+    "hana": "cds deploy --to hana --vcap-file ./default-env.json --auto-undeploy",
+    "hana2": "cds deploy --to hana:starwars --auto-undeploy",
     "start": "cds run",
     "build": "cds build",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
@@ -36,7 +37,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.96.0"
+        "version": "1.97.1"
       }
     },
     "hana": {
@@ -65,5 +66,8 @@
   },
   "sapux": [
     "app\\people"
-  ]
+  ],
+  "devDependencies": {
+    "@sap/hdi-deploy": "^4.2.3"
+  }
 }
