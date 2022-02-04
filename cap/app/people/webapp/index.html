@@ -19,12 +19,26 @@
                     url: './',
                     navigationMode: 'embedded'
                 }
+            },
+            bootstrapPlugins: {
+                RuntimeAuthoringPlugin: {
+                    component: "sap.ushell.plugins.rta",
+                    config: {
+                        validateAppVersion: false,
+                    },
+                },
+                PersonalizePlugin: {
+                    component: "sap.ushell.plugins.rta-personalize",
+                    config: {
+                        validateAppVersion: false,
+                    },
+                },
             }
-        };
+        }
     </script>
 
-    <script src="https://ui5.sap.com/1.96.0/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
-    <script src="https://ui5.sap.com/1.96.0/resources/sap-ui-core.js"
+    <script src="https://ui5.sap.com/1.98.0/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
+    <script src="https://ui5.sap.com/1.98.0/resources/sap-ui-core.js"
         data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates" data-sap-ui-compatVersion="edge"
         data-sap-ui-theme="sap_horizon" data-sap-ui-frameOptions="allow" data-sap-ui-bindingSyntax="complex">
     </script>
@@ -33,8 +47,12 @@
             sap.ui.getCore().applyTheme("sap_horizon")
         }
         sap.ui.getCore().attachInit(function () {
-            sap.ushell.Container.createRenderer().placeAt('content');
-        });
+            sap.ushell.Container.createRenderer().placeAt('content')
+        sap.ui
+        .getCore()
+        .getConfiguration()
+        .setFlexibilityServices([{ connector: "SessionStorageConnector" }])
+        })
     </script>
 </head>
 

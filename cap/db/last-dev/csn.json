@@ -4315,6 +4315,74 @@
       },
       "@cds.persistence.name": "STAR_WARS_VEHICLE2PILOT"
     },
+    "DataService": {
+      "kind": "service",
+      "@path": "-data"
+    },
+    "DataService.Entities": {
+      "kind": "entity",
+      "elements": {
+        "name": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "NAME"
+        },
+        "columns": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "targetAspect": {
+            "elements": {
+              "name": {
+                "type": "cds.String",
+                "length": 5000
+              },
+              "type": {
+                "type": "cds.String",
+                "length": 5000
+              },
+              "isKey": {
+                "type": "cds.Boolean"
+              }
+            }
+          },
+          "target": "DataService.Entities.columns",
+          "on": [
+            {
+              "ref": [
+                "columns",
+                "up__name"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "name"
+              ]
+            }
+          ],
+          "@cds.persistence.name": "COLUMNS"
+        }
+      },
+      "@cds.persistence.name": "DATASERVICE_ENTITIES"
+    },
+    "DataService.Data": {
+      "kind": "entity",
+      "elements": {
+        "dummy": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "DUMMY"
+        },
+        "record": {
+          "type": "cds.LargeString",
+          "@cds.persistence.name": "RECORD"
+        }
+      },
+      "@cds.persistence.name": "DATASERVICE_DATA"
+    },
     "StarWarsFilm": {
       "kind": "service",
       "@path": "/StarWarsFilm"
@@ -28980,6 +29048,30 @@
         ]
       }
     },
+    "cds_r.ExtensibilityService": {
+      "kind": "service",
+      "@path": "/-/cds/extensibility"
+    },
+    "cds_r.ExtensibilityService.addExtension": {
+      "kind": "action"
+    },
+    "cds_r.Extensions": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 36,
+          "@cds.persistence.name": "ID"
+        },
+        "csn": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "CSN"
+        }
+      },
+      "@cds.persistence.name": "CDS_R_EXTENSIONS"
+    },
     "cuid": {
       "kind": "aspect",
       "elements": {
@@ -29069,6 +29161,66 @@
       "type": "cds.String",
       "length": 255,
       "@cds.persistence.name": "USER"
+    },
+    "DataService.Entities.columns": {
+      "kind": "entity",
+      "elements": {
+        "up_": {
+          "type": "cds.Association",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          },
+          "target": "DataService.Entities",
+          "keys": [
+            {
+              "ref": [
+                "name"
+              ],
+              "as": "name",
+              "$generatedFieldName": "up__name"
+            }
+          ],
+          "on": [
+            {
+              "ref": [
+                "up_",
+                "name"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "up__name"
+              ]
+            }
+          ],
+          "@cds.persistence.name": "UP_"
+        },
+        "up__name": {
+          "type": "cds.String",
+          "length": 5000,
+          "notNull": true,
+          "key": true,
+          "@odata.foreignKey4": "up_",
+          "@cds.persistence.name": "UP__NAME"
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "NAME"
+        },
+        "type": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "TYPE"
+        },
+        "isKey": {
+          "type": "cds.Boolean",
+          "@cds.persistence.name": "ISKEY"
+        }
+      },
+      "@cds.persistence.name": "DATASERVICE_ENTITIES_COLUMNS"
     },
     "StarWarsFilm.Species2People": {
       "kind": "entity",
@@ -47072,7 +47224,7 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v2.11.4"
+    "creator": "CDS Compiler v2.12.0"
   },
   "$version": "2.0"
 }

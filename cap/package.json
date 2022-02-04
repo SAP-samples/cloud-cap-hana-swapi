@@ -1,19 +1,19 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
     "@graphql-tools/schema": "^8.3.1",
-    "@sap/cds": "^5.7.4",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.4",
-    "@sap/hana-client": "^2.11.14",
+    "@sap/cds": "^5.8.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.6",
+    "hdb": "^0.19.1",
     "cors": "^2.8.5",
     "express": "^4",
     "express-graphql": "^0.12.0",
-    "graphql": "^14.7.0",
+    "graphql": "^16.3.0",
     "swagger-ui-express": "^4.3",
     "uuid": "^8.3"
   },
@@ -37,7 +37,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.97.1"
+        "version": "1.98.0"
       }
     },
     "hana": {
@@ -50,6 +50,20 @@
     "requires": {
       "db": {
         "kind": "hana"
+      },
+      "extensibility": {
+        "kind": "uiflex"
+      },
+      "messaging": {
+        "[production]": {
+          "kind": "enterprise-messaging"
+        },
+        "[development]": {
+          "kind": "file-based-messaging"
+        },
+        "[hybrid!]": {
+          "kind": "enterprise-messaging-shared"
+        }
       }
     },
     "features": {
@@ -58,7 +72,7 @@
       "audit_personal_data": true,
       "optimized_search": true,
       "rest_new_adapter": true,
-      "graphql": true
+      "graphql": false
     },
     "log": {
       "service": true

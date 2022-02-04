@@ -52,6 +52,10 @@
         }
     },
     "sap.ui5": {
+        "flexEnabled": true,
+        "config":  {
+            "experimentalCAPScenario": true
+        },        
         "resources": {
             "js": [],
             "css": []
