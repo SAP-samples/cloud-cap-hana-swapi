@@ -6,6 +6,9 @@ using {
 
 namespace star.wars;
 
+/**
+ * All Films in the Star Wars Skywalker Saga
+ */
 @cds.persistence.journal
 entity Film : cuid, managed {
     title         : String;
@@ -76,15 +79,15 @@ annotate Film with @(
         Common.ValueList                : {
             CollectionPath : 'FilmEpisodeDesc',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'episode_id',
-                ValueListProperty : 'episode_id'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'episodeIDDesc'
-            }
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'episode_id',
+                    ValueListProperty : 'episode_id'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'episodeIDDesc'
+                }
             ]
         }
     );
@@ -204,15 +207,15 @@ annotate Film2People with {
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'film_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'film_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
             ]
         }
     );
@@ -226,15 +229,15 @@ annotate Film2People with {
         Common.ValueList                : {
             CollectionPath : 'People',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'people_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'people_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
             ]
         }
     );
@@ -257,15 +260,15 @@ annotate Film2Planets with {
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'film_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'film_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
             ]
         }
     );
@@ -279,15 +282,15 @@ annotate Film2Planets with {
         Common.ValueList                : {
             CollectionPath : 'Planet',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'planet_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'terrain'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'planet_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'terrain'
+                },
             ]
         }
 
@@ -311,15 +314,15 @@ annotate Film2Starships with {
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'film_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'film_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
             ]
         }
     );
@@ -333,15 +336,15 @@ annotate Film2Starships with {
         Common.ValueList                : {
             CollectionPath : 'Starship',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'starship_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'model'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'starship_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'model'
+                },
             ]
         }
     );
@@ -364,15 +367,15 @@ annotate Film2Vehicles with {
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'film_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'film_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
             ]
         }
     );
@@ -386,15 +389,15 @@ annotate Film2Vehicles with {
         Common.ValueList                : {
             CollectionPath : 'Vehicles',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'vehicle_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'model'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'vehicle_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'model'
+                },
             ]
         }
     );
@@ -417,15 +420,15 @@ annotate Film2Species with {
         Common.ValueList                : {
             CollectionPath : 'Film',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'film_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'film_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
             ]
         }
     );
@@ -439,34 +442,40 @@ annotate Film2Species with {
         Common.ValueList                : {
             CollectionPath : 'Species',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'specie_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'classification'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'language'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'homeworld.name'
-            }
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'specie_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'classification'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'language'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'homeworld.name'
+                }
             ]
         }
     );
 };
 
-@cds.autoexpose: true
+/**
+ * All People and Aliens in Star Wars
+ */
+@cds.autoexpose : true
 entity People : cuid, managed {
-    @sql.append: 'FUZZY SEARCH INDEX ON'
+    @sql.append : 'FUZZY SEARCH INDEX ON'
     name       : String;
     height     : String;
     mass       : String;
+    /**
+     * Person's Hair Color
+     */
     hair_color : String;
     skin_color : String;
     eye_color  : String;
@@ -484,11 +493,18 @@ entity People : cuid, managed {
 }
 
 define view peopleCount as
-   select from People distinct {
-       count(*) over (partition by homeworld.ID order by homeworld.name) as people_count,
-       homeworld.name,
-   } order by people_count desc;
-   
+    select from People distinct {
+        count(
+            *
+        ) over(
+            partition by homeworld.ID order by
+                homeworld.name
+        ) as people_count,
+        homeworld.name,
+    }
+    order by
+                people_count desc;
+
 define view genders as
     select from People distinct {
         key gender
@@ -600,27 +616,27 @@ annotate People with @(
             CollectionPath  : 'Planet',
             SearchSupported : true,
             Parameters      : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'homeworld_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'climate'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'terrain'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'population'
-            }
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'homeworld_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'climate'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'terrain'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'population'
+                }
             ]
         }
     );
@@ -729,15 +745,15 @@ annotate Planet2People with {
         Common.ValueList                : {
             CollectionPath : 'Planet',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'planet_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'planet_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
             ]
         }
     );
@@ -751,15 +767,15 @@ annotate Planet2People with {
         Common.ValueList                : {
             CollectionPath : 'People',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'people_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'people_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
             ]
         }
     );
@@ -925,27 +941,27 @@ annotate Species with @(
             CollectionPath  : 'Planet',
             SearchSupported : true,
             Parameters      : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'homeworld_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'climate'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'terrain'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'population'
-            }
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'homeworld_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'climate'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'terrain'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'population'
+                }
             ]
         }
     );
@@ -982,15 +998,15 @@ annotate Species2People with {
         Common.ValueList                : {
             CollectionPath : 'Species',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'species_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'species_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
             ]
         }
     );
@@ -1004,21 +1020,21 @@ annotate Species2People with {
         Common.ValueList                : {
             CollectionPath : 'People',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'people_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'people_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
             ]
         }
     );
 };
 
-@cds.autoexpose: true
+@cds.autoexpose : true
 entity Starship : cuid, managed {
     name                   : String;
     model                  : String;
@@ -1150,19 +1166,19 @@ annotate Starship2Pilot with {
         Common.ValueList                : {
             CollectionPath : 'Starship',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'starship_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'model'
-            }
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'starship_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'model'
+                }
             ]
         }
     );
@@ -1176,21 +1192,21 @@ annotate Starship2Pilot with {
         Common.ValueList                : {
             CollectionPath : 'People',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'pilot_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'pilot_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
             ]
         }
     );
 };
 
-@cds.autoexpose: true
+@cds.autoexpose : true
 entity Vehicles : cuid, managed {
     name                   : String;
     model                  : String;
@@ -1319,19 +1335,19 @@ annotate Vehicle2Pilot with {
         Common.ValueList                : {
             CollectionPath : 'Vehicles',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'vehicle_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'model'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'vehicle_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'model'
+                },
             ]
         }
     );
@@ -1345,15 +1361,15 @@ annotate Vehicle2Pilot with {
         Common.ValueList                : {
             CollectionPath : 'People',
             Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                LocalDataProperty : 'pilot_ID',
-                ValueListProperty : 'ID'
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            },
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'pilot_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
             ]
         }
     );

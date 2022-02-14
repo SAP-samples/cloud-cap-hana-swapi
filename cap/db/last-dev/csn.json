@@ -3,6 +3,7 @@
   "definitions": {
     "star.wars.Film": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
       "@UI.TextArrangement": {
@@ -51,6 +52,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -83,6 +85,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -297,6 +300,7 @@
     },
     "star.wars.directors": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
       "@UI.TextArrangement": {
@@ -358,6 +362,7 @@
     },
     "star.wars.producers": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
       "@UI.TextArrangement": {
@@ -419,6 +424,7 @@
     },
     "star.wars.FilmEpisodeDesc": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
       "@UI.TextArrangement": {
@@ -1478,6 +1484,7 @@
     },
     "star.wars.People": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
       "@UI.TextArrangement": {
@@ -1526,6 +1533,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -1558,6 +1566,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -1604,6 +1613,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -1851,6 +1861,7 @@
     },
     "star.wars.peopleCount": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
       "@UI.TextArrangement": {
@@ -1981,6 +1992,7 @@
     },
     "star.wars.genders": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
       "@UI.TextArrangement": {
@@ -2042,6 +2054,7 @@
     },
     "star.wars.hairColors": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
       "@UI.TextArrangement": {
@@ -2083,6 +2096,7 @@
       },
       "elements": {
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -2103,6 +2117,7 @@
     },
     "star.wars.eyeColors": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
       "@UI.TextArrangement": {
@@ -2164,6 +2179,7 @@
     },
     "star.wars.skinColors": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
       "@UI.TextArrangement": {
@@ -2272,6 +2288,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -2304,6 +2321,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -2779,6 +2797,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -2811,6 +2830,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -3644,6 +3664,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -3676,6 +3697,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -4248,6 +4270,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -4280,6 +4303,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -4792,10 +4816,12 @@
     },
     "DataService": {
       "kind": "service",
+      "doc": "Exposes data + entity metadata",
       "@path": "-data"
     },
     "DataService.Entities": {
       "kind": "entity",
+      "doc": "Metadata like name and columns/elements",
       "elements": {
         "name": {
           "key": true,
@@ -4845,6 +4871,7 @@
     },
     "DataService.Data": {
       "kind": "entity",
+      "doc": "The actual data, organized by column name",
       "elements": {
         "dummy": {
           "type": "cds.String",
@@ -4864,6 +4891,7 @@
     },
     "StarWarsFilm.Film": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@odata.draft.enabled": true,
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -5105,6 +5133,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -5137,6 +5166,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -5574,6 +5604,7 @@
     },
     "StarWarsFilm.People": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
@@ -5623,6 +5654,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -5655,6 +5687,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -5700,6 +5733,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -6254,6 +6288,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -6286,6 +6321,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -6640,6 +6676,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -6672,6 +6709,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -7198,6 +7236,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -7230,6 +7269,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -7639,6 +7679,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -7671,6 +7712,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -10596,6 +10638,7 @@
     },
     "StarWarsFilm.directors": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -10654,6 +10697,7 @@
     },
     "StarWarsFilm.producers": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -10712,6 +10756,7 @@
     },
     "StarWarsFilm.FilmEpisodeDesc": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -10831,6 +10876,7 @@
     },
     "StarWarsPeople.Film": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -10880,6 +10926,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -10912,6 +10959,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -11349,6 +11397,7 @@
     },
     "StarWarsPeople.People": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@odata.draft.enabled": true,
       "@cds.redirection.target": false,
       "@UI.TextArrangement": {
@@ -11592,6 +11641,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -11624,6 +11674,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -11669,6 +11720,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -12223,6 +12275,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -12255,6 +12308,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -12609,6 +12663,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -12641,6 +12696,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -13167,6 +13223,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -13199,6 +13256,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -13608,6 +13666,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -13640,6 +13699,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -13976,6 +14036,7 @@
     },
     "StarWarsPeople.genders": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.redirection.target": false,
       "@cds.autoexpose": true,
@@ -14035,6 +14096,7 @@
     },
     "StarWarsPeople.hairColors": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.redirection.target": false,
       "@cds.autoexpose": true,
@@ -14058,6 +14120,7 @@
       ],
       "elements": {
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -14094,6 +14157,7 @@
     },
     "StarWarsPeople.eyeColors": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.redirection.target": false,
       "@cds.autoexpose": true,
@@ -14153,6 +14217,7 @@
     },
     "StarWarsPeople.skinColors": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.redirection.target": false,
       "@cds.autoexpose": true,
@@ -16531,6 +16596,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -16563,6 +16629,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -16869,6 +16936,7 @@
     },
     "StarWarsPlanet.People": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
@@ -16918,6 +16986,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -16950,6 +17019,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -16995,6 +17065,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -17501,6 +17572,7 @@
     },
     "StarWarsPlanet.Film": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -17550,6 +17622,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -17582,6 +17655,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -19394,6 +19468,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -19426,6 +19501,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -19951,6 +20027,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -19983,6 +20060,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -20289,6 +20367,7 @@
     },
     "StarWarsSpecies.Film": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -20338,6 +20417,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -20370,6 +20450,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -20807,6 +20888,7 @@
     },
     "StarWarsSpecies.People": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
@@ -20856,6 +20938,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -20888,6 +20971,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -20933,6 +21017,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -23112,6 +23197,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -23144,6 +23230,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -23504,6 +23591,7 @@
     },
     "StarWarsStarship.Film": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -23553,6 +23641,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -23585,6 +23674,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -24022,6 +24112,7 @@
     },
     "StarWarsStarship.People": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
@@ -24071,6 +24162,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -24103,6 +24195,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -24148,6 +24241,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -24702,6 +24796,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -24734,6 +24829,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -26501,6 +26597,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -26533,6 +26630,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -26869,6 +26967,7 @@
     },
     "StarWarsVehicle.Film": {
       "kind": "entity",
+      "doc": "All Films in the Star Wars Skywalker Saga",
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
@@ -26918,6 +27017,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -26950,6 +27050,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -27387,6 +27488,7 @@
     },
     "StarWarsVehicle.People": {
       "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>People}",
@@ -27436,6 +27538,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -27468,6 +27571,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -27513,6 +27617,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -28067,6 +28172,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -28099,6 +28205,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -29577,6 +29684,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -29609,6 +29717,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -29631,6 +29740,7 @@
     },
     "User": {
       "kind": "type",
+      "doc": "Canonical user ID",
       "@title": "{i18n>UserID}",
       "@description": "{i18n>UserID.Description}",
       "type": "cds.String",
@@ -39520,6 +39630,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -39552,6 +39663,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -39937,6 +40049,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -39969,6 +40082,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -40378,6 +40492,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -40410,6 +40525,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -40819,6 +40935,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -40851,6 +40968,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -41236,6 +41354,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -41268,6 +41387,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -41653,6 +41773,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -41685,6 +41806,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -42243,6 +42365,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -42277,6 +42400,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -43558,6 +43682,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -43592,6 +43717,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -43641,6 +43767,7 @@
           "@cds.persistence.name": "MASS"
         },
         "hair_color": {
+          "doc": "Person's Hair Color",
           "@title": "{i18n>hair_color}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "hairColors",
@@ -44763,6 +44890,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -44797,6 +44925,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -45495,6 +45624,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -45529,6 +45659,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -46335,6 +46466,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -46369,6 +46501,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -47105,6 +47238,7 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
@@ -47139,6 +47273,7 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
+          "doc": "Canonical user ID",
           "@cds.on.insert": {
             "=": "$user"
           },
