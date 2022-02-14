@@ -1,8 +1,7 @@
 using {
     managed,
     sap,
-    cuid,
-    extensible
+    cuid
 } from '@sap/cds/common';
 
 namespace star.wars;

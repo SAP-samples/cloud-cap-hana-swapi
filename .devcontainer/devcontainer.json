@@ -5,7 +5,7 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		// Update 'VARIANT' to pick a Node version: 12, 14, 16
-		"args": { "VARIANT": "14" }
+		"args": { "VARIANT": "16" }
 	},
 
 	// Set *default* container specific settings.json values on container create.
@@ -32,7 +32,8 @@
         "visualstudioexptteam.vscodeintellicode",
         "vscode-icons-team.vscode-icons",
         "saposs.xml-toolkit",
-        "dotjoshjohnson.xml"
+        "dotjoshjohnson.xml",
+		"SAPSE.hana-database-explorer"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
