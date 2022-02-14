@@ -1849,6 +1849,136 @@
       },
       "@cds.persistence.name": "STAR_WARS_PEOPLE"
     },
+    "star.wars.peopleCount": {
+      "kind": "entity",
+      "@cds.autoexpose": true,
+      "@title": "{i18n>People}",
+      "@UI.TextArrangement": {
+        "#": "TextOnly"
+      },
+      "@cds.odata.valuelist": true,
+      "@Common.SemanticKey": [
+        {
+          "=": "name"
+        }
+      ],
+      "@UI.Identification": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "query": {
+        "SELECT": {
+          "from": {
+            "join": "left",
+            "args": [
+              {
+                "ref": [
+                  "star.wars.People"
+                ],
+                "as": "People_0"
+              },
+              {
+                "ref": [
+                  "star.wars.Planet"
+                ],
+                "as": "homeworld_1"
+              }
+            ],
+            "on": [
+              {
+                "ref": [
+                  "People_0",
+                  "homeworld_ID"
+                ]
+              },
+              "=",
+              {
+                "ref": [
+                  "homeworld_1",
+                  "ID"
+                ]
+              }
+            ]
+          },
+          "distinct": true,
+          "columns": [
+            {
+              "func": "count",
+              "args": [
+                "*"
+              ],
+              "xpr": [
+                "over",
+                {
+                  "xpr": [
+                    "partition",
+                    "by",
+                    {
+                      "ref": [
+                        "homeworld_1",
+                        "ID"
+                      ]
+                    },
+                    "order",
+                    "by",
+                    {
+                      "ref": [
+                        "homeworld_1",
+                        "name"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "as": "people_count"
+            },
+            {
+              "ref": [
+                "homeworld_1",
+                "name"
+              ]
+            }
+          ],
+          "orderBy": [
+            {
+              "ref": [
+                "people_count"
+              ],
+              "sort": "desc"
+            }
+          ]
+        }
+      },
+      "elements": {
+        "people_count": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "PEOPLE_COUNT"
+        },
+        "name": {
+          "@title": "{i18n>planetName}",
+          "@Common.TextFor": {
+            "=": "ID"
+          },
+          "@Common.ValueListWithFixedValues": false,
+          "@Common.ValueList.CollectionPath": "Planet",
+          "@Common.ValueList.Parameters": [
+            {
+              "$Type": "Common.ValueListParameterInOut",
+              "LocalDataProperty": "name",
+              "ValueListProperty": "name"
+            }
+          ],
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "NAME"
+        }
+      },
+      "@cds.persistence.name": "STAR_WARS_PEOPLECOUNT"
+    },
     "star.wars.genders": {
       "kind": "entity",
       "@cds.autoexpose": true,

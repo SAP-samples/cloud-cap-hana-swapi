@@ -483,6 +483,12 @@ entity People : cuid, managed {
                      on starships.pilot = $self;
 }
 
+define view peopleCount as
+   select from People distinct {
+       count(*) over (partition by homeworld.ID order by homeworld.name) as people_count,
+       homeworld.name,
+   } order by people_count desc;
+   
 define view genders as
     select from People distinct {
         key gender
