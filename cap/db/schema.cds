@@ -463,6 +463,7 @@ annotate Film2Species with {
 
 @cds.autoexpose: true
 entity People : cuid, managed {
+    @sql.append: 'FUZZY SEARCH INDEX ON'
     name       : String;
     height     : String;
     mass       : String;

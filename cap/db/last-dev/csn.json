@@ -812,6 +812,40 @@
           "@cds.persistence.name": "PEOPLE_ID"
         }
       },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Film2People_film": {
+            "identifier": "star.wars.Film2People_film",
+            "foreignKey": [
+              "film_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2People",
+            "parentTable": "star.wars.Film",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Film2People_people": {
+            "identifier": "star.wars.Film2People_people",
+            "foreignKey": [
+              "people_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2People",
+            "parentTable": "star.wars.People",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
+        }
+      },
       "@cds.persistence.name": "STAR_WARS_FILM2PEOPLE"
     },
     "star.wars.Film2Planets": {
@@ -931,6 +965,40 @@
           "length": 36,
           "@odata.foreignKey4": "planet",
           "@cds.persistence.name": "PLANET_ID"
+        }
+      },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Film2Planets_film": {
+            "identifier": "star.wars.Film2Planets_film",
+            "foreignKey": [
+              "film_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Planets",
+            "parentTable": "star.wars.Film",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Film2Planets_planet": {
+            "identifier": "star.wars.Film2Planets_planet",
+            "foreignKey": [
+              "planet_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Planets",
+            "parentTable": "star.wars.Planet",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
         }
       },
       "@cds.persistence.name": "STAR_WARS_FILM2PLANETS"
@@ -1054,6 +1122,40 @@
           "@cds.persistence.name": "STARSHIP_ID"
         }
       },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Film2Starships_film": {
+            "identifier": "star.wars.Film2Starships_film",
+            "foreignKey": [
+              "film_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Starships",
+            "parentTable": "star.wars.Film",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Film2Starships_starship": {
+            "identifier": "star.wars.Film2Starships_starship",
+            "foreignKey": [
+              "starship_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Starships",
+            "parentTable": "star.wars.Starship",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
+        }
+      },
       "@cds.persistence.name": "STAR_WARS_FILM2STARSHIPS"
     },
     "star.wars.Film2Vehicles": {
@@ -1173,6 +1275,40 @@
           "length": 36,
           "@odata.foreignKey4": "vehicle",
           "@cds.persistence.name": "VEHICLE_ID"
+        }
+      },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Film2Vehicles_film": {
+            "identifier": "star.wars.Film2Vehicles_film",
+            "foreignKey": [
+              "film_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Vehicles",
+            "parentTable": "star.wars.Film",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Film2Vehicles_vehicle": {
+            "identifier": "star.wars.Film2Vehicles_vehicle",
+            "foreignKey": [
+              "vehicle_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Vehicles",
+            "parentTable": "star.wars.Vehicles",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
         }
       },
       "@cds.persistence.name": "STAR_WARS_FILM2VEHICLES"
@@ -1304,6 +1440,40 @@
           "@cds.persistence.name": "SPECIE_ID"
         }
       },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Film2Species_film": {
+            "identifier": "star.wars.Film2Species_film",
+            "foreignKey": [
+              "film_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Species",
+            "parentTable": "star.wars.Film",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Film2Species_specie": {
+            "identifier": "star.wars.Film2Species_specie",
+            "foreignKey": [
+              "specie_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Film2Species",
+            "parentTable": "star.wars.Species",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
+        }
+      },
       "@cds.persistence.name": "STAR_WARS_FILM2SPECIES"
     },
     "star.wars.People": {
@@ -1406,6 +1576,7 @@
           "@cds.persistence.name": "MODIFIEDBY"
         },
         "name": {
+          "@sql.append": "FUZZY SEARCH INDEX ON",
           "@title": "{i18n>peopleName}",
           "@Common.ValueListWithFixedValues": false,
           "@Common.ValueList.CollectionPath": "People",
@@ -1655,6 +1826,25 @@
             }
           ],
           "@cds.persistence.name": "STARSHIPS"
+        }
+      },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.People_homeworld": {
+            "identifier": "star.wars.People_homeworld",
+            "foreignKey": [
+              "homeworld_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.People",
+            "parentTable": "star.wars.Planet",
+            "onDelete": "RESTRICT",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
         }
       },
       "@cds.persistence.name": "STAR_WARS_PEOPLE"
@@ -2254,6 +2444,40 @@
           "@cds.persistence.name": "PEOPLE_ID"
         }
       },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Planet2People_planet": {
+            "identifier": "star.wars.Planet2People_planet",
+            "foreignKey": [
+              "planet_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Planet2People",
+            "parentTable": "star.wars.Planet",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Planet2People_people": {
+            "identifier": "star.wars.Planet2People_people",
+            "foreignKey": [
+              "people_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Planet2People",
+            "parentTable": "star.wars.People",
+            "onDelete": "RESTRICT",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
+        }
+      },
       "@cds.persistence.name": "STAR_WARS_PLANET2PEOPLE"
     },
     "star.wars.climate": {
@@ -2702,6 +2926,25 @@
             }
           ],
           "@cds.persistence.name": "FILMS"
+        }
+      },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Species_homeworld": {
+            "identifier": "star.wars.Species_homeworld",
+            "foreignKey": [
+              "homeworld_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Species",
+            "parentTable": "star.wars.Planet",
+            "onDelete": "RESTRICT",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
         }
       },
       "@cds.persistence.name": "STAR_WARS_SPECIES"
@@ -3183,6 +3426,40 @@
           "length": 36,
           "@odata.foreignKey4": "people",
           "@cds.persistence.name": "PEOPLE_ID"
+        }
+      },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Species2People_species": {
+            "identifier": "star.wars.Species2People_species",
+            "foreignKey": [
+              "species_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Species2People",
+            "parentTable": "star.wars.Species",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Species2People_people": {
+            "identifier": "star.wars.Species2People_people",
+            "foreignKey": [
+              "people_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Species2People",
+            "parentTable": "star.wars.People",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
         }
       },
       "@cds.persistence.name": "STAR_WARS_SPECIES2PEOPLE"
@@ -3755,6 +4032,40 @@
           "@cds.persistence.name": "PILOT_ID"
         }
       },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Starship2Pilot_starship": {
+            "identifier": "star.wars.Starship2Pilot_starship",
+            "foreignKey": [
+              "starship_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Starship2Pilot",
+            "parentTable": "star.wars.Starship",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Starship2Pilot_pilot": {
+            "identifier": "star.wars.Starship2Pilot_pilot",
+            "foreignKey": [
+              "pilot_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Starship2Pilot",
+            "parentTable": "star.wars.People",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
+        }
+      },
       "@cds.persistence.name": "STAR_WARS_STARSHIP2PILOT"
     },
     "star.wars.Vehicles": {
@@ -4311,6 +4622,40 @@
           "length": 36,
           "@odata.foreignKey4": "pilot",
           "@cds.persistence.name": "PILOT_ID"
+        }
+      },
+      "$tableConstraints": {
+        "referential": {
+          "star.wars.Vehicle2Pilot_vehicle": {
+            "identifier": "star.wars.Vehicle2Pilot_vehicle",
+            "foreignKey": [
+              "vehicle_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Vehicle2Pilot",
+            "parentTable": "star.wars.Vehicles",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          },
+          "star.wars.Vehicle2Pilot_pilot": {
+            "identifier": "star.wars.Vehicle2Pilot_pilot",
+            "foreignKey": [
+              "pilot_ID"
+            ],
+            "parentKey": [
+              "ID"
+            ],
+            "dependentTable": "star.wars.Vehicle2Pilot",
+            "parentTable": "star.wars.People",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
         }
       },
       "@cds.persistence.name": "STAR_WARS_VEHICLE2PILOT"
@@ -29218,6 +29563,25 @@
         "isKey": {
           "type": "cds.Boolean",
           "@cds.persistence.name": "ISKEY"
+        }
+      },
+      "$tableConstraints": {
+        "referential": {
+          "DataService.Entities_columns_up_": {
+            "identifier": "DataService.Entities.columns_up_",
+            "foreignKey": [
+              "up__name"
+            ],
+            "parentKey": [
+              "name"
+            ],
+            "dependentTable": "DataService.Entities.columns",
+            "parentTable": "DataService.Entities",
+            "onDelete": "CASCADE",
+            "onDeleteRemark": null,
+            "validated": true,
+            "enforced": true
+          }
         }
       },
       "@cds.persistence.name": "DATASERVICE_ENTITIES_COLUMNS"

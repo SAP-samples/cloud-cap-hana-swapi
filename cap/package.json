@@ -7,8 +7,8 @@
   "private": false,
   "dependencies": {
     "@graphql-tools/schema": "^8.3.1",
-    "@sap/cds": "^5.8.0",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.6",
+    "@sap/cds": "^5.8.1",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.9",
     "hdb": "^0.19.1",
     "cors": "^2.8.5",
     "express": "^4",
@@ -72,7 +72,8 @@
       "audit_personal_data": true,
       "optimized_search": true,
       "rest_new_adapter": true,
-      "graphql": false
+      "graphql": false,
+      "assert_integrity": "db"
     },
     "log": {
       "service": true
