@@ -58,7 +58,7 @@ annotate sws.Film with @( // header-level annotations
             },
             TypeName       : '{i18n>People}',
             TypeNamePlural : '{i18n>PeopleM}',
-            Description    : {Value : episode_id}
+            Description    : {Value : episode_id }
         },
         HeaderFacets            : [{
             $Type             : 'UI.ReferenceFacet',
