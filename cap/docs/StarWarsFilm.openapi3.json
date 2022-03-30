@@ -12,22 +12,24 @@
   ],
   "tags": [
     {
-      "name": "Film"
+      "name": "{i18n>Film}",
+      "description": "All Films in the Star Wars Skywalker Saga"
     },
     {
-      "name": "People"
+      "name": "{i18n>People}",
+      "description": "All People and Aliens in Star Wars"
     },
     {
-      "name": "Planet"
+      "name": "{i18n>Planet}"
     },
     {
-      "name": "Species"
+      "name": "{i18n>Species}"
     },
     {
-      "name": "Starship"
+      "name": "{i18n>Starship}"
     },
     {
-      "name": "Vehicles"
+      "name": "{i18n>Vehicles}"
     },
     {
       "name": "Film2People"
@@ -45,13 +47,16 @@
       "name": "Film2Vehicles"
     },
     {
-      "name": "directors"
+      "name": "{i18n>Film}",
+      "description": "All Films in the Star Wars Skywalker Saga"
     },
     {
-      "name": "producers"
+      "name": "{i18n>Film}",
+      "description": "All Films in the Star Wars Skywalker Saga"
     },
     {
-      "name": "FilmEpisodeDesc"
+      "name": "{i18n>Film}",
+      "description": "All Films in the Star Wars Skywalker Saga"
     },
     {
       "name": "Species2People"
@@ -71,7 +76,7 @@
       "get": {
         "summary": "Retrieve a list of film.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -221,10 +226,10 @@
       "post": {
         "summary": "Create a single film.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "requestBody": {
-          "description": "New film",
+          "description": "All Films in the Star Wars Skywalker Saga",
           "required": true,
           "content": {
             "application/json": {
@@ -278,7 +283,7 @@
       "get": {
         "summary": "Retrieve a single film.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -353,10 +358,10 @@
       "patch": {
         "summary": "Change a single film.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "All Films in the Star Wars Skywalker Saga",
           "required": true,
           "content": {
             "application/json": {
@@ -378,7 +383,7 @@
       "delete": {
         "summary": "Delete a single film.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "204": {
@@ -394,7 +399,7 @@
       "post": {
         "summary": "Invoke action draftPrepare",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "200": {
@@ -461,7 +466,7 @@
       "post": {
         "summary": "Invoke action draftActivate",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "200": {
@@ -512,7 +517,7 @@
       "post": {
         "summary": "Invoke action draftEdit",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "200": {
@@ -600,9 +605,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of characters of a film.",
+        "summary": "Retrieve a list of characters of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2People"
         ],
         "parameters": [
@@ -724,9 +729,9 @@
         }
       },
       "post": {
-        "summary": "Create a single character of a film.",
+        "summary": "Create a single character of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2People"
         ],
         "requestBody": {
@@ -782,9 +787,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of planets of a film.",
+        "summary": "Retrieve a list of planets of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Planets"
         ],
         "parameters": [
@@ -906,9 +911,9 @@
         }
       },
       "post": {
-        "summary": "Create a single planet of a film.",
+        "summary": "Create a single planet of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Planets"
         ],
         "requestBody": {
@@ -964,9 +969,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of starships of a film.",
+        "summary": "Retrieve a list of starships of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Starships"
         ],
         "parameters": [
@@ -1088,9 +1093,9 @@
         }
       },
       "post": {
-        "summary": "Create a single starship of a film.",
+        "summary": "Create a single starship of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Starships"
         ],
         "requestBody": {
@@ -1146,9 +1151,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of vehicles of a film.",
+        "summary": "Retrieve a list of vehicles of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Vehicles"
         ],
         "parameters": [
@@ -1270,9 +1275,9 @@
         }
       },
       "post": {
-        "summary": "Create a single vehicle of a film.",
+        "summary": "Create a single vehicle of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Vehicles"
         ],
         "requestBody": {
@@ -1328,9 +1333,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of species of a film.",
+        "summary": "Retrieve a list of species of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Species"
         ],
         "parameters": [
@@ -1452,9 +1457,9 @@
         }
       },
       "post": {
-        "summary": "Create a single species of a film.",
+        "summary": "Create a single species of a {i18n> film}.",
         "tags": [
-          "Film",
+          "{i18n>Film}",
           "Film2Species"
         ],
         "requestBody": {
@@ -1510,9 +1515,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve draft administrative data of a film.",
+        "summary": "Retrieve draft administrative data of a {i18n> film}.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -1556,9 +1561,9 @@
         }
       },
       "patch": {
-        "summary": "Change draft administrative data of a film.",
+        "summary": "Change draft administrative data of a {i18n> film}.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "requestBody": {
           "description": "New property values",
@@ -1581,9 +1586,9 @@
         }
       },
       "delete": {
-        "summary": "Delete draft administrative data of a film.",
+        "summary": "Delete draft administrative data of a {i18n> film}.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "204": {
@@ -1620,9 +1625,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve sibling entity of a film.",
+        "summary": "Retrieve sibling entity of a {i18n> film}.",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -1699,7 +1704,7 @@
       "post": {
         "summary": "Invoke action draftPrepare",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "200": {
@@ -1766,7 +1771,7 @@
       "post": {
         "summary": "Invoke action draftActivate",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "200": {
@@ -1817,7 +1822,7 @@
       "post": {
         "summary": "Invoke action draftEdit",
         "tags": [
-          "Film"
+          "{i18n>Film}"
         ],
         "responses": {
           "200": {
@@ -1884,7 +1889,7 @@
       "get": {
         "summary": "Retrieve a list of people.",
         "tags": [
-          "People"
+          "{i18n>People}"
         ],
         "parameters": [
           {
@@ -2047,7 +2052,7 @@
       "get": {
         "summary": "Retrieve a single person.",
         "tags": [
-          "People"
+          "{i18n>People}"
         ],
         "parameters": [
           {
@@ -2133,10 +2138,10 @@
         }
       ],
       "get": {
-        "summary": "Retrieve homeworld of a person.",
+        "summary": "Retrieve homeworld of a {i18n> people}.",
         "tags": [
-          "People",
-          "Planet"
+          "{i18n>People}",
+          "{i18n>Planet}"
         ],
         "parameters": [
           {
@@ -2219,9 +2224,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a person.",
+        "summary": "Retrieve a list of films of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Film2People"
         ],
         "parameters": [
@@ -2343,9 +2348,9 @@
         }
       },
       "post": {
-        "summary": "Create a single film of a person.",
+        "summary": "Create a single film of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Film2People"
         ],
         "requestBody": {
@@ -2391,9 +2396,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of species of a person.",
+        "summary": "Retrieve a list of species of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Species2People"
         ],
         "parameters": [
@@ -2504,9 +2509,9 @@
         }
       },
       "post": {
-        "summary": "Create a single species of a person.",
+        "summary": "Create a single species of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Species2People"
         ],
         "requestBody": {
@@ -2552,9 +2557,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of vehicles of a person.",
+        "summary": "Retrieve a list of vehicles of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Vehicle2Pilot"
         ],
         "parameters": [
@@ -2665,9 +2670,9 @@
         }
       },
       "post": {
-        "summary": "Create a single vehicle of a person.",
+        "summary": "Create a single vehicle of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Vehicle2Pilot"
         ],
         "requestBody": {
@@ -2713,9 +2718,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of starships of a person.",
+        "summary": "Retrieve a list of starships of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Starship2Pilot"
         ],
         "parameters": [
@@ -2826,9 +2831,9 @@
         }
       },
       "post": {
-        "summary": "Create a single starship of a person.",
+        "summary": "Create a single starship of a {i18n> people}.",
         "tags": [
-          "People",
+          "{i18n>People}",
           "Starship2Pilot"
         ],
         "requestBody": {
@@ -2863,7 +2868,7 @@
       "get": {
         "summary": "Retrieve a list of planet.",
         "tags": [
-          "Planet"
+          "{i18n>Planet}"
         ],
         "parameters": [
           {
@@ -3023,7 +3028,7 @@
       "get": {
         "summary": "Retrieve a single planet.",
         "tags": [
-          "Planet"
+          "{i18n>Planet}"
         ],
         "parameters": [
           {
@@ -3106,9 +3111,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a planet.",
+        "summary": "Retrieve a list of films of a {i18n> planet}.",
         "tags": [
-          "Planet",
+          "{i18n>Planet}",
           "Film2Planets"
         ],
         "parameters": [
@@ -3230,9 +3235,9 @@
         }
       },
       "post": {
-        "summary": "Create a single film of a planet.",
+        "summary": "Create a single film of a {i18n> planet}.",
         "tags": [
-          "Planet",
+          "{i18n>Planet}",
           "Film2Planets"
         ],
         "requestBody": {
@@ -3278,9 +3283,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of residents of a planet.",
+        "summary": "Retrieve a list of residents of a {i18n> planet}.",
         "tags": [
-          "Planet",
+          "{i18n>Planet}",
           "Planet2People"
         ],
         "parameters": [
@@ -3391,9 +3396,9 @@
         }
       },
       "post": {
-        "summary": "Create a single resident of a planet.",
+        "summary": "Create a single resident of a {i18n> planet}.",
         "tags": [
-          "Planet",
+          "{i18n>Planet}",
           "Planet2People"
         ],
         "requestBody": {
@@ -3428,7 +3433,7 @@
       "get": {
         "summary": "Retrieve a list of species.",
         "tags": [
-          "Species"
+          "{i18n>Species}"
         ],
         "parameters": [
           {
@@ -3592,7 +3597,7 @@
       "get": {
         "summary": "Retrieve a single species.",
         "tags": [
-          "Species"
+          "{i18n>Species}"
         ],
         "parameters": [
           {
@@ -3677,10 +3682,10 @@
         }
       ],
       "get": {
-        "summary": "Retrieve homeworld of a species.",
+        "summary": "Retrieve homeworld of a {i18n> species}.",
         "tags": [
-          "Species",
-          "Planet"
+          "{i18n>Species}",
+          "{i18n>Planet}"
         ],
         "parameters": [
           {
@@ -3763,9 +3768,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of people of a species.",
+        "summary": "Retrieve a list of people of a {i18n> species}.",
         "tags": [
-          "Species",
+          "{i18n>Species}",
           "Species2People"
         ],
         "parameters": [
@@ -3876,9 +3881,9 @@
         }
       },
       "post": {
-        "summary": "Create a single person of a species.",
+        "summary": "Create a single person of a {i18n> species}.",
         "tags": [
-          "Species",
+          "{i18n>Species}",
           "Species2People"
         ],
         "requestBody": {
@@ -3924,9 +3929,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a species.",
+        "summary": "Retrieve a list of films of a {i18n> species}.",
         "tags": [
-          "Species",
+          "{i18n>Species}",
           "Film2Species"
         ],
         "parameters": [
@@ -4048,9 +4053,9 @@
         }
       },
       "post": {
-        "summary": "Create a single film of a species.",
+        "summary": "Create a single film of a {i18n> species}.",
         "tags": [
-          "Species",
+          "{i18n>Species}",
           "Film2Species"
         ],
         "requestBody": {
@@ -4085,7 +4090,7 @@
       "get": {
         "summary": "Retrieve a list of starship.",
         "tags": [
-          "Starship"
+          "{i18n>Starship}"
         ],
         "parameters": [
           {
@@ -4257,7 +4262,7 @@
       "get": {
         "summary": "Retrieve a single starship.",
         "tags": [
-          "Starship"
+          "{i18n>Starship}"
         ],
         "parameters": [
           {
@@ -4344,9 +4349,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a starship.",
+        "summary": "Retrieve a list of films of a {i18n> starship}.",
         "tags": [
-          "Starship",
+          "{i18n>Starship}",
           "Film2Starships"
         ],
         "parameters": [
@@ -4468,9 +4473,9 @@
         }
       },
       "post": {
-        "summary": "Create a single film of a starship.",
+        "summary": "Create a single film of a {i18n> starship}.",
         "tags": [
-          "Starship",
+          "{i18n>Starship}",
           "Film2Starships"
         ],
         "requestBody": {
@@ -4516,9 +4521,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of pilots of a starship.",
+        "summary": "Retrieve a list of pilots of a {i18n> starship}.",
         "tags": [
-          "Starship",
+          "{i18n>Starship}",
           "Starship2Pilot"
         ],
         "parameters": [
@@ -4629,9 +4634,9 @@
         }
       },
       "post": {
-        "summary": "Create a single pilot of a starship.",
+        "summary": "Create a single pilot of a {i18n> starship}.",
         "tags": [
-          "Starship",
+          "{i18n>Starship}",
           "Starship2Pilot"
         ],
         "requestBody": {
@@ -4666,7 +4671,7 @@
       "get": {
         "summary": "Retrieve a list of vehicles.",
         "tags": [
-          "Vehicles"
+          "{i18n>Vehicles}"
         ],
         "parameters": [
           {
@@ -4832,7 +4837,7 @@
       "get": {
         "summary": "Retrieve a single vehicle.",
         "tags": [
-          "Vehicles"
+          "{i18n>Vehicles}"
         ],
         "parameters": [
           {
@@ -4917,9 +4922,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a vehicle.",
+        "summary": "Retrieve a list of films of a {i18n> vehicles}.",
         "tags": [
-          "Vehicles",
+          "{i18n>Vehicles}",
           "Film2Vehicles"
         ],
         "parameters": [
@@ -5041,9 +5046,9 @@
         }
       },
       "post": {
-        "summary": "Create a single film of a vehicle.",
+        "summary": "Create a single film of a {i18n> vehicles}.",
         "tags": [
-          "Vehicles",
+          "{i18n>Vehicles}",
           "Film2Vehicles"
         ],
         "requestBody": {
@@ -5089,9 +5094,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of pilots of a vehicle.",
+        "summary": "Retrieve a list of pilots of a {i18n> vehicles}.",
         "tags": [
-          "Vehicles",
+          "{i18n>Vehicles}",
           "Vehicle2Pilot"
         ],
         "parameters": [
@@ -5202,9 +5207,9 @@
         }
       },
       "post": {
-        "summary": "Create a single pilot of a vehicle.",
+        "summary": "Create a single pilot of a {i18n> vehicles}.",
         "tags": [
-          "Vehicles",
+          "{i18n>Vehicles}",
           "Vehicle2Pilot"
         ],
         "requestBody": {
@@ -5615,7 +5620,7 @@
         "summary": "Retrieve film of a film2 person.",
         "tags": [
           "Film2People",
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -5901,7 +5906,7 @@
         "summary": "Retrieve people of a film2 person.",
         "tags": [
           "Film2People",
-          "People"
+          "{i18n>People}"
         ],
         "parameters": [
           {
@@ -6618,7 +6623,7 @@
         "summary": "Retrieve film of a film2 planet.",
         "tags": [
           "Film2Planets",
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -6904,7 +6909,7 @@
         "summary": "Retrieve planet of a film2 planet.",
         "tags": [
           "Film2Planets",
-          "Planet"
+          "{i18n>Planet}"
         ],
         "parameters": [
           {
@@ -7618,7 +7623,7 @@
         "summary": "Retrieve film of a film2 starship.",
         "tags": [
           "Film2Starships",
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -7904,7 +7909,7 @@
         "summary": "Retrieve starship of a film2 starship.",
         "tags": [
           "Film2Starships",
-          "Starship"
+          "{i18n>Starship}"
         ],
         "parameters": [
           {
@@ -8622,7 +8627,7 @@
         "summary": "Retrieve film of a film2 specy.",
         "tags": [
           "Film2Species",
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -8908,7 +8913,7 @@
         "summary": "Retrieve specie of a film2 specy.",
         "tags": [
           "Film2Species",
-          "Species"
+          "{i18n>Species}"
         ],
         "parameters": [
           {
@@ -9624,7 +9629,7 @@
         "summary": "Retrieve film of a film2 vehicle.",
         "tags": [
           "Film2Vehicles",
-          "Film"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -9910,7 +9915,7 @@
         "summary": "Retrieve vehicle of a film2 vehicle.",
         "tags": [
           "Film2Vehicles",
-          "Vehicles"
+          "{i18n>Vehicles}"
         ],
         "parameters": [
           {
@@ -10250,7 +10255,7 @@
       "get": {
         "summary": "Retrieve a list of directors.",
         "tags": [
-          "directors"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -10351,7 +10356,7 @@
       "get": {
         "summary": "Retrieve a single director.",
         "tags": [
-          "directors"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -10392,7 +10397,7 @@
       "get": {
         "summary": "Retrieve a list of producers.",
         "tags": [
-          "producers"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -10493,7 +10498,7 @@
       "get": {
         "summary": "Retrieve a single producer.",
         "tags": [
-          "producers"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -10534,7 +10539,7 @@
       "get": {
         "summary": "Retrieve a list of film episode desc.",
         "tags": [
-          "FilmEpisodeDesc"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -10646,7 +10651,7 @@
       "get": {
         "summary": "Retrieve a single film episode desc.",
         "tags": [
-          "FilmEpisodeDesc"
+          "{i18n>Film}"
         ],
         "parameters": [
           {
@@ -10963,7 +10968,7 @@
         "summary": "Retrieve species of a species2 person.",
         "tags": [
           "Species2People",
-          "Species"
+          "{i18n>Species}"
         ],
         "parameters": [
           {
@@ -11051,7 +11056,7 @@
         "summary": "Retrieve people of a species2 person.",
         "tags": [
           "Species2People",
-          "People"
+          "{i18n>People}"
         ],
         "parameters": [
           {
@@ -11399,7 +11404,7 @@
         "summary": "Retrieve vehicle of a vehicle2 pilot.",
         "tags": [
           "Vehicle2Pilot",
-          "Vehicles"
+          "{i18n>Vehicles}"
         ],
         "parameters": [
           {
@@ -11487,7 +11492,7 @@
         "summary": "Retrieve pilot of a vehicle2 pilot.",
         "tags": [
           "Vehicle2Pilot",
-          "People"
+          "{i18n>People}"
         ],
         "parameters": [
           {
@@ -11835,7 +11840,7 @@
         "summary": "Retrieve starship of a starship2 pilot.",
         "tags": [
           "Starship2Pilot",
-          "Starship"
+          "{i18n>Starship}"
         ],
         "parameters": [
           {
@@ -11925,7 +11930,7 @@
         "summary": "Retrieve pilot of a starship2 pilot.",
         "tags": [
           "Starship2Pilot",
-          "People"
+          "{i18n>People}"
         ],
         "parameters": [
           {
@@ -12273,7 +12278,7 @@
         "summary": "Retrieve planet of a planet2 person.",
         "tags": [
           "Planet2People",
-          "Planet"
+          "{i18n>Planet}"
         ],
         "parameters": [
           {
@@ -12359,7 +12364,7 @@
         "summary": "Retrieve people of a planet2 person.",
         "tags": [
           "Planet2People",
-          "People"
+          "{i18n>People}"
         ],
         "parameters": [
           {
@@ -12603,7 +12608,8 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "description": "All Films in the Star Wars Skywalker Saga"
       },
       "StarWarsFilm.Film-create": {
         "title": "Film (for create)",
@@ -12697,7 +12703,8 @@
         },
         "required": [
           "IsActiveEntity"
-        ]
+        ],
+        "description": "All Films in the Star Wars Skywalker Saga"
       },
       "StarWarsFilm.Film-update": {
         "title": "Film (for update)",
@@ -12738,7 +12745,8 @@
             "type": "boolean",
             "default": false
           }
-        }
+        },
+        "description": "All Films in the Star Wars Skywalker Saga"
       },
       "StarWarsFilm.People": {
         "title": "People",
@@ -12787,7 +12795,8 @@
           },
           "hair_color": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "Person's Hair Color"
           },
           "skin_color": {
             "type": "string",
@@ -12855,7 +12864,8 @@
           "starships@odata.count": {
             "$ref": "#/components/schemas/count"
           }
-        }
+        },
+        "description": "All People and Aliens in Star Wars"
       },
       "StarWarsFilm.People-create": {
         "title": "People (for create)",
@@ -12875,7 +12885,8 @@
           },
           "hair_color": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "Person's Hair Color"
           },
           "skin_color": {
             "type": "string",
@@ -12931,7 +12942,8 @@
               "$ref": "#/components/schemas/StarWarsFilm.Starship2Pilot-create"
             }
           }
-        }
+        },
+        "description": "All People and Aliens in Star Wars"
       },
       "StarWarsFilm.Planet": {
         "title": "Planet",
@@ -14378,7 +14390,8 @@
           "director": {
             "type": "string"
           }
-        }
+        },
+        "description": "All Films in the Star Wars Skywalker Saga"
       },
       "StarWarsFilm.producers": {
         "title": "producers",
@@ -14387,7 +14400,8 @@
           "producer": {
             "type": "string"
           }
-        }
+        },
+        "description": "All Films in the Star Wars Skywalker Saga"
       },
       "StarWarsFilm.FilmEpisodeDesc": {
         "title": "FilmEpisodeDesc",
@@ -14411,7 +14425,8 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "description": "All Films in the Star Wars Skywalker Saga"
       },
       "StarWarsFilm.Species2People": {
         "title": "Species2People",

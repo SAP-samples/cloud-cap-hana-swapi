@@ -821,7 +821,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Film2People_film": {
-            "identifier": "star.wars.Film2People_film",
+            "identifier": "c__star.wars.Film2People_film",
             "foreignKey": [
               "film_ID"
             ],
@@ -836,7 +836,7 @@
             "enforced": true
           },
           "star.wars.Film2People_people": {
-            "identifier": "star.wars.Film2People_people",
+            "identifier": "c__star.wars.Film2People_people",
             "foreignKey": [
               "people_ID"
             ],
@@ -976,7 +976,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Film2Planets_film": {
-            "identifier": "star.wars.Film2Planets_film",
+            "identifier": "c__star.wars.Film2Planets_film",
             "foreignKey": [
               "film_ID"
             ],
@@ -991,7 +991,7 @@
             "enforced": true
           },
           "star.wars.Film2Planets_planet": {
-            "identifier": "star.wars.Film2Planets_planet",
+            "identifier": "c__star.wars.Film2Planets_planet",
             "foreignKey": [
               "planet_ID"
             ],
@@ -1131,7 +1131,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Film2Starships_film": {
-            "identifier": "star.wars.Film2Starships_film",
+            "identifier": "c__star.wars.Film2Starships_film",
             "foreignKey": [
               "film_ID"
             ],
@@ -1146,7 +1146,7 @@
             "enforced": true
           },
           "star.wars.Film2Starships_starship": {
-            "identifier": "star.wars.Film2Starships_starship",
+            "identifier": "c__star.wars.Film2Starships_starship",
             "foreignKey": [
               "starship_ID"
             ],
@@ -1286,7 +1286,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Film2Vehicles_film": {
-            "identifier": "star.wars.Film2Vehicles_film",
+            "identifier": "c__star.wars.Film2Vehicles_film",
             "foreignKey": [
               "film_ID"
             ],
@@ -1301,7 +1301,7 @@
             "enforced": true
           },
           "star.wars.Film2Vehicles_vehicle": {
-            "identifier": "star.wars.Film2Vehicles_vehicle",
+            "identifier": "c__star.wars.Film2Vehicles_vehicle",
             "foreignKey": [
               "vehicle_ID"
             ],
@@ -1449,7 +1449,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Film2Species_film": {
-            "identifier": "star.wars.Film2Species_film",
+            "identifier": "c__star.wars.Film2Species_film",
             "foreignKey": [
               "film_ID"
             ],
@@ -1464,7 +1464,7 @@
             "enforced": true
           },
           "star.wars.Film2Species_specie": {
-            "identifier": "star.wars.Film2Species_specie",
+            "identifier": "c__star.wars.Film2Species_specie",
             "foreignKey": [
               "specie_ID"
             ],
@@ -1841,7 +1841,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.People_homeworld": {
-            "identifier": "star.wars.People_homeworld",
+            "identifier": "c__star.wars.People_homeworld",
             "foreignKey": [
               "homeworld_ID"
             ],
@@ -2595,7 +2595,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Planet2People_planet": {
-            "identifier": "star.wars.Planet2People_planet",
+            "identifier": "c__star.wars.Planet2People_planet",
             "foreignKey": [
               "planet_ID"
             ],
@@ -2610,7 +2610,7 @@
             "enforced": true
           },
           "star.wars.Planet2People_people": {
-            "identifier": "star.wars.Planet2People_people",
+            "identifier": "c__star.wars.Planet2People_people",
             "foreignKey": [
               "people_ID"
             ],
@@ -3081,7 +3081,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Species_homeworld": {
-            "identifier": "star.wars.Species_homeworld",
+            "identifier": "c__star.wars.Species_homeworld",
             "foreignKey": [
               "homeworld_ID"
             ],
@@ -3581,7 +3581,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Species2People_species": {
-            "identifier": "star.wars.Species2People_species",
+            "identifier": "c__star.wars.Species2People_species",
             "foreignKey": [
               "species_ID"
             ],
@@ -3596,7 +3596,7 @@
             "enforced": true
           },
           "star.wars.Species2People_people": {
-            "identifier": "star.wars.Species2People_people",
+            "identifier": "c__star.wars.Species2People_people",
             "foreignKey": [
               "people_ID"
             ],
@@ -4187,7 +4187,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Starship2Pilot_starship": {
-            "identifier": "star.wars.Starship2Pilot_starship",
+            "identifier": "c__star.wars.Starship2Pilot_starship",
             "foreignKey": [
               "starship_ID"
             ],
@@ -4202,7 +4202,7 @@
             "enforced": true
           },
           "star.wars.Starship2Pilot_pilot": {
-            "identifier": "star.wars.Starship2Pilot_pilot",
+            "identifier": "c__star.wars.Starship2Pilot_pilot",
             "foreignKey": [
               "pilot_ID"
             ],
@@ -4781,7 +4781,7 @@
       "$tableConstraints": {
         "referential": {
           "star.wars.Vehicle2Pilot_vehicle": {
-            "identifier": "star.wars.Vehicle2Pilot_vehicle",
+            "identifier": "c__star.wars.Vehicle2Pilot_vehicle",
             "foreignKey": [
               "vehicle_ID"
             ],
@@ -4796,7 +4796,7 @@
             "enforced": true
           },
           "star.wars.Vehicle2Pilot_pilot": {
-            "identifier": "star.wars.Vehicle2Pilot_pilot",
+            "identifier": "c__star.wars.Vehicle2Pilot_pilot",
             "foreignKey": [
               "pilot_ID"
             ],
@@ -29630,11 +29630,24 @@
         ]
       }
     },
+    "cds_r.JSON": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 5000,
+      "@cds.persistence.name": "CDS_R_JSON"
+    },
     "cds_r.ExtensibilityService": {
       "kind": "service",
+      "@protocol": "rest",
       "@path": "/-/cds/extensibility"
     },
     "cds_r.ExtensibilityService.addExtension": {
+      "kind": "action"
+    },
+    "cds_r.ExtensibilityService.activate": {
+      "kind": "action"
+    },
+    "cds_r.ExtensibilityService.activateProject": {
       "kind": "action"
     },
     "cds_r.Extensions": {
@@ -29650,6 +29663,10 @@
           "type": "cds.String",
           "length": 5000,
           "@cds.persistence.name": "CSN"
+        },
+        "activated": {
+          "type": "cds.Boolean",
+          "@cds.persistence.name": "ACTIVATED"
         }
       },
       "@cds.persistence.name": "CDS_R_EXTENSIONS"
@@ -29785,9 +29802,9 @@
         "up__name": {
           "type": "cds.String",
           "length": 5000,
+          "@odata.foreignKey4": "up_",
           "notNull": true,
           "key": true,
-          "@odata.foreignKey4": "up_",
           "@cds.persistence.name": "UP__NAME"
         },
         "name": {
@@ -29808,7 +29825,7 @@
       "$tableConstraints": {
         "referential": {
           "DataService.Entities_columns_up_": {
-            "identifier": "DataService.Entities.columns_up_",
+            "identifier": "c__DataService.Entities.columns_up_",
             "foreignKey": [
               "up__name"
             ],
@@ -47853,7 +47870,7 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v2.12.0"
+    "creator": "CDS Compiler v2.13.8"
   },
   "$version": "2.0"
 }

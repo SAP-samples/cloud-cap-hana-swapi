@@ -1,19 +1,19 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@graphql-tools/schema": "^8.3.2",
-    "@sap/cds": "^5.8.3",
+    "@graphql-tools/schema": "^8.3.5",
+    "@sap/cds": "^5.9.0",
     "@sap/cds-odata-v2-adapter-proxy": "^1.8.11",
     "hdb": "^0.19.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-graphql": "^0.12.0",
-    "graphql": "^15.8.0",
+    "graphql": "^16.3.0",
     "swagger-ui-express": "^4.3",
     "uuid": "^8.3"
   },
@@ -27,7 +27,8 @@
     "build": "cds build",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
-    "load": "node convertData"
+    "load": "node convertData",
+    "changeLog": "node CHANGELOG.mjs"
   },
   "cds": {
     "i18n": {
@@ -37,7 +38,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.98.0"
+        "version": "1.100.0"
       }
     },
     "cdsc": {
@@ -57,9 +58,6 @@
       "db": {
         "kind": "hana"
       },
-      "extensibility": {
-        "kind": "uiflex"
-      },
       "messaging": {
         "[production]": {
           "kind": "enterprise-messaging"
@@ -78,7 +76,7 @@
       "audit_personal_data": true,
       "optimized_search": true,
       "rest_new_adapter": true,
-      "graphql": false,
+      "graphql": true,
       "assert_integrity": "db"
     },
     "log": {
