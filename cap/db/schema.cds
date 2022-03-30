@@ -44,6 +44,7 @@ entity Film : cuid, managed {
 
 annotate Film with @(
     title              : '{i18n>Film}',
+    Common.Label       : '{i18n>Film}',
     UI.TextArrangement : #TextOnly,
     cds.odata.valuelist,
     Common.SemanticKey : [title],

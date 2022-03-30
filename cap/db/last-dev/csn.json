@@ -6,6 +6,7 @@
       "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -303,6 +304,7 @@
       "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -365,6 +367,7 @@
       "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -427,6 +430,7 @@
       "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -5163,6 +5167,7 @@
       ],
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@cds.odata.valuelist": true,
       "@Common.SemanticKey": [
         {
@@ -10715,6 +10720,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -10774,6 +10780,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -10833,6 +10840,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -10953,6 +10961,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -17649,6 +17658,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -20444,6 +20454,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -23668,6 +23679,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -27044,6 +27056,7 @@
       "@readonly": true,
       "@cds.persistence.journal": true,
       "@title": "{i18n>Film}",
+      "@Common.Label": "{i18n>Film}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
