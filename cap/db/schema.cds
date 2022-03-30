@@ -492,6 +492,11 @@ entity People : cuid, managed {
                      on starships.pilot = $self;
 }
 
+define view tallestPerson as 
+   select from People distinct {
+       first_value(name order by to_integer(height) desc) as tallest_name
+   };
+   
 define view peopleCount as
     select from People distinct {
         count(

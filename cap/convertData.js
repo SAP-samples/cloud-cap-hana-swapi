@@ -7,23 +7,24 @@ const uuid = require('uuid')
 
 async function clearDB(db) {
     console.log(`Clearing existing DB tables`)
-    await Promise.all([
-        db.run(DELETE.from(db.entities.Planet)),
-        db.run(DELETE.from(db.entities.People)),
-        db.run(DELETE.from(db.entities.Planet2People)),
-        db.run(DELETE.from(db.entities.Film)),
-        db.run(DELETE.from(db.entities.Film2People)),
-        db.run(DELETE.from(db.entities.Film2Planets)),
-        db.run(DELETE.from(db.entities.Film2Starships)),
-        db.run(DELETE.from(db.entities.Film2Vehicles)),
-        db.run(DELETE.from(db.entities.Film2Species)),
-        db.run(DELETE.from(db.entities.Species)),
-        db.run(DELETE.from(db.entities.Species2People)),
-        db.run(DELETE.from(db.entities.Starship)),
-        db.run(DELETE.from(db.entities.Starship2Pilot)),
-        db.run(DELETE.from(db.entities.Vehicles)),
-        db.run(DELETE.from(db.entities.Vehicle2Pilot)),
-    ])
+
+    //New DB Referential Integrity Checks means you can't delete parallel any longer
+    await db.run(DELETE.from(db.entities.Planet2People))
+    await db.run(DELETE.from(db.entities.Film2People))
+    await db.run(DELETE.from(db.entities.Film2Planets))
+    await db.run(DELETE.from(db.entities.Film2Starships))
+    await db.run(DELETE.from(db.entities.Film2Vehicles))
+    await db.run(DELETE.from(db.entities.Film2Species))
+    await db.run(DELETE.from(db.entities.Species2People))
+    await db.run(DELETE.from(db.entities.Starship2Pilot))
+    await db.run(DELETE.from(db.entities.Vehicle2Pilot))
+    await db.run(DELETE.from(db.entities.People))
+    await db.run(DELETE.from(db.entities.Starship))
+    await db.run(DELETE.from(db.entities.Vehicles))
+    await db.run(DELETE.from(db.entities.Species))
+    await db.run(DELETE.from(db.entities.Film))
+    await db.run(DELETE.from(db.entities.Planet))
+    
     console.log(`DB Tables Cleared`)
 }
 
@@ -220,10 +221,10 @@ async function filmsLoad(db, films, people, planets, species, starships, vehicle
         insert.episode_id = film.fields.episode_id
         insert.director = film.fields.director
         insert.release_date = film.fields.release_date
-        insert.opening_crawl = film.fields.opening_crawl        
+        insert.opening_crawl = film.fields.opening_crawl
         filmNew.push(insert)
 
-        for(let starship of film.fields.starships){
+        for (let starship of film.fields.starships) {
             let starshipDetails = starships.find(x => x.pk == starship)
             let insert = {}
             insert.film_ID = film.ID
@@ -231,37 +232,37 @@ async function filmsLoad(db, films, people, planets, species, starships, vehicle
             Film2StarshipsNew.push(insert)
         }
 
-        for(let vehicle of film.fields.vehicles){
+        for (let vehicle of film.fields.vehicles) {
             let vehicleDetails = vehicles.find(x => x.pk == vehicle)
             let insert = {}
             insert.film_ID = film.ID
             insert.vehicle_ID = vehicleDetails.ID
             Film2VehiclesNew.push(insert)
-        }   
-        
-        for(let planet of film.fields.planets){
+        }
+
+        for (let planet of film.fields.planets) {
             let planetDetails = planets.find(x => x.pk == planet)
             let insert = {}
             insert.film_ID = film.ID
             insert.planet_ID = planetDetails.ID
             Film2PlanetsNew.push(insert)
-        }  
-        
-        for(let person of film.fields.characters){
+        }
+
+        for (let person of film.fields.characters) {
             let personDetails = people.find(x => x.pk == person)
             let insert = {}
             insert.film_ID = film.ID
             insert.people_ID = personDetails.ID
             Film2PeopleNew.push(insert)
-        }  
+        }
 
-        for(let specie of film.fields.species){
+        for (let specie of film.fields.species) {
             let specieDetails = species.find(x => x.pk == specie)
             let insert = {}
             insert.film_ID = film.ID
             insert.specie_ID = specieDetails.ID
             Film2SpeciesNew.push(insert)
-        }          
+        }
 
     }
 
@@ -286,10 +287,10 @@ async function init() {
         console.log(`Model Location: ${modelPath}`)
         const db = await cds.connect.to('db', { model: modelPath, })
 
+        await clearDB(db)
         // eslint-disable-next-line no-unused-vars
-        let [dummy, people, planets, films, species, starships, vehicles, transports]
+        let [people, planets, films, species, starships, vehicles, transports]
             = await Promise.all([
-                clearDB(db),
                 readFile('people.json'),
                 readFile('planets.json'),
                 readFile('films.json'),
@@ -299,17 +300,16 @@ async function init() {
                 readFile('transport.json')
             ])
 
-         await Promise.all([
-            filmsLoad(db, films, people, planets, species, starships, vehicles),
-            peopleLoad(db, people, planets),
-            planetsLoad(db, planets),
-            starshipLoad(db, starships, transports, people),
-            vehiclesLoad(db, vehicles, transports, people),
-            speciesLoad(db, species, planets, people)
-        ]) 
+        //New DB Referential Integrity Checks means you can't load parallel any longer
+        await planetsLoad(db, planets)
+        await peopleLoad(db, people, planets)
+        await starshipLoad(db, starships, transports, people)
+        await vehiclesLoad(db, vehicles, transports, people)
+        await speciesLoad(db, species, planets, people)
+        await filmsLoad(db, films, people, planets, species, starships, vehicles)
 
         console.log(`Done`)
-     //   process.exit()
+        //   process.exit()
     } catch (error) {
         console.error(error)
         process.exit()

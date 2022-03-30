@@ -1859,6 +1859,79 @@
       },
       "@cds.persistence.name": "STAR_WARS_PEOPLE"
     },
+    "star.wars.tallestPerson": {
+      "kind": "entity",
+      "doc": "All People and Aliens in Star Wars",
+      "@cds.autoexpose": true,
+      "@title": "{i18n>People}",
+      "@UI.TextArrangement": {
+        "#": "TextOnly"
+      },
+      "@cds.odata.valuelist": true,
+      "@Common.SemanticKey": [
+        {
+          "=": "name"
+        }
+      ],
+      "@UI.Identification": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "star.wars.People"
+            ],
+            "as": "People_0"
+          },
+          "distinct": true,
+          "columns": [
+            {
+              "func": "first_value",
+              "args": [
+                {
+                  "xpr": [
+                    {
+                      "ref": [
+                        "People_0",
+                        "name"
+                      ]
+                    },
+                    "order",
+                    "by",
+                    {
+                      "func": "to_integer",
+                      "args": [
+                        {
+                          "ref": [
+                            "People_0",
+                            "height"
+                          ]
+                        }
+                      ]
+                    },
+                    "desc"
+                  ]
+                }
+              ],
+              "as": "tallest_name"
+            }
+          ]
+        }
+      },
+      "elements": {
+        "tallest_name": {
+          "@Core.Computed": true,
+          "@cds.persistence.name": "TALLEST_NAME"
+        }
+      },
+      "@cds.persistence.name": "STAR_WARS_TALLESTPERSON"
+    },
     "star.wars.peopleCount": {
       "kind": "entity",
       "doc": "All People and Aliens in Star Wars",
@@ -29629,47 +29702,6 @@
           }
         ]
       }
-    },
-    "cds_r.JSON": {
-      "kind": "type",
-      "type": "cds.String",
-      "length": 5000,
-      "@cds.persistence.name": "CDS_R_JSON"
-    },
-    "cds_r.ExtensibilityService": {
-      "kind": "service",
-      "@protocol": "rest",
-      "@path": "/-/cds/extensibility"
-    },
-    "cds_r.ExtensibilityService.addExtension": {
-      "kind": "action"
-    },
-    "cds_r.ExtensibilityService.activate": {
-      "kind": "action"
-    },
-    "cds_r.ExtensibilityService.activateProject": {
-      "kind": "action"
-    },
-    "cds_r.Extensions": {
-      "kind": "entity",
-      "elements": {
-        "ID": {
-          "key": true,
-          "type": "cds.String",
-          "length": 36,
-          "@cds.persistence.name": "ID"
-        },
-        "csn": {
-          "type": "cds.String",
-          "length": 5000,
-          "@cds.persistence.name": "CSN"
-        },
-        "activated": {
-          "type": "cds.Boolean",
-          "@cds.persistence.name": "ACTIVATED"
-        }
-      },
-      "@cds.persistence.name": "CDS_R_EXTENSIONS"
     },
     "cuid": {
       "kind": "aspect",

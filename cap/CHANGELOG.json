@@ -9,7 +9,10 @@
             "[People App](/people/webapp/index.html) now uses OS setting and adjusts to dark theme - new sap_horizon_dark"
         ],
         "Added": [
-            "New Changelog - You are looking at it"
+            "New Changelog - You are looking at it",
+            "[Database Integrity Constraints](https://cap.cloud.sap/docs/releases/mar22#database-integrity-constraints)",
+            "People Entity Name Attribute Fuzzy Search via [Native Database Clauses](https://cap.cloud.sap/docs/releases/mar22#native-database-clauses)",
+            "New tallestPerson view uses [Native HANA Functions with non-standard syntax](https://cap.cloud.sap/docs/releases/mar22#native-hana-functions-with-non-standard-syntax)"
         ]
     }
 ]
