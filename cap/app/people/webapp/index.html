@@ -54,6 +54,15 @@
         data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates" data-sap-ui-compatVersion="edge"
         data-sap-ui-frameOptions="allow" data-sap-ui-bindingSyntax="complex">
     </script>
+        <script>
+            sap.ui.getCore().attachInit(function () {
+                sap.ushell.Container.createRenderer().placeAt('content')
+            sap.ui
+            .getCore()
+            .getConfiguration()
+            .setFlexibilityServices([{ connector: "SessionStorageConnector" }])
+            })
+        </script>
 </head>
 
 <body class="sapUiBody" id="content"></body>
