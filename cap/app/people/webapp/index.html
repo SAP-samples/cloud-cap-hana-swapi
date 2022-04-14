@@ -36,24 +36,33 @@
             }
         }
     </script>
+    <script>
+        window["sap-ui-config"] = {};
+        // determine the proper theme for UI5 from current color scheme
+        window["sap-ui-config"]["theme"] = (function () {
+            try {
+                return window.matchMedia("(prefers-color-scheme: dark)").matches ? "sap_horizon_dark" : "sap_horizon";
+            } catch (ex) {
+                console.warn("window.matchMedia not supported - keep default theme");
+                return "sap_horizon";
+            }
+        })();
+    </script>
 
     <script src="https://ui5.sap.com/1.100.0/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
     <script src="https://ui5.sap.com/1.100.0/resources/sap-ui-core.js"
         data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates" data-sap-ui-compatVersion="edge"
-        data-sap-ui-theme="sap_horizon" data-sap-ui-frameOptions="allow" data-sap-ui-bindingSyntax="complex">
+        data-sap-ui-frameOptions="allow" data-sap-ui-bindingSyntax="complex">
     </script>
-    <script>
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            sap.ui.getCore().applyTheme("sap_horizon_dark")
-        }
-        sap.ui.getCore().attachInit(function () {
-            sap.ushell.Container.createRenderer().placeAt('content')
-        sap.ui
-        .getCore()
-        .getConfiguration()
-        .setFlexibilityServices([{ connector: "SessionStorageConnector" }])
-        })
-    </script>
+        <script>
+            sap.ui.getCore().attachInit(function () {
+                sap.ushell.Container.createRenderer().placeAt('content')
+            sap.ui
+            .getCore()
+            .getConfiguration()
+            .setFlexibilityServices([{ connector: "SessionStorageConnector" }])
+            })
+        </script>
 </head>
 
 <body class="sapUiBody" id="content"></body>
