@@ -6,14 +6,14 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@graphql-tools/schema": "^8.3.5",
-    "@sap/cds": "^5.9.0",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.11",
+    "@graphql-tools/schema": "^8.3.8",
+    "@sap/cds": "^5.9.2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.14",
     "hdb": "^0.19.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-graphql": "^0.12.0",
-    "graphql": "^16.3.0",
+    "graphql": "^15.3.0",
     "swagger-ui-express": "^4.3",
     "uuid": "^8.3"
   },
@@ -38,7 +38,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.100.0"
+        "version": "1.100.2"
       }
     },
     "cdsc": {
@@ -87,6 +87,6 @@
     "app\\people"
   ],
   "devDependencies": {
-    "@sap/hdi-deploy": "^4.3.0"
+    "@sap/hdi-deploy": "^4.3.3"
   }
 }
