@@ -1,5 +1,15 @@
 [
     {
+        "date": "2022-04-14",
+        "version": "1.0.7",
+        "Changed": [
+            "Dark Theme loading optimization thanks to [Marian Zeis](https://github.com/marianfoo) [PR #4](https://github.com/SAP-samples/cloud-cap-hana-swapi/pull/4)"
+        ],
+        "Added": [
+            "Added async bootstrap for UI5 in preparation for [Patch-Level Independent Bootstrap](https://blogs.sap.com/2022/04/14/sapui5-patch-level-independent-bootstrap) - although I couldn't switch yet as it doesn't seem to work for version 1.100"
+        ]
+    },
+    {
         "date": "2022-03-30",
         "version": "1.0.6",
         "Changed": [

@@ -1,6 +1,6 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",

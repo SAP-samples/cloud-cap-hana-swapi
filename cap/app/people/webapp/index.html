@@ -36,35 +36,40 @@
             }
         }
     </script>
+    <script src="https://ui5.sap.com/1.100.2/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
     <script>
-        window["sap-ui-config"] = {};
-        // determine the proper theme for UI5 from current color scheme
-        window["sap-ui-config"]["theme"] = (function () {
+        function themeCalc() {
             try {
-                return window.matchMedia("(prefers-color-scheme: dark)").matches ? "sap_horizon_dark" : "sap_horizon";
+                let theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "sap_horizon_dark" :
+                    "sap_horizon"
+                return theme
             } catch (ex) {
-                console.warn("window.matchMedia not supported - keep default theme");
-                return "sap_horizon";
+                console.warn("window.matchMedia not supported - keep default theme")
+                return "sap_horizon"
             }
-        })();
-    </script>
+        }
 
-    <script src="https://ui5.sap.com/1.100.0/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
-    <script src="https://ui5.sap.com/1.100.0/resources/sap-ui-core.js"
-        data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates" data-sap-ui-compatVersion="edge"
-        data-sap-ui-frameOptions="allow" data-sap-ui-bindingSyntax="complex">
-    </script>
-        <script>
-            sap.ui.getCore().attachInit(function () {
-                sap.ushell.Container.createRenderer().placeAt('content')
-            sap.ui
-            .getCore()
-            .getConfiguration()
-            .setFlexibilityServices([{ connector: "SessionStorageConnector" }])
+        function ui5Bootstrap() {
+            return new Promise((resolve, reject) => {
+                const s = document.createElement('script')
+                s.setAttribute('src', "https://ui5.sap.com/1.100.2/resources/sap-ui-core.js")
+                s.setAttribute('id', "sap-ui-bootstrap")
+                s.setAttribute('data-sap-ui-libs', "sap.m, sap.ushell, sap.fe.templates")
+                s.setAttribute('data-sap-ui-compatVersion', "edge")
+                s.setAttribute('data-sapui-frameOptions', "allow")
+                s.setAttribute('data-sapui-bindingSyntax', "complex")
+                s.setAttribute('data-sap-ui-async', "true")
+                s.setAttribute('data-sap-ui-resourceroots', '{"root": "./"}')
+                s.setAttribute('data-sap-ui-onInit', "module:root/init")
+                s.setAttribute('data-sap-ui-theme', themeCalc())
+                document.head.appendChild(s)
             })
-        </script>
+        }
+        ui5Bootstrap()
+    </script>
 </head>
 
-<body class="sapUiBody" id="content"></body>
-
-</html>
+<body id="content" class="sapUiBody sapUiSizeCompact" role="application">
+    <div data-sap-ui-component data-id="container" data-name="root" data-handle-validation="true">
+    </div>
+</body>
