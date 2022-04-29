@@ -51,7 +51,7 @@ The rest of the operations can be performed within the [cap](./cap/) folder and 
 
 You can use `npm run build` to perform the cds build and should be ran before deployment to HANA or whenever you make changes to the data model.
 
-You can run `npm run hana` to deploy the content to your HANA database.  Just be sure from the terminal that you are logged into the cf/xs cli and targeting the Account/Org/Space where you want the content to live. By default this command will create an HDI Container instance named **starwars**.
+You can run `npm run hana` to deploy the content to your HANA database.  Just be sure from the terminal that you are logged into the cf/xs cli and targeting the Account/Org/Space where you want the content to live. By default this command will create an HDI Container instance named **starwars**. **Note**: due to some strange circumstances in the latest versions of CAP it seems the `/gen/srv` folder is getting cleared after any deployment to HANA.  Therefore just execute a `cds build` or `npm run build` after any deployment to restore the `/gen` folder until we find the root cause of this issue.
 
 You can run the command `npm run load`. This command will read the original JSON data files from the source project and load them into your HANA database using Cloud Application Programming Model [CQL](https://cap.cloud.sap/docs/cds/cql). The loading script is [convertData.js](./cap/convertData.js)
 
@@ -78,6 +78,8 @@ If you receive an error like the following when running the convertData script
 ```
 
 This is caused by the parallel nature of the loading of the data in SQLite.  The default script with its parallel loading works fine when you use HANA as the target persistence. However if you are using SQLite for your tempoary testing persistence, then you can use the alternative convertDataLite script instead. 
+
+**Note**: due to some strange circumstances in the latest versions of CAP it seems the `/gen/srv` folder is getting cleared after any deployment to HANA.  Therefore just execute a `cds build` or `npm run build` after any deployment to restore the `/gen` folder until we find the root cause of this issue.
 
 ## How to obtain support
 
