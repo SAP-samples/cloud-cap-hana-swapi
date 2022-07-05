@@ -1,0 +1,38 @@
+global:
+  domain: null
+  imagePullSecret:
+    name: null
+srv:
+  bindings:
+    db:
+      fromSecret: null
+    messaging:
+      serviceInstanceName: event-mesh
+  image:
+    repository: <your-container-registry>/cap-hana-swapi-srv
+    tag: latest
+  resources:
+    limits:
+      cpu: 100m
+      ephemeral-storage: 1G
+      memory: 500M
+    requests:
+      cpu: 100m
+      ephemeral-storage: 1G
+      memory: 500M
+  health_check:
+    liveness:
+      path: /
+    readiness:
+      path: /
+hana_deployer:
+  image:
+    repository: <your-container-registry>/cap-hana-swapi-hana-deployer
+    tag: latest
+  bindings:
+    hana:
+      fromSecret: null
+event_mesh:
+  serviceOfferingName: enterprise-messaging
+  servicePlanName: default
+  config: event-mesh.json

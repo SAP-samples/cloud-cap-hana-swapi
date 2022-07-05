@@ -1,0 +1,24 @@
+{{ if .Values.expose.enabled}}
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  name: {{ include "web-application.fullname" . }}
+  labels: {{- include "web-application.labels" . | nindent 4 }}
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+  - accessStrategies:
+    - handler: allow
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - HEAD
+    path: /.*
+  service:
+    host: {{ include "web-application.exposeHost" . }}
+    name: {{ include "web-application.fullname" . }}
+    port: {{ .Values.port }}
+{{ end }}

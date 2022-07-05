@@ -1,0 +1,8 @@
+image:
+  repository: default
+resources:
+  requests:
+    cpu: 250m
+    memory: 1G
+  limits:
+    memory: 1G

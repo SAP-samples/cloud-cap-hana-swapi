@@ -31,6 +31,7 @@ cds
       next()
     }, swaggerUi.serve, swaggerUi.setup())
     addLinkToIndexHtml(service, apiPath)
+    addLinkToGraphQl(service)
 
     app.use('/model/', async (req, res) => {
       const csn = await cds.load('db')
@@ -73,6 +74,15 @@ function addLinkToIndexHtml(service, apiPath) {
   const provider = (entity) => {
     if (entity) return // avoid link on entity level, looks too messy
     return { href: apiPath, name: 'Swagger UI', title: 'Show in Swagger UI' }
+  }
+  // Needs @sap/cds >= 4.4.0
+  service.$linkProviders ? service.$linkProviders.push(provider) : service.$linkProviders = [provider]
+}
+
+function addLinkToGraphQl(service) {
+  const provider = (entity) => {
+    if (entity) return // avoid link on entity level, looks too messy
+    return { href: 'graphql', name: 'GraphQl', title: 'Show in GraphQL' }
   }
   // Needs @sap/cds >= 4.4.0
   service.$linkProviders ? service.$linkProviders.push(provider) : service.$linkProviders = [provider]

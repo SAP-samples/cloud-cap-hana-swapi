@@ -27,3 +27,6 @@ mta_archives/
 # IDEs
 # .vscode
 # .idea
+
+# added by cds bind
+.cdsrc-private.json

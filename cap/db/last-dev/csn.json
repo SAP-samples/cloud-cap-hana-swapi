@@ -27,7 +27,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46,9 +46,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -61,9 +58,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -79,9 +73,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -96,9 +87,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -647,7 +635,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -705,6 +693,7 @@
     },
     "star.wars.Film2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -714,7 +703,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -768,7 +757,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -860,6 +849,7 @@
     },
     "star.wars.Film2Planets": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -869,7 +859,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -923,7 +913,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1015,6 +1005,7 @@
     },
     "star.wars.Film2Starships": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -1024,7 +1015,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1078,7 +1069,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1170,6 +1161,7 @@
     },
     "star.wars.Film2Vehicles": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -1179,7 +1171,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1233,7 +1225,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1325,6 +1317,7 @@
     },
     "star.wars.Film2Species": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -1334,7 +1327,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1388,7 +1381,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1511,7 +1504,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -1530,9 +1523,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -1545,9 +1535,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -1563,9 +1550,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -1580,9 +1564,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -1684,8 +1665,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -2318,6 +2300,7 @@
     },
     "star.wars.Planet": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
       "@Common.SemanticKey": [
@@ -2339,7 +2322,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -2358,9 +2341,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -2373,9 +2353,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -2391,9 +2368,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -2408,9 +2382,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -2551,6 +2522,7 @@
     },
     "star.wars.Planet2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.odata.valuelist": true,
       "elements": {
         "ID": {
@@ -2561,7 +2533,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -2615,7 +2587,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -2707,6 +2679,7 @@
     },
     "star.wars.climate": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
       "@Common.SemanticKey": [
@@ -2767,6 +2740,7 @@
     },
     "star.wars.terrain": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
       "@Common.SemanticKey": [
@@ -2827,6 +2801,7 @@
     },
     "star.wars.Species": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -2848,7 +2823,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -2867,9 +2842,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -2882,9 +2854,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -2900,9 +2869,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -2917,9 +2883,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -3029,7 +2992,7 @@
         },
         "homeworld": {
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -3178,6 +3141,7 @@
     },
     "star.wars.classification": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -3238,6 +3202,7 @@
     },
     "star.wars.designation": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -3298,6 +3263,7 @@
     },
     "star.wars.hair_colors": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -3358,6 +3324,7 @@
     },
     "star.wars.skin_colors": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -3418,6 +3385,7 @@
     },
     "star.wars.language": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -3478,6 +3446,7 @@
     },
     "star.wars.eye_colors": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -3538,6 +3507,7 @@
     },
     "star.wars.Species2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -3547,7 +3517,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -3601,7 +3571,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -3693,6 +3663,7 @@
     },
     "star.wars.Starship": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
       "@UI.TextArrangement": {
@@ -3715,7 +3686,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -3734,9 +3705,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -3749,9 +3717,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -3767,9 +3732,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -3784,9 +3746,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -3957,6 +3916,7 @@
     },
     "star.wars.ssModels": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
       "@UI.TextArrangement": {
@@ -4018,6 +3978,7 @@
     },
     "star.wars.ssClass": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
       "@UI.TextArrangement": {
@@ -4079,6 +4040,7 @@
     },
     "star.wars.ssManufacturer": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
       "@UI.TextArrangement": {
@@ -4140,6 +4102,7 @@
     },
     "star.wars.Starship2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -4149,7 +4112,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -4207,7 +4170,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -4299,6 +4262,7 @@
     },
     "star.wars.Vehicles": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
       "@UI.TextArrangement": {
@@ -4321,7 +4285,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -4340,9 +4304,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -4355,9 +4316,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -4373,9 +4331,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -4390,9 +4345,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -4551,6 +4503,7 @@
     },
     "star.wars.vModels": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
       "@UI.TextArrangement": {
@@ -4612,6 +4565,7 @@
     },
     "star.wars.vClass": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
       "@UI.TextArrangement": {
@@ -4673,6 +4627,7 @@
     },
     "star.wars.vManufacturer": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
       "@UI.TextArrangement": {
@@ -4734,6 +4689,7 @@
     },
     "star.wars.Vehicle2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "@Core.Computed": true,
@@ -4743,7 +4699,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -4801,7 +4757,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -5185,7 +5141,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -5204,9 +5160,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -5219,9 +5172,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -5237,9 +5187,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -5254,9 +5201,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -5706,7 +5650,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -5725,9 +5669,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -5740,9 +5681,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -5758,9 +5696,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -5775,9 +5710,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -5878,8 +5810,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -6162,8 +6095,9 @@
         ],
         "mixin": {
           "___homeworld": {
+            "@assert.target": true,
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -6318,6 +6252,7 @@
     },
     "StarWarsFilm.Planet": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
@@ -6340,7 +6275,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -6359,9 +6294,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -6374,9 +6306,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -6392,9 +6321,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -6409,9 +6335,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -6706,6 +6629,7 @@
     },
     "StarWarsFilm.Species": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -6728,7 +6652,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -6747,9 +6671,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -6762,9 +6683,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -6780,9 +6698,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -6797,9 +6712,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -6909,7 +6821,7 @@
         },
         "homeworld": {
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -7156,7 +7068,7 @@
         "mixin": {
           "___homeworld": {
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -7265,6 +7177,7 @@
     },
     "StarWarsFilm.Starship": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -7288,7 +7201,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -7307,9 +7220,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -7322,9 +7232,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -7340,9 +7247,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -7357,9 +7261,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -7708,6 +7609,7 @@
     },
     "StarWarsFilm.Vehicles": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -7731,7 +7633,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -7750,9 +7652,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -7765,9 +7664,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -7783,9 +7679,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -7800,9 +7693,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -8127,6 +8017,7 @@
     },
     "StarWarsFilm.Film2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -8382,7 +8273,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -8436,7 +8327,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -8532,7 +8423,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -8580,7 +8471,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -8632,6 +8523,7 @@
     },
     "StarWarsFilm.Film2Planets": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -8887,7 +8779,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -8941,7 +8833,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -9037,7 +8929,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -9085,7 +8977,7 @@
             ]
           },
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -9137,6 +9029,7 @@
     },
     "StarWarsFilm.Film2Starships": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -9488,7 +9381,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -9542,7 +9435,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -9638,7 +9531,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -9686,7 +9579,7 @@
             ]
           },
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -9738,6 +9631,7 @@
     },
     "StarWarsFilm.Film2Species": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -9897,7 +9791,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -9951,7 +9845,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -10055,7 +9949,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -10103,7 +9997,7 @@
             ]
           },
           "___specie": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "specie.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -10163,6 +10057,7 @@
     },
     "StarWarsFilm.Film2Vehicles": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -10466,7 +10361,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -10520,7 +10415,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -10616,7 +10511,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -10664,7 +10559,7 @@
             ]
           },
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -10861,7 +10756,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -10982,7 +10877,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -11001,9 +10896,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -11016,9 +10908,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -11034,9 +10923,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -11051,9 +10937,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -11697,7 +11580,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -11716,9 +11599,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -11731,9 +11611,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -11749,9 +11626,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -11766,9 +11640,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -11869,8 +11740,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -12153,8 +12025,9 @@
         ],
         "mixin": {
           "___homeworld": {
+            "@assert.target": true,
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -12309,6 +12182,7 @@
     },
     "StarWarsPeople.Planet": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -12331,7 +12205,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -12350,9 +12224,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -12365,9 +12236,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -12383,9 +12251,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -12400,9 +12265,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -12697,6 +12559,7 @@
     },
     "StarWarsPeople.Species": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -12719,7 +12582,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -12738,9 +12601,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -12753,9 +12613,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -12771,9 +12628,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -12788,9 +12642,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -12900,7 +12751,7 @@
         },
         "homeworld": {
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -13147,7 +12998,7 @@
         "mixin": {
           "___homeworld": {
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -13256,6 +13107,7 @@
     },
     "StarWarsPeople.Starship": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -13279,7 +13131,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -13298,9 +13150,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -13313,9 +13162,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -13331,9 +13177,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -13348,9 +13191,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -13699,6 +13539,7 @@
     },
     "StarWarsPeople.Vehicles": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -13722,7 +13563,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -13741,9 +13582,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -13756,9 +13594,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -13774,9 +13609,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -13791,9 +13623,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -14359,6 +14188,7 @@
     },
     "StarWarsPeople.Film2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -14542,7 +14372,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -14596,7 +14426,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -14692,7 +14522,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -14740,7 +14570,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -14792,6 +14622,7 @@
     },
     "StarWarsPeople.Species2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -14951,7 +14782,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -15005,7 +14836,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -15101,7 +14932,7 @@
         ],
         "mixin": {
           "___species": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "species.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -15149,7 +14980,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -15201,6 +15032,7 @@
     },
     "StarWarsPeople.Starship2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -15552,7 +15384,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -15610,7 +15442,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -15706,7 +15538,7 @@
         ],
         "mixin": {
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -15758,7 +15590,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -15810,6 +15642,7 @@
     },
     "StarWarsPeople.Vehicle2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -16113,7 +15946,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -16171,7 +16004,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -16267,7 +16100,7 @@
         ],
         "mixin": {
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -16319,7 +16152,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -16375,6 +16208,7 @@
     },
     "StarWarsPlanet.Planet": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@odata.draft.enabled": true,
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -16652,7 +16486,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -16671,9 +16505,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -16686,9 +16517,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -16704,9 +16532,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -16721,9 +16546,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -17042,7 +16864,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -17061,9 +16883,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -17076,9 +16895,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -17094,9 +16910,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -17111,9 +16924,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -17214,8 +17024,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -17498,8 +17309,9 @@
         ],
         "mixin": {
           "___homeworld": {
+            "@assert.target": true,
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -17679,7 +17491,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -17698,9 +17510,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -17713,9 +17522,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -17731,9 +17537,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -17748,9 +17551,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -18176,6 +17976,7 @@
     },
     "StarWarsPlanet.Film2Planets": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -18359,7 +18160,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -18413,7 +18214,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -18509,7 +18310,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -18557,7 +18358,7 @@
             ]
           },
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -18609,6 +18410,7 @@
     },
     "StarWarsPlanet.Planet2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -18853,7 +18655,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -18907,7 +18709,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -19003,7 +18805,7 @@
         ],
         "mixin": {
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -19051,7 +18853,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -19103,6 +18905,7 @@
     },
     "StarWarsPlanet.climate": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
@@ -19160,6 +18963,7 @@
     },
     "StarWarsPlanet.terrain": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
@@ -19221,6 +19025,7 @@
     },
     "StarWarsSpecies.Species": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@odata.draft.enabled": true,
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -19525,7 +19330,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -19544,9 +19349,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -19559,9 +19361,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -19577,9 +19376,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -19594,9 +19390,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -19706,7 +19499,7 @@
         },
         "homeworld": {
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -19953,7 +19746,7 @@
         "mixin": {
           "___homeworld": {
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -20062,6 +19855,7 @@
     },
     "StarWarsSpecies.Planet": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
@@ -20084,7 +19878,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -20103,9 +19897,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -20118,9 +19909,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -20136,9 +19924,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -20153,9 +19938,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -20475,7 +20257,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -20494,9 +20276,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -20509,9 +20288,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -20527,9 +20303,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -20544,9 +20317,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -20996,7 +20766,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -21015,9 +20785,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -21030,9 +20797,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -21048,9 +20812,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -21065,9 +20826,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -21168,8 +20926,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -21452,8 +21211,9 @@
         ],
         "mixin": {
           "___homeworld": {
+            "@assert.target": true,
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -21608,6 +21368,7 @@
     },
     "StarWarsSpecies.Film2Species": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -21791,7 +21552,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -21845,7 +21606,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -21949,7 +21710,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -21997,7 +21758,7 @@
             ]
           },
           "___specie": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "specie.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -22057,6 +21818,7 @@
     },
     "StarWarsSpecies.Species2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -22312,7 +22074,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -22366,7 +22128,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -22462,7 +22224,7 @@
         ],
         "mixin": {
           "___species": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "species.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -22510,7 +22272,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -22562,6 +22324,7 @@
     },
     "StarWarsSpecies.hair_colors": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -22619,6 +22382,7 @@
     },
     "StarWarsSpecies.eye_colors": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -22676,6 +22440,7 @@
     },
     "StarWarsSpecies.skin_colors": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -22733,6 +22498,7 @@
     },
     "StarWarsSpecies.classification": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -22790,6 +22556,7 @@
     },
     "StarWarsSpecies.designation": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -22847,6 +22614,7 @@
     },
     "StarWarsSpecies.language": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@title": "{i18n>Species}",
       "@UI.TextArrangement": {
@@ -22908,6 +22676,7 @@
     },
     "StarWarsStarship.Starship": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@odata.draft.enabled": true,
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -23255,7 +23024,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -23274,9 +23043,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -23289,9 +23055,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -23307,9 +23070,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -23324,9 +23084,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -23700,7 +23457,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -23719,9 +23476,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -23734,9 +23488,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -23752,9 +23503,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -23769,9 +23517,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -24221,7 +23966,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -24240,9 +23985,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -24255,9 +23997,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -24273,9 +24012,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -24290,9 +24026,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -24393,8 +24126,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -24677,8 +24411,9 @@
         ],
         "mixin": {
           "___homeworld": {
+            "@assert.target": true,
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -24833,6 +24568,7 @@
     },
     "StarWarsStarship.Planet": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
@@ -24855,7 +24591,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -24874,9 +24610,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -24889,9 +24622,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -24907,9 +24637,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -24924,9 +24651,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -25221,6 +24945,7 @@
     },
     "StarWarsStarship.Film2Starships": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -25404,7 +25129,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -25458,7 +25183,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -25554,7 +25279,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -25602,7 +25327,7 @@
             ]
           },
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -25654,6 +25379,7 @@
     },
     "StarWarsStarship.Starship2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -25909,7 +25635,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -25967,7 +25693,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -26063,7 +25789,7 @@
         ],
         "mixin": {
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -26115,7 +25841,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -26167,6 +25893,7 @@
     },
     "StarWarsStarship.ssModels": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -26225,6 +25952,7 @@
     },
     "StarWarsStarship.ssClass": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -26283,6 +26011,7 @@
     },
     "StarWarsStarship.ssManufacturer": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -26345,6 +26074,7 @@
     },
     "StarWarsVehicle.Vehicles": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@odata.draft.enabled": true,
       "@UI.TextArrangement": {
         "#": "TextOnly"
@@ -26656,7 +26386,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -26675,9 +26405,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -26690,9 +26417,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -26708,9 +26432,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -26725,9 +26446,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -27077,7 +26795,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -27096,9 +26814,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -27111,9 +26826,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -27129,9 +26841,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -27146,9 +26855,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -27598,7 +27304,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -27617,9 +27323,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -27632,9 +27335,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -27650,9 +27350,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -27667,9 +27364,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -27770,8 +27464,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -28054,8 +27749,9 @@
         ],
         "mixin": {
           "___homeworld": {
+            "@assert.target": true,
             "@title": "{i18n>homeworld}",
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "homeworld.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -28210,6 +27906,7 @@
     },
     "StarWarsVehicle.Planet": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.odata.valuelist": true,
       "@title": "{i18n>Planet}",
@@ -28232,7 +27929,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -28251,9 +27948,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -28266,9 +27960,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -28284,9 +27975,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -28301,9 +27989,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -28598,6 +28283,7 @@
     },
     "StarWarsVehicle.Film2Vehicles": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -28781,7 +28467,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -28835,7 +28521,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -28931,7 +28617,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -28979,7 +28665,7 @@
             ]
           },
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -29031,6 +28717,7 @@
     },
     "StarWarsVehicle.Vehicle2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@UI.TextArrangement": {
         "#": "TextOnly"
       },
@@ -29286,7 +28973,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -29344,7 +29031,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -29440,7 +29127,7 @@
         ],
         "mixin": {
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -29492,7 +29179,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -29544,6 +29231,7 @@
     },
     "StarWarsVehicle.vModels": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -29602,6 +29290,7 @@
     },
     "StarWarsVehicle.vClass": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -29660,6 +29349,7 @@
     },
     "StarWarsVehicle.vManufacturer": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@readonly": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -29718,6 +29408,7 @@
     },
     "cuid": {
       "kind": "aspect",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "elements": {
         "ID": {
           "key": true,
@@ -29730,6 +29421,7 @@
     },
     "managed": {
       "kind": "aspect",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "elements": {
         "createdAt": {
           "@cds.on.insert": {
@@ -29739,9 +29431,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -29754,9 +29443,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -29772,9 +29458,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -29789,9 +29472,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -29890,6 +29570,7 @@
     },
     "StarWarsFilm.Species2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -29900,7 +29581,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -29954,7 +29635,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -30050,7 +29731,7 @@
         ],
         "mixin": {
           "___species": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "species.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30098,7 +29779,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30150,6 +29831,7 @@
     },
     "StarWarsFilm.Vehicle2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -30160,7 +29842,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -30218,7 +29900,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -30314,7 +29996,7 @@
         ],
         "mixin": {
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30366,7 +30048,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30418,6 +30100,7 @@
     },
     "StarWarsFilm.Starship2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -30428,7 +30111,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -30486,7 +30169,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -30582,7 +30265,7 @@
         ],
         "mixin": {
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30634,7 +30317,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30686,6 +30369,7 @@
     },
     "StarWarsFilm.Planet2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "@cds.odata.valuelist": true,
       "elements": {
@@ -30697,7 +30381,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -30751,7 +30435,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -30847,7 +30531,7 @@
         ],
         "mixin": {
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30895,7 +30579,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -30947,6 +30631,7 @@
     },
     "StarWarsPeople.Film2Planets": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -30957,7 +30642,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31011,7 +30696,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31107,7 +30792,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -31155,7 +30840,7 @@
             ]
           },
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -31207,6 +30892,7 @@
     },
     "StarWarsPeople.Film2Starships": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -31217,7 +30903,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31271,7 +30957,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31367,7 +31053,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -31415,7 +31101,7 @@
             ]
           },
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -31467,6 +31153,7 @@
     },
     "StarWarsPeople.Film2Vehicles": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -31477,7 +31164,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31531,7 +31218,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31627,7 +31314,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -31675,7 +31362,7 @@
             ]
           },
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -31727,6 +31414,7 @@
     },
     "StarWarsPeople.Film2Species": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -31737,7 +31425,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31791,7 +31479,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -31895,7 +31583,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -31943,7 +31631,7 @@
             ]
           },
           "___specie": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "specie.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -32003,6 +31691,7 @@
     },
     "StarWarsPeople.Planet2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "@cds.odata.valuelist": true,
       "elements": {
@@ -32014,7 +31703,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32068,7 +31757,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32164,7 +31853,7 @@
         ],
         "mixin": {
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -32212,7 +31901,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -32264,6 +31953,7 @@
     },
     "StarWarsPlanet.Film2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -32274,7 +31964,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32328,7 +32018,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32424,7 +32114,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -32472,7 +32162,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -32524,6 +32214,7 @@
     },
     "StarWarsPlanet.Species2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -32534,7 +32225,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32588,7 +32279,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32684,7 +32375,7 @@
         ],
         "mixin": {
           "___species": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "species.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -32732,7 +32423,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -32784,6 +32475,7 @@
     },
     "StarWarsPlanet.Vehicle2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -32794,7 +32486,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32852,7 +32544,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -32948,7 +32640,7 @@
         ],
         "mixin": {
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33000,7 +32692,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33052,6 +32744,7 @@
     },
     "StarWarsPlanet.Starship2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -33062,7 +32755,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -33120,7 +32813,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -33216,7 +32909,7 @@
         ],
         "mixin": {
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33268,7 +32961,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33320,6 +33013,7 @@
     },
     "StarWarsPlanet.Film2Starships": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -33330,7 +33024,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -33384,7 +33078,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -33480,7 +33174,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33528,7 +33222,7 @@
             ]
           },
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33580,6 +33274,7 @@
     },
     "StarWarsPlanet.Film2Vehicles": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -33590,7 +33285,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -33644,7 +33339,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -33740,7 +33435,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33788,7 +33483,7 @@
             ]
           },
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -33840,6 +33535,7 @@
     },
     "StarWarsPlanet.Film2Species": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -33850,7 +33546,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -33904,7 +33600,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34008,7 +33704,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34056,7 +33752,7 @@
             ]
           },
           "___specie": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "specie.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34116,6 +33812,7 @@
     },
     "StarWarsSpecies.Film2Planets": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -34126,7 +33823,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34180,7 +33877,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34276,7 +33973,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34324,7 +34021,7 @@
             ]
           },
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34376,6 +34073,7 @@
     },
     "StarWarsSpecies.Planet2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "@cds.odata.valuelist": true,
       "elements": {
@@ -34387,7 +34085,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34441,7 +34139,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34537,7 +34235,7 @@
         ],
         "mixin": {
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34585,7 +34283,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34637,6 +34335,7 @@
     },
     "StarWarsSpecies.Film2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -34647,7 +34346,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34701,7 +34400,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34797,7 +34496,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34845,7 +34544,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -34897,6 +34596,7 @@
     },
     "StarWarsSpecies.Film2Starships": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -34907,7 +34607,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -34961,7 +34661,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -35057,7 +34757,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35105,7 +34805,7 @@
             ]
           },
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35157,6 +34857,7 @@
     },
     "StarWarsSpecies.Film2Vehicles": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -35167,7 +34868,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -35221,7 +34922,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -35317,7 +35018,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35365,7 +35066,7 @@
             ]
           },
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35417,6 +35118,7 @@
     },
     "StarWarsSpecies.Vehicle2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -35427,7 +35129,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -35485,7 +35187,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -35581,7 +35283,7 @@
         ],
         "mixin": {
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35633,7 +35335,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35685,6 +35387,7 @@
     },
     "StarWarsSpecies.Starship2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -35695,7 +35398,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -35753,7 +35456,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -35849,7 +35552,7 @@
         ],
         "mixin": {
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35901,7 +35604,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -35953,6 +35656,7 @@
     },
     "StarWarsStarship.Film2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -35963,7 +35667,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36017,7 +35721,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36113,7 +35817,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -36161,7 +35865,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -36213,6 +35917,7 @@
     },
     "StarWarsStarship.Film2Planets": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -36223,7 +35928,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36277,7 +35982,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36373,7 +36078,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -36421,7 +36126,7 @@
             ]
           },
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -36473,6 +36178,7 @@
     },
     "StarWarsStarship.Film2Vehicles": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -36483,7 +36189,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36537,7 +36243,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36633,7 +36339,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -36681,7 +36387,7 @@
             ]
           },
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -36733,6 +36439,7 @@
     },
     "StarWarsStarship.Film2Species": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -36743,7 +36450,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36797,7 +36504,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -36901,7 +36608,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -36949,7 +36656,7 @@
             ]
           },
           "___specie": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "specie.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -37009,6 +36716,7 @@
     },
     "StarWarsStarship.Species2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -37019,7 +36727,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37073,7 +36781,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37169,7 +36877,7 @@
         ],
         "mixin": {
           "___species": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "species.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -37217,7 +36925,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -37269,6 +36977,7 @@
     },
     "StarWarsStarship.Vehicle2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -37279,7 +36988,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37337,7 +37046,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37433,7 +37142,7 @@
         ],
         "mixin": {
           "___vehicle": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "vehicle.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -37485,7 +37194,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -37537,6 +37246,7 @@
     },
     "StarWarsStarship.Planet2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "@cds.odata.valuelist": true,
       "elements": {
@@ -37548,7 +37258,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37602,7 +37312,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37698,7 +37408,7 @@
         ],
         "mixin": {
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -37746,7 +37456,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -37798,6 +37508,7 @@
     },
     "StarWarsVehicle.Film2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -37808,7 +37519,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37862,7 +37573,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -37958,7 +37669,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38006,7 +37717,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38058,6 +37769,7 @@
     },
     "StarWarsVehicle.Film2Planets": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -38068,7 +37780,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -38122,7 +37834,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -38218,7 +37930,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38266,7 +37978,7 @@
             ]
           },
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38318,6 +38030,7 @@
     },
     "StarWarsVehicle.Film2Starships": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -38328,7 +38041,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -38382,7 +38095,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -38478,7 +38191,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38526,7 +38239,7 @@
             ]
           },
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38578,6 +38291,7 @@
     },
     "StarWarsVehicle.Film2Species": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -38588,7 +38302,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -38642,7 +38356,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -38746,7 +38460,7 @@
         ],
         "mixin": {
           "___film": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "film.title"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38794,7 +38508,7 @@
             ]
           },
           "___specie": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "specie.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -38854,6 +38568,7 @@
     },
     "StarWarsVehicle.Species2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -38864,7 +38579,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -38918,7 +38633,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -39014,7 +38729,7 @@
         ],
         "mixin": {
           "___species": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "species.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -39062,7 +38777,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -39114,6 +38829,7 @@
     },
     "StarWarsVehicle.Starship2Pilot": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "elements": {
         "ID": {
@@ -39124,7 +38840,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -39182,7 +38898,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -39278,7 +38994,7 @@
         ],
         "mixin": {
           "___starship": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "starship.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -39330,7 +39046,7 @@
             ]
           },
           "___pilot": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "pilot.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -39382,6 +39098,7 @@
     },
     "StarWarsVehicle.Planet2People": {
       "kind": "entity",
+      "doc": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
       "@cds.autoexposed": true,
       "@cds.odata.valuelist": true,
       "elements": {
@@ -39393,7 +39110,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -39447,7 +39164,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -39543,7 +39260,7 @@
         ],
         "mixin": {
           "___planet": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "planet.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -39591,7 +39308,7 @@
             ]
           },
           "___people": {
-            "@Common.Text.$value": {
+            "@Common.Text": {
               "=": "people.name"
             },
             "@Common.Text.@UI.TextArrangement": {
@@ -39643,6 +39360,7 @@
     },
     "StarWarsPlanet.Vehicles": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexposed": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -39666,7 +39384,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -39685,9 +39403,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -39700,9 +39415,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -39718,9 +39430,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -39735,9 +39444,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -40062,6 +39768,7 @@
     },
     "StarWarsPlanet.Starship": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexposed": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -40085,7 +39792,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -40104,9 +39811,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -40119,9 +39823,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -40137,9 +39838,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -40154,9 +39852,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -40505,6 +40200,7 @@
     },
     "StarWarsSpecies.Starship": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexposed": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -40528,7 +40224,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -40547,9 +40243,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -40562,9 +40255,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -40580,9 +40270,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -40597,9 +40284,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -40948,6 +40632,7 @@
     },
     "StarWarsSpecies.Vehicles": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexposed": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -40971,7 +40656,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -40990,9 +40675,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -41005,9 +40687,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -41023,9 +40702,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -41040,9 +40716,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -41367,6 +41040,7 @@
     },
     "StarWarsStarship.Vehicles": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexposed": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Vehicles}",
@@ -41390,7 +41064,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -41409,9 +41083,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -41424,9 +41095,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -41442,9 +41110,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -41459,9 +41124,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -41786,6 +41448,7 @@
     },
     "StarWarsVehicle.Starship": {
       "kind": "entity",
+      "doc": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
       "@cds.autoexposed": true,
       "@cds.autoexpose": true,
       "@title": "{i18n>Starship}",
@@ -41809,7 +41472,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -41828,9 +41491,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
@@ -41843,9 +41503,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -41861,9 +41518,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
@@ -41878,9 +41532,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -42400,7 +42051,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -42419,9 +42070,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "CREATEDAT"
@@ -42435,9 +42083,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -42454,9 +42099,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "MODIFIEDAT"
@@ -42472,9 +42114,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -42742,7 +42381,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -42797,7 +42436,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -42914,7 +42553,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -42969,7 +42608,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43086,7 +42725,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43141,7 +42780,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43258,7 +42897,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43313,7 +42952,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43430,7 +43069,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43485,7 +43124,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43717,7 +43356,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -43736,9 +43375,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "CREATEDAT"
@@ -43752,9 +43388,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -43771,9 +43404,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "MODIFIEDAT"
@@ -43789,9 +43419,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -43901,8 +43528,9 @@
           "@cds.persistence.name": "GENDER"
         },
         "homeworld": {
+          "@assert.target": true,
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44122,7 +43750,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44177,7 +43805,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44294,7 +43922,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44349,7 +43977,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44466,7 +44094,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44525,7 +44153,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44642,7 +44270,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44701,7 +44329,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44925,7 +44553,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -44944,9 +44572,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "CREATEDAT"
@@ -44960,9 +44585,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -44979,9 +44601,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "MODIFIEDAT"
@@ -44997,9 +44616,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -45208,7 +44824,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -45263,7 +44879,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -45380,7 +44996,7 @@
           "@cds.persistence.name": "ID"
         },
         "planet": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "planet.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -45435,7 +45051,7 @@
           "@cds.persistence.name": "PLANET_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -45659,7 +45275,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -45678,9 +45294,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "CREATEDAT"
@@ -45694,9 +45307,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -45713,9 +45323,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "MODIFIEDAT"
@@ -45731,9 +45338,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -45852,7 +45456,7 @@
         },
         "homeworld": {
           "@title": "{i18n>homeworld}",
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "homeworld.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46042,7 +45646,7 @@
           "@cds.persistence.name": "ID"
         },
         "species": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "species.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46097,7 +45701,7 @@
           "@cds.persistence.name": "SPECIES_ID"
         },
         "people": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "people.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46214,7 +45818,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46269,7 +45873,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "specie": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "specie.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46501,7 +46105,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46520,9 +46124,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "CREATEDAT"
@@ -46536,9 +46137,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -46555,9 +46153,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "MODIFIEDAT"
@@ -46573,9 +46168,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -46818,7 +46410,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46873,7 +46465,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -46990,7 +46582,7 @@
           "@cds.persistence.name": "ID"
         },
         "starship": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "starship.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -47049,7 +46641,7 @@
           "@cds.persistence.name": "STARSHIP_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -47273,7 +46865,7 @@
       "elements": {
         "ID": {
           "@Core.Computed": true,
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -47292,9 +46884,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "CREATEDAT"
@@ -47308,9 +46897,6 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedBy}",
           "@readonly": true,
-          "@odata.on.insert": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -47327,9 +46913,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "now"
-          },
           "type": "cds.UTCTimestamp",
           "notNull": false,
           "@cds.persistence.name": "MODIFIEDAT"
@@ -47345,9 +46928,6 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedBy}",
           "@readonly": true,
-          "@odata.on.update": {
-            "#": "user"
-          },
           "@description": "{i18n>UserID.Description}",
           "type": "cds.String",
           "length": 255,
@@ -47576,7 +47156,7 @@
           "@cds.persistence.name": "ID"
         },
         "film": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "film.title"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -47631,7 +47211,7 @@
           "@cds.persistence.name": "FILM_ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -47748,7 +47328,7 @@
           "@cds.persistence.name": "ID"
         },
         "vehicle": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "vehicle.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -47807,7 +47387,7 @@
           "@cds.persistence.name": "VEHICLE_ID"
         },
         "pilot": {
-          "@Common.Text.$value": {
+          "@Common.Text": {
             "=": "pilot.name"
           },
           "@Common.Text.@UI.TextArrangement": {
@@ -47915,7 +47495,7 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v2.13.8"
+    "creator": "CDS Compiler v3.0.2"
   },
   "$version": "2.0"
 }

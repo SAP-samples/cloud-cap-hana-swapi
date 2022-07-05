@@ -5,6 +5,9 @@
     "description": "This service is located at [/StarWarsPlanet/](/StarWarsPlanet/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Planet{bg:lightslategray}],[Planet]0..1-*[Film2Planets],[Planet]++-0..1>[DraftAdministrativeData],[Planet]-0..1>[Planet],[People{bg:lightslategray}],[People]-0..1>[Planet],[People]0..1-*[Film2People],[Film{bg:lightslategray}],[Film]0..1-*[Film2People],[Film2Planets{bg:lightslategray}],[Film2Planets]*-0..1[Film],[Film2Planets]++-0..1>[DraftAdministrativeData],[Film2Planets]-0..1>[Film2Planets],[Planet2People{bg:lightslategray}],[Planet2People]*-0..1[Planet],[Planet2People]-0..1>[People],[Planet2People]++-0..1>[DraftAdministrativeData],[Planet2People]-0..1>[Planet2People],[climate{bg:lightslategray}],[terrain{bg:lightslategray}],[Film2People{bg:lightslategray}],[Species2People{bg:lightslategray}],[Species2People]*-0..1[People],[Vehicle2Pilot{bg:lightslategray}],[Vehicle2Pilot]*-0..1[People],[Starship2Pilot{bg:lightslategray}],[Starship2Pilot]*-0..1[People],[Film2Starships{bg:lightslategray}],[Film2Starships]*-0..1[Film],[Film2Vehicles{bg:lightslategray}],[Film2Vehicles]*-0..1[Film],[Film2Species{bg:lightslategray}],[Film2Species]*-0..1[Film],[Vehicles{bg:lightslategray}],[Vehicles]0..1-*[Film2Vehicles],[Vehicles]0..1-*[Vehicle2Pilot],[Starship{bg:lightslategray}],[Starship]0..1-*[Film2Starships],[Starship]0..1-*[Starship2Pilot],[DraftAdministrativeData{bg:lightslategray}],[Starship%20{bg:lawngreen}]++-*>[Starship],[Vehicles%20{bg:lawngreen}]++-*>[Vehicles],[Film2Species%20{bg:lawngreen}]++-*>[Film2Species],[Film2Vehicles%20{bg:lawngreen}]++-*>[Film2Vehicles],[Film2Starships%20{bg:lawngreen}]++-*>[Film2Starships],[Starship2Pilot%20{bg:lawngreen}]++-*>[Starship2Pilot],[Vehicle2Pilot%20{bg:lawngreen}]++-*>[Vehicle2Pilot],[Species2People%20{bg:lawngreen}]++-*>[Species2People],[Film2People%20{bg:lawngreen}]++-*>[Film2People],[terrain%20{bg:lawngreen}]++-*>[terrain],[climate%20{bg:lawngreen}]++-*>[climate],[Planet2People%20{bg:lawngreen}]++-*>[Planet2People],[Film2Planets%20{bg:lawngreen}]++-*>[Film2Planets],[Film%20{bg:lawngreen}]++-*>[Film],[People%20{bg:lawngreen}]++-*>[People],[Planet%20{bg:lawngreen}]++-*>[Planet])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
+  "x-sap-api-type": "ODATAV4",
+  "x-odata-version": "4.0",
+  "x-sap-shortText": "Service for namespace StarWarsPlanet",
   "servers": [
     {
       "url": "/StarWarsPlanet"
@@ -12,7 +15,8 @@
   ],
   "tags": [
     {
-      "name": "{i18n>Planet}"
+      "name": "{i18n>Planet}",
+      "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
     },
     {
       "name": "{i18n>People}",
@@ -23,43 +27,56 @@
       "description": "All Films in the Star Wars Skywalker Saga"
     },
     {
-      "name": "Film2Planets"
+      "name": "Film2Planets",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "Planet2People"
+      "name": "Planet2People",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "{i18n>Planet}"
+      "name": "{i18n>Planet}",
+      "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
     },
     {
-      "name": "{i18n>Planet}"
+      "name": "{i18n>Planet}",
+      "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
     },
     {
-      "name": "Film2People"
+      "name": "Film2People",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "Species2People"
+      "name": "Species2People",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "Vehicle2Pilot"
+      "name": "Vehicle2Pilot",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "Starship2Pilot"
+      "name": "Starship2Pilot",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "Film2Starships"
+      "name": "Film2Starships",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "Film2Vehicles"
+      "name": "Film2Vehicles",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "Film2Species"
+      "name": "Film2Species",
+      "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
     },
     {
-      "name": "{i18n>Vehicles}"
+      "name": "{i18n>Vehicles}",
+      "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
     },
     {
-      "name": "{i18n>Starship}"
+      "name": "{i18n>Starship}",
+      "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
     }
   ],
   "paths": {
@@ -173,7 +190,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -226,7 +243,7 @@
           "{i18n>Planet}"
         ],
         "requestBody": {
-          "description": "New planet",
+          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
           "required": true,
           "content": {
             "application/json": {
@@ -317,7 +334,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -358,7 +375,7 @@
           "{i18n>Planet}"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
           "required": true,
           "content": {
             "application/json": {
@@ -678,7 +695,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -732,7 +749,7 @@
           "Film2Planets"
         ],
         "requestBody": {
-          "description": "New film",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -860,7 +877,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -914,7 +931,7 @@
           "Planet2People"
         ],
         "requestBody": {
-          "description": "New resident",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -1115,7 +1132,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -1437,7 +1454,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -1537,7 +1554,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -1629,7 +1646,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -1902,7 +1919,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -1954,7 +1971,7 @@
           "Film2People"
         ],
         "requestBody": {
-          "description": "New film",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -2063,7 +2080,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -2114,7 +2131,7 @@
           "Species2People"
         ],
         "requestBody": {
-          "description": "New species",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -2223,7 +2240,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -2275,7 +2292,7 @@
           "Vehicle2Pilot"
         ],
         "requestBody": {
-          "description": "New vehicle",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -2384,7 +2401,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -2436,7 +2453,7 @@
           "Starship2Pilot"
         ],
         "requestBody": {
-          "description": "New starship",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -2555,7 +2572,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -2652,7 +2669,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -2771,7 +2788,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -2823,7 +2840,7 @@
           "Film2People"
         ],
         "requestBody": {
-          "description": "New character",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -2941,7 +2958,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -2995,7 +3012,7 @@
           "Film2Planets"
         ],
         "requestBody": {
-          "description": "New planet",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -3104,7 +3121,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -3156,7 +3173,7 @@
           "Film2Starships"
         ],
         "requestBody": {
-          "description": "New starship",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -3265,7 +3282,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -3317,7 +3334,7 @@
           "Film2Vehicles"
         ],
         "requestBody": {
-          "description": "New vehicle",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -3426,7 +3443,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -3477,7 +3494,7 @@
           "Film2Species"
         ],
         "requestBody": {
-          "description": "New species",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -3581,7 +3598,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -3634,7 +3651,7 @@
           "Film2Planets"
         ],
         "requestBody": {
-          "description": "New film2 planet",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -3714,7 +3731,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -3755,7 +3772,7 @@
           "Film2Planets"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -3915,7 +3932,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -4017,7 +4034,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -4401,7 +4418,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -4581,7 +4598,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -4634,7 +4651,7 @@
           "Planet2People"
         ],
         "requestBody": {
-          "description": "New planet2 person",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -4714,7 +4731,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -4755,7 +4772,7 @@
           "Planet2People"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -4921,7 +4938,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -5204,7 +5221,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -5404,7 +5421,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -5859,7 +5876,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -5910,7 +5927,7 @@
           "Film2People"
         ],
         "requestBody": {
-          "description": "New film2 person",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -5977,7 +5994,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6016,7 +6033,7 @@
           "Film2People"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -6099,7 +6116,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6188,7 +6205,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6293,7 +6310,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6343,7 +6360,7 @@
           "Species2People"
         ],
         "requestBody": {
-          "description": "New species2 person",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -6410,7 +6427,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6448,7 +6465,7 @@
           "Species2People"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -6534,7 +6551,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6639,7 +6656,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6690,7 +6707,7 @@
           "Vehicle2Pilot"
         ],
         "requestBody": {
-          "description": "New vehicle2 pilot",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -6757,7 +6774,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6796,7 +6813,7 @@
           "Vehicle2Pilot"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -6884,7 +6901,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -6970,7 +6987,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7075,7 +7092,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7126,7 +7143,7 @@
           "Starship2Pilot"
         ],
         "requestBody": {
-          "description": "New starship2 pilot",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -7193,7 +7210,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7232,7 +7249,7 @@
           "Starship2Pilot"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -7322,7 +7339,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7408,7 +7425,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7513,7 +7530,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7564,7 +7581,7 @@
           "Film2Starships"
         ],
         "requestBody": {
-          "description": "New film2 starship",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -7631,7 +7648,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7670,7 +7687,7 @@
           "Film2Starships"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -7753,7 +7770,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7846,7 +7863,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7948,7 +7965,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -7999,7 +8016,7 @@
           "Film2Vehicles"
         ],
         "requestBody": {
-          "description": "New film2 vehicle",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -8066,7 +8083,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8105,7 +8122,7 @@
           "Film2Vehicles"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -8188,7 +8205,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8279,7 +8296,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8381,7 +8398,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8431,7 +8448,7 @@
           "Film2Species"
         ],
         "requestBody": {
-          "description": "New film2 specy",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -8498,7 +8515,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8536,7 +8553,7 @@
           "Film2Species"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -8619,7 +8636,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8763,7 +8780,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8814,7 +8831,7 @@
           "{i18n>Vehicles}"
         ],
         "requestBody": {
-          "description": "New vehicle",
+          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
           "required": true,
           "content": {
             "application/json": {
@@ -8894,7 +8911,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -8933,7 +8950,7 @@
           "{i18n>Vehicles}"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
           "required": true,
           "content": {
             "application/json": {
@@ -9049,7 +9066,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -9101,7 +9118,7 @@
           "Film2Vehicles"
         ],
         "requestBody": {
-          "description": "New film",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -9210,7 +9227,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -9262,7 +9279,7 @@
           "Vehicle2Pilot"
         ],
         "requestBody": {
-          "description": "New pilot",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -9402,7 +9419,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -9453,7 +9470,7 @@
           "{i18n>Starship}"
         ],
         "requestBody": {
-          "description": "New starship",
+          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
           "required": true,
           "content": {
             "application/json": {
@@ -9535,7 +9552,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -9574,7 +9591,7 @@
           "{i18n>Starship}"
         ],
         "requestBody": {
-          "description": "New property values",
+          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
           "required": true,
           "content": {
             "application/json": {
@@ -9690,7 +9707,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -9742,7 +9759,7 @@
           "Film2Starships"
         ],
         "requestBody": {
-          "description": "New film",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -9851,7 +9868,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -9903,7 +9920,7 @@
           "Starship2Pilot"
         ],
         "requestBody": {
-          "description": "New pilot",
+          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
           "required": true,
           "content": {
             "application/json": {
@@ -10085,7 +10102,8 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Planet-create": {
         "title": "Planet (for create)",
@@ -10170,7 +10188,8 @@
         },
         "required": [
           "IsActiveEntity"
-        ]
+        ],
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Planet-update": {
         "title": "Planet (for update)",
@@ -10220,7 +10239,8 @@
             "type": "boolean",
             "default": false
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.People": {
         "title": "People",
@@ -10656,7 +10676,8 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Planets-create": {
         "title": "Film2Planets (for create)",
@@ -10721,7 +10742,8 @@
         },
         "required": [
           "IsActiveEntity"
-        ]
+        ],
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Planets-update": {
         "title": "Film2Planets (for update)",
@@ -10747,7 +10769,8 @@
             "type": "boolean",
             "default": false
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Planet2People": {
         "title": "Planet2People",
@@ -10814,7 +10837,8 @@
             ],
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Planet2People-create": {
         "title": "Planet2People (for create)",
@@ -10879,7 +10903,8 @@
         },
         "required": [
           "IsActiveEntity"
-        ]
+        ],
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Planet2People-update": {
         "title": "Planet2People (for update)",
@@ -10905,7 +10930,8 @@
             "type": "boolean",
             "default": false
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.climate": {
         "title": "climate",
@@ -10914,7 +10940,8 @@
           "climate": {
             "type": "string"
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.terrain": {
         "title": "terrain",
@@ -10923,7 +10950,8 @@
           "terrain": {
             "type": "string"
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Film2People": {
         "title": "Film2People",
@@ -10962,7 +10990,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2People-create": {
         "title": "Film2People (for create)",
@@ -10996,7 +11025,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2People-update": {
         "title": "Film2People (for update)",
@@ -11014,7 +11044,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Species2People": {
         "title": "Species2People",
@@ -11045,7 +11076,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Species2People-create": {
         "title": "Species2People (for create)",
@@ -11071,7 +11103,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Species2People-update": {
         "title": "Species2People (for update)",
@@ -11089,7 +11122,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Vehicle2Pilot": {
         "title": "Vehicle2Pilot",
@@ -11128,7 +11162,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Vehicle2Pilot-create": {
         "title": "Vehicle2Pilot (for create)",
@@ -11162,7 +11197,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Vehicle2Pilot-update": {
         "title": "Vehicle2Pilot (for update)",
@@ -11180,7 +11216,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Starship2Pilot": {
         "title": "Starship2Pilot",
@@ -11219,7 +11256,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Starship2Pilot-create": {
         "title": "Starship2Pilot (for create)",
@@ -11253,7 +11291,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Starship2Pilot-update": {
         "title": "Starship2Pilot (for update)",
@@ -11271,7 +11310,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Starships": {
         "title": "Film2Starships",
@@ -11310,7 +11350,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Starships-create": {
         "title": "Film2Starships (for create)",
@@ -11344,7 +11385,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Starships-update": {
         "title": "Film2Starships (for update)",
@@ -11362,7 +11404,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Vehicles": {
         "title": "Film2Vehicles",
@@ -11401,7 +11444,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Vehicles-create": {
         "title": "Film2Vehicles (for create)",
@@ -11435,7 +11479,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Vehicles-update": {
         "title": "Film2Vehicles (for update)",
@@ -11453,7 +11498,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Species": {
         "title": "Film2Species",
@@ -11484,7 +11530,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Species-create": {
         "title": "Film2Species (for create)",
@@ -11510,7 +11557,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Film2Species-update": {
         "title": "Film2Species (for update)",
@@ -11528,7 +11576,8 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
       },
       "StarWarsPlanet.Vehicles": {
         "title": "Vehicles",
@@ -11625,7 +11674,8 @@
           "pilots@odata.count": {
             "$ref": "#/components/schemas/count"
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Vehicles-create": {
         "title": "Vehicles (for create)",
@@ -11687,7 +11737,8 @@
               "$ref": "#/components/schemas/StarWarsPlanet.Vehicle2Pilot-create"
             }
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Vehicles-update": {
         "title": "Vehicles (for update)",
@@ -11737,7 +11788,8 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Starship": {
         "title": "Starship",
@@ -11842,7 +11894,8 @@
           "pilots@odata.count": {
             "$ref": "#/components/schemas/count"
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Starship-create": {
         "title": "Starship (for create)",
@@ -11912,7 +11965,8 @@
               "$ref": "#/components/schemas/StarWarsPlanet.Starship2Pilot-create"
             }
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.Starship-update": {
         "title": "Starship (for update)",
@@ -11970,7 +12024,8 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "StarWarsPlanet.DraftAdministrativeData": {
         "title": "DraftAdministrativeData",

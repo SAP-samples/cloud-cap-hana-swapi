@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.0] - 2022-07-05
+
+**Changed**
+
+- GraphQL support is now GA by switching to the @sap/cds-graphql dependency.  Removal of old GraphQL dependencies.
+- Remove Support Node.js 12.x, minimal version now 14.15 as enforced by @sap/cds itself
+- SAPUI5 update to 1.103.0
+
+**Added**
+
+- Update to SAP Cloud Application Programming Model 6.0.x - Yearly Major Release
+- Add Support for Node.js 18.x
+- Added Helm Charts support for deployment on Kyma/K8S
+
 ## [1.0.7] - 2022-04-14
 
 **Changed**

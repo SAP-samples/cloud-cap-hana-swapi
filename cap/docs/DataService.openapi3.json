@@ -5,6 +5,9 @@
     "description": "This service is located at [/-data/](/-data/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Entities{bg:lightslategray}],[Entities]-*[Entities_columns],[Data{bg:lightslategray}],[Data]++-*[Data_record],[Entities_columns{bg:lightslategray}],[Data_record],[Entities_columns%20{bg:lawngreen}]++-*>[Entities_columns],[Data%20{bg:lawngreen}]++-*>[Data],[Entities%20{bg:lawngreen}]++-*>[Entities])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
+  "x-sap-api-type": "ODATAV4",
+  "x-odata-version": "4.0",
+  "x-sap-shortText": "Exposes data + entity metadata",
   "servers": [
     {
       "url": "/-data"
@@ -86,7 +89,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -199,7 +202,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -354,7 +357,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -630,7 +633,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -746,7 +749,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {
@@ -855,7 +858,7 @@
           },
           {
             "name": "$expand",
-            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
             "in": "query",
             "explode": false,
             "schema": {

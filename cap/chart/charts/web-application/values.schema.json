@@ -1,0 +1,449 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://github.tools.sap/cki/web-application/blob/main/values.schema.json",
+    "type": "object",
+    "required": [
+        "image",
+        "resources"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "global": {
+            "$id": "#/properties/global",
+            "type": "object",
+            "x-ignore-untested": true,
+            "additionalProperties": true,
+            "properties": {
+                "imagePullSecret": {
+                    "$id": "#/properties/global/imagePullSecret",
+                    "additionalProperties": true,
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/KubernetesName"
+                        },
+                        "dockerconfigjson": {
+                            "type": "string"
+                        }
+                    },
+                    "dependencies": {
+                        "name": {
+                            "not": {
+                                "required": [
+                                    "dockerconfigjson"
+                                ]
+                            }
+                        },
+                        "dockerconfigjson": {
+                            "not": {
+                                "required": [
+                                    "name"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "nameOverride": {
+            "$id": "#/properties/nameOverride",
+            "type": "string",
+            "pattern": "[0-9a-z][0-9a-z-.]*"
+        },
+        "fullnameOverride": {
+            "$id": "#/properties/fullnameOverride",
+            "type": "string",
+            "pattern": "[0-9a-z][0-9a-z-.]*"
+        },
+        "replicaCount": {
+            "$id": "#/properties/replicaCount",
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+        },
+        "port": {
+            "$id": "#/properties/port",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535,
+            "default": 8080
+        },
+        "serviceAccountName": {
+            "$id": "#/properties/serviceAccountName",
+            "default": "default",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/KubernetesName"
+                }
+            ]
+        },
+        "image": {
+            "$id": "#/properties/image",
+            "type": "object",
+            "required": [
+                "repository"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "repository": {
+                    "$id": "#/properties/image/properties/repository",
+                    "type": "string",
+                    "pattern": "^[\\w-./:]*[@sha256]*$"
+                },
+                "tag": {
+                    "$id": "#/properties/image/properties/tag",
+                    "type": "string",
+                    "$comment": "Copied from https://github.com/containers/image/blob/18d58d29fdc4fc32fb8a8a6d186b829b217f1bf5/docker/reference/regexp.go#L68-L70",
+                    "pattern": "^((?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])(?:(?:\\.(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]))+)?(?::[0-9]+)?/)?[a-z0-9]+(?:(?:(?:[._]|__|[-]*)[a-z0-9]+)+)?(?:(?:/[a-z0-9]+(?:(?:(?:[._]|__|[-]*)[a-z0-9]+)+)?)+)?)(?::([\\w][\\w.-]{0,127}))?(?:@([A-Za-z][A-Za-z0-9]*(?:[-_+.][A-Za-z][A-Za-z0-9]*)*[:][[:xdigit:]]{32,}))?$",
+                    "default": "latest"
+                }
+            }
+        },
+        "imagePullSecret": {
+            "$id": "#/properties/imagePullSecret",
+            "additionalProperties": false,
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/KubernetesName"
+                },
+                "dockerconfigjson": {
+                    "type": "string"
+                }
+            },
+            "dependencies": {
+                "name": {
+                    "not": {
+                        "required": [
+                            "dockerconfigjson"
+                        ]
+                    }
+                },
+                "dockerconfigjson": {
+                    "not": {
+                        "required": [
+                            "name"
+                        ]
+                    }
+                }
+            }
+        },
+        "additionalVolumes": {
+            "$id": "#/properties/additionalVolumes",
+            "type": "array",
+            "additionalItems": false,
+            "default": [],
+            "items": {
+                "type": "object",
+                "additionalProperties": true,
+                "required": [
+                    "name",
+                    "volumeMount"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "$ref": "#/definitions/KubernetesName"
+                    },
+                    "volumeMount": {
+                        "type": "object",
+                        "required": [
+                            "mountPath"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "mountPath": {
+                                "type": "string",
+                                "pattern": "^[^:]*$"
+                            },
+                            "mountPropagation": {
+                                "type": "string"
+                            },
+                            "readOnly": {
+                                "type": "boolean"
+                            },
+                            "subPath": {
+                                "type": "string"
+                            },
+                            "subPathExpr": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ha": {
+            "$id": "#/properties/ha",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "$id": "#/properties/ha/properties/enabled",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        },
+        "resources": {
+            "$id": "#/properties/resources",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "requests",
+                "limits"
+            ],
+            "properties": {
+                "requests": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/resources/properties/requests/properties/cpu",
+                            "oneOf": [
+                                {
+                                    "type": "number"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "ephemeral-storage": {
+                            "$id": "#/properties/resources/properties/requests/properties/ephemeral-storage",
+                            "type": "string"
+                        },
+                        "memory": {
+                            "$id": "#/properties/resources/properties/requests/properties/memory",
+                            "type": "string"
+                        }
+                    }
+                },
+                "limits": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "$id": "#/properties/resources/properties/limits/properties/cpu",
+                            "oneOf": [
+                                {
+                                    "type": "number"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "ephemeral-storage": {
+                            "$id": "#/properties/resources/properties/limits/properties/ephemeral-storage",
+                            "type": "string"
+                        },
+                        "memory": {
+                            "$id": "#/properties/resources/properties/limits/properties/memory",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "health_check": {
+            "$id": "#/properties/health_check",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "liveness": {
+                    "$id": "#/properties/health_check/properties/liveness",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "path": {
+                            "type": "string",
+                            "default": "/healthz"
+                        }
+                    }
+                },
+                "readiness": {
+                    "$id": "#/properties/health_check/properties/readiness",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "path": {
+                            "type": "string",
+                            "default": "/healthz"
+                        }
+                    }
+                }
+            }
+        },
+        "startupTimeout": {
+            "$id": "#/properties/startupTimeout",
+            "type": "integer",
+            "minimum": 1,
+            "default": 30
+        },
+        "env": {
+            "$id": "#/properties/env",
+            "type": "object",
+            "patternProperties": {
+                "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
+                    "$comment": "regex above copied from https://github.com/kubernetes/kubernetes/blob/ea0764452222146c47ec826977f49d7001b0ea8c/staging/src/k8s.io/apimachinery/pkg/util/validation/validation.go#L402",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "default": {}
+        },
+        "envSecretNames": {
+            "$id": "#/properties/envSecretNames",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "$ref": "#/definitions/KubernetesName"
+            },
+            "default": []
+        },
+        "expose": {
+            "$id": "#/properties/expose",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "host": {
+                    "$id": "#/properties/expose/properties/host",
+                    "type": "string"
+                },
+                "enabled": {
+                    "$id": "#/properties/expose/properties/enabled",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        },
+        "bindings": {
+            "$id": "#/properties/bindings",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
+                    "anyOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "fromSecret"
+                            ],
+                            "properties": {
+                                "fromSecret": {
+                                    "$ref": "#/definitions/KubernetesName"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "serviceInstanceName": {
+                                    "$ref": "#/definitions/KubernetesName"
+                                },
+                                "serviceInstanceFullname": {
+                                    "$ref": "#/definitions/KubernetesName"
+                                },
+                                "externalName": {
+                                    "type": "string"
+                                },
+                                "secretName": {
+                                    "$ref": "#/definitions/KubernetesName"
+                                },
+                                "parameters": {
+                                    "type": "object"
+                                },
+                                "parametersFrom": {
+                                    "type": "array",
+                                    "items": {
+                                        "anyOf": [
+                                            {
+                                                "type": "object",
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "secretKeyRef": {
+                                                        "type": "object",
+                                                        "additionalProperties": false,
+                                                        "properties": {
+                                                            "name": {
+                                                                "$ref": "#/definitions/KubernetesName"
+                                                            },
+                                                            "key": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "type": "object",
+                                                "additionalProperties": false,
+                                                "properties": {
+                                                    "configMapKeyRef": {
+                                                        "type": "object",
+                                                        "additionalProperties": false,
+                                                        "properties": {
+                                                            "name": {
+                                                                "$ref": "#/definitions/KubernetesName"
+                                                            },
+                                                            "key": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "credentialsRotationPolicy": {
+                                    "type": "object"
+                                }
+                            },
+                            "dependencies": {
+                                "serviceInstanceName": {
+                                    "not": {
+                                        "required": [
+                                            "serviceInstanceFullname"
+                                        ]
+                                    }
+                                },
+                                "serviceInstanceFullname": {
+                                    "not": {
+                                        "required": [
+                                            "serviceInstanceName"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "definitions": {
+        "KubernetesName": {
+            "type": "string",
+            "$comment": "running `kubectl create secret generic invalid_name` will print this regex",
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
+        }
+    }
+}
