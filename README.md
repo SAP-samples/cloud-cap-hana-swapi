@@ -1,7 +1,6 @@
 # cloud-cap-hana-swapi - bi-directional, many-to-many SAP Cloud Application Programming Model example
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-cap-hana-swapi)](https://api.reuse.software/info/github.com/SAP-samples/cloud-cap-hana-swapi)
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/SAP-samples/cloud-cap-hana-swapi)
 
 ## Description
 
