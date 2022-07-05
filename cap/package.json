@@ -26,7 +26,7 @@
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "load": "node convertData",
     "changeLog": "node CHANGELOG.mjs",
-    "packDb":"pack build cap-hana-swapi-db --path gen/db --builder paketobuildpacks/builder:base",
+    "packDb":"pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
     "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
   },
   "cds": {
