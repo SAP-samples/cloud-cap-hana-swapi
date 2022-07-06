@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@sap/cds": "^6.0.1",
+    "@sap/cds": "^6.0.2",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.0",
     "@sap/cds-graphql": "^1.0.0",
     "cors": "^2.8.5",
@@ -90,6 +90,6 @@
   ],
   "devDependencies": {
     "@sap/hdi-deploy": "^4.4.1",
-    "@sap/cds-dk": "6.0.1"
+    "@sap/cds-dk": "6.0.2"
   }
 }
