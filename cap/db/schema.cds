@@ -56,10 +56,8 @@ annotate Film with @(
 ) {
     ID            @(
         Core.Computed,
-        Common.Text : {
-            $value                 : title,
-            ![@UI.TextArrangement] : #TextOnly
-        }
+        Common.Text            : title,
+        Common.TextArrangement : #TextOnly
     );
     title         @(
         title                           : '{i18n>title}',
@@ -199,10 +197,8 @@ entity Film2People : cuid {
 annotate Film2People with {
     ID     @Core.Computed;
     film   @(
-        Common.Text                     : {
-            $value                 : film.title,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : film.title,
+        Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>title}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
@@ -221,10 +217,8 @@ annotate Film2People with {
         }
     );
     people @(
-        Common.Text                     : {
-            $value                 : people.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : people.name,
+        Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>People}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
@@ -252,10 +246,8 @@ entity Film2Planets : cuid {
 annotate Film2Planets with {
     ID     @Core.Computed;
     film   @(
-        Common.Text                     : {
-            $value                 : film.title,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : film.title,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>title}',
         Common.ValueList                : {
@@ -274,10 +266,8 @@ annotate Film2Planets with {
         }
     );
     planet @(
-        Common.Text                     : {
-            $value                 : planet.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : planet.name,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>Planet}',
         Common.ValueList                : {
@@ -306,10 +296,8 @@ entity Film2Starships : cuid {
 annotate Film2Starships with {
     ID       @Core.Computed;
     film     @(
-        Common.Text                     : {
-            $value                 : film.title,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : film.title,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>title}',
         Common.ValueList                : {
@@ -328,10 +316,8 @@ annotate Film2Starships with {
         }
     );
     starship @(
-        Common.Text                     : {
-            $value                 : starship.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : starship.name,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>Starship}',
         Common.ValueList                : {
@@ -359,10 +345,8 @@ entity Film2Vehicles : cuid {
 annotate Film2Vehicles with {
     ID      @Core.Computed;
     film    @(
-        Common.Text                     : {
-            $value                 : film.title,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : film.title,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>title}',
         Common.ValueList                : {
@@ -381,10 +365,8 @@ annotate Film2Vehicles with {
         }
     );
     vehicle @(
-        Common.Text                     : {
-            $value                 : vehicle.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : vehicle.name,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>Vehicle}',
         Common.ValueList                : {
@@ -412,10 +394,8 @@ entity Film2Species : cuid {
 annotate Film2Species with {
     ID     @Core.Computed;
     film   @(
-        Common.Text                     : {
-            $value                 : film.title,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : film.title,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>title}',
         Common.ValueList                : {
@@ -434,10 +414,8 @@ annotate Film2Species with {
         }
     );
     specie @(
-        Common.Text                     : {
-            $value                 : specie.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : specie.name,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>Species}',
         Common.ValueList                : {
@@ -494,11 +472,13 @@ entity People : cuid, managed {
                      on starships.pilot = $self;
 }
 
-define view tallestPerson as 
-   select from People distinct {
-       first_value(name order by to_integer(height) desc) as tallest_name
-   };
-   
+define view tallestPerson as
+    select from People distinct {
+        first_value(name order by
+            to_integer(height) desc
+        ) as tallest_name
+};
+
 define view peopleCount as
     select from People distinct {
         count(
@@ -545,10 +525,8 @@ annotate People with @(
 ) {
     ID         @(
         Core.Computed,
-        Common.Text : {
-            $value                 : name,
-            ![@UI.TextArrangement] : #TextOnly
-        }
+        Common.Text            : name,
+        Common.TextArrangement : #TextOnly
     );
     name       @(
         title                           : '{i18n>peopleName}',
@@ -614,12 +592,10 @@ annotate People with @(
         }
     );
     homeworld  @(
-        title            : '{i18n>homeworld}',
-        Common.Text      : {
-            $value                 : homeworld.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
-        Common.ValueList : {
+        title                  : '{i18n>homeworld}',
+        Common.Text            : homeworld.name,
+        Common.TextArrangement : #TextOnly,
+        Common.ValueList       : {
             CollectionPath  : 'Planet',
             SearchSupported : true,
             Parameters      : [
@@ -682,10 +658,8 @@ annotate Planet with @(
 ) {
     ID              @(
         Core.Computed,
-        Common.Text : {
-            $value                 : name,
-            ![@UI.TextArrangement] : #TextOnly
-        }
+        Common.Text            : name,
+        Common.TextArrangement : #TextOnly
     );
     name            @(
         title                           : '{i18n>planetName}',
@@ -743,10 +717,8 @@ entity Planet2People : cuid {
 annotate Planet2People with {
     ID     @Core.Computed;
     planet @(
-        Common.Text                     : {
-            $value                 : planet.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : planet.name,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>planetName}',
         Common.ValueList                : {
@@ -765,10 +737,8 @@ annotate Planet2People with {
         }
     );
     people @(
-        Common.Text                     : {
-            $value                 : people.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : people.name,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>residents}',
         Common.ValueList                : {
@@ -859,10 +829,8 @@ annotate Species with @(
 ) {
     ID               @(
         Core.Computed,
-        Common.Text : {
-            $value                 : name,
-            ![@UI.TextArrangement] : #TextOnly
-        }
+        Common.Text            : name,
+        Common.TextArrangement : #TextOnly
     );
     name             @(
         title                           : '{i18n>speciesName}',
@@ -939,12 +907,10 @@ annotate Species with @(
         }
     );
     homeworld        @(
-        title            : '{i18n>homeworld}',
-        Common.Text      : {
-            $value                 : homeworld.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
-        Common.ValueList : {
+        title                  : '{i18n>homeworld}',
+        Common.Text            : homeworld.name,
+        Common.TextArrangement : #TextOnly,
+        Common.ValueList       : {
             CollectionPath  : 'Planet',
             SearchSupported : true,
             Parameters      : [
@@ -996,10 +962,8 @@ entity Species2People : cuid {
 annotate Species2People with {
     ID      @Core.Computed;
     species @(
-        Common.Text                     : {
-            $value                 : species.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : species.name,
+        Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>Species}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
@@ -1018,10 +982,8 @@ annotate Species2People with {
         }
     );
     people  @(
-        Common.Text                     : {
-            $value                 : people.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : people.name,
+        Common.TextArrangement          : #TextOnly,
         Common.ValueListWithFixedValues : false,
         title                           : '{i18n>People}',
         Common.ValueList                : {
@@ -1075,10 +1037,8 @@ annotate Starship with @(
 ) {
     ID                     @(
         Core.Computed,
-        Common.Text : {
-            $value                 : name,
-            ![@UI.TextArrangement] : #TextOnly
-        }
+        Common.Text            : name,
+        Common.TextArrangement : #TextOnly
     );
     name                   @(
         title                           : '{i18n>starshipName}',
@@ -1164,10 +1124,8 @@ entity Starship2Pilot : cuid {
 annotate Starship2Pilot with {
     ID       @Core.Computed;
     starship @(
-        Common.Text                     : {
-            $value                 : starship.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : starship.name,
+        Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>starshipName}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
@@ -1190,10 +1148,8 @@ annotate Starship2Pilot with {
         }
     );
     pilot    @(
-        Common.Text                     : {
-            $value                 : pilot.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : pilot.name,
+        Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>Pilot}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
@@ -1245,10 +1201,8 @@ annotate Vehicles with @(
 ) {
     ID                     @(
         Core.Computed,
-        Common.Text : {
-            $value                 : name,
-            ![@UI.TextArrangement] : #TextOnly
-        }
+        Common.Text            : name,
+        Common.TextArrangement : #TextOnly
     );
     name                   @(
         title                           : '{i18n>vehicleName}',
@@ -1333,10 +1287,8 @@ entity Vehicle2Pilot : cuid {
 annotate Vehicle2Pilot with {
     ID      @Core.Computed;
     vehicle @(
-        Common.Text                     : {
-            $value                 : vehicle.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : vehicle.name,
+        Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>vehicleName}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
@@ -1359,10 +1311,8 @@ annotate Vehicle2Pilot with {
         }
     );
     pilot   @(
-        Common.Text                     : {
-            $value                 : pilot.name,
-            ![@UI.TextArrangement] : #TextOnly
-        },
+        Common.Text                     : pilot.name,
+        Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>Pilot}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {

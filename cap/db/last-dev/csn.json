@@ -30,7 +30,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -638,7 +638,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -706,7 +706,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -760,7 +760,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -862,7 +862,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -916,7 +916,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -1018,7 +1018,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -1072,7 +1072,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -1174,7 +1174,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -1228,7 +1228,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -1330,7 +1330,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -1384,7 +1384,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -1507,7 +1507,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -1670,7 +1670,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -2325,7 +2325,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -2536,7 +2536,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -2590,7 +2590,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -2826,7 +2826,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -2995,7 +2995,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -3520,7 +3520,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -3574,7 +3574,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -3689,7 +3689,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -4115,7 +4115,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -4173,7 +4173,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -4288,7 +4288,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -4702,7 +4702,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -4760,7 +4760,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -5144,7 +5144,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -5653,7 +5653,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -5815,7 +5815,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -6100,7 +6100,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -6278,7 +6278,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -6655,7 +6655,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -6824,7 +6824,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -7071,7 +7071,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -7204,7 +7204,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -7636,7 +7636,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -8276,7 +8276,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -8330,7 +8330,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -8426,7 +8426,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>title}",
@@ -8474,7 +8474,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>People}",
@@ -8782,7 +8782,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -8836,7 +8836,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -8932,7 +8932,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -8980,7 +8980,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -9384,7 +9384,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -9438,7 +9438,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -9534,7 +9534,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -9582,7 +9582,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -9794,7 +9794,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -9848,7 +9848,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -9952,7 +9952,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -10000,7 +10000,7 @@
             "@Common.Text": {
               "=": "specie.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -10364,7 +10364,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -10418,7 +10418,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -10514,7 +10514,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -10562,7 +10562,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -10759,7 +10759,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -10880,7 +10880,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -11583,7 +11583,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -11745,7 +11745,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -12030,7 +12030,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -12208,7 +12208,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -12585,7 +12585,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -12754,7 +12754,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -13001,7 +13001,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -13134,7 +13134,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -13566,7 +13566,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -14375,7 +14375,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -14429,7 +14429,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -14525,7 +14525,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>title}",
@@ -14573,7 +14573,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>People}",
@@ -14785,7 +14785,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -14839,7 +14839,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -14935,7 +14935,7 @@
             "@Common.Text": {
               "=": "species.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Species}",
@@ -14983,7 +14983,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -15387,7 +15387,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -15445,7 +15445,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -15541,7 +15541,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>starshipName}",
@@ -15593,7 +15593,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -15949,7 +15949,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -16007,7 +16007,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -16103,7 +16103,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>vehicleName}",
@@ -16155,7 +16155,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -16489,7 +16489,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -16867,7 +16867,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -17029,7 +17029,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -17314,7 +17314,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -17494,7 +17494,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -18163,7 +18163,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -18217,7 +18217,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -18313,7 +18313,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -18361,7 +18361,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -18658,7 +18658,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -18712,7 +18712,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -18808,7 +18808,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -18856,7 +18856,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -19333,7 +19333,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -19502,7 +19502,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -19749,7 +19749,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -19881,7 +19881,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -20260,7 +20260,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -20769,7 +20769,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -20931,7 +20931,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -21216,7 +21216,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -21555,7 +21555,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -21609,7 +21609,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -21713,7 +21713,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -21761,7 +21761,7 @@
             "@Common.Text": {
               "=": "specie.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -22077,7 +22077,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -22131,7 +22131,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -22227,7 +22227,7 @@
             "@Common.Text": {
               "=": "species.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Species}",
@@ -22275,7 +22275,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -23027,7 +23027,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -23460,7 +23460,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -23969,7 +23969,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -24131,7 +24131,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -24416,7 +24416,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -24594,7 +24594,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -25132,7 +25132,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -25186,7 +25186,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -25282,7 +25282,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -25330,7 +25330,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -25638,7 +25638,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -25696,7 +25696,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -25792,7 +25792,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>starshipName}",
@@ -25844,7 +25844,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -26389,7 +26389,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -26798,7 +26798,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -27307,7 +27307,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -27469,7 +27469,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -27754,7 +27754,7 @@
             "@Common.Text": {
               "=": "homeworld.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueList.CollectionPath": "Planet",
@@ -27932,7 +27932,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -28470,7 +28470,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -28524,7 +28524,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -28620,7 +28620,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -28668,7 +28668,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -28976,7 +28976,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -29034,7 +29034,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -29130,7 +29130,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>vehicleName}",
@@ -29182,7 +29182,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -29584,7 +29584,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -29638,7 +29638,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -29734,7 +29734,7 @@
             "@Common.Text": {
               "=": "species.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Species}",
@@ -29782,7 +29782,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -29845,7 +29845,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -29903,7 +29903,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -29999,7 +29999,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>vehicleName}",
@@ -30051,7 +30051,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -30114,7 +30114,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -30172,7 +30172,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -30268,7 +30268,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>starshipName}",
@@ -30320,7 +30320,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -30384,7 +30384,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -30438,7 +30438,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -30534,7 +30534,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -30582,7 +30582,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -30645,7 +30645,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -30699,7 +30699,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -30795,7 +30795,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -30843,7 +30843,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -30906,7 +30906,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -30960,7 +30960,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -31056,7 +31056,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31104,7 +31104,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31167,7 +31167,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -31221,7 +31221,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -31317,7 +31317,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31365,7 +31365,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31428,7 +31428,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -31482,7 +31482,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -31586,7 +31586,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31634,7 +31634,7 @@
             "@Common.Text": {
               "=": "specie.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31706,7 +31706,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -31760,7 +31760,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -31856,7 +31856,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31904,7 +31904,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -31967,7 +31967,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -32021,7 +32021,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -32117,7 +32117,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>title}",
@@ -32165,7 +32165,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>People}",
@@ -32228,7 +32228,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -32282,7 +32282,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -32378,7 +32378,7 @@
             "@Common.Text": {
               "=": "species.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Species}",
@@ -32426,7 +32426,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -32489,7 +32489,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -32547,7 +32547,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -32643,7 +32643,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>vehicleName}",
@@ -32695,7 +32695,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -32758,7 +32758,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -32816,7 +32816,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -32912,7 +32912,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>starshipName}",
@@ -32964,7 +32964,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -33027,7 +33027,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33081,7 +33081,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33177,7 +33177,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -33225,7 +33225,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -33288,7 +33288,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33342,7 +33342,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33438,7 +33438,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -33486,7 +33486,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -33549,7 +33549,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33603,7 +33603,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33707,7 +33707,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -33755,7 +33755,7 @@
             "@Common.Text": {
               "=": "specie.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -33826,7 +33826,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33880,7 +33880,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -33976,7 +33976,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -34024,7 +34024,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -34088,7 +34088,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -34142,7 +34142,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -34238,7 +34238,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -34286,7 +34286,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -34349,7 +34349,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -34403,7 +34403,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -34499,7 +34499,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>title}",
@@ -34547,7 +34547,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>People}",
@@ -34610,7 +34610,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -34664,7 +34664,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -34760,7 +34760,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -34808,7 +34808,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -34871,7 +34871,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -34925,7 +34925,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -35021,7 +35021,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -35069,7 +35069,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -35132,7 +35132,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -35190,7 +35190,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -35286,7 +35286,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>vehicleName}",
@@ -35338,7 +35338,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -35401,7 +35401,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -35459,7 +35459,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -35555,7 +35555,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>starshipName}",
@@ -35607,7 +35607,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -35670,7 +35670,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -35724,7 +35724,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -35820,7 +35820,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>title}",
@@ -35868,7 +35868,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>People}",
@@ -35931,7 +35931,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -35985,7 +35985,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -36081,7 +36081,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -36129,7 +36129,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -36192,7 +36192,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -36246,7 +36246,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -36342,7 +36342,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -36390,7 +36390,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -36453,7 +36453,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -36507,7 +36507,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -36611,7 +36611,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -36659,7 +36659,7 @@
             "@Common.Text": {
               "=": "specie.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -36730,7 +36730,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -36784,7 +36784,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -36880,7 +36880,7 @@
             "@Common.Text": {
               "=": "species.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Species}",
@@ -36928,7 +36928,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -36991,7 +36991,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -37049,7 +37049,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -37145,7 +37145,7 @@
             "@Common.Text": {
               "=": "vehicle.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>vehicleName}",
@@ -37197,7 +37197,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -37261,7 +37261,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -37315,7 +37315,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -37411,7 +37411,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -37459,7 +37459,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -37522,7 +37522,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -37576,7 +37576,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -37672,7 +37672,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>title}",
@@ -37720,7 +37720,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>People}",
@@ -37783,7 +37783,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -37837,7 +37837,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -37933,7 +37933,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -37981,7 +37981,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -38044,7 +38044,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -38098,7 +38098,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -38194,7 +38194,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -38242,7 +38242,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -38305,7 +38305,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -38359,7 +38359,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -38463,7 +38463,7 @@
             "@Common.Text": {
               "=": "film.title"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -38511,7 +38511,7 @@
             "@Common.Text": {
               "=": "specie.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -38582,7 +38582,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -38636,7 +38636,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -38732,7 +38732,7 @@
             "@Common.Text": {
               "=": "species.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Species}",
@@ -38780,7 +38780,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -38843,7 +38843,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -38901,7 +38901,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -38997,7 +38997,7 @@
             "@Common.Text": {
               "=": "starship.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>starshipName}",
@@ -39049,7 +39049,7 @@
             "@Common.Text": {
               "=": "pilot.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@title": "{i18n>Pilot}",
@@ -39113,7 +39113,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -39167,7 +39167,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -39263,7 +39263,7 @@
             "@Common.Text": {
               "=": "planet.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -39311,7 +39311,7 @@
             "@Common.Text": {
               "=": "people.name"
             },
-            "@Common.Text.@UI.TextArrangement": {
+            "@Common.TextArrangement": {
               "#": "TextOnly"
             },
             "@Common.ValueListWithFixedValues": false,
@@ -39387,7 +39387,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -39795,7 +39795,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -40227,7 +40227,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -40659,7 +40659,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -41067,7 +41067,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -41475,7 +41475,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -42054,7 +42054,7 @@
           "@Common.Text": {
             "=": "title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -42384,7 +42384,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -42439,7 +42439,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -42556,7 +42556,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -42611,7 +42611,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -42728,7 +42728,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -42783,7 +42783,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -42900,7 +42900,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -42955,7 +42955,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -43072,7 +43072,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -43127,7 +43127,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -43359,7 +43359,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -43533,7 +43533,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -43753,7 +43753,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>title}",
@@ -43808,7 +43808,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>People}",
@@ -43925,7 +43925,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -43980,7 +43980,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -44097,7 +44097,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -44156,7 +44156,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -44273,7 +44273,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -44332,7 +44332,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -44556,7 +44556,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -44827,7 +44827,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -44882,7 +44882,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -44999,7 +44999,7 @@
           "@Common.Text": {
             "=": "planet.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -45054,7 +45054,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -45278,7 +45278,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -45459,7 +45459,7 @@
           "@Common.Text": {
             "=": "homeworld.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueList.CollectionPath": "Planet",
@@ -45649,7 +45649,7 @@
           "@Common.Text": {
             "=": "species.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Species}",
@@ -45704,7 +45704,7 @@
           "@Common.Text": {
             "=": "people.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -45821,7 +45821,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -45876,7 +45876,7 @@
           "@Common.Text": {
             "=": "specie.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -46108,7 +46108,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -46413,7 +46413,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -46468,7 +46468,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -46585,7 +46585,7 @@
           "@Common.Text": {
             "=": "starship.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>starshipName}",
@@ -46644,7 +46644,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
@@ -46868,7 +46868,7 @@
           "@Common.Text": {
             "=": "name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "key": true,
@@ -47159,7 +47159,7 @@
           "@Common.Text": {
             "=": "film.title"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -47214,7 +47214,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@Common.ValueListWithFixedValues": false,
@@ -47331,7 +47331,7 @@
           "@Common.Text": {
             "=": "vehicle.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>vehicleName}",
@@ -47390,7 +47390,7 @@
           "@Common.Text": {
             "=": "pilot.name"
           },
-          "@Common.Text.@UI.TextArrangement": {
+          "@Common.TextArrangement": {
             "#": "TextOnly"
           },
           "@title": "{i18n>Pilot}",
