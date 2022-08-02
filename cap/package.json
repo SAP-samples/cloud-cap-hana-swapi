@@ -1,6 +1,6 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
@@ -9,6 +9,7 @@
     "@sap/cds": "^6.0.4",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.3",
     "@sap/cds-graphql": "^1.0.0",
+    "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "hdb": "^0.19.4",
@@ -21,6 +22,7 @@
   "scripts": {
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
     "start": "cds run",
+    "watch": "cds watch --profile hybrid",
     "build": "cds build",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
@@ -65,7 +67,7 @@
           "kind": "file-based-messaging"
         },
         "[hybrid!]": {
-          "kind": "enterprise-messaging-shared"
+          "kind": "file-based-messaging"
         }
       }
     },
