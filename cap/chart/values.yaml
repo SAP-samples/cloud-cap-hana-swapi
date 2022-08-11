@@ -1,7 +1,9 @@
+
+# yaml-language-server: $schema=./values.schema.json
+
 global:
   domain: null
-  imagePullSecret:
-    name: null
+  imagePullSecret: {}
 srv:
   bindings:
     db:
@@ -13,11 +15,10 @@ srv:
     tag: latest
   resources:
     limits:
-      cpu: 100m
       ephemeral-storage: 1G
       memory: 500M
     requests:
-      cpu: 100m
+      cpu: 500m
       ephemeral-storage: 1G
       memory: 500M
   health_check:
@@ -32,6 +33,13 @@ hana_deployer:
   bindings:
     hana:
       fromSecret: null
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 1G
+    requests:
+      cpu: 1000m
+      memory: 1G
 event_mesh:
   serviceOfferingName: enterprise-messaging
   servicePlanName: default

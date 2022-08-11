@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.4] - 2022-08-11
+
+**Changed**
+
+- SAP CAP updated to 6.1
+- SAPUI5 update to 1.105.0
+- Kyma Helm Charts updated for new functionality in CAP 6.1
+
+**Added**
+
+- Update to SAP Cloud Application Programming Model 6.0.x - Yearly Major Release
+- Add Support for Node.js 18.x
+- Added Helm Charts support for deployment on Kyma/K8S
+
 ## [1.1.0] - 2022-07-05
 
 **Changed**

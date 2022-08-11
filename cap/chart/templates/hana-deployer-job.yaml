@@ -31,10 +31,18 @@ spec:
         image: {{ include "cap.image" $ }}
         imagePullPolicy: {{ include "cap.imagePullPolicy" $ }}
         env:
+        {{- range $k, $v := .Values.hana_deployer.env }}
+        - name: {{ $k }}
+          value: {{ $v | quote }}
+        {{- end }}
+        - name: SERVICE_BINDING_ROOT
+          value: /bindings
         - name: EXIT
           value: 'true'
         volumeMounts:
           {{- include "cap.sapcp.bindingsVolumeMounts" $ | nindent 10 }}
+        resources:
+          {{- toYaml .Values.hana_deployer.resources | nindent 10 }}
 ---
 {{ include "cap.sapcp.bindings" $ }}
 {{ end }}

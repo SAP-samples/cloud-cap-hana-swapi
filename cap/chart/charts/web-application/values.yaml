@@ -2,6 +2,9 @@ global:
   imagePullSecret: {}
     # name: ""
     # dockerconfigjson: ""
+  image: {}
+    # registry: gcr.io/my-project
+    # tag: latest
 
 replicaCount: 1
 port: 8080
@@ -10,9 +13,10 @@ serviceAccountName: default
   # To use a digest, change those values like that
   # repository: nginx@sha256
   # tag: 2834dc507516af02784808c5f48b7cbe38b8ed5d0f4837f16e78d00deb7e7767
-image:
-  # repository: gcr.io/repo/image
-  tag: latest
+image: {}
+  # repository: repo/image
+  # registry: gcr.io/my-project
+  # tag: latest
 
 imagePullSecret: {}
   # name: ""

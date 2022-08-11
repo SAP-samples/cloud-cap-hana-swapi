@@ -1,18 +1,18 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@sap/cds": "^6.0.4",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.3",
-    "@sap/cds-graphql": "^1.0.0",
+    "@sap/cds": "^6.1.0",
+    "@sap/cds-graphql": "^1.1.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.4",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "hdb": "^0.19.4",
+    "hdb": "^0.19.5",
     "swagger-ui-express": "^4.5.0",
     "uuid": "^8.3.2"
   },
@@ -28,7 +28,7 @@
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "load": "node convertData",
     "changeLog": "node CHANGELOG.mjs",
-    "packDb":"pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
+    "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
     "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
   },
   "cds": {
@@ -39,7 +39,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.104.2"
+        "version": "1.105.0"
       }
     },
     "cdsc": {
@@ -83,15 +83,19 @@
     "log": {
       "service": true
     },
-    "plugins":[
-      { "impl": "@sap/cds-graphql", "path": "/graphql"}
+    "plugins": [
+      {
+        "impl": "@sap/cds-graphql",
+        "path": "/graphql"
+      }
     ]
   },
   "sapux": [
     "app\\people"
   ],
   "devDependencies": {
+    "@sap/cds-dk": "6.1.1",
     "@sap/hdi-deploy": "^4.4.1",
-    "@sap/cds-dk": "6.0.3"
+    "stringify-changelog": "^0.2.1"
   }
 }

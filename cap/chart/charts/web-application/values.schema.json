@@ -10,19 +10,27 @@
     "properties": {
         "global": {
             "$id": "#/properties/global",
+            "title": "Helm global values",
+            "description": "For more information, see https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values",
             "type": "object",
             "x-ignore-untested": true,
             "additionalProperties": true,
             "properties": {
                 "imagePullSecret": {
                     "$id": "#/properties/global/imagePullSecret",
+                    "title": "Image Pull Secret configuration",
+                    "description": "For more information, see https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/",
                     "additionalProperties": true,
                     "type": "object",
                     "properties": {
                         "name": {
+                            "title": "Secret name",
+                            "description": "Name of the Kubernetes Secret, used as an image pull secret (must be of type kubernetes.io/dockerconfigjson). Can't be used with the `dockerconfigjson` option.",
                             "$ref": "#/definitions/KubernetesName"
                         },
                         "dockerconfigjson": {
+                            "title": "Secret content",
+                            "description": "The content for the dynamically generated Kubernetes Secret, which will be used as an image pull secret. Can't be used with the `name` option.",
                             "type": "string"
                         }
                     },
@@ -42,27 +50,53 @@
                             }
                         }
                     }
+                },
+                "image": {
+                    "$id": "#/properties/global/image",
+                    "title": "Image configuration",
+                    "description": "Either name or repository is required.",
+                    "type": "object",
+                    "required": [],
+                    "additionalProperties": true,
+                    "properties": {
+                        "tag": {
+                            "$id": "#/properties/image/global/properties/tag",
+                            "$ref": "#/definitions/ImageTag"
+                        },
+                        "registry": {
+                            "$id": "#/properties/image/global/properties/registry",
+                            "$ref": "#/definitions/ImageRegistry"
+                        }
+                    }
                 }
             }
         },
         "nameOverride": {
             "$id": "#/properties/nameOverride",
+            "title": "Chart name override",
+            "description": "Will be used instead of the `.Chart.Name`, e.g. when generating the Deployment name.",
             "type": "string",
             "pattern": "[0-9a-z][0-9a-z-.]*"
         },
         "fullnameOverride": {
             "$id": "#/properties/fullnameOverride",
+            "title": "Override for the `.fullname` helper function.",
+            "description": "Will be used as an override for the `.fullname` helper function (i.e. `.Release.Name-.Chart.Name`).",
             "type": "string",
             "pattern": "[0-9a-z][0-9a-z-.]*"
         },
         "replicaCount": {
             "$id": "#/properties/replicaCount",
+            "title": "Replica count",
+            "description": "Number of desired pods within the Deployment.",
             "type": "integer",
             "minimum": 1,
             "default": 1
         },
         "port": {
             "$id": "#/properties/port",
+            "title": "Port",
+            "description": "Application's exposed port.",
             "type": "integer",
             "minimum": 1,
             "maximum": 65535,
@@ -70,6 +104,8 @@
         },
         "serviceAccountName": {
             "$id": "#/properties/serviceAccountName",
+            "title": "Service Account name",
+            "description": "Name of the Service Account assigned to pods.",
             "default": "default",
             "allOf": [
                 {
@@ -79,6 +115,7 @@
         },
         "image": {
             "$id": "#/properties/image",
+            "title": "Image configuration",
             "type": "object",
             "required": [
                 "repository"
@@ -87,27 +124,36 @@
             "properties": {
                 "repository": {
                     "$id": "#/properties/image/properties/repository",
+                    "title": "Repository of the image",
+                    "description": "Should also include the image name (i.e. everything before the `:` sign).",
                     "type": "string",
                     "pattern": "^[\\w-./:]*[@sha256]*$"
                 },
                 "tag": {
                     "$id": "#/properties/image/properties/tag",
-                    "type": "string",
-                    "$comment": "Copied from https://github.com/containers/image/blob/18d58d29fdc4fc32fb8a8a6d186b829b217f1bf5/docker/reference/regexp.go#L68-L70",
-                    "pattern": "^((?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])(?:(?:\\.(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]))+)?(?::[0-9]+)?/)?[a-z0-9]+(?:(?:(?:[._]|__|[-]*)[a-z0-9]+)+)?(?:(?:/[a-z0-9]+(?:(?:(?:[._]|__|[-]*)[a-z0-9]+)+)?)+)?)(?::([\\w][\\w.-]{0,127}))?(?:@([A-Za-z][A-Za-z0-9]*(?:[-_+.][A-Za-z][A-Za-z0-9]*)*[:][[:xdigit:]]{32,}))?$",
-                    "default": "latest"
+                    "$ref": "#/definitions/ImageTag"
+                },
+                "registry": {
+                    "$id": "#/properties/image/properties/registry",
+                    "$ref": "#/definitions/ImageRegistry"
                 }
             }
         },
         "imagePullSecret": {
             "$id": "#/properties/imagePullSecret",
+            "title": "Image Pull Secret configuration",
+            "description": "For more information, see https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/",
             "additionalProperties": false,
             "type": "object",
             "properties": {
                 "name": {
+                    "title": "Secret name",
+                    "description": "Name of the Kubernetes Secret, used as an image pull secret (must be of type kubernetes.io/dockerconfigjson). Can't be used with the `dockerconfigjson` option.",
                     "$ref": "#/definitions/KubernetesName"
                 },
                 "dockerconfigjson": {
+                    "title": "Secret content",
+                    "description": "The content for the dynamically generated Kubernetes Secret, which will be used as an image pull secret. Can't be used with the `name` option.",
                     "type": "string"
                 }
             },
@@ -130,10 +176,13 @@
         },
         "additionalVolumes": {
             "$id": "#/properties/additionalVolumes",
+            "title": "Additional Pod volumes",
+            "description": "List of volumes, which should be mounted into Pods",
             "type": "array",
             "additionalItems": false,
             "default": [],
             "items": {
+                "title": "Additional volume configuration",
                 "type": "object",
                 "additionalProperties": true,
                 "required": [
@@ -142,10 +191,12 @@
                 ],
                 "properties": {
                     "name": {
+                        "title": "Name of the volume",
                         "type": "string",
                         "$ref": "#/definitions/KubernetesName"
                     },
                     "volumeMount": {
+                        "title": "Volume mount configuration",
                         "type": "object",
                         "required": [
                             "mountPath"
@@ -153,19 +204,25 @@
                         "additionalProperties": false,
                         "properties": {
                             "mountPath": {
+                                "description": "Path within a Pod, where the volume should be mounted.",
                                 "type": "string",
                                 "pattern": "^[^:]*$"
                             },
                             "mountPropagation": {
-                                "type": "string"
+                                "description": "Mount propagation allows for sharing volumes mounted by a container to other containers in the same pod, or even to other pods on the same node.",
+                                "type": "string",
+                                "enum": ["None", "HostToContainer"]
                             },
                             "readOnly": {
+                                "description": "Whether mounted volume should be in read-only mode.",
                                 "type": "boolean"
                             },
                             "subPath": {
+                                "description": "Sub-path inside the referenced volume instead of its root.",
                                 "type": "string"
                             },
                             "subPathExpr": {
+                                "description": "Similar to the `subPath`, but can be constructed using the downward API environment variables. For more info, see https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath-expanded-environment",
                                 "type": "string"
                             }
                         }
@@ -175,11 +232,13 @@
         },
         "ha": {
             "$id": "#/properties/ha",
+            "title": "High Availability configuration",
             "type": "object",
             "additionalProperties": false,
             "properties": {
                 "enabled": {
                     "$id": "#/properties/ha/properties/enabled",
+                    "description": "Enables additional high-availability related configuration, like Pod Disruption Budget and Topology Spread Constraints.",
                     "type": "boolean",
                     "default": true
                 }
@@ -187,6 +246,7 @@
         },
         "resources": {
             "$id": "#/properties/resources",
+            "title": "Pod resources configuration",
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -196,6 +256,7 @@
             "properties": {
                 "requests": {
                     "type": "object",
+                    "description": "Minimal required resources for the application to operate, that will be reserved for each replica.",
                     "additionalProperties": false,
                     "required": [
                         "cpu",
@@ -203,21 +264,17 @@
                     ],
                     "properties": {
                         "cpu": {
+                            "description": "CPU resource units, as described here https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu",
                             "$id": "#/properties/resources/properties/requests/properties/cpu",
-                            "oneOf": [
-                                {
-                                    "type": "number"
-                                },
-                                {
-                                    "type": "string"
-                                }
-                            ]
+                            "type": ["string", "number"]
                         },
                         "ephemeral-storage": {
+                            "description": "Size of the local ephemeral storage, measured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage",
                             "$id": "#/properties/resources/properties/requests/properties/ephemeral-storage",
                             "type": "string"
                         },
                         "memory": {
+                            "description": "Amount of memory, mesaured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory",
                             "$id": "#/properties/resources/properties/requests/properties/memory",
                             "type": "string"
                         }
@@ -225,27 +282,24 @@
                 },
                 "limits": {
                     "type": "object",
+                    "description": "",
                     "additionalProperties": false,
                     "required": [
                         "memory"
                     ],
                     "properties": {
                         "cpu": {
+                            "description": "CPU resource units, as described here https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu",
                             "$id": "#/properties/resources/properties/limits/properties/cpu",
-                            "oneOf": [
-                                {
-                                    "type": "number"
-                                },
-                                {
-                                    "type": "string"
-                                }
-                            ]
+                            "type": ["string", "number"]
                         },
                         "ephemeral-storage": {
+                            "description": "Size of the local ephemeral storage, measured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage",
                             "$id": "#/properties/resources/properties/limits/properties/ephemeral-storage",
                             "type": "string"
                         },
                         "memory": {
+                            "description": "Amount of memory, mesaured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory",
                             "$id": "#/properties/resources/properties/limits/properties/memory",
                             "type": "string"
                         }
@@ -255,15 +309,18 @@
         },
         "health_check": {
             "$id": "#/properties/health_check",
+            "title": "Health-check configuration",
             "type": "object",
             "additionalProperties": false,
             "properties": {
                 "liveness": {
                     "$id": "#/properties/health_check/properties/liveness",
+                    "description": "Liveness-probe configuration.",
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
                         "path": {
+                            "description": "HTTP path used by Kubernetes, to perform health-check calls.",
                             "type": "string",
                             "default": "/healthz"
                         }
@@ -271,10 +328,12 @@
                 },
                 "readiness": {
                     "$id": "#/properties/health_check/properties/readiness",
+                    "description": "Readiness-probe configuration.",
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
                         "path": {
+                            "description": "HTTP path used by Kubernetes, to perform health-check calls.",
                             "type": "string",
                             "default": "/healthz"
                         }
@@ -284,24 +343,21 @@
         },
         "startupTimeout": {
             "$id": "#/properties/startupTimeout",
+            "description": "Initial timeout in seconds, during which the app must start giving the response to the liveness-probe.",
             "type": "integer",
             "minimum": 1,
             "default": 30
         },
         "env": {
             "$id": "#/properties/env",
+            "description": "Key-value map of environment variables, which should be added to the Pod spec.",
             "type": "object",
             "patternProperties": {
                 "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
                     "$comment": "regex above copied from https://github.com/kubernetes/kubernetes/blob/ea0764452222146c47ec826977f49d7001b0ea8c/staging/src/k8s.io/apimachinery/pkg/util/validation/validation.go#L402",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "integer"
-                        }
-                    ]
+                    "not": {
+                        "type": ["null", "object", "array"]
+                    }
                 }
             },
             "additionalProperties": false,
@@ -309,6 +365,7 @@
         },
         "envSecretNames": {
             "$id": "#/properties/envSecretNames",
+            "description": "List of Kubernetes Secret names, used as sources for the Pod's environment variables.",
             "type": "array",
             "uniqueItems": true,
             "items": {
@@ -318,15 +375,18 @@
         },
         "expose": {
             "$id": "#/properties/expose",
+            "title": "",
             "type": "object",
             "additionalProperties": false,
             "properties": {
                 "host": {
                     "$id": "#/properties/expose/properties/host",
+                    "description": "Specifies the service's dns name for inbound external traffic. If it doesn't contain a dot, the default cluster domain will be appended.",
                     "type": "string"
                 },
                 "enabled": {
                     "$id": "#/properties/expose/properties/enabled",
+                    "description": "Expose the application to the internet.",
                     "type": "boolean",
                     "default": true
                 }
@@ -334,6 +394,7 @@
         },
         "bindings": {
             "$id": "#/properties/bindings",
+            "title": "Service Binding configuration",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
@@ -347,6 +408,7 @@
                             ],
                             "properties": {
                                 "fromSecret": {
+                                    "description": "Name of a Kubernetes Secret, with the binding content, compliant to the SAP Kubernetes Service Binding spec https://github.tools.sap/Kubernetes-Service-Bindings/doc/",
                                     "$ref": "#/definitions/KubernetesName"
                                 }
                             }
@@ -356,36 +418,49 @@
                             "additionalProperties": false,
                             "properties": {
                                 "serviceInstanceName": {
+                                    "description": "Name of a BTP Operator Service Instance, created by the `service-instance` Helm chart. Can't be used with the `serviceInstanceFullname` option.",
                                     "$ref": "#/definitions/KubernetesName"
                                 },
                                 "serviceInstanceFullname": {
+                                    "description": "Full name of a BTP Operator Service Instance. Can't be used with the `serviceInstanceName` option.",
                                     "$ref": "#/definitions/KubernetesName"
                                 },
                                 "externalName": {
+                                    "description": "The name for the service binding in SAP BTP",
                                     "type": "string"
                                 },
                                 "secretName": {
+                                    "description": "The name of the secret where the credentials are stored.",
                                     "$ref": "#/definitions/KubernetesName"
                                 },
                                 "parameters": {
+                                    "description": "Some services support the provisioning of additional configuration parameters during the bind request. For the list of supported parameters, check the documentation of the particular service offering.",
                                     "type": "object"
                                 },
                                 "parametersFrom": {
+                                    "description": "List of sources to populate parameters.",
                                     "type": "array",
                                     "items": {
                                         "anyOf": [
                                             {
                                                 "type": "object",
+                                                "description": "Kubernetes Secret as a parameters source.",
                                                 "additionalProperties": false,
                                                 "properties": {
                                                     "secretKeyRef": {
                                                         "type": "object",
                                                         "additionalProperties": false,
+                                                        "required": [
+                                                            "name",
+                                                            "key"
+                                                        ],
                                                         "properties": {
                                                             "name": {
+                                                                "description": "Name of a Secret.",
                                                                 "$ref": "#/definitions/KubernetesName"
                                                             },
                                                             "key": {
+                                                                "description": "Key in that Secret, which contains a string that represents the json to include in the set of parameters to be sent to the broker.",
                                                                 "type": "string"
                                                             }
                                                         }
@@ -394,16 +469,23 @@
                                             },
                                             {
                                                 "type": "object",
+                                                "description": "Kubernetes Config Map as a parameters source.",
                                                 "additionalProperties": false,
                                                 "properties": {
                                                     "configMapKeyRef": {
                                                         "type": "object",
                                                         "additionalProperties": false,
+                                                        "required": [
+                                                            "name",
+                                                            "key"
+                                                        ],
                                                         "properties": {
                                                             "name": {
+                                                                "description": "Name of a Config Map",
                                                                 "$ref": "#/definitions/KubernetesName"
                                                             },
                                                             "key": {
+                                                                "description": "Key in that Config Map, which contains a string that represents the json to include in the set of parameters to be sent to the broker.",
                                                                 "type": "string"
                                                             }
                                                         }
@@ -414,6 +496,7 @@
                                     }
                                 },
                                 "credentialsRotationPolicy": {
+                                    "description": "Holds automatic credentials rotation configuration. For more details, see https://github.com/SAP/sap-btp-service-operator#spec-1",
                                     "type": "object"
                                 }
                             },
@@ -444,6 +527,18 @@
             "type": "string",
             "$comment": "running `kubectl create secret generic invalid_name` will print this regex",
             "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
-        }
+        },
+        "ImageRegistry": {
+            "type": "string",
+            "title": "Image registry",
+            "description": "Image registry e.g. docker.io",
+            "pattern": "^[\\w-./]+$"
+        },
+        "ImageTag": {
+            "title": "Image tag",
+            "description": "Image tag without the name (everything after the `:` sign, potentially including the `@sha256` section at the end).",
+            "type": "string",
+            "$comment": "Copied from https://github.com/containers/image/blob/18d58d29fdc4fc32fb8a8a6d186b829b217f1bf5/docker/reference/regexp.go#L68-L70",
+            "pattern": "^((?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])(?:(?:\\.(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]))+)?(?::[0-9]+)?/)?[a-z0-9]+(?:(?:(?:[._]|__|[-]*)[a-z0-9]+)+)?(?:(?:/[a-z0-9]+(?:(?:(?:[._]|__|[-]*)[a-z0-9]+)+)?)+)?)(?::([\\w][\\w.-]{0,127}))?(?:@([A-Za-z][A-Za-z0-9]*(?:[-_+.][A-Za-z][A-Za-z0-9]*)*[:][[:xdigit:]]{32,}))?$"        }
     }
 }

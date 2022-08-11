@@ -82,12 +82,19 @@ Define Host for the APIRule
 {{- end }}
 
 {{/*
+Define the application uri which will be used for the VCAP_APPLICATION env variable
+*/}}
+{{- define "web-application.applicationUri" -}}
+{{- include "web-application.fullname" . }}
+{{- end }}
+
+{{/*
 Service Binding secret mounts
 */}}
 {{- define "web-application.serviceMounts" -}}
 {{- range $name, $params := .Values.bindings }}
 - mountPath: /bindings/{{ $name }}/
-  name: "{{ $name }}-binding"
+  name: "{{ $name }}"
   readOnly: true
 {{- end }}
 {{- end }}
@@ -103,18 +110,9 @@ Service Binding secret volumes
 {{- else if $params.secretName }}
 {{- $secretName = $params.secretName }}
 {{- end }}
-- name: {{ $name }}-binding
+- name: {{ $name }}
   secret:
     secretName: {{ $secretName }}
-    items:
-    - key: label
-      path: metadata/label
-    - key: plan
-      path: metadata/plan
-    - key: tags
-      path: metadata/tags
-    - key: credentials
-      path: credentials
 {{- end }}
 {{- end }}
 
@@ -129,6 +127,19 @@ Name of the imagePullSecret
 {{- $ips.global.name }}
 {{- else if or $ips.local.dockerconfigjson $ips.global.dockerconfigjson }}
 {{- include "web-application.fullname" . }}
+{{- end }}
+{{- end }}
+
+{{/*
+Calculate the final image name
+*/}}
+{{- define "web-application.imageName" -}}
+{{- $tag := .Values.image.tag | default .Values.global.image.tag | default "latest" }}
+{{- $registry := .Values.image.registry | default .Values.global.image.registry }}
+{{- if $registry }}
+{{- $registry | trimSuffix "/" }}/{{ .Values.image.repository }}:{{ $tag }}
+{{- else }}
+{{- .Values.image.repository }}:{{ $tag }}
 {{- end }}
 {{- end }}
 

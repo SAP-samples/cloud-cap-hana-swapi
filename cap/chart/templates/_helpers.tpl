@@ -45,14 +45,6 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{/*
 Image
 */}}
-{{- define "cap.image.srv" -}}
-    {{- if .Values.srv.image.tag -}}
-{{ .Values.srv.image.repository }}:{{ .Values.srv.image.tag }}
-    {{- else -}}
-{{ .Values.srv.image.repository }}
-    {{- end -}}
-{{- end -}}
-
 {{- define "cap.image" -}}
     {{- if .image.tag -}}
 {{ .image.repository }}:{{ .image.tag }}
@@ -64,14 +56,6 @@ Image
 {{/*
 Image Pull Policy
 */}}
-{{- define "cap.imagePullPolicy.srv" -}}
-    {{- if and (.Values.srv.image.tag) (ne .Values.srv.image.tag "latest") -}}
-IfNotPresent
-   {{- else -}}
-Always
-    {{- end -}}
-{{- end -}}
-
 {{- define "cap.imagePullPolicy" -}}
     {{- if and (.image.tag) (ne .image.tag "latest") -}}
 IfNotPresent
@@ -88,23 +72,6 @@ Image Pull Secrets
 imagePullSecrets:
 - name: {{ .Values.global.imagePullSecret.name | quote }}
     {{- end -}}
-{{- end -}}
-
-
-{{/*
-Binding
-*/}}
-{{- define "cap.binding" -}}
-apiVersion: services.cloud.sap.com/v1alpha1
-kind: ServiceBinding
-metadata:
-  name: {{ include "cap.bindingSecretName" $ | quote }}
-  namespace: {{ $.Release.Namespace }}
-  labels: {{- include "cap.labels" $ | nindent 4 }}
-spec:
-  serviceInstanceName: {{ $.Release.Name }}-{{ $.binding.service }}
-  externalName: {{ include "cap.bindingSecretName" $ | quote }}
-  secretName: {{ include "cap.bindingSecretName" $ | quote }}
 {{- end -}}
 
 {{/*

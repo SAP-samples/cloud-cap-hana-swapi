@@ -9,7 +9,9 @@ spec:
     - podSelector:
         matchLabels:
           app: istio-ingressgateway
-      namespaceSelector: {}
+      namespaceSelector:
+        matchLabels:
+          name: istio-system
   podSelector:
     matchLabels: {{- include "web-application.selectorLabels" . | nindent 6 }}
   policyTypes:
