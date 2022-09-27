@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "allOf": [
+        {
+            "$ref": "./values.schema.json"
+        }
+    ],
+    "properties": {
+        "srv": {
+            "$id": "#/properties/srv",
+            "description": "Deployment",
+            "$ref": "./charts/web-application/values.schema.json"
+        }
+    }
+}

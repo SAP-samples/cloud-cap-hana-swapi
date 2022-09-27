@@ -3,7 +3,7 @@
 ## language=nodejs; multiTenant=false
 ## approuter=
 _schema-version: '3.1'
-ID: cap
+ID: cap-hana-swapi
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
@@ -18,20 +18,20 @@ build-parameters:
 
 modules:
  # --------------------- SERVER MODULE ------------------------
- - name: cap-srv
+ - name: cap-hana-swapi-srv
  # ------------------------------------------------------------
    type: nodejs
    path: gen/srv
    requires:
     # Resources extracted from CAP configuration
-    - name: cap-db
+    - name: starwars
    provides:
     - name: srv-api      # required by consumers of CAP services (e.g. approuter)
       properties:
         srv-url: ${default-url}
 
  # -------------------- SIDECAR MODULE ------------------------
- - name: cap-db-deployer
+ - name: cap-hana-swapi-db
  # ------------------------------------------------------------
    type: hdb
    path: gen/db  
@@ -39,14 +39,14 @@ modules:
      buildpack: nodejs_buildpack
    requires:
     # 'hana' and 'xsuaa' resources extracted from CAP configuration
-    - name: cap-db
+    - name: starwars
 
 
 resources:
  # services extracted from CAP configuration
  # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
 # ------------------------------------------------------------
- - name: cap-db
+ - name: starwars
 # ------------------------------------------------------------
    type: com.sap.xs.hdi-container
    parameters:

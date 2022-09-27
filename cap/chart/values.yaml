@@ -1,17 +1,16 @@
 
-# yaml-language-server: $schema=./values.schema.json
+# yaml-language-server: $schema=./values.root.schema.json
 
 global:
-  domain: null
-  imagePullSecret: {}
+  domain: c-18e23d2.kyma.ondemand.com
+  imagePullSecret:
+    name: regcred
 srv:
   bindings:
     db:
-      fromSecret: null
-    messaging:
-      serviceInstanceName: event-mesh
+      fromSecret: starwars
   image:
-    repository: <your-container-registry>/cap-hana-swapi-srv
+    repository: ghcr.io/sap-samples/cap-hana-swapi-srv
     tag: latest
   resources:
     limits:
@@ -28,11 +27,11 @@ srv:
       path: /
 hana_deployer:
   image:
-    repository: <your-container-registry>/cap-hana-swapi-hana-deployer
+    repository: ghcr.io/sap-samples/cap-hana-swapi-db
     tag: latest
   bindings:
     hana:
-      fromSecret: null
+      fromSecret: starwars
   resources:
     limits:
       cpu: 2000m
@@ -40,7 +39,3 @@ hana_deployer:
     requests:
       cpu: 1000m
       memory: 1G
-event_mesh:
-  serviceOfferingName: enterprise-messaging
-  servicePlanName: default
-  config: event-mesh.json

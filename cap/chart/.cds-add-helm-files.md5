@@ -2,9 +2,10 @@ Je/bqr0d7AMfH7T2PUWfMQ== templates/NOTES.txt
 eG3YqXaRxODc7Y04qbIjig== templates/_deployment_helpers.tpl
 G3BsIjvXRmswhpIzog27sQ== templates/_helpers.tpl
 Riox1QY+CtpDhX127pmFzw== templates/_sapcp_helpers.tpl
-Hwt5rB6k2J7EWlEn4cOaSQ== values.schema.json
-ElgVdi2fYPrxVlMPRkYe0Q== values.yaml
-nof7GwDnWWQBRyoDj9vSFw== Chart.yaml
+Hx5X//zORVZ0xJxodSeQ8g== values.schema.json
+oHmU68BGT/GUwv1ECFWjBA== values.root.schema.json
+xKAYYQSJXNTsiqQ9w2patA== values.yaml
+9SK7Y03iLMRuVTqGEedwCA== Chart.yaml
 pulpSx4zZE7w1i/eiwTYDw== templates/hana-deployer-job.yaml
 jyBv2q6Qxg2uuoFGPhpdFg== templates/event-mesh.yaml
 4jxGiJgmV6aGpP7X+CQmFg== charts/web-application/Chart.yaml

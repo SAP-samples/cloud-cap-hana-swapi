@@ -57,7 +57,7 @@
     },
     "requires": {
       "db": {
-        "kind": "hana"
+        "kind": "hana-cloud"
       },
       "messaging": {
         "[production]": {

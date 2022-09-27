@@ -124,6 +124,25 @@
                 "resources": {
                     "$id": "#/properties/hana_deployer/resources",
                     "$ref": "#/definitions/Resources"
+                },
+                "env": {
+                    "$id": "#/properties/hana_deployer/env",
+                    "description": "Key-value map of environment variables, which should be added to the Pod spec.",
+                    "type": "object",
+                    "patternProperties": {
+                        "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
+                            "$comment": "regex above copied from https://github.com/kubernetes/kubernetes/blob/ea0764452222146c47ec826977f49d7001b0ea8c/staging/src/k8s.io/apimachinery/pkg/util/validation/validation.go#L402",
+                            "not": {
+                                "type": [
+                                    "null",
+                                    "object",
+                                    "array"
+                                ]
+                            }
+                        }
+                    },
+                    "additionalProperties": false,
+                    "default": {}
                 }
             }
         },
@@ -149,6 +168,25 @@
                 "resources": {
                     "$id": "#/properties/html5_apps_deployer/resources",
                     "$ref": "#/definitions/Resources"
+                },
+                "env": {
+                    "$id": "#/properties/html5_apps_deployer/env",
+                    "description": "Key-value map of environment variables, which should be added to the Pod spec.",
+                    "type": "object",
+                    "patternProperties": {
+                        "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
+                            "$comment": "regex above copied from https://github.com/kubernetes/kubernetes/blob/ea0764452222146c47ec826977f49d7001b0ea8c/staging/src/k8s.io/apimachinery/pkg/util/validation/validation.go#L402",
+                            "not": {
+                                "type": [
+                                    "null",
+                                    "object",
+                                    "array"
+                                ]
+                            }
+                        }
+                    },
+                    "additionalProperties": false,
+                    "default": {}
                 },
                 "backendDestinations": {
                     "$id": "#/properties/html5_apps_deployer/backendDestinations",
