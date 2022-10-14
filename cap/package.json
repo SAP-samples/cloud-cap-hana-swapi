@@ -27,6 +27,7 @@
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "load": "node convertData",
+    "helm": "helm upgrade --install swapi ./chart --namespace teched22",
     "changeLog": "node CHANGELOG.mjs",
     "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
     "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
