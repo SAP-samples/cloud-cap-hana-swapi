@@ -476,7 +476,7 @@ define view tallestPerson as
     select from People distinct {
         first_value(name order by
             to_integer(height) desc
-        ) as tallest_name
+        ) as tallest_name: String
 };
 
 define view peopleCount as
@@ -486,7 +486,7 @@ define view peopleCount as
         ) over(
             partition by homeworld.ID order by
                 homeworld.name
-        ) as people_count,
+        ) as people_count: Integer,
         homeworld.name,
     }
     order by

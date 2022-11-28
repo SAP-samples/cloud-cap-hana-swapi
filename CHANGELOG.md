@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.5] - 2022-11-28
+
+**Changed**
+
+- SAP CAP updated to 6.3
+- SAPUI5 update to 1.108.2
+- New Node.js minimal version is 14.18
+
 ## [1.1.4] - 2022-08-11
 
 **Changed**

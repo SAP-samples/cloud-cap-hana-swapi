@@ -1,5 +1,14 @@
 [
     {
+        "date": "2022-11-28",
+        "version": "1.1.5",
+        "Changed": [
+            "SAP CAP updated to 6.3",
+            "SAPUI5 update to 1.108.2",
+            "New Node.js minimal version is 14.18"
+        ]
+    },
+    {
         "date": "2022-08-11",
         "version": "1.1.4",
         "Changed": [

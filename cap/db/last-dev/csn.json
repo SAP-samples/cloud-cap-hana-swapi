@@ -1905,7 +1905,11 @@
                   ]
                 }
               ],
-              "as": "tallest_name"
+              "as": "tallest_name",
+              "cast": {
+                "type": "cds.String",
+                "length": 5000
+              }
             }
           ]
         }
@@ -1913,6 +1917,8 @@
       "elements": {
         "tallest_name": {
           "@Core.Computed": true,
+          "type": "cds.String",
+          "length": 5000,
           "@cds.persistence.name": "TALLEST_NAME"
         }
       },
@@ -2004,7 +2010,10 @@
                   ]
                 }
               ],
-              "as": "people_count"
+              "as": "people_count",
+              "cast": {
+                "type": "cds.Integer"
+              }
             },
             {
               "ref": [
@@ -2026,6 +2035,7 @@
       "elements": {
         "people_count": {
           "@Core.Computed": true,
+          "type": "cds.Integer",
           "@cds.persistence.name": "PEOPLE_COUNT"
         },
         "name": {
@@ -47495,7 +47505,7 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v3.1.0"
+    "creator": "CDS Compiler v3.4.4"
   },
   "$version": "2.0"
 }
