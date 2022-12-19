@@ -1,13 +1,14 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@sap/cds": "^6.3.2",
-    "@sap/cds-graphql": "^1.2.0",
+    "@sap/cds": "^6.4.0",
+    "@cap-js/graphql": "0.1.0",
+    "@sap/cds-common-content": "^1.0.1",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.15",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cors": "^2.8.5",
@@ -22,7 +23,7 @@
   "scripts": {
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
     "start": "cds run",
-    "watch": "cds watch --profile hybrid",
+    "watch": "cds watch --profile hybrid --livereload false",
     "build": "cds build",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
@@ -40,7 +41,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.108.2"
+        "version": "1.109.3"
       }
     },
     "cdsc": {
@@ -57,6 +58,7 @@
       "deploy-format": "hdbtable"
     },
     "requires": {
+      "middlewares": true,
       "db": {
         "kind": "hana-cloud"
       },
@@ -84,18 +86,16 @@
     "log": {
       "service": true
     },
-    "plugins": [
-      {
-        "impl": "@sap/cds-graphql",
-        "path": "/graphql"
+    "protocols": {
+      "graphql": {
+        "path": "/graphql",
+        "impl": "@cap-js/graphql"
       }
-    ]
+    }
   },
-  "sapux": [
-    "app\\people"
-  ],
+
   "devDependencies": {
-    "@sap/cds-dk": "6.3.2",
+    "@sap/cds-dk": "6.4.0",
     "@sap/hdi-deploy": "^4.5.1",
     "cds2types": "^3.0.0",
     "stringify-changelog": "^0.2.1"

@@ -4,6 +4,8 @@ using {
     cuid
 } from '@sap/cds/common';
 
+using from '@sap/cds-common-content';
+
 namespace star.wars;
 
 /**
@@ -13,6 +15,7 @@ namespace star.wars;
 entity Film : cuid, managed {
     title         : String;
     @assert.range
+    @Validation.AllowedValues 
     episode_id    : Integer enum {
         I     = 1;
         II    = 2;
@@ -74,6 +77,7 @@ annotate Film with @(
     episode_id    @(
         title                           : '{i18n>episode_id}',
         assert.enum,
+        Validation.AllowedValues, 
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
             CollectionPath : 'FilmEpisodeDesc',
