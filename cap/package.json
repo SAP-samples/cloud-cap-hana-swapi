@@ -1,15 +1,15 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@sap/cds": "^6.4.0",
+    "@sap/cds": "^6.4.1",
     "@cap-js/graphql": "0.1.0",
     "@sap/cds-common-content": "^1.0.1",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.15",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.18",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -41,7 +41,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.109.3"
+        "version": "1.110.0"
       }
     },
     "cdsc": {
@@ -95,8 +95,8 @@
   },
 
   "devDependencies": {
-    "@sap/cds-dk": "6.4.0",
-    "@sap/hdi-deploy": "^4.5.1",
+    "@sap/cds-dk": "6.4.1",
+    "@sap/hdi-deploy": "^4.5.3",
     "cds2types": "^3.0.0",
     "stringify-changelog": "^0.2.1"
   }
