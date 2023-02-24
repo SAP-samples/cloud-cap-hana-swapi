@@ -454,7 +454,7 @@ annotate Film2Species with {
 entity People : cuid, managed {
     @sql.append : 'FUZZY SEARCH INDEX ON'
     name       : String;
-    height     : String;
+    height     : String default 'Test';
     mass       : String;
     /**
      * Person's Hair Color
