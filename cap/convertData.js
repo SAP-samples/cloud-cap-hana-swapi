@@ -24,7 +24,7 @@ async function clearDB(db) {
     await db.run(DELETE.from(db.entities.Species))
     await db.run(DELETE.from(db.entities.Film))
     await db.run(DELETE.from(db.entities.Planet))
-    
+
     console.log(`DB Tables Cleared`)
 }
 
@@ -66,11 +66,9 @@ async function peopleLoad(db, people, planets) {
         personsNew.push(insert)
         Planet2PeopleNew.push(p2p)
     }
-    await Promise.all([
-        db.run(INSERT.into(db.entities.People).entries(personsNew)),
-        db.run(INSERT.into(db.entities.Planet2People).entries(Planet2PeopleNew))
-    ])
+    await db.run(INSERT.into(db.entities.People).entries(personsNew))
     console.log(`Insert into People`)
+    await db.run(INSERT.into(db.entities.Planet2People).entries(Planet2PeopleNew))
     console.log(`Insert into Planet2People`)
 }
 
@@ -90,7 +88,7 @@ async function planetsLoad(db, planets) {
         insert.surface_water = planet.fields.surface_water
         planetsNew.push(insert)
     }
-    db.run(INSERT.into(db.entities.Planet).entries(planetsNew))
+    await db.run(INSERT.into(db.entities.Planet).entries(planetsNew))
     console.log(`Insert into Planet`)
 }
 
@@ -123,11 +121,10 @@ async function starshipLoad(db, starships, transports, people) {
             s2p.push(insert)
         }
     }
-    await Promise.all([
-        db.run(INSERT.into(db.entities.Starship).entries(starshipsNew)),
-        db.run(INSERT.into(db.entities.Starship2Pilot).entries(s2p))
-    ])
+
+    await db.run(INSERT.into(db.entities.Starship).entries(starshipsNew))
     console.log(`Insert into Starship`)
+    await db.run(INSERT.into(db.entities.Starship2Pilot).entries(s2p))
     console.log(`Insert into Starship2Pilot`)
 
 }
@@ -159,9 +156,9 @@ async function vehiclesLoad(db, vehicles, transports, people) {
             v2p.push(insert)
         }
     }
-    db.run(INSERT.into(db.entities.Vehicles).entries(vehiclesNew))
-    db.run(INSERT.into(db.entities.Vehicle2Pilot).entries(v2p))
+    await db.run(INSERT.into(db.entities.Vehicles).entries(vehiclesNew))
     console.log(`Insert into Vehicles`)
+    await db.run(INSERT.into(db.entities.Vehicle2Pilot).entries(v2p))
     console.log(`Insert into Vehicle2Pilot`)
 
 }
@@ -198,9 +195,9 @@ async function speciesLoad(db, species, planets, people) {
             Species2PeopleNew.push(insert)
         }
     }
-    db.run(INSERT.into(db.entities.Species).entries(speciesNew))
-    db.run(INSERT.into(db.entities.Species2People).entries(Species2PeopleNew))
+    await db.run(INSERT.into(db.entities.Species).entries(speciesNew))
     console.log(`Insert into Species`)
+    await db.run(INSERT.into(db.entities.Species2People).entries(Species2PeopleNew))
     console.log(`Insert into Species2People`)
 }
 
@@ -266,13 +263,15 @@ async function filmsLoad(db, films, people, planets, species, starships, vehicle
 
     }
 
-    db.run(INSERT.into(db.entities.Film).entries(filmNew))
-    db.run(INSERT.into(db.entities.Film2People).entries(Film2PeopleNew))
-    db.run(INSERT.into(db.entities.Film2Planets).entries(Film2PlanetsNew))
-    db.run(INSERT.into(db.entities.Film2Starships).entries(Film2StarshipsNew))
-    db.run(INSERT.into(db.entities.Film2Vehicles).entries(Film2VehiclesNew))
-    db.run(INSERT.into(db.entities.Film2Species).entries(Film2SpeciesNew))
+    await db.run(INSERT.into(db.entities.Film).entries(filmNew))
     console.log(`Insert into Film`)
+    await Promise.all([
+        db.run(INSERT.into(db.entities.Film2People).entries(Film2PeopleNew)),
+        db.run(INSERT.into(db.entities.Film2Planets).entries(Film2PlanetsNew)),
+        db.run(INSERT.into(db.entities.Film2Starships).entries(Film2StarshipsNew)),
+        db.run(INSERT.into(db.entities.Film2Vehicles).entries(Film2VehiclesNew)),
+        db.run(INSERT.into(db.entities.Film2Species).entries(Film2SpeciesNew))
+    ])
     console.log(`Insert into Film2People`)
     console.log(`Insert into Film2Planets`)
     console.log(`Insert into Film2Starships`)
