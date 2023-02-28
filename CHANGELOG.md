@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.1.8] - 2023-02-28
+
+**Changed**
+
+- SAP CAP updated to 6.6 Feb 2023 Rel
+- Fixes in the convertData to avoid issues with parallelization and DB constrains
+- SAPUI5 update to 1.111.0
+
 ## [1.1.5] - 2022-12-19
 
 **Changed**
