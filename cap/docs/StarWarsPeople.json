@@ -1,0 +1,448 @@
+{
+  "asyncapi": "2.0.0",
+  "x-sap-catalog-spec-version": "1.2",
+  "x-sap-application-namespace": "sap.swapi",
+  "info": {
+    "version": "1.0.0",
+    "title": "Star Wars People Events",
+    "description": "Events emitted by the Star Wars People Service"
+  },
+  "defaultContentType": "application/json",
+  "channels": {
+    "StarWarsPeople.People.Changed.v1": {
+      "subscribe": {
+        "message": {
+          "$ref": "#/components/messages/StarWarsPeople.People.Changed.v1"
+        }
+      }
+    }
+  },
+  "components": {
+    "messageTraits": {
+      "CloudEventsContext.v1": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Identifies the event.",
+              "type": "string",
+              "examples": [
+                "6925d08e-bc19-4ad7-902e-bd29721cc69b"
+              ]
+            },
+            "specversion": {
+              "description": "The version of the CloudEvents specification which the event uses.",
+              "type": "string",
+              "const": "1.0"
+            },
+            "source": {
+              "description": "Identifies the instance the event originated in.",
+              "type": "string",
+              "format": "uri-reference",
+              "examples": [
+                "/default/sap.s4.beh/ER9CLNT001",
+                "/eu/sap.billing.sb/91dec60d-9757-4e2c-b9e5-21da10016fe9"
+              ]
+            },
+            "type": {
+              "description": "Describes the type of the event related to the source the event originated in.",
+              "type": "string",
+              "examples": [
+                "sap.dsc.FreightOrder.Arrived.v1",
+                "sap.billing.sb.Subscription.Canceled.v1"
+              ]
+            },
+            "subject": {
+              "description": "Describes the subject of the event in the context of the source the event originated in (e.g., the id of the business object the event is about).",
+              "type": "string",
+              "examples": [
+                "ce307052-75a0-4a8f-a961-ebf21669bb80",
+                "urn:epc:tag:sgtin-96:1.7332402.026591.1234567890"
+              ]
+            },
+            "datacontenttype": {
+              "description": "Content type of the event data.",
+              "type": "string",
+              "const": "application/json"
+            },
+            "dataschema": {
+              "description": "Identifies the schema that the event data adheres to.",
+              "type": "string",
+              "format": "uri",
+              "examples": [
+                "http://example.com/event/sap.billing.sb.Subscription.Canceled/v1.2.0"
+              ]
+            },
+            "time": {
+              "description": "Timestamp of when the occurrence happened.",
+              "format": "date-time",
+              "type": "string",
+              "examples": [
+                "2018-04-05T17:31:00Z"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "source",
+            "specversion",
+            "type"
+          ],
+          "patternProperties": {
+            "^xsap[a-z0-9]+$": {
+              "description": "Application defined custom extension context attributes.",
+              "type": [
+                "boolean",
+                "integer",
+                "string"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "messages": {
+      "StarWarsPeople.People.Changed.v1": {
+        "x-sap-event-source": "/{region}/{applicationNamespace}/{instanceId}",
+        "x-sap-event-source-parameters": {
+          "region": {
+            "description": "The regional context of the application.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "applicationNamespace": {
+            "description": "The registered namespace of the application.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "instanceId": {
+            "description": "The instance id (tenant, installation, ...) of the application.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "name": "StarWarsPeople.People.Changed.v1",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "StarWarsPeople.People.Changed.v1"
+            }
+          }
+        },
+        "payload": {
+          "$ref": "#/components/schemas/StarWarsPeople.People.Changed.v1"
+        },
+        "traits": [
+          {
+            "$ref": "#/components/messageTraits/CloudEventsContext.v1"
+          }
+        ]
+      }
+    },
+    "schemas": {
+      "StarWarsPeople.People.Changed.v1": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": [
+              "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": [
+              "2017-02-14T20:54:21+00:00"
+            ],
+            "title": "{i18n>CreatedAt}"
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "title": "{i18n>ChangedBy}",
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": [
+              "2017-02-14T20:54:21+00:00"
+            ],
+            "title": "{i18n>ChangedAt}"
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "title": "{i18n>ChangedBy}",
+            "description": "{i18n>UserID.Description}"
+          },
+          "name": {
+            "type": "string",
+            "title": "{i18n>peopleName}"
+          },
+          "height": {
+            "type": "string",
+            "title": "{i18n>height}",
+            "default": "Test"
+          },
+          "mass": {
+            "type": "string",
+            "title": "{i18n>mass}"
+          },
+          "hair_color": {
+            "type": "string",
+            "title": "{i18n>hair_color}",
+            "description": "Person's Hair Color"
+          },
+          "skin_color": {
+            "type": "string",
+            "title": "{i18n>skin_color}"
+          },
+          "eye_color": {
+            "type": "string",
+            "title": "{i18n>eye_color}"
+          },
+          "birth_year": {
+            "type": "string",
+            "title": "{i18n>birth_year}"
+          },
+          "gender": {
+            "type": "string",
+            "title": "{i18n>gender}"
+          },
+          "homeworld": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": "string",
+                "format": "uuid",
+                "example": [
+                  "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                ]
+              }
+            },
+            "required": [
+              "ID"
+            ],
+            "title": "{i18n>homeworld}"
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": [
+                    "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                  ]
+                },
+                "film": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>title}"
+                },
+                "people": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>People}"
+                }
+              },
+              "required": [
+                "ID"
+              ]
+            },
+            "title": "{i18n>peopleFilms}"
+          },
+          "species": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": [
+                    "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                  ]
+                },
+                "species": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>Species}"
+                },
+                "people": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>People}"
+                }
+              },
+              "required": [
+                "ID"
+              ]
+            },
+            "title": "{i18n>species}"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": [
+                    "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                  ]
+                },
+                "vehicle": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>vehicleName}"
+                },
+                "pilot": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>Pilot}"
+                }
+              },
+              "required": [
+                "ID"
+              ]
+            },
+            "title": "{i18n>vehicles}"
+          },
+          "starships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": [
+                    "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                  ]
+                },
+                "starship": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>starshipName}"
+                },
+                "pilot": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": [
+                        "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "title": "{i18n>Pilot}"
+                }
+              },
+              "required": [
+                "ID"
+              ]
+            },
+            "title": "{i18n>starships}"
+          }
+        },
+        "required": [
+          "ID"
+        ],
+        "title": "{i18n>People}",
+        "description": "All People and Aliens in Star Wars"
+      }
+    }
+  }
+}

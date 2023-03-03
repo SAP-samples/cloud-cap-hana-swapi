@@ -1,6 +1,15 @@
 using {star.wars as StarWars} from '../db/schema';
 
+@AsyncAPI.Title        : 'Star Wars People Events'
+@AsyncAPI.SchemaVersion: '1.0.0'
+@AsyncAPI.Description  : 'Events emitted by the Star Wars People Service'
+
 service StarWarsPeople @(path : '/StarWarsPeople') {
+  @AsyncAPI.EventSpecVersion    : '2.0'
+  @AsyncAPI.EventCharacteristics: {
+    ![state-transfer]: 'full-after-image'
+  }
+  @AsyncAPI.EventSchemaVersion       : '1.0.0'
 
     @readonly : true
     entity Film                                         as projection on StarWars.Film;
@@ -10,6 +19,7 @@ service StarWarsPeople @(path : '/StarWarsPeople') {
         * , homeworld : redirected to Planet
     };
 
+    event People.Changed.v1 : projection on StarWarsPeople.People;
     @readonly : true
     entity Planet                                       as projection on StarWars.Planet;
 
