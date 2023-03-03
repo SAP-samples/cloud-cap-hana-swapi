@@ -1,0 +1,15 @@
+# serviceOfferingName: feature-flags
+# servicePlanName: plan-name
+# externalName: feature-flags-test
+# customTags:
+#   - foo
+#   - bar
+# parameters:
+#   key: val
+# parametersFrom:
+#   - secretKeyRef:
+#       name: my-secret
+#       key: secret-parameter
+#   - configMapKeyRef:
+#       name: my-cm
+#       key: cm-parameter

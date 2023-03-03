@@ -1,6 +1,3 @@
-
-# yaml-language-server: $schema=./values.root.schema.json
-
 global:
   domain: c-18e23d2.kyma.ondemand.com
   imagePullSecret:
@@ -9,6 +6,9 @@ srv:
   bindings:
     db:
       fromSecret: starwars
+      serviceInstanceName: hana
+    messaging:
+      serviceInstanceName: event-mesh
   image:
     repository: ghcr.io/sap-samples/cap-hana-swapi-srv
     tag: latest
@@ -21,6 +21,11 @@ srv:
       ephemeral-storage: 1G
       memory: 500M
   health_check:
+    liveness:
+      path: /
+    readiness:
+      path: /
+  health:
     liveness:
       path: /
     readiness:
@@ -39,3 +44,23 @@ hana_deployer:
     requests:
       cpu: 1000m
       memory: 1G
+hana-deployer:
+  image:
+    repository: <your-container-registry>/cap-hana-swapi-hana-deployer
+    tag: latest
+  bindings:
+    hana:
+      serviceInstanceName: hana
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 1G
+    requests:
+      cpu: 1000m
+      memory: 1G
+hana:
+  serviceOfferingName: hana
+  servicePlanName: hdi-shared
+event-mesh:
+  serviceOfferingName: enterprise-messaging
+  servicePlanName: default

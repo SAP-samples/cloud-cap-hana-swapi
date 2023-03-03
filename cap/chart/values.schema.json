@@ -42,189 +42,72 @@
             "$id": "#/properties/srv",
             "description": "Deployment"
         },
-        "auditlog": {
-            "$id": "#/properties/auditlog",
-            "$ref": "#/definitions/ServiceInstance"
+        "hana-deployer": {
+            "$id": "#/properties/hana-deployer",
+            "description": "Content Deployment"
         },
-        "destinations": {
-            "$id": "#/properties/destinations",
-            "$ref": "#/definitions/ServiceInstance"
+        "html5-apps-deployer": {
+            "$id": "#/properties/html5-apps-deployer",
+            "description": "Content Deployment"
         },
-        "connectivity": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "serviceOfferingName",
-                "servicePlanName",
-                "configMapName",
-                "secretName"
-            ],
-            "properties": {
-                "fullnameOverride": {
-                    "type": "string",
-                    "pattern": "[0-9a-z][0-9a-z-.]*",
-                    "maxLength": 63,
-                    "description": "If present then this will be used instead of the generated name"
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Service instance will be created (default: true)"
-                },
-                "serviceOfferingName": {
-                    "type": "string",
-                    "default": "connectivity",
-                    "description": "Technical service offering name from service catalog"
-                },
-                "servicePlanName": {
-                    "type": "string",
-                    "default": "connectivity_proxy",
-                    "description": "Technical service plan name from service catalog"
-                },
-                "parameters": {
-                    "type": "object",
-                    "description": "Some services support the provisioning of additional configuration parameters during the instance creation. For the list of supported parameters, check the documentation of the particular service offering."
-                },
-                "config": {
-                    "type": "string",
-                    "description": "File name of JSON configuration file in chart folder. Values from the file will be copied and placed in the parameters for the service instance. If both parameters and config are specified, the values in parameters override those read from config."
-                },
-                "configMapName": {
-                    "type": "string",
-                    "description": "Required to add additional connection information, compared to what is available from the service binding."
-                },
-                "secretName": {
-                    "type": "string",
-                    "description": "Required to add additional connection information."
-                }
-            }
+        "approuter": {
+            "$id": "#/properties/approuter",
+            "description": "Deployment"
         },
-        "event_mesh": {
-            "$id": "#/properties/event_mesh",
-            "$ref": "#/definitions/ServiceInstance"
+        "event-mesh": {
+            "$id": "#/properties/event-mesh",
+            "description": "Service Instance"
         },
-        "hana_deployer": {
-            "$id": "#/properties/hana_deployer",
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "image",
-                "bindings",
-                "resources"
-            ],
-            "properties": {
-                "image": {
-                    "$id": "#/properties/hana_deployer/image",
-                    "$ref": "#/definitions/Image"
-                },
-                "bindings": {
-                    "$id": "#/properties/hana_deployer/bindings",
-                    "$ref": "#/definitions/Bindings"
-                },
-                "resources": {
-                    "$id": "#/properties/hana_deployer/resources",
-                    "$ref": "#/definitions/Resources"
-                },
-                "env": {
-                    "$id": "#/properties/hana_deployer/env",
-                    "description": "Key-value map of environment variables, which should be added to the Pod spec.",
-                    "type": "object",
-                    "patternProperties": {
-                        "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
-                            "$comment": "regex above copied from https://github.com/kubernetes/kubernetes/blob/ea0764452222146c47ec826977f49d7001b0ea8c/staging/src/k8s.io/apimachinery/pkg/util/validation/validation.go#L402",
-                            "not": {
-                                "type": [
-                                    "null",
-                                    "object",
-                                    "array"
-                                ]
-                            }
-                        }
-                    },
-                    "additionalProperties": false,
-                    "default": {}
-                }
-            }
-        },
-        "html5_apps_deployer": {
-            "$id": "#/properties/html5_apps_deployer",
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "image",
-                "bindings",
-                "resources",
-                "cloudService"
-            ],
-            "properties": {
-                "image": {
-                    "$id": "#/properties/html5_apps_deployer/image",
-                    "$ref": "#/definitions/Image"
-                },
-                "bindings": {
-                    "$id": "#/properties/html5_apps_deployer/bindings",
-                    "$ref": "#/definitions/Bindings"
-                },
-                "resources": {
-                    "$id": "#/properties/html5_apps_deployer/resources",
-                    "$ref": "#/definitions/Resources"
-                },
-                "env": {
-                    "$id": "#/properties/html5_apps_deployer/env",
-                    "description": "Key-value map of environment variables, which should be added to the Pod spec.",
-                    "type": "object",
-                    "patternProperties": {
-                        "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
-                            "$comment": "regex above copied from https://github.com/kubernetes/kubernetes/blob/ea0764452222146c47ec826977f49d7001b0ea8c/staging/src/k8s.io/apimachinery/pkg/util/validation/validation.go#L402",
-                            "not": {
-                                "type": [
-                                    "null",
-                                    "object",
-                                    "array"
-                                ]
-                            }
-                        }
-                    },
-                    "additionalProperties": false,
-                    "default": {}
-                },
-                "backendDestinations": {
-                    "$id": "#/properties/html5_apps_deployer/backendDestinations",
-                    "title": "Backend Destinations for HTML5 Application",
-                    "type": "object",
-                    "patternProperties": {
-                        "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
-                            "description": "Name of the backend Destination",
-                            "required": [
-                                "service"
-                            ],
-                            "properties": {
-                                "service": {
-                                    "type": "string",
-                                    "description": "Target Kubernetes service"
-                                },
-                                "path": {
-                                    "type": "string",
-                                    "description": "This path will be appended to the URL"
-                                }
-                            }
-                        }
-                    }
-                },
-                "cloudService": {
-                    "$id": "#/properties/html5_apps_deployer/cloudService",
-                    "type": "string",
-                    "description": "Name for your business service (unique per subaccount)"
-                }
-            }
-        },
-        "html5_apps_repo_host": {
-            "$id": "#/properties/html5_apps_repo_host",
-            "$ref": "#/definitions/ServiceInstance"
+        "html5-apps-repo-host": {
+            "$id": "#/properties/html5-apps-repo-host",
+            "description": "Service Instance"
         },
         "xsuaa": {
             "$id": "#/properties/xsuaa",
-            "$ref": "#/definitions/ServiceInstance"
+            "description": "Service Instance"
+        },
+        "auditlog": {
+            "$id": "#/properties/auditlog",
+            "description": "Service Instance"
+        },
+        "destination": {
+            "$id": "#/properties/destination",
+            "description": "Service Instance"
+        },
+        "hana": {
+            "$id": "#/properties/hana",
+            "description": "Service Instance"
+        },
+        "saas-registry": {
+            "$id": "#/properties/saas-registry",
+            "description": "Service Instance"
+        },
+        "service-manager": {
+            "$id": "#/properties/service-manager",
+            "description": "Service Instance"
+        },
+        "backendDestinations": {
+            "$id": "#/properties/backendDestinations",
+            "title": "Backend Destinations for Approuter or HTML5 Apps Deployer",
+            "type": "object",
+            "patternProperties": {
+                "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
+                    "description": "Name of the backend Destination",
+                    "required": [
+                        "service"
+                    ],
+                    "properties": {
+                        "service": {
+                            "type": "string",
+                            "description": "Target Kubernetes service"
+                        },
+                        "path": {
+                            "type": "string",
+                            "description": "This path will be appended to the URL"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

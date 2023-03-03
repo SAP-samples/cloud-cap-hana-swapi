@@ -8,7 +8,7 @@ global:
 
 replicaCount: 1
 port: 8080
-serviceAccountName: default
+#serviceAccountName: my-serviceaccount
 
   # To use a digest, change those values like that
   # repository: nginx@sha256
@@ -30,9 +30,6 @@ additionalVolumes: []
 #     mountPath: /etc/mysecret
 #     readOnly: true
 
-ha:
-  enabled: true
-
 # resources:
 #   limits:
 #     cpu: 100m
@@ -43,22 +40,55 @@ ha:
 #     ephemeral-storage: 1G
 #     memory: 1G
 
-health_check:
+availability:
+  podDisruptionBudget:
+    maxUnavailable: 10%
+  topologySpreadConstraints:
+  - topologyKey: topology.kubernetes.io/zone
+    maxSkew: 1
+    whenUnsatisfiable: ScheduleAnyway
+  - topologyKey: kubernetes.io/hostname
+    maxSkew: 1
+    whenUnsatisfiable: ScheduleAnyway
+
+health:
   liveness:
     path: /healthz
   readiness:
     path: /healthz
 
-startupTimeout: 30
+terminationGracePeriodSeconds: 30
+startupTimeoutSeconds: 30
 
-envSecretNames: []
+envFrom: []
+# - configMapRef:
+#     name: my-configmap1
+# - secretRef:
+#     name: my-secret-ref1
 
 env: {}
 # env:
-#   key: value
+#   key1: value
+#   key2:
+#     secretKeyRef:
+#       name: my-secret
+#       key: my-key
+#   key3:
+#     configMapKeyRef:
+#       name: my-configmap
+#       key: my-key
+# Also can be specified as a list
+# env:
+#   - name: key1
+#     value: value1
+#   - name: key2
+#     configMapKeyRef:
+#       name: my-configmap
+#       key: my-key
 
 expose:
   enabled: true
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
   # host: ""
 
 # bindings:

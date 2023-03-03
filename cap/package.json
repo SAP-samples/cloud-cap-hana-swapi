@@ -6,8 +6,8 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@sap/cds": "^6.6.0",
     "@cap-js/graphql": "0.3.1",
+    "@sap/cds": "^6.6.0",
     "@sap/cds-common-content": "^1.0.1",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.19",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
@@ -94,11 +94,12 @@
       }
     }
   },
-
   "devDependencies": {
-    "@sap/cds-dk": "6.5.2",
+    "@sap/cds-dk": "^6.5.2",
+    "@sap/eslint-plugin-cds": "^2.6.3",
     "@sap/hdi-deploy": "^4.5.3",
     "cds2types": "^3.0.0",
+    "eslint": "^8.35.0",
     "stringify-changelog": "^0.2.1"
   }
 }

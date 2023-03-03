@@ -14,9 +14,13 @@ Add custom env variables
 Get list of deployment names
 */}}
 {{- define "cap.deploymentNames" -}}
+{{- $ := . -}}
 {{- $defaultDeployments := (list "srv") -}}
-  {{- if .mtx -}}
-{{-   $_ := (append $defaultDeployments "mtx") -}}
+  {{- if $.Values.sidecar -}}
+{{-   $defaultDeployments = (append $defaultDeployments "sidecar") -}}
+  {{- end -}}
+  {{- if $.Values.approuter -}}
+{{-   $defaultDeployments = (append $defaultDeployments "approuter") -}}
   {{- end -}}
 {{ .deploymentNames | default $defaultDeployments | join ";" }}
 {{- end -}}
@@ -60,4 +64,31 @@ Get FQDN of a deployment
 */}}
 {{- define "cap.deploymentHostFull" -}}
 {{ include "cap.deploymentHost" $ }}.{{ $.Values.global.domain }}
+{{- end -}}
+
+{{/*
+Backend Destinations
+*/}}
+{{- define "cap.backendDestinations" -}}
+{{- $ := . -}}
+{{- $root := $.root -}}
+{{- $nameKey := "name" -}}
+{{- $urlKey := "url" -}}
+{{- if $root.Values.backendDestinations }}
+{{- $destinations := list -}}
+{{- if $.html5 }}
+{{- $nameKey = "Name" -}}
+{{- $urlKey = "URL" -}}
+{{- end -}}
+{{- range $destinationName, $destination := $root.Values.backendDestinations -}}
+    {{- $destination := merge (dict "name" $destinationName) $destination -}}
+    {{- $deployment := (get $root.Values $destination.service) -}}
+    {{- $srv := merge (dict "name" $destination.service "destination" $destination "deployment" $deployment) $root -}}
+    {{- $destinationHost := include "cap.deploymentHostFull" $srv -}}
+    {{- $currentDestination := dict $nameKey $destination.name $urlKey (print  "https://" $destinationHost ) -}}
+    {{- $currentDestination := merge $currentDestination $.defaultParameters -}}
+    {{- $destinations = (append $destinations $currentDestination) -}}
+{{- end -}}
+{{- $destinations | toJson }}
+{{- end -}}
 {{- end -}}

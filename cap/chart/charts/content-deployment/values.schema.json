@@ -1,18 +1,17 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://github.tools.sap/cki/web-application/blob/main/values.schema.json",
+    "$id": "https://github.tools.sap/cki/content-deployment/blob/main/values.schema.json",
     "type": "object",
     "required": [
-        "image",
-        "resources"
+        "image", "bindings"
     ],
     "additionalProperties": false,
     "properties": {
         "global": {
             "$id": "#/properties/global",
+            "type": "object",
             "title": "Helm global values",
             "description": "For more information, see https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values",
-            "type": "object",
             "x-ignore-untested": true,
             "additionalProperties": true,
             "properties": {
@@ -85,29 +84,6 @@
             "type": "string",
             "pattern": "[0-9a-z][0-9a-z-.]*"
         },
-        "replicaCount": {
-            "$id": "#/properties/replicaCount",
-            "title": "Replica count",
-            "description": "Number of desired pods within the Deployment.",
-            "type": "integer",
-            "minimum": 1,
-            "default": 1
-        },
-        "port": {
-            "$id": "#/properties/port",
-            "title": "Port",
-            "description": "Application's exposed port.",
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 65535,
-            "default": 8080
-        },
-        "serviceAccountName": {
-            "$id": "#/properties/serviceAccountName",
-            "title": "Service Account name",
-            "description": "Name of the Service Account assigned to pods.",
-            "type": "string"
-        },
         "image": {
             "$id": "#/properties/image",
             "title": "Image configuration",
@@ -169,281 +145,63 @@
                 }
             }
         },
-        "additionalVolumes": {
-            "$id": "#/properties/additionalVolumes",
-            "title": "Additional Pod volumes",
-            "description": "List of volumes, which should be mounted into Pods",
-            "type": "array",
-            "additionalItems": false,
-            "default": [],
-            "items": {
-                "title": "Additional volume configuration",
-                "type": "object",
-                "additionalProperties": true,
-                "required": [
-                    "name",
-                    "volumeMount"
-                ],
-                "properties": {
-                    "name": {
-                        "title": "Name of the volume",
-                        "type": "string",
-                        "$ref": "#/definitions/KubernetesName"
-                    },
-                    "volumeMount": {
-                        "title": "Volume mount configuration",
-                        "type": "object",
-                        "required": [
-                            "mountPath"
-                        ],
-                        "additionalProperties": false,
-                        "properties": {
-                            "mountPath": {
-                                "description": "Path within a Pod, where the volume should be mounted.",
-                                "type": "string",
-                                "pattern": "^[^:]*$"
-                            },
-                            "mountPropagation": {
-                                "description": "Mount propagation allows for sharing volumes mounted by a container to other containers in the same pod, or even to other pods on the same node.",
-                                "type": "string",
-                                "enum": ["None", "HostToContainer"]
-                            },
-                            "readOnly": {
-                                "description": "Whether mounted volume should be in read-only mode.",
-                                "type": "boolean"
-                            },
-                            "subPath": {
-                                "description": "Sub-path inside the referenced volume instead of its root.",
-                                "type": "string"
-                            },
-                            "subPathExpr": {
-                                "description": "Similar to the `subPath`, but can be constructed using the downward API environment variables. For more info, see https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath-expanded-environment",
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "ha": {
-            "$id": "#/properties/ha",
-            "title": "High Availability configuration",
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "enabled": {
-                    "$id": "#/properties/ha/properties/enabled",
-                    "description": "[Deprecated: Will be always enabled in future] Enables additional high-availability related configuration, like Pod Disruption Budget and Topology Spread Constraints.",
-                    "type": "boolean"
-                }
-            }
-        },
         "resources": {
             "$id": "#/properties/resources",
-            "title": "Pod resources configuration",
             "type": "object",
+            "title": "Pod resources configuration",
             "additionalProperties": false,
-            "required": [
-                "requests",
-                "limits"
-            ],
             "properties": {
                 "requests": {
                     "type": "object",
                     "description": "Minimal required resources for the application to operate, that will be reserved for each replica.",
                     "additionalProperties": false,
-                    "required": [
-                        "cpu",
-                        "memory"
-                    ],
                     "properties": {
                         "cpu": {
-                            "description": "CPU resource units, as described here https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu",
                             "$id": "#/properties/resources/properties/requests/properties/cpu",
-                            "type": ["string", "number"]
+                            "description": "CPU resource units, as described here https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu",
+                            "type": ["number", "string"]
                         },
                         "ephemeral-storage": {
-                            "description": "Size of the local ephemeral storage, measured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage",
                             "$id": "#/properties/resources/properties/requests/properties/ephemeral-storage",
+                            "description": "Size of the local ephemeral storage, measured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage",
                             "type": "string"
                         },
                         "memory": {
-                            "description": "Amount of memory, mesaured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory",
                             "$id": "#/properties/resources/properties/requests/properties/memory",
+                            "description": "Amount of memory, mesaured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory",
                             "type": "string"
                         }
                     }
                 },
                 "limits": {
                     "type": "object",
-                    "description": "",
                     "additionalProperties": false,
-                    "required": [
-                        "memory"
-                    ],
                     "properties": {
                         "cpu": {
-                            "description": "CPU resource units, as described here https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu",
                             "$id": "#/properties/resources/properties/limits/properties/cpu",
-                            "type": ["string", "number"]
+                            "description": "CPU resource units, as described here https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu",
+                            "type": ["number", "string"]
                         },
                         "ephemeral-storage": {
-                            "description": "Size of the local ephemeral storage, measured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage",
                             "$id": "#/properties/resources/properties/limits/properties/ephemeral-storage",
+                            "description": "Size of the local ephemeral storage, measured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#local-ephemeral-storage",
                             "type": "string"
                         },
                         "memory": {
-                            "description": "Amount of memory, mesaured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory",
                             "$id": "#/properties/resources/properties/limits/properties/memory",
+                            "description": "Amount of memory, mesaured in bytes. For more info, see https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory",
                             "type": "string"
                         }
                     }
                 }
             }
-        },
-        "health_check": {
-            "$id": "#/properties/health_check",
-            "title": "Health-check configuration",
-            "description": "[Deprecated] Use health instead",
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "liveness": {
-                    "$id": "#/properties/health_check/properties/liveness",
-                    "description": "Liveness-probe configuration.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "path": {
-                            "description": "HTTP path used by Kubernetes, to perform health-check calls.",
-                            "type": "string"
-                        }
-                    }
-                },
-                "readiness": {
-                    "$id": "#/properties/health_check/properties/readiness",
-                    "description": "Readiness-probe configuration.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "path": {
-                            "description": "HTTP path used by Kubernetes, to perform health-check calls.",
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "availability": {
-            "$id": "#/properties/availability",
-            "title": "Availability related configuration",
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "podDisruptionBudget": {
-                    "$id": "#/properties/availability/properties/podDisruptionBudget",
-                    "description": "The max disruption to the pods.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "maxUnavailable": {
-                            "description": "An eviction is allowed if this maximum of pods are unavailable.",
-                            "type": "string",
-                            "default": "10%"
-                        }
-                    }
-                },
-                "topologySpreadConstraints": {
-                    "$id": "#/properties/availability/properties/topologySpreadConstraints",
-                    "description": "How pods ought to spread across topology domains.",
-                    "uniqueItems": true,
-                    "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "required": ["topologyKey", "maxSkew", "whenUnsatisfiable"],
-                        "properties": {
-                            "topologyKey": {
-                                "type": "string",
-                                "description": "Nodes that have a label with this key and identical values are considered to be in the same topology."
-                            },
-                            "maxSkew": {
-                                "type": "integer",
-                                "description": "Describes the degree to which pods may be unevenly distributed.",
-                                "minimum": 1
-                            },
-                            "whenUnsatisfiable": {
-                                "type": "string",
-                                "description": "Indicates how to deal with a pod if it doesn't satisfy the spread constraint.",
-                                "enum": ["ScheduleAnyway", "DoNotSchedule"]
-                            }
-                        }
-                    },
-                    "default": [
-                        {"maxSkew":1, "topologyKey":"topology.kubernetes.io/zone", "whenUnsatisfiable":"ScheduleAnyway"},
-                        {"maxSkew":1, "topologyKey":"kubernetes.io/hostname", "whenUnsatisfiable":"ScheduleAnyway"}
-                    ]
-                }
-            }
-        },
-        "health": {
-            "$id": "#/properties/health",
-            "title": "Health-check configuration",
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "liveness": {
-                    "$id": "#/properties/health/properties/liveness",
-                    "description": "Liveness-probe configuration.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "path": {
-                            "description": "HTTP path used by Kubernetes, to perform liveness-probe calls.",
-                            "type": "string",
-                            "default": "/healthz"
-                        }
-                    }
-                },
-                "readiness": {
-                    "$id": "#/properties/health/properties/readiness",
-                    "description": "Readiness-probe configuration.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "path": {
-                            "description": "HTTP path used by Kubernetes, to perform readiness-probe calls.",
-                            "type": "string",
-                            "default": "/healthz"
-                        }
-                    }
-                }
-            }
-        },
-        "startupTimeout": {
-            "$id": "#/properties/startupTimeout",
-            "description": "[Deprecated] use startupTimeoutSeconds instead",
-            "type": "integer",
-            "minimum": 1
-        },
-        "startupTimeoutSeconds": {
-            "$id": "#/properties/startupTimeoutSeconds",
-            "description": "Initial timeout in seconds, during which the app must start giving the response to the liveness-probe.",
-            "type": "integer",
-            "minimum": 1,
-            "default": 30
-        },
-        "terminationGracePeriodSeconds": {
-            "$id": "#/properties/terminationGracePeriodSeconds",
-            "description": "Time in seconds after which the pod will be forcefully stopped after receiving SIGTERM.",
-            "type": "integer",
-            "minimum": 0,
-            "default": 30
         },
         "env": {
             "$id": "#/properties/env",
             "description": "Key-value map of environment variables, which should be added to the Pod spec.",
             "anyOf": [
                 {
+
                     "type": "object",
                     "patternProperties": {
                         "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
@@ -466,7 +224,7 @@
                                             "properties": {
                                                 "name": {
                                                     "description": "Name of a ConfigMap.",
-                                                    "type": "string"
+                                                    "$ref": "#/definitions/KubernetesName"
                                                 },
                                                 "key": {
                                                     "description": "Key in that ConfigMap, which value will be used.",
@@ -481,7 +239,7 @@
                                             "properties": {
                                                 "name": {
                                                     "description": "Name of a Secret.",
-                                                    "type": "string"
+                                                    "$ref": "#/definitions/KubernetesName"
                                                 },
                                                 "key": {
                                                     "description": "Key in that Secret, which value will be used.",
@@ -548,7 +306,7 @@
                                 "properties": {
                                     "name": {
                                         "description": "Name of a ConfigMap.",
-                                        "type": "string"
+                                        "$ref": "#/definitions/KubernetesName"
                                     },
                                     "key": {
                                         "description": "Key in that ConfigMap, which value will be used.",
@@ -563,7 +321,7 @@
                                 "properties": {
                                     "name": {
                                         "description": "Name of a Secret.",
-                                        "type": "string"
+                                        "$ref": "#/definitions/KubernetesName"
                                     },
                                     "key": {
                                         "description": "Key in that Secret, which value will be used.",
@@ -609,6 +367,7 @@
             "type": "array",
             "uniqueItems": true,
             "items": {
+                "type": "string",
                 "$ref": "#/definitions/KubernetesName"
             }
         },
@@ -629,6 +388,11 @@
                                     "name": {
                                         "description": "Name of a ConfigMap.",
                                         "type": "string"
+                                    },
+                                    "tpl": {
+                                        "description": "Flag which tells whether the name is a template string or not.",
+                                        "type": "boolean",
+                                        "default": false
                                     }
                                 },
                                 "required": [ "name" ],
@@ -647,6 +411,11 @@
                                     "name": {
                                         "description": "Name of a Secret.",
                                         "type": "string"
+                                    },
+                                    "tpl": {
+                                        "description": "Flag which tells whether the name is a template string or not.",
+                                        "type": "boolean",
+                                        "default": false
                                     }
                                 },
                                 "required": [ "name" ],
@@ -659,39 +428,23 @@
                 ]
             }
         },
-        "expose": {
-            "$id": "#/properties/expose",
-            "title": "",
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "host": {
-                    "$id": "#/properties/expose/properties/host",
-                    "description": "Specifies the service's dns name for inbound external traffic. If it doesn't contain a dot, the default cluster domain will be appended.",
-                    "type": "string"
-                },
-                "enabled": {
-                    "$id": "#/properties/expose/properties/enabled",
-                    "description": "Expose the application to the internet.",
-                    "type": "boolean",
-                    "default": true
-                },
-                "gateway": {
-                    "$id": "#/properties/expose/properties/gateway",
-                    "description": "Use this istio gateway for incoming traffic.",
-                    "type": "string",
-                    "default": "kyma-gateway.kyma-system.svc.cluster.local"
-                }
-            }
+        "ttlDaysAfterFinished": {
+            "$id": "#/properties/ttlDaysAfterFinished",
+            "title": "Time to keep the Job after it has finished.",
+            "description": "Number of days to keep the Kubernetes Job once it is finished. 0 means it is removed as soon as it is finished.",
+            "type": "integer",
+            "minimum": 0,
+            "default": 14
         },
         "bindings": {
             "$id": "#/properties/bindings",
             "title": "Service Binding configuration",
             "type": "object",
             "additionalProperties": false,
+            "minProperties": 1,
             "patternProperties": {
                 "^[-._a-zA-Z][-._a-zA-Z0-9]*$": {
-                    "anyOf": [
+                    "oneOf": [
                         {
                             "type": "object",
                             "additionalProperties": false,
@@ -701,7 +454,7 @@
                             "properties": {
                                 "fromSecret": {
                                     "description": "Name of a Kubernetes Secret, with the binding content, compliant to the SAP Kubernetes Service Binding spec https://github.tools.sap/Kubernetes-Service-Bindings/doc/",
-                                    "type": "string"
+                                    "$ref": "#/definitions/KubernetesName"
                                 }
                             }
                         },
@@ -711,11 +464,11 @@
                             "properties": {
                                 "serviceInstanceName": {
                                     "description": "Name of a BTP Operator Service Instance, created by the `service-instance` Helm chart. Can't be used with the `serviceInstanceFullname` option.",
-                                    "type": "string"
+                                    "$ref": "#/definitions/KubernetesName"
                                 },
                                 "serviceInstanceFullname": {
                                     "description": "Full name of a BTP Operator Service Instance. Can't be used with the `serviceInstanceName` option.",
-                                    "type": "string"
+                                    "$ref": "#/definitions/KubernetesName"
                                 },
                                 "externalName": {
                                     "description": "The name for the service binding in SAP BTP",
@@ -723,7 +476,7 @@
                                 },
                                 "secretName": {
                                     "description": "The name of the secret where the credentials are stored.",
-                                    "type": "string"
+                                    "$ref": "#/definitions/KubernetesName"
                                 },
                                 "parameters": {
                                     "description": "Some services support the provisioning of additional configuration parameters during the bind request. For the list of supported parameters, check the documentation of the particular service offering.",
@@ -749,7 +502,7 @@
                                                         "properties": {
                                                             "name": {
                                                                 "description": "Name of a Secret.",
-                                                                "type": "string"
+                                                                "$ref": "#/definitions/KubernetesName"
                                                             },
                                                             "key": {
                                                                 "description": "Key in that Secret, which contains a string that represents the json to include in the set of parameters to be sent to the broker.",

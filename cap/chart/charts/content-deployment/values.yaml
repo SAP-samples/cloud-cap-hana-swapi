@@ -1,0 +1,54 @@
+global:
+  imagePullSecret: {}
+    # name: ""
+    # dockerconfigjson: ""
+  image: {}
+    # registry: gcr.io/my-project
+    # tag: latest
+
+image: {}
+  # repository: repo/image
+  # registry: gcr.io/my-project
+  # tag: latest
+
+imagePullSecret: {}
+  # name: ""
+  # dockerconfigjson: ""
+
+# resources:
+#   limits:
+#     cpu: 100m
+#     ephemeral-storage: 1G
+#     memory: 1G
+#   requests:
+#     cpu: 100m
+#     ephemeral-storage: 1G
+#     memory: 1G
+
+env: {}
+
+envFrom: []
+# - configMapRef:
+#     name: my-configmap1
+# - secretRef:
+#     name: my-secret-ref1
+
+# bindings:
+#   ui5-repo-servicerepo:
+#     serviceInstanceName: ui5-repo-instance
+#     externalName: ui5-kyma-binding
+#     secretName: ui5-repo-binding-secret
+#     parameters:
+#       foo: bar
+#     parametersFrom:
+#       - secretKeyRef:
+#           key: test
+#           name: test
+#     credentialsRotationPolicy:
+#       enabled: true
+#   hana:
+#     serviceInstanceName: hana-manual
+#   portal:
+#     fromSecret: manual-secret # user-provided-service
+
+ttlDaysAfterFinished: 14

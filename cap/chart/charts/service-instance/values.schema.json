@@ -1,0 +1,102 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://github.tools.sap/cki/web-application-cf/blob/main/values.schema.json",
+    "type": "object",
+    "required": [
+        "serviceOfferingName",
+        "servicePlanName"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "global": {
+            "$id": "#/properties/global",
+            "type": "object",
+            "title": "Helm global values",
+            "description": "For more information, see https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values",
+            "x-ignore-untested": true
+        },
+        "nameOverride": {
+            "$id": "#/properties/nameOverride",
+            "title": "Chart name override",
+            "description": "Will be used instead of the `.Chart.Name`, e.g. when generating the Deployment name.",
+            "type": "string",
+            "pattern": "[0-9a-z][0-9a-z-.]*"
+        },
+        "fullnameOverride": {
+            "$id": "#/properties/fullnameOverride",
+            "title": "Override for the `.fullname` helper function.",
+            "description": "Will be used as an override for the `.fullname` helper function (i.e. `.Release.Name-.Chart.Name`).",
+            "type": "string",
+            "pattern": "[0-9a-z][0-9a-z-.]*"
+        },
+        "serviceOfferingName": {
+            "$id": "#/properties/serviceOfferingName",
+            "description": "The name of the SAP BTP service offering.",
+            "type": "string",
+            "pattern": "[0-9a-z][0-9a-z-.]*"
+        },
+        "servicePlanName": {
+            "$id": "#/properties/servicePlanName",
+            "description": "The plan to use for the service instance.",
+            "type": "string",
+            "pattern": "[0-9a-z][0-9a-z-.]*"
+        },
+        "externalName": {
+            "$id": "#/properties/externalName",
+            "description": "The name for the service instance in SAP BTP.",
+            "type": "string",
+            "pattern": "[0-9a-z][0-9a-z-.]*"
+        },
+        "customTags": {
+            "$id": "#/properties/customTags",
+            "description": "List of custom tags describing the ServiceInstance, will be copied to `ServiceBinding` secret in the key called `tags`.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string"
+            }
+        },
+        "parameters": {
+            "$id": "#/properties/parameters",
+            "description": "Some services support the provisioning of additional configuration parameters. For the list of supported parameters, check the documentation of the particular service offering.",
+            "type": "object"
+        },
+        "jsonParameters": {
+            "$id": "#/properties/jsonParameters",
+            "description": "Some services support the provisioning of additional configuration parameters. For the list of supported parameters, check the documentation of the particular service offering.",
+            "type": "string"
+        },
+        "parametersFrom": {
+            "$id": "#/properties/parametersFrom",
+            "description": "List of sources to populate parameters.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "description": "Kubernetes Secret as a parameters source.",
+                "additionalProperties": false,
+                "properties": {
+                    "secretKeyRef": {
+                        "type": "object",
+                        "description": "Kubernetes Secret as a parameters source.",
+                        "additionalProperties": false,
+                        "required": [
+                            "name",
+                            "key"
+                        ],
+                        "properties": {
+                            "name": {
+                                "description": "Name of a Secret.",
+                                "type": "string"
+                            },
+                            "key": {
+                                "description": "Key in that Secret, which contains a string that represents the json to include in the set of parameters to be sent to the broker.",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

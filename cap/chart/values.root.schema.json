@@ -1,15 +1,66 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "allOf": [
-        {
-            "$ref": "./values.schema.json"
-        }
-    ],
+    "allOf": [{ "$ref": "./values.schema.json" }],
     "properties": {
         "srv": {
             "$id": "#/properties/srv",
             "description": "Deployment",
             "$ref": "./charts/web-application/values.schema.json"
+        },
+        "approuter": {
+            "$id": "#/properties/approuter",
+            "description": "Deployment",
+            "$ref": "./charts/web-application/values.schema.json"
+        },
+        "hana-deployer": {
+            "$id": "#/properties/hana-deployer",
+            "description": "Content Deployment",
+            "$ref": "./charts/content-deployment/values.schema.json"
+        },
+        "html5-apps-deployer": {
+            "$id": "#/properties/html5-apps-deployer",
+            "description": "Content Deployment",
+            "$ref": "./charts/content-deployment/values.schema.json"
+        },
+        "event-mesh": {
+            "$id": "#/properties/event-mesh",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
+        },
+        "html5-apps-repo-host": {
+            "$id": "#/properties/html5-apps-repo-host",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
+        },
+        "xsuaa": {
+            "$id": "#/properties/xsuaa",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
+        },
+        "auditlog": {
+            "$id": "#/properties/auditlog",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
+        },
+        "destination": {
+            "$id": "#/properties/destination",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
+        },
+        "hana": {
+            "$id": "#/properties/hana",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
+        },
+        "saas-registry": {
+            "$id": "#/properties/saas-registry",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
+        },
+        "service-manager": {
+            "$id": "#/properties/service-manager",
+            "description": "Service Instance",
+            "$ref": "./charts/service-instance/values.schema.json"
         }
     }
 }

@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "web-application.name" -}}
+{{- define "content-deployment.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "web-application.fullname" -}}
+{{- define "content-deployment.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -24,26 +24,33 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 
 {{/*
+Define a name for the Job object
 */}}
-{{- define "web-application.bindingName" -}}
-{{- printf "%s-%s" (include "web-application.fullname" .root ) .name }}
+{{- define "content-deployment.jobName" -}}
+{{- printf "%s-%04d" ((include "content-deployment.fullname" . ) | trunc 59) (mod .Release.Revision 1000) }}
+{{- end }}
+
+{{/*
+Define a name for a ServiceBinding object
+*/}}
+{{- define "content-deployment.bindingName" -}}
+{{- printf "%s-%s" (include "content-deployment.fullname" .root ) .name }}
 {{- end }}
 
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "web-application.chart" -}}
+{{- define "content-deployment.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "web-application.labels" -}}
+{{- define "content-deployment.labels" -}}
 helm.sh/revision: {{ .Release.Revision | quote }}
-helm.sh/chart: {{ include "web-application.chart" . }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{ include "web-application.selectorLabels" . }}
+helm.sh/chart: {{ include "content-deployment.chart" . }}
+{{ include "content-deployment.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -52,8 +59,9 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{/*
 Selector labels
 */}}
-{{- define "web-application.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "web-application.name" . }}
+{{- define "content-deployment.selectorLabels" -}}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+app.kubernetes.io/name: {{ include "content-deployment.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Values.global}}
 {{- if .Values.global.component }}
@@ -66,35 +74,12 @@ app.kubernetes.io/partOf: {{ .Values.global.partOf }}
 {{- end }}
 
 {{/*
-Define Host for the APIRule
-*/}}
-{{- define "web-application.exposeHost" -}}
-{{- if .Values.expose.host }}
-{{- .Values.expose.host }}
-{{- else }}
-{{- $name := (include "web-application.fullname" .) }}
-{{- if hasPrefix $name .Release.Namespace }}
-{{- .Release.Namespace }}
-{{- else }}
-{{- printf "%s-%s" $name .Release.Namespace | trunc 63 | trimSuffix "-" }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{/*
-Define the application uri which will be used for the VCAP_APPLICATION env variable
-*/}}
-{{- define "web-application.applicationUri" -}}
-{{- include "web-application.fullname" . }}
-{{- end }}
-
-{{/*
 Service Binding secret mounts
 */}}
-{{- define "web-application.serviceMounts" -}}
+{{- define "content-deployment.serviceMounts" -}}
 {{- range $name, $params := .Values.bindings }}
 - mountPath: /bindings/{{ $name }}/
-  name: "{{ $name }}"
+  name: {{ $name }}-binding
   readOnly: true
 {{- end }}
 {{- end }}
@@ -102,38 +87,38 @@ Service Binding secret mounts
 {{/*
 Service Binding secret volumes
 */}}
-{{- define "web-application.serviceVolumes" -}}
+{{- define "content-deployment.serviceVolumes" -}}
 {{- range $name, $params := .Values.bindings }}
-{{- $secretName := (include "web-application.bindingName" (dict "root" $ "name" $name)) }}
+{{- $secretName := (include "content-deployment.bindingName" (dict "root" $ "name" $name)) }}
 {{- if $params.fromSecret }}
 {{- $secretName = $params.fromSecret}}
 {{- else if $params.secretName }}
 {{- $secretName = $params.secretName }}
 {{- end }}
-- name: {{ $name }}
+- name: {{ $name }}-binding
   secret:
-    secretName: {{ tpl $secretName $ }}
+    secretName: {{ $secretName }}
 {{- end }}
 {{- end }}
 
 {{/*
 Name of the imagePullSecret
 */}}
-{{- define "web-application.imagePullSecretName" -}}
+{{- define "content-deployment.imagePullSecretName" -}}
 {{ $ips := (dict "local" .Values.imagePullSecret "global" .Values.global.imagePullSecret) }}
 {{- if $ips.local.name }}
 {{- $ips.local.name }}
 {{- else if $ips.global.name }}
 {{- $ips.global.name }}
 {{- else if or $ips.local.dockerconfigjson $ips.global.dockerconfigjson }}
-{{- include "web-application.fullname" . }}
+{{- include "content-deployment.fullname" . }}
 {{- end }}
 {{- end }}
 
 {{/*
 Calculate the final image name
 */}}
-{{- define "web-application.imageName" -}}
+{{- define "content-deployment.imageName" -}}
 {{- $tag := .Values.image.tag | default .Values.global.image.tag | default "latest" }}
 {{- $registry := .Values.image.registry | default .Values.global.image.registry }}
 {{- if $registry }}
@@ -146,73 +131,54 @@ Calculate the final image name
 {{/*
 Create the name of a service instance.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as service instance name.
+If release name contains chart name it will be used as service insatnce name.
 */}}
-{{- define "web-application.serviceInstanceName" -}}
-  {{- $name := "" }}
-  {{- if .binding.serviceInstanceFullname }}
+{{- define "content-deployment.serviceInstanceName" -}}
+ {{- if .binding.serviceInstanceFullname }}
     {{- if gt (len .binding.serviceInstanceFullname) 63 }}
       {{- fail (printf "name exceeds 63 characters: '%s'" .binding.serviceInstanceFullname) }}
     {{- end }}
-    {{- $name = .binding.serviceInstanceFullname }}
+    {{- .binding.serviceInstanceFullname }}
   {{- else }}
-    {{- $name = .binding.serviceInstanceName }}
-    {{- if not (hasPrefix .root.Release.Name $name)}}
-      {{- $name = printf "%s-%s" .root.Release.Name $name }}
+    {{- $name := .binding.serviceInstanceName }}
+    {{- if not (hasPrefix .release $name)}}
+      {{- $name = printf "%s-%s" .release $name }}
     {{- end }}
     {{- if gt (len $name) 63 }}
       {{- fail (printf "name exceeds 63 characters: '%s'" $name) }}
     {{- end }}
+    {{- $name }}
   {{- end }}
-  {{- tpl $name .root }}
 {{- end }}
 
-{{- define "web-application.processEnv" -}}
+{{- define "content-deployment.processEnv" -}}
 {{- $result := dict }}
 {{- $variables := list }}
-{{- range $k, $v := .Values.env }}
+{{- range $k, $v := . }}
   {{- $variable := dict }}
-  {{/*
-    We support two versions to provide environment varialbes: as an array and as a map
-
-    env:
-    - name: TEST
-      value: X
-
-    env:
-      TEST: X
-
-    Transform the map case into the array case:
-  */}}
-  {{- if (not (kindIs "map" $v)) }}
-    {{- $v = (dict "value" $v) }}
-  {{- end }}
-  {{- if (kindIs "string" $k) }} {{/* $k will be the array index (therefore int) in the array case */}}
-    {{- $_ := (set $v "name" $k) }}
-  {{- end }}
-
-  {{/* we have defaults for APPLICATION_NAME and APPLICATION_URI, but only want to provide them, if the users has no explicit values. */}}
-  {{- if eq "APPLICATION_NAME" $v.name }}
-    {{- $_ := set $result "appName" true }}
-  {{- end }}
-  {{- if eq "APPLICATION_URI" $v.name }}
-    {{- $_ := set $result "appURI" true }}
-  {{- end }}
-
-  {{/* Translate into K8s struct */}}
-  {{- $_ := set $variable "name" $v.name }}
-  {{- if $v.value }}
-    {{- $_ := set $variable "value" ($v.value | toString) }}
+  {{- if (kindIs "string" $k) }}
+    {{- $_ := set $variable "name" $k -}}
+    {{- if (kindIs "map" $v)}}
+    {{- $_ := set $variable "valueFrom" $v}}
+    {{- else }}
+    {{- $_ := set $variable "value" ($v | toString) }}
+    {{- end }}
   {{- else }}
-    {{- $_ := set $variable "valueFrom" (omit $v "name")}}
+    {{- $_ := set $variable "name" $v.name }}
+    {{- if $v.value }}
+      {{- $_ := set $variable "value" ($v.value | toString)}}
+    {{- else }}
+      {{- $_ := set $variable "valueFrom" (omit $v "name")}}
+    {{- end }}
   {{- end }}
   {{- $variables = append $variables $variable}}
 {{- end }}
 {{- $_ := set $result "vars" $variables }}
- {{- (fromYaml (tpl (toYaml $result) $)) | mustToJson }}
+{{- $result | mustToJson }}
 {{- end }}
 
 {{- define "web-application.processEnvFrom" -}}
+{{- $ := . -}}
 {{- $result := dict }}
 {{- $variables := list }}
 {{- range $secretName := .Values.envSecretNames }}
@@ -221,20 +187,21 @@ If release name contains chart name it will be used as service instance name.
   {{- $variables = append $variables (dict "secretRef" $variable)}}
 {{- end }}
 {{- range $envFrom := .Values.envFrom }}
+  {{- if hasKey $envFrom "configMapRef" }}
+    {{- if and (hasKey $envFrom.configMapRef "tpl") ($envFrom.configMapRef.tpl) }}
+    {{- $name := (tpl $envFrom.configMapRef.name $) }}
+    {{- $_ := set $envFrom.configMapRef "name" $name }}
+    {{- end }}
+    {{- $_ := unset $envFrom.configMapRef "tpl" }}
+  {{- else }}
+    {{- if and (hasKey $envFrom.secretRef "tpl") ($envFrom.secretRef.tpl) }}
+    {{- $name := (tpl $envFrom.secretRef.name $) }}
+    {{- $_ := set $envFrom.secretRef "name" $name }}
+    {{- end }}
+    {{- $_ := unset $envFrom.secretRef "tpl" }}
+  {{- end }}
   {{- $variables = append $variables $envFrom }}
 {{- end }}
 {{- $_ := set $result "vars" $variables }}
-{{- (fromYaml (tpl (toYaml $result) $)) | mustToJson }}
-{{- end }}
-
-{{- define "web-application.ha" -}}
-{{- $ha := true }}
-{{- if hasKey .Values "ha"}}
-  {{- if hasKey .Values.ha "enabled" }}
-    {{- $ha = .Values.ha.enabled }}
-  {{- end }}
-{{- end }}
-{{- if $ha }}
-true
-{{- end}}
+{{- $result | mustToJson }}
 {{- end }}

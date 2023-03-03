@@ -10,13 +10,15 @@ spec:
   template:
     metadata:
       labels: {{- include "web-application.selectorLabels" . | nindent 8 }}
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/{{ include "web-application.name" . }}: runtime/default
     spec:
       {{- if (include "web-application.imagePullSecretName" .) }}
       imagePullSecrets:
         - name: {{ include "web-application.imagePullSecretName" . }}
       {{- end }}
       automountServiceAccountToken: false
-      serviceAccountName: {{ .Values.serviceAccountName }}
+      serviceAccountName: {{ tpl (.Values.serviceAccountName | default (include "web-application.fullname" .)) $ }}
       containers:
       - image: {{ include "web-application.imageName" . }}
         name: {{ include "web-application.name" . }}
@@ -25,23 +27,11 @@ spec:
           containerPort: {{ .Values.port }}
           protocol: TCP
         envFrom:
-        {{- range $secretName := .Values.envSecretNames }}
-        - secretRef:
-            name: {{ $secretName }}
+        {{- $envFromVars := (include "web-application.processEnvFrom" . | fromJson) }}
+        {{- if not (eq (len $envFromVars.vars) 0) }}
+        {{- $envFromVars.vars | toYaml | nindent 8}}
         {{- end }}
         env:
-        {{- range $k, $v := .Values.env }}
-        - name: {{ $k }}
-          value: {{ $v | quote }}
-        {{- end }}
-        {{- if not .Values.env.APPLICATION_NAME }}
-        - name: APPLICATION_NAME
-          value: {{ include "web-application.fullname" . }}
-        {{- end }}
-        {{- if not .Values.env.APPLICATION_URI }}
-        - name: APPLICATION_URI
-          value: {{ include "web-application.applicationUri" . }}
-        {{- end }}
         {{- if .Values.bindings }}
         - name: SERVICE_BINDING_ROOT
           value: /bindings
@@ -50,34 +40,48 @@ spec:
           value: {{ .Values.port | quote }}
         - name: TMPDIR
           value: /tmp
+        {{- $envVars := (include "web-application.processEnv" $ | fromJson) }}
+        {{- if not (eq (len $envVars.vars) 0) }}
+        {{- $envVars.vars | toYaml | nindent 8}}
+        {{- end }}
+        {{- if not $envVars.appName}}
+        - name: APPLICATION_NAME
+          value: {{ include "web-application.fullname" . }}
+        {{- end }}
+        {{- if not $envVars.appURI}}
+        - name: APPLICATION_URI
+          value: {{ include "web-application.applicationUri" . }}
+        {{- end }}
+        {{- $health := .Values.health_check | default .Values.health }}
         livenessProbe:
-        {{- if .Values.health_check.liveness.path }}
+        {{- if $health.liveness.path }}
           httpGet:
-            path: {{ .Values.health_check.liveness.path }}
+            path: {{ $health.liveness.path }}
             port: http
         {{- else }}
           tcpSocket:
             port: {{ .Values.port }}
         {{- end }}
         readinessProbe:
-        {{- if .Values.health_check.readiness.path }}
+        {{- if $health.readiness.path }}
           httpGet:
-            path: {{ .Values.health_check.readiness.path }}
+            path: {{ $health.readiness.path }}
             port: http
         {{- else }}
           tcpSocket:
             port: {{ .Values.port }}
         {{- end }}
         startupProbe:
-        {{- if .Values.health_check.liveness.path }}
+        {{- if $health.liveness.path }}
           httpGet:
-            path: {{ .Values.health_check.liveness.path }}
+            path: {{ $health.liveness.path }}
             port: http
         {{- else }}
           tcpSocket:
             port: {{ .Values.port }}
         {{- end }}
-          failureThreshold: {{ div (add1 .Values.startupTimeout) 2 }}
+          {{- $startupTimeout := .Values.startupTimeout | default .Values.startupTimeoutSeconds }}
+          failureThreshold: {{ div (add1  $startupTimeout) 2 }}
           periodSeconds: 2
         volumeMounts:
         - name: tmp
@@ -96,16 +100,21 @@ spec:
             - ALL
           privileged: false
           readOnlyRootFilesystem: false
+          seccompProfile:
+            type: RuntimeDefault
       restartPolicy: Always
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       securityContext:
         runAsNonRoot: true
-      {{- if .Values.ha.enabled }}
+      {{- if (include "web-application.ha" .) }}
       topologySpreadConstraints:
+      {{- range $constraint := .Values.availability.topologySpreadConstraints }}
       - labelSelector:
-          matchLabels: {{- include "web-application.selectorLabels" . | nindent 12 }}
-        maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
+          matchLabels: {{- include "web-application.selectorLabels" $ | nindent 12 }}
+        maxSkew: {{ $constraint.maxSkew }}
+        topologyKey: {{ $constraint.topologyKey }}
+        whenUnsatisfiable: {{ $constraint.whenUnsatisfiable }}
+      {{- end }}
       {{- end }}
       volumes:
       - emptyDir: {}
@@ -113,5 +122,5 @@ spec:
       {{- include "web-application.serviceVolumes" . | nindent 6 }}
       {{- range $volume := .Values.additionalVolumes }}
       -
-        {{- omit $volume "volumeMount" | toYaml  | nindent 8 }}
+        {{- tpl (omit $volume "volumeMount" | toYaml) $ | nindent 8 }}
       {{- end }}

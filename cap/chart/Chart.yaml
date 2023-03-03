@@ -11,3 +11,12 @@ dependencies:
   - name: web-application
     alias: srv
     version: 0.1.0
+  - name: content-deployment
+    alias: hana-deployer
+    version: 0.1.0
+  - name: service-instance
+    alias: hana
+    version: 0.1.0
+  - name: service-instance
+    alias: event-mesh
+    version: 0.1.0

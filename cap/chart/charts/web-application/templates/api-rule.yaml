@@ -1,11 +1,15 @@
 {{ if .Values.expose.enabled}}
-apiVersion: gateway.kyma-project.io/v1alpha1
+apiVersion: gateway.kyma-project.io/v1beta1
 kind: APIRule
 metadata:
   name: {{ include "web-application.fullname" . }}
   labels: {{- include "web-application.labels" . | nindent 4 }}
 spec:
-  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  gateway: {{ .Values.expose.gateway }}
+  host: {{ include "web-application.exposeHost" . }}
+  service:
+    name: {{ include "web-application.fullname" . }}
+    port: {{ .Values.port }}
   rules:
   - accessStrategies:
     - handler: allow
@@ -17,8 +21,4 @@ spec:
     - DELETE
     - HEAD
     path: /.*
-  service:
-    host: {{ include "web-application.exposeHost" . }}
-    name: {{ include "web-application.fullname" . }}
-    port: {{ .Values.port }}
 {{ end }}

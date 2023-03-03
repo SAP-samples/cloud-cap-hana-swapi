@@ -1,0 +1,66 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels: {{- include "content-deployment.labels" . | nindent 4 }}
+  name: {{ include "content-deployment.jobName" . }}
+spec:
+  completions: 1
+  manualSelector: false
+  parallelism: 1
+  ttlSecondsAfterFinished: {{ mul .Values.ttlDaysAfterFinished 24 60 60 }}
+  template:
+    metadata:
+      labels: {{- include "content-deployment.labels" . | nindent 8 }}
+      annotations:
+        sidecar.istio.io/inject: "false"
+        container.apparmor.security.beta.kubernetes.io/{{ include "content-deployment.name" . }}: runtime/default
+    spec:
+      {{- if (include "content-deployment.imagePullSecretName" .) }}
+      imagePullSecrets:
+        - name: {{ include "content-deployment.imagePullSecretName" . }}
+      {{- end }}
+      automountServiceAccountToken: false
+      serviceAccountName: {{ include "content-deployment.fullname" . }}
+      containers:
+      - image: {{ include "content-deployment.imageName" . }}
+        name: {{ include "content-deployment.name" . }}
+        env:
+        - name: EXIT
+          value: "1"
+        - name: EXIT_PROCESS_AFTER_UPLOAD
+          value: "true"
+        - name: TMPDIR
+          value: /tmp
+        - name: SERVICE_BINDING_ROOT
+          value: /bindings
+        {{- $envVars := (include "content-deployment.processEnv" .Values.env | fromJson) }}
+        {{- if not (eq (len $envVars.vars) 0) }}
+        {{- $envVars.vars | toYaml | nindent 8}}
+        {{- end }}
+        envFrom:
+        {{- $envFromVars := (include "web-application.processEnvFrom" . | fromJson) }}
+        {{- if not (eq (len $envFromVars.vars) 0) }}
+        {{- $envFromVars.vars | toYaml | nindent 8}}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: false
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp
+        {{- include "content-deployment.serviceMounts" . | nindent 8 }}
+      restartPolicy: OnFailure
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      {{- include "content-deployment.serviceVolumes" . | nindent 6 }}

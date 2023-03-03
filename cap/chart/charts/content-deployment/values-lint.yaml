@@ -1,0 +1,5 @@
+image:
+  repository: default
+bindings:
+  hana:
+    serviceInstanceName: my-hana
