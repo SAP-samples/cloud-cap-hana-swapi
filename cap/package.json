@@ -27,6 +27,7 @@
     "build": "cds build",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
+    "asyncapi": "cds compile srv --service all -o docs --to asyncapi",
     "load": "node convertData",
     "load2": "cds bind --exec node convertData.js",
     "helm": "helm upgrade --install swapi ./chart --namespace teched22",

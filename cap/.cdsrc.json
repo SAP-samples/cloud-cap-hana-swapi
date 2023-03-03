@@ -1,3 +1,7 @@
 {
-
+    "export": {
+        "asyncapi": {
+            "application_namespace": "sap.swapi"
+        }
+    }
 }

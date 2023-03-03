@@ -931,8 +931,70 @@
   },
   "components": {
     "schemas": {
+      "DataService.Data": {
+        "title": "The actual data, organized by column name",
+        "type": "object",
+        "properties": {
+          "dummy": {
+            "type": "string",
+            "nullable": true
+          },
+          "record": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataService.Data_record"
+            }
+          }
+        },
+        "description": "The actual data, organized by column name"
+      },
+      "DataService.Data-create": {
+        "title": "The actual data, organized by column name (for create)",
+        "type": "object",
+        "properties": {
+          "dummy": {
+            "type": "string",
+            "nullable": true
+          },
+          "record": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataService.Data_record-create"
+            }
+          }
+        },
+        "description": "The actual data, organized by column name"
+      },
+      "DataService.Data_record": {
+        "title": "Data_record",
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "DataService.Data_record-create": {
+        "title": "Data_record (for create)",
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "DataService.Entities": {
-        "title": "Entities",
+        "title": "Metadata like name and columns/elements",
         "type": "object",
         "properties": {
           "name": {
@@ -951,17 +1013,11 @@
         "description": "Metadata like name and columns/elements"
       },
       "DataService.Entities-create": {
-        "title": "Entities (for create)",
+        "title": "Metadata like name and columns/elements (for create)",
         "type": "object",
         "properties": {
           "name": {
             "type": "string"
-          },
-          "columns": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DataService.Entities_columns-create"
-            }
           }
         },
         "required": [
@@ -970,43 +1026,9 @@
         "description": "Metadata like name and columns/elements"
       },
       "DataService.Entities-update": {
-        "title": "Entities (for update)",
+        "title": "Metadata like name and columns/elements (for update)",
         "type": "object",
         "description": "Metadata like name and columns/elements"
-      },
-      "DataService.Data": {
-        "title": "Data",
-        "type": "object",
-        "properties": {
-          "dummy": {
-            "type": "string",
-            "nullable": true
-          },
-          "record": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DataService.Data_record"
-            }
-          }
-        },
-        "description": "The actual data, organized by column name"
-      },
-      "DataService.Data-create": {
-        "title": "Data (for create)",
-        "type": "object",
-        "properties": {
-          "dummy": {
-            "type": "string",
-            "nullable": true
-          },
-          "record": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DataService.Data_record-create"
-            }
-          }
-        },
-        "description": "The actual data, organized by column name"
       },
       "DataService.Entities_columns": {
         "title": "Entities_columns",
@@ -1036,9 +1058,6 @@
         "title": "Entities_columns (for create)",
         "type": "object",
         "properties": {
-          "up_": {
-            "$ref": "#/components/schemas/DataService.Entities-create"
-          },
           "up__name": {
             "type": "string"
           },
@@ -1073,34 +1092,6 @@
           },
           "isKey": {
             "type": "boolean",
-            "nullable": true
-          }
-        }
-      },
-      "DataService.Data_record": {
-        "title": "Data_record",
-        "type": "object",
-        "properties": {
-          "column": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
-      "DataService.Data_record-create": {
-        "title": "Data_record (for create)",
-        "type": "object",
-        "properties": {
-          "column": {
-            "type": "string",
-            "nullable": true
-          },
-          "data": {
-            "type": "string",
             "nullable": true
           }
         }

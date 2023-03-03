@@ -9915,2013 +9915,6 @@
   },
   "components": {
     "schemas": {
-      "StarWarsVehicle.Vehicles": {
-        "title": "Vehicles",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "vehicle_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles"
-            }
-          },
-          "films@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "pilots": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot"
-            }
-          },
-          "pilots@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Vehicles-create": {
-        "title": "Vehicles (for create)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "vehicle_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles-create"
-            }
-          },
-          "pilots": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot-create"
-            }
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData-create"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles-create"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "required": [
-          "IsActiveEntity"
-        ],
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Vehicles-update": {
-        "title": "Vehicles (for update)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "vehicle_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Film": {
-        "title": "Film",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "episode_id": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "opening_crawl": {
-            "type": "string",
-            "nullable": true
-          },
-          "director": {
-            "type": "string",
-            "nullable": true
-          },
-          "producer": {
-            "type": "string",
-            "nullable": true
-          },
-          "release_date": {
-            "type": "string",
-            "format": "date",
-            "example": "2017-04-13",
-            "nullable": true
-          },
-          "characters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2People"
-            }
-          },
-          "characters@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "planets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Planets"
-            }
-          },
-          "planets@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "starships": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Starships"
-            }
-          },
-          "starships@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "vehicles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles"
-            }
-          },
-          "vehicles@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "species": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Species"
-            }
-          },
-          "species@odata.count": {
-            "$ref": "#/components/schemas/count"
-          }
-        },
-        "description": "All Films in the Star Wars Skywalker Saga"
-      },
-      "StarWarsVehicle.Film-create": {
-        "title": "Film (for create)",
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "episode_id": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "opening_crawl": {
-            "type": "string",
-            "nullable": true
-          },
-          "director": {
-            "type": "string",
-            "nullable": true
-          },
-          "producer": {
-            "type": "string",
-            "nullable": true
-          },
-          "release_date": {
-            "type": "string",
-            "format": "date",
-            "example": "2017-04-13",
-            "nullable": true
-          },
-          "characters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2People-create"
-            }
-          },
-          "planets": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Planets-create"
-            }
-          },
-          "starships": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Starships-create"
-            }
-          },
-          "vehicles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles-create"
-            }
-          },
-          "species": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Species-create"
-            }
-          }
-        },
-        "description": "All Films in the Star Wars Skywalker Saga"
-      },
-      "StarWarsVehicle.People": {
-        "title": "People",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "height": {
-            "type": "string",
-            "nullable": true
-          },
-          "mass": {
-            "type": "string",
-            "nullable": true
-          },
-          "hair_color": {
-            "type": "string",
-            "nullable": true,
-            "description": "Person's Hair Color"
-          },
-          "skin_color": {
-            "type": "string",
-            "nullable": true
-          },
-          "eye_color": {
-            "type": "string",
-            "nullable": true
-          },
-          "birth_year": {
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "type": "string",
-            "nullable": true
-          },
-          "homeworld": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Planet"
-              }
-            ],
-            "nullable": true
-          },
-          "homeworld_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2People"
-            }
-          },
-          "films@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "species": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Species2People"
-            }
-          },
-          "species@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "vehicles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot"
-            }
-          },
-          "vehicles@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "starships": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Starship2Pilot"
-            }
-          },
-          "starships@odata.count": {
-            "$ref": "#/components/schemas/count"
-          }
-        },
-        "description": "All People and Aliens in Star Wars"
-      },
-      "StarWarsVehicle.People-create": {
-        "title": "People (for create)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "height": {
-            "type": "string",
-            "nullable": true
-          },
-          "mass": {
-            "type": "string",
-            "nullable": true
-          },
-          "hair_color": {
-            "type": "string",
-            "nullable": true,
-            "description": "Person's Hair Color"
-          },
-          "skin_color": {
-            "type": "string",
-            "nullable": true
-          },
-          "eye_color": {
-            "type": "string",
-            "nullable": true
-          },
-          "birth_year": {
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "type": "string",
-            "nullable": true
-          },
-          "homeworld": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Planet-create"
-              }
-            ],
-            "nullable": true
-          },
-          "homeworld_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2People-create"
-            }
-          },
-          "species": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Species2People-create"
-            }
-          },
-          "vehicles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot-create"
-            }
-          },
-          "starships": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Starship2Pilot-create"
-            }
-          }
-        },
-        "description": "All People and Aliens in Star Wars"
-      },
-      "StarWarsVehicle.Planet": {
-        "title": "Planet",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "diameter": {
-            "type": "string",
-            "nullable": true
-          },
-          "rotation_period": {
-            "type": "string",
-            "nullable": true
-          },
-          "orbital_period": {
-            "type": "string",
-            "nullable": true
-          },
-          "gravity": {
-            "type": "string",
-            "nullable": true
-          },
-          "population": {
-            "type": "string",
-            "nullable": true
-          },
-          "climate": {
-            "type": "string",
-            "nullable": true
-          },
-          "terrain": {
-            "type": "string",
-            "nullable": true
-          },
-          "surface_water": {
-            "type": "string",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Planets"
-            }
-          },
-          "films@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "residents": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Planet2People"
-            }
-          },
-          "residents@odata.count": {
-            "$ref": "#/components/schemas/count"
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Planet-create": {
-        "title": "Planet (for create)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "diameter": {
-            "type": "string",
-            "nullable": true
-          },
-          "rotation_period": {
-            "type": "string",
-            "nullable": true
-          },
-          "orbital_period": {
-            "type": "string",
-            "nullable": true
-          },
-          "gravity": {
-            "type": "string",
-            "nullable": true
-          },
-          "population": {
-            "type": "string",
-            "nullable": true
-          },
-          "climate": {
-            "type": "string",
-            "nullable": true
-          },
-          "terrain": {
-            "type": "string",
-            "nullable": true
-          },
-          "surface_water": {
-            "type": "string",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Planets-create"
-            }
-          },
-          "residents": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Planet2People-create"
-            }
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Film2Vehicles": {
-        "title": "Film2Vehicles",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "vehicle": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles"
-              }
-            ],
-            "nullable": true
-          },
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Vehicles-create": {
-        "title": "Film2Vehicles (for create)",
-        "type": "object",
-        "properties": {
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film-create"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "vehicle": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles-create"
-              }
-            ],
-            "nullable": true
-          },
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData-create"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles-create"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "required": [
-          "IsActiveEntity"
-        ],
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Vehicles-update": {
-        "title": "Film2Vehicles (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Vehicle2Pilot": {
-        "title": "Vehicle2Pilot",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "vehicle": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles"
-              }
-            ],
-            "nullable": true
-          },
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People"
-              }
-            ],
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Vehicle2Pilot-create": {
-        "title": "Vehicle2Pilot (for create)",
-        "type": "object",
-        "properties": {
-          "vehicle": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles-create"
-              }
-            ],
-            "nullable": true
-          },
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People-create"
-              }
-            ],
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "IsActiveEntity": {
-            "type": "boolean",
-            "default": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "DraftAdministrativeData": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData-create"
-              }
-            ],
-            "nullable": true
-          },
-          "SiblingEntity": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot-create"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "required": [
-          "IsActiveEntity"
-        ],
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Vehicle2Pilot-update": {
-        "title": "Vehicle2Pilot (for update)",
-        "type": "object",
-        "properties": {
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "HasActiveEntity": {
-            "type": "boolean",
-            "default": false
-          },
-          "HasDraftEntity": {
-            "type": "boolean",
-            "default": false
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.vModels": {
-        "title": "vModels",
-        "type": "object",
-        "properties": {
-          "model": {
-            "type": "string"
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.vClass": {
-        "title": "vClass",
-        "type": "object",
-        "properties": {
-          "vehicle_class": {
-            "type": "string"
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.vManufacturer": {
-        "title": "vManufacturer",
-        "type": "object",
-        "properties": {
-          "manufacturer": {
-            "type": "string"
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Film2People": {
-        "title": "Film2People",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People"
-              }
-            ],
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2People-create": {
-        "title": "Film2People (for create)",
-        "type": "object",
-        "properties": {
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film-create"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People-create"
-              }
-            ],
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2People-update": {
-        "title": "Film2People (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Planets": {
-        "title": "Film2Planets",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "planet": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Planet"
-              }
-            ],
-            "nullable": true
-          },
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Planets-create": {
-        "title": "Film2Planets (for create)",
-        "type": "object",
-        "properties": {
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film-create"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "planet": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Planet-create"
-              }
-            ],
-            "nullable": true
-          },
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Planets-update": {
-        "title": "Film2Planets (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Starships": {
-        "title": "Film2Starships",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "starship": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Starship"
-              }
-            ],
-            "nullable": true
-          },
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Starships-create": {
-        "title": "Film2Starships (for create)",
-        "type": "object",
-        "properties": {
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film-create"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "starship": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Starship-create"
-              }
-            ],
-            "nullable": true
-          },
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Starships-update": {
-        "title": "Film2Starships (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Species": {
-        "title": "Film2Species",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "specie_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Species-create": {
-        "title": "Film2Species (for create)",
-        "type": "object",
-        "properties": {
-          "film": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Film-create"
-              }
-            ],
-            "nullable": true
-          },
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "specie_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Film2Species-update": {
-        "title": "Film2Species (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "specie_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Species2People": {
-        "title": "Species2People",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "species_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People"
-              }
-            ],
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Species2People-create": {
-        "title": "Species2People (for create)",
-        "type": "object",
-        "properties": {
-          "species_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People-create"
-              }
-            ],
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Species2People-update": {
-        "title": "Species2People (for update)",
-        "type": "object",
-        "properties": {
-          "species_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Starship2Pilot": {
-        "title": "Starship2Pilot",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "starship": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Starship"
-              }
-            ],
-            "nullable": true
-          },
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People"
-              }
-            ],
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Starship2Pilot-create": {
-        "title": "Starship2Pilot (for create)",
-        "type": "object",
-        "properties": {
-          "starship": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Starship-create"
-              }
-            ],
-            "nullable": true
-          },
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People-create"
-              }
-            ],
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Starship2Pilot-update": {
-        "title": "Starship2Pilot (for update)",
-        "type": "object",
-        "properties": {
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Planet2People": {
-        "title": "Planet2People",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "planet": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Planet"
-              }
-            ],
-            "nullable": true
-          },
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People"
-              }
-            ],
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Planet2People-create": {
-        "title": "Planet2People (for create)",
-        "type": "object",
-        "properties": {
-          "planet": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.Planet-create"
-              }
-            ],
-            "nullable": true
-          },
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/StarWarsVehicle.People-create"
-              }
-            ],
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Planet2People-update": {
-        "title": "Planet2People (for update)",
-        "type": "object",
-        "properties": {
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsVehicle.Starship": {
-        "title": "Starship",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "starship_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "hyperdrive_rating": {
-            "type": "string",
-            "nullable": true
-          },
-          "MGLT": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Starships"
-            }
-          },
-          "films@odata.count": {
-            "$ref": "#/components/schemas/count"
-          },
-          "pilots": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Starship2Pilot"
-            }
-          },
-          "pilots@odata.count": {
-            "$ref": "#/components/schemas/count"
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Starship-create": {
-        "title": "Starship (for create)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "starship_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "hyperdrive_rating": {
-            "type": "string",
-            "nullable": true
-          },
-          "MGLT": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          },
-          "films": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Film2Starships-create"
-            }
-          },
-          "pilots": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StarWarsVehicle.Starship2Pilot-create"
-            }
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsVehicle.Starship-update": {
-        "title": "Starship (for update)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "starship_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "hyperdrive_rating": {
-            "type": "string",
-            "nullable": true
-          },
-          "MGLT": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
       "StarWarsVehicle.DraftAdministrativeData": {
         "title": "DraftAdministrativeData",
         "type": "object",
@@ -12057,6 +10050,1641 @@
             "nullable": true
           }
         }
+      },
+      "StarWarsVehicle.Film": {
+        "title": "All Films in the Star Wars Skywalker Saga",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "episode_id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "opening_crawl": {
+            "type": "string",
+            "nullable": true
+          },
+          "director": {
+            "type": "string",
+            "nullable": true
+          },
+          "producer": {
+            "type": "string",
+            "nullable": true
+          },
+          "release_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2017-04-13",
+            "nullable": true
+          },
+          "characters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2People"
+            }
+          },
+          "characters@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "planets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2Planets"
+            }
+          },
+          "planets@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "starships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2Starships"
+            }
+          },
+          "starships@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles"
+            }
+          },
+          "vehicles@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "species": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2Species"
+            }
+          },
+          "species@odata.count": {
+            "$ref": "#/components/schemas/count"
+          }
+        },
+        "description": "All Films in the Star Wars Skywalker Saga"
+      },
+      "StarWarsVehicle.Film2People": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "film": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Film"
+              }
+            ],
+            "nullable": true
+          },
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.People"
+              }
+            ],
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2People-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2People-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Planets": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "film": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Film"
+              }
+            ],
+            "nullable": true
+          },
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "planet": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Planet"
+              }
+            ],
+            "nullable": true
+          },
+          "planet_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Planets-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "planet_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Planets-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "planet_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Species": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "film": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Film"
+              }
+            ],
+            "nullable": true
+          },
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "specie_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Species-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "specie_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Species-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "specie_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Starships": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "film": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Film"
+              }
+            ],
+            "nullable": true
+          },
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "starship": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Starship"
+              }
+            ],
+            "nullable": true
+          },
+          "starship_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Starships-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "starship_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Starships-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "starship_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Vehicles": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "film": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Film"
+              }
+            ],
+            "nullable": true
+          },
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles"
+              }
+            ],
+            "nullable": true
+          },
+          "vehicle_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData"
+              }
+            ],
+            "nullable": true
+          },
+          "SiblingEntity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Vehicles-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "vehicle_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "IsActiveEntity"
+        ],
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Film2Vehicles-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "film_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "vehicle_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.People": {
+        "title": "All People and Aliens in Star Wars",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "height": {
+            "type": "string",
+            "nullable": true,
+            "default": "Test"
+          },
+          "mass": {
+            "type": "string",
+            "nullable": true
+          },
+          "hair_color": {
+            "type": "string",
+            "nullable": true,
+            "description": "Person's Hair Color"
+          },
+          "skin_color": {
+            "type": "string",
+            "nullable": true
+          },
+          "eye_color": {
+            "type": "string",
+            "nullable": true
+          },
+          "birth_year": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "homeworld": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Planet"
+              }
+            ],
+            "nullable": true
+          },
+          "homeworld_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2People"
+            }
+          },
+          "films@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "species": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Species2People"
+            }
+          },
+          "species@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot"
+            }
+          },
+          "vehicles@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "starships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Starship2Pilot"
+            }
+          },
+          "starships@odata.count": {
+            "$ref": "#/components/schemas/count"
+          }
+        },
+        "description": "All People and Aliens in Star Wars"
+      },
+      "StarWarsVehicle.Planet": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "diameter": {
+            "type": "string",
+            "nullable": true
+          },
+          "rotation_period": {
+            "type": "string",
+            "nullable": true
+          },
+          "orbital_period": {
+            "type": "string",
+            "nullable": true
+          },
+          "gravity": {
+            "type": "string",
+            "nullable": true
+          },
+          "population": {
+            "type": "string",
+            "nullable": true
+          },
+          "climate": {
+            "type": "string",
+            "nullable": true
+          },
+          "terrain": {
+            "type": "string",
+            "nullable": true
+          },
+          "surface_water": {
+            "type": "string",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2Planets"
+            }
+          },
+          "films@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "residents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Planet2People"
+            }
+          },
+          "residents@odata.count": {
+            "$ref": "#/components/schemas/count"
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.Planet2People": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "planet": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Planet"
+              }
+            ],
+            "nullable": true
+          },
+          "planet_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.People"
+              }
+            ],
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Planet2People-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "planet_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Planet2People-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "planet_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Species2People": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "species_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.People"
+              }
+            ],
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Species2People-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "species_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Species2People-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "species_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "people_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Starship": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "starship_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "MGLT": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2Starships"
+            }
+          },
+          "films@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "pilots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Starship2Pilot"
+            }
+          },
+          "pilots@odata.count": {
+            "$ref": "#/components/schemas/count"
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.Starship-create": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for create)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "starship_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "MGLT": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.Starship-update": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "starship_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "hyperdrive_rating": {
+            "type": "string",
+            "nullable": true
+          },
+          "MGLT": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.Starship2Pilot": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "starship": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Starship"
+              }
+            ],
+            "nullable": true
+          },
+          "starship_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "pilot": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.People"
+              }
+            ],
+            "nullable": true
+          },
+          "pilot_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Starship2Pilot-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "starship_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "pilot_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Starship2Pilot-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "starship_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "pilot_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Vehicle2Pilot": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "vehicle": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles"
+              }
+            ],
+            "nullable": true
+          },
+          "vehicle_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "pilot": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.People"
+              }
+            ],
+            "nullable": true
+          },
+          "pilot_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData"
+              }
+            ],
+            "nullable": true
+          },
+          "SiblingEntity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Vehicle2Pilot-create": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
+        "type": "object",
+        "properties": {
+          "vehicle_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "pilot_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "IsActiveEntity"
+        ],
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Vehicle2Pilot-update": {
+        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
+        "type": "object",
+        "properties": {
+          "vehicle_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "pilot_ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "nullable": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+      },
+      "StarWarsVehicle.Vehicles": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true,
+            "description": "{i18n>UserID.Description}"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Film2Vehicles"
+            }
+          },
+          "films@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "pilots": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsVehicle.Vehicle2Pilot"
+            }
+          },
+          "pilots@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData"
+              }
+            ],
+            "nullable": true
+          },
+          "SiblingEntity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.Vehicles"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.Vehicles-create": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for create)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsVehicle.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "IsActiveEntity"
+        ],
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.Vehicles-update": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicle_class": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturer": {
+            "type": "string",
+            "nullable": true
+          },
+          "cost_in_credits": {
+            "type": "string",
+            "nullable": true
+          },
+          "length": {
+            "type": "string",
+            "nullable": true
+          },
+          "crew": {
+            "type": "string",
+            "nullable": true
+          },
+          "passengers": {
+            "type": "string",
+            "nullable": true
+          },
+          "max_atmosphering_speed": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo_capacity": {
+            "type": "string",
+            "nullable": true
+          },
+          "consumables": {
+            "type": "string",
+            "nullable": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.vClass": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
+        "type": "object",
+        "properties": {
+          "vehicle_class": {
+            "type": "string"
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.vManufacturer": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
+        "type": "object",
+        "properties": {
+          "manufacturer": {
+            "type": "string"
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+      },
+      "StarWarsVehicle.vModels": {
+        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          }
+        },
+        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
       },
       "count": {
         "anyOf": [
