@@ -1,13 +1,13 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js/graphql": "0.3.1",
-    "@sap/cds": "^6.6.2",
+    "@cap-js/graphql": "0.4.1",
+    "@sap/cds": "^6.7.0",
     "@sap/cds-common-content": "^1.1.0",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
-    "start": "cds run",
+    "start": "cds-serve",
     "watch": "cds watch --profile hybrid --livereload false",
     "build": "cds build",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
@@ -41,9 +41,12 @@
         "_i18n"
       ]
     },
+    "fiori": {
+      "lean_draft": false
+    },
     "preview": {
       "ui5": {
-        "version": "1.111.0"
+        "version": "1.112.1"
       }
     },
     "cdsc": {
@@ -96,11 +99,12 @@
     }
   },
   "devDependencies": {
-    "@sap/cds-dk": "^6.5.2",
+    "@cap-js/sqlite": "^0.1.0",
+    "@sap/cds-dk": "^6.7.0",
     "@sap/eslint-plugin-cds": "^2.6.3",
-    "@sap/hdi-deploy": "^4.5.3",
+    "@sap/hdi-deploy": "^4.6.0",
     "cds2types": "^3.0.0",
-    "eslint": "^8.35.0",
+    "eslint": "^8.37.0",
     "stringify-changelog": "^0.2.1"
   }
 }
