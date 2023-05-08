@@ -464,6 +464,7 @@ entity People : cuid, managed {
     eye_color  : String;
     birth_year : String;
     gender     : String;
+    scoundrel  : Boolean default false;
     @assert.target
     homeworld  : Association to Planet;
     films      : Composition of many Film2People
