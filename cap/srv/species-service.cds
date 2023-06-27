@@ -1,6 +1,7 @@
 using {star.wars as StarWars} from '../db/schema';
 
-service StarWarsSpecies @(path : '/StarWarsSpecies') {
+@protocol: ['odata-v4', 'graphql']
+service StarWarsSpecies @(path : 'StarWarsSpecies') {
     @odata.draft.enabled : true
     entity Species        as projection on StarWars.Species {
         * , homeworld : redirected to Planet

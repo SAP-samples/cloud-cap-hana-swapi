@@ -11,7 +11,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "/StarWarsPeople/",
+                "uri": "/odata/v4/StarWarsPeople/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"

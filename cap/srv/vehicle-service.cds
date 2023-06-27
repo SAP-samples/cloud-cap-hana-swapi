@@ -1,6 +1,7 @@
 using {star.wars as StarWars} from '../db/schema';
 
-service StarWarsVehicle @(path : '/StarWarsVehicle') {
+@protocol: ['odata-v4', 'graphql']
+service StarWarsVehicle @(path : 'StarWarsVehicle') {
     @odata.draft.enabled : true
     entity Vehicles      as projection on StarWars.Vehicles;
 

@@ -9,12 +9,12 @@
     "@cap-js/graphql": "0.6.0",
     "@sap/cds": "^7.0.0",
     "@sap/cds-common-content": "^1.2.0",
-    "@cap-js-community/odata-v2-adapter": "^1.11.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
-    "cds-swagger-ui-express": "^0.6.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "hdb": "^0.19.5",
+    "swagger-ui-express": "^4.6.3",
     "uuid": "^9.0"
   },
   "engines": {
@@ -93,14 +93,14 @@
       "assert_integrity": "db",
       "odata_new_parser": true
     },
+    "log": {
+      "service": true
+    },
     "protocols": {
       "graphql": {
         "path": "/graphql",
         "impl": "@cap-js/graphql"
       }
-    },
-    "log": {
-      "service": true
     }
   },
   "devDependencies": {
