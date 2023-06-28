@@ -18,7 +18,7 @@
     "uuid": "^9.0"
   },
   "engines": {
-    "node": ">=14.18.0"
+    "node": ">=16"
   },
   "scripts": {
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
@@ -51,7 +51,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.113.0"
+        "version": "1.115.0"
       }
     },
     "cdsc": {

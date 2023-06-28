@@ -3,14 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [1.1.10] - 2023-04-07
+## [1.2.0] - 2023-06-28
 
 **Changed**
 
-- SAP CAP updated to 6.7 March 2023 Rel
-- SAPUI5 update to 1.112.1
-- Add dev dependency to [new SQLite Service](https://cap.cloud.sap/docs/releases/march23#new-sqlite-service)
-- Changed to [cds-serve command](https://cap.cloud.sap/docs/releases/march23#change-your-start-script-to-cds-serve)
+- SAP CAP updated to 7.0 June 2023 Rel - Major Annual Update
+- SAPUI5 update to 1.115.0
 
 ## [1.1.8] - 2023-02-28
 

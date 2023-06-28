@@ -1,5 +1,13 @@
 [
     {
+        "date": "2023-06-28",
+        "version": "1.2.0",
+        "Changed": [
+            "SAP CAP updated to 7.0 June 2023 Rel - Major Annual Update",
+            "SAPUI5 update to 1.115.0"
+        ]
+    },
+    {
         "date": "2023-02-28",
         "version": "1.1.8",
         "Changed": [
