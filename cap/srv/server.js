@@ -3,21 +3,12 @@
 //
 // Needs @sap/cds-dk >= 3.3.0 installed
 const cds_swagger = require ('cds-swagger-ui-express')
-//const swaggerUi = require('swagger-ui-express')
 const cds = require('@sap/cds')
-const cors = require('cors')
-const proxy = require('@cap-js-community/odata-v2-adapter')
-
-
 let app
 
 cds
   .on('bootstrap', _app => {
     app = _app
-    app.use(cors())  // allow to be called from e.g. editor.swagger.io
-
-    //OData V2
-    app.use(proxy())
     app.use (cds_swagger()) 
 
   })

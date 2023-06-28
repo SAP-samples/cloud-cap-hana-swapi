@@ -216,6 +216,10 @@
             "type": "string",
             "title": "{i18n>gender}"
           },
+          "scoundrel": {
+            "type": "boolean",
+            "default": false
+          },
           "homeworld": {
             "type": "object",
             "properties": {

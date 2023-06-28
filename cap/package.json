@@ -10,7 +10,8 @@
     "@sap/cds": "^7.0.0",
     "@sap/cds-common-content": "^1.2.0",
     "@sap/cds-fiori": "^1.0.0",
-    "@sap/cds-hana": "^2.0.0", 
+    "@sap/cds-hana": "^2.0.0",
+    "@sap-cloud-sdk/resilience": "^3.2.0",
     "@cap-js-community/odata-v2-adapter": "^1.11.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.6.0",
@@ -37,10 +38,13 @@
     "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
   },
   "cds": {
-    "query":{
+    "query": {
       "limit": {
         "reliablePaging": true
       }
+    },
+    "cov2ap": {
+      "plugin": true
     },
     "i18n": {
       "folders": [
