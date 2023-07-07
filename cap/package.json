@@ -13,6 +13,8 @@
     "@sap/cds-common-content": "^1.2.0",
     "@sap/cds-fiori": "^1.0.0",
     "@sap/cds-hana": "^2.0.0",
+    "@cap-js/sqlite": "^1.0.1",
+    "@cap-js/postgres": "^1.0.1",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.6.0",
     "cors": "^2.8.5",
@@ -23,18 +25,21 @@
     "node": ">=16"
   },
   "scripts": {
+    "build": "cds build",
+    "build_sqlite": "cds deploy --profile sqlite",
+    "build_pg": "cds deploy --profile pg",
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
+    "load": "node convertData",
+    "load_sqlite": "cds bind --exec node convertData.js --profile sqlite",
+    "load_pg": "cds bind --exec node convertData.js --profile pg",
     "start": "cds-serve",
     "watch": "cds watch --profile hybrid --livereload false",
     "sqlite": "cds watch --profile sqlite --livereload false",
-    "build": "cds build",
-    "build_sqlite": "cds deploy --profile sqlite",
+    "pg": "cds watch --profile pg --livereload false",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "asyncapi": "cds compile srv --service all -o docs --to asyncapi",
     "readme": "widdershins --summary docs/DataService.openapi3.json -o docs/DataService_readme.md && widdershins --summary docs/StarWarsFilm.openapi3.json -o docs/StarWarsFilm_readme.md",
-    "load": "node convertData",
-    "load_sqlite": "cds bind --exec node convertData.js --profile sqlite",
     "helm": "helm upgrade --install swapi ./chart --namespace teched22",
     "changeLog": "node CHANGELOG.mjs",
     "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
@@ -86,6 +91,23 @@
           "model": "db/sqlite"
         }
       },
+      "[pg]": {
+        "db": {
+          "kind": "postgres",
+          "dialect": "postgres",
+          "impl": "@cap-js/postgres",
+          "schema_evolution": "auto",
+          "credentials": {
+            "host": "localhost", "port": 5432,
+            "user": "postgres",
+            "password": "postgres",
+            "database": "postgres"
+          }
+        },
+        "db-ext":{
+          "model": "db/sqlite"
+        }
+      },
       "middlewares": true,
       "db": {
         "kind": "hana-cloud"
@@ -125,7 +147,6 @@
     }
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1.0.1",
     "@sap/cds-dk": "^7.0.2",
     "@sap/eslint-plugin-cds": "^2.6.3",
     "@sap/hdi-deploy": "^4.6.1",

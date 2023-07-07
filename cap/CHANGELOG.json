@@ -1,5 +1,13 @@
 [
     {
+        "date": "2023-07-07",
+        "version": "1.2.1",
+        "Changed": [
+            "Add support for new sqlite database service",
+            "Add support for new postgres database service"
+        ]
+    },
+    {
         "date": "2023-06-28",
         "version": "1.2.0",
         "Changed": [

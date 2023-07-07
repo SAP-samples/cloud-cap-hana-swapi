@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.1] - 2023-07-07
+
+**Changed**
+
+- Add support for new sqlite database service
+- Add support for new postgres database service
+
 ## [1.2.0] - 2023-06-28
 
 **Changed**

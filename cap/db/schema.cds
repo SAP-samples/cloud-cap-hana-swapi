@@ -29,7 +29,7 @@ entity Film : cuid, managed {
         X     = 10;
         OTHER = 0;
     };
-    opening_crawl : String;
+    opening_crawl : String(2500);
     director      : String;
     producer      : String;
     release_date  : Date;
