@@ -1,18 +1,18 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js/graphql": "0.6.0",
-    "@sap/cds": "^7.0.0",
+    "@cap-js-community/odata-v2-adapter": "^1.11.4",
+    "@cap-js/graphql": "0.6.1",
+    "@sap-cloud-sdk/resilience": "^3.2.0",
+    "@sap/cds": "^7.0.2",
     "@sap/cds-common-content": "^1.2.0",
     "@sap/cds-fiori": "^1.0.0",
     "@sap/cds-hana": "^2.0.0",
-    "@sap-cloud-sdk/resilience": "^3.2.0",
-    "@cap-js-community/odata-v2-adapter": "^1.11.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.6.0",
     "cors": "^2.8.5",
@@ -26,12 +26,15 @@
     "hana": "cds deploy --to hana:starwars --auto-undeploy",
     "start": "cds-serve",
     "watch": "cds watch --profile hybrid --livereload false",
+    "sqlite": "cds watch --profile sqlite --livereload false",
     "build": "cds build",
+    "build_sqlite": "cds deploy --profile sqlite",
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "asyncapi": "cds compile srv --service all -o docs --to asyncapi",
+    "readme": "widdershins --summary docs/DataService.openapi3.json -o docs/DataService_readme.md && widdershins --summary docs/StarWarsFilm.openapi3.json -o docs/StarWarsFilm_readme.md",
     "load": "node convertData",
-    "load2": "cds bind --exec node convertData.js",
+    "load_sqlite": "cds bind --exec node convertData.js --profile sqlite",
     "helm": "helm upgrade --install swapi ./chart --namespace teched22",
     "changeLog": "node CHANGELOG.mjs",
     "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
@@ -52,7 +55,7 @@
       ]
     },
     "fiori": {
-      "lean_draft": false
+      "lean_draft": true
     },
     "preview": {
       "ui5": {
@@ -73,9 +76,22 @@
       "deploy-format": "hdbtable"
     },
     "requires": {
+      "[sqlite]": {
+        "db": {
+          "kind": "sqlite",
+          "impl": "@cap-js/sqlite",
+          "schema_evolution": "auto"
+        },
+        "db-ext":{
+          "model": "db/sqlite"
+        }
+      },
       "middlewares": true,
       "db": {
         "kind": "hana-cloud"
+      },
+      "db-ext":{
+        "model": "db/hana"
       },
       "messaging": {
         "[production]": {
@@ -109,10 +125,12 @@
     }
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7.0.0",
+    "@cap-js/sqlite": "^1.0.1",
+    "@sap/cds-dk": "^7.0.2",
     "@sap/eslint-plugin-cds": "^2.6.3",
     "@sap/hdi-deploy": "^4.6.1",
-    "eslint": "^8.43.0",
-    "stringify-changelog": "^0.2.1"
+    "eslint": "^8.44.0",
+    "stringify-changelog": "^0.2.1",
+    "widdershins": "^4.0.1"
   }
 }

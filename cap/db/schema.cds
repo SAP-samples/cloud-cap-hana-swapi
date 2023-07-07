@@ -452,7 +452,6 @@ annotate Film2Species with {
  */
 @cds.autoexpose : true
 entity People : cuid, managed {
-    @sql.append : 'FUZZY SEARCH INDEX ON'
     name       : String;
     height     : String default 'Test';
     mass       : String;
@@ -477,12 +476,6 @@ entity People : cuid, managed {
                      on starships.pilot = $self;
 }
 
-define view tallestPerson as
-    select from People distinct {
-        first_value(name order by
-            to_integer(height) desc
-        ) as tallest_name: String
-};
 
 define view peopleCount as
     select from People distinct {

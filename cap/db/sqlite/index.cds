@@ -1,0 +1,1 @@
+using {star.wars} from '../schema';
