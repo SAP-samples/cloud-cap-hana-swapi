@@ -7,9 +7,9 @@
   "private": false,
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.11.4",
-    "@cap-js/graphql": "0.6.1",
-    "@sap-cloud-sdk/resilience": "^3.2.0",
-    "@sap/cds": "^7.0.2",
+    "@cap-js/graphql": "0.6.2",
+    "@sap-cloud-sdk/resilience": "^3.3.0",
+    "@sap/cds": "^7.0.3",
     "@sap/cds-common-content": "^1.2.0",
     "@sap/cds-fiori": "^1.0.0",
     "@sap/cds-hana": "^2.0.0",
@@ -147,10 +147,10 @@
     }
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7.0.2",
+    "@sap/cds-dk": "^7.0.3",
     "@sap/eslint-plugin-cds": "^2.6.3",
-    "@sap/hdi-deploy": "^4.6.1",
-    "eslint": "^8.44.0",
+    "@sap/hdi-deploy": "^4.7.1",
+    "eslint": "^8.45.0",
     "stringify-changelog": "^0.2.1",
     "widdershins": "^4.0.1"
   }
