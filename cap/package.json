@@ -1,20 +1,20 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js-community/odata-v2-adapter": "^1.11.4",
+    "@cap-js-community/odata-v2-adapter": "^1.11.5",
     "@cap-js/graphql": "0.6.2",
-    "@sap-cloud-sdk/resilience": "^3.3.0",
-    "@sap/cds": "^7.0.3",
+    "@sap-cloud-sdk/resilience": "^3.4.0",
+    "@sap/cds": "^7.1.1",
     "@sap/cds-common-content": "^1.2.0",
     "@sap/cds-fiori": "^1.0.0",
     "@sap/cds-hana": "^2.0.0",
-    "@cap-js/sqlite": "^1.0.1",
-    "@cap-js/postgres": "^1.0.1",
+    "@cap-js/sqlite": "^1.1.0",
+    "@cap-js/postgres": "^1.1.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.6.0",
     "cors": "^2.8.5",
@@ -147,10 +147,10 @@
     }
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7.0.3",
+    "@sap/cds-dk": "^7.1.0",
     "@sap/eslint-plugin-cds": "^2.6.3",
-    "@sap/hdi-deploy": "^4.7.1",
-    "eslint": "^8.45.0",
+    "@sap/hdi-deploy": "^4.8.0",
+    "eslint": "^8.46.0",
     "stringify-changelog": "^0.2.1",
     "widdershins": "^4.0.1"
   }
