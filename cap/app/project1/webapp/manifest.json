@@ -1,0 +1,161 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:worklist",
+      "version": "1.10.4",
+      "toolsId": "e34f4033-4b9f-4cdb-8eb9-1675739b847c"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/StarWarsPeople/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.117.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "PeopleList",
+          "target": "PeopleList"
+        },
+        {
+          "pattern": "People({key}):?query:",
+          "name": "PeopleObjectPage",
+          "target": "PeopleObjectPage"
+        },
+        {
+          "pattern": "People({key})/films({key2}):?query:",
+          "name": "Film2PeopleObjectPage",
+          "target": "Film2PeopleObjectPage"
+        }
+      ],
+      "targets": {
+        "PeopleList": {
+          "type": "Component",
+          "id": "PeopleList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "People",
+              "variantManagement": "Page",
+              "hideFilterBar": true,
+              "navigation": {
+                "People": {
+                  "detail": {
+                    "route": "PeopleObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PeopleObjectPage": {
+          "type": "Component",
+          "id": "PeopleObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "entitySet": "People",
+              "navigation": {
+                "films": {
+                  "detail": {
+                    "route": "Film2PeopleObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Film2PeopleObjectPage": {
+          "type": "Component",
+          "id": "Film2PeopleObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "entitySet": "Film2People"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

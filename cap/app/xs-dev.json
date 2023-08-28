@@ -1,0 +1,13 @@
+{
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "dependency": "project1",
+      "authenticationType": "none"
+    },
+    {
+      "dependency": "my-cap-app",
+      "authenticationType": "none"
+    }
+  ]
+}

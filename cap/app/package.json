@@ -1,0 +1,24 @@
+{
+    "name": "app-router",
+    "private": true,
+    "description": "App router",
+    "engines": {
+        "node": ">= 14.0.0"
+    },
+    "scripts": {
+        "start": "node node_modules/@sap/approuter/approuter.js",
+        "start-local": "node node_modules/@sap/html5-repo-mock/index.js",
+        "build": "mkdir -p dist && jq 'del(.devDependencies)' package.json > dist/package.json && cp xs-app.json dist/xs-app.json",
+        "dev": "node node_modules/dev-approuter"
+    },
+    "dependencies": {
+        "@sap/approuter": "^11"
+    },
+    "devDependencies": {
+        "@sap/html5-repo-mock": "^2.1.0",
+        "dev-approuter": "^0.1.2",
+        "project1": "./project1",
+        "my-cap-app": "../"
+
+    }
+}

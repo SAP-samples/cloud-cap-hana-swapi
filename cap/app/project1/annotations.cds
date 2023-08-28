@@ -1,0 +1,1 @@
+using StarWarsPeople as service from '../../srv/people-service';

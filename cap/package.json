@@ -6,15 +6,15 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js-community/odata-v2-adapter": "^1.11.5",
+    "@cap-js-community/odata-v2-adapter": "^1.11.6",
     "@cap-js/graphql": "0.6.2",
+    "@cap-js/postgres": "^1.1.0",
+    "@cap-js/sqlite": "^1.1.0",
     "@sap-cloud-sdk/resilience": "^3.4.0",
-    "@sap/cds": "^7.1.1",
+    "@sap/cds": "^7.1.2",
     "@sap/cds-common-content": "^1.2.0",
     "@sap/cds-fiori": "^1.0.0",
     "@sap/cds-hana": "^2.0.0",
-    "@cap-js/sqlite": "^1.1.0",
-    "@cap-js/postgres": "^1.1.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.6.0",
     "cors": "^2.8.5",
@@ -43,7 +43,9 @@
     "helm": "helm upgrade --install swapi ./chart --namespace teched22",
     "changeLog": "node CHANGELOG.mjs",
     "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
-    "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
+    "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base",
+    "devApp": "cd ./app && npm run dev",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
     "query": {
@@ -64,7 +66,7 @@
     },
     "preview": {
       "ui5": {
-        "version": "1.116.0"
+        "version": "1.117.1"
       }
     },
     "cdsc": {
@@ -87,7 +89,7 @@
           "impl": "@cap-js/sqlite",
           "schema_evolution": "auto"
         },
-        "db-ext":{
+        "db-ext": {
           "model": "db/sqlite"
         }
       },
@@ -98,13 +100,14 @@
           "impl": "@cap-js/postgres",
           "schema_evolution": "auto",
           "credentials": {
-            "host": "localhost", "port": 5432,
+            "host": "localhost",
+            "port": 5432,
             "user": "postgres",
             "password": "postgres",
             "database": "postgres"
           }
         },
-        "db-ext":{
+        "db-ext": {
           "model": "db/sqlite"
         }
       },
@@ -112,7 +115,7 @@
       "db": {
         "kind": "hana-cloud"
       },
-      "db-ext":{
+      "db-ext": {
         "model": "db/hana"
       },
       "messaging": {
@@ -147,11 +150,20 @@
     }
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7.1.0",
+    "@sap/cds-dk": "^7.1.1",
     "@sap/eslint-plugin-cds": "^2.6.3",
     "@sap/hdi-deploy": "^4.8.0",
-    "eslint": "^8.46.0",
+    "eslint": "^8.47.0",
+    "mbt": "^1.2.24",
+    "rimraf": "^5.0.1",
     "stringify-changelog": "^0.2.1",
-    "widdershins": "^4.0.1"
-  }
+    "widdershins": "^4.0.1",
+    "cds-plugin-ui5": "^0.1.4"
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project1"
+  ]
 }

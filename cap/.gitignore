@@ -31,3 +31,14 @@ mta_archives/
 
 # added by cds bind
 .cdsrc-private.json
+
+node_modules/
+dist/
+.scp/
+.env
+Makefile*.mta
+mta_archives
+mta-*
+resources
+archive.zip
+.*_mta_build_tmp
