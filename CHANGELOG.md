@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.3] - 2023-09-06
+
+**Changed**
+
+- [CAP version 7.2.0](https://cap.cloud.sap/docs/releases/aug23)
+- New Node.js minimum version of 18. [16 is end of life](https://nodejs.org/en/blog/announcements/nodejs16-eol)
+
 ## [1.2.1] - 2023-07-07
 
 **Changed**

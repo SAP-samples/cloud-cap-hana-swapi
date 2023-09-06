@@ -108,6 +108,7 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
+                            "initialLoad": "Enabled",
                             "entitySet": "People",
                             "variantManagement": "Page",
                             "navigation": {

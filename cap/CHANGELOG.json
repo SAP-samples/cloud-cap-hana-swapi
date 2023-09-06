@@ -1,5 +1,13 @@
 [
     {
+        "date": "2023-09-06",
+        "version": "1.2.3",
+        "Changed": [
+            "[CAP version 7.2.0](https://cap.cloud.sap/docs/releases/aug23)",
+            "New Node.js minimum version of 18. [16 is end of life](https://nodejs.org/en/blog/announcements/nodejs16-eol)"
+        ]
+    },
+    {
         "date": "2023-07-07",
         "version": "1.2.1",
         "Changed": [

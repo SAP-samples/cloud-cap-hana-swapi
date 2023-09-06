@@ -46,7 +46,7 @@
           "@Core.Immutable": true,
           "@title": "{i18n>CreatedAt}",
           "@readonly": true,
-          "type": "cds.UTCTimestamp",
+          "type": "cds.Timestamp",
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
@@ -73,7 +73,7 @@
           "@UI.HiddenFilter": true,
           "@title": "{i18n>ChangedAt}",
           "@readonly": true,
-          "type": "cds.UTCTimestamp",
+          "type": "cds.Timestamp",
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
@@ -132,7 +132,7 @@
           "@title": "{i18n>opening_crawl}",
           "@UI.MultiLineText": true,
           "type": "cds.String",
-          "length": 5000,
+          "length": 2500,
           "@cds.persistence.name": "OPENING_CRAWL"
         },
         "director": {
@@ -167,7 +167,7 @@
         },
         "release_date": {
           "@title": "{i18n>release_date}",
-          "type": "cds.LocalDate",
+          "type": "cds.Date",
           "@cds.persistence.name": "RELEASE_DATE"
         },
         "characters": {
@@ -290,8 +290,8 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v3.7.2",
-    "build": "CDS Build v6.6.0"
+    "creator": "CDS Compiler v4.2.2",
+    "build": "CDS Build v7.2.0"
   },
   "$version": "2.0"
 }
