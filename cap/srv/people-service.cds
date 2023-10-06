@@ -44,6 +44,7 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
     @readonly : true
     entity skinColors @(cds.redirection.target : false) as projection on StarWars.skinColors;
 
+
     entity Film2People                                  as projection on StarWars.Film2People {
         * , people : redirected to People
     };
