@@ -7,5 +7,6 @@
     "csv (semicolon)",
     "tsv",
     "tab"
-  ]
+  ],
+  "SAP HANA Database Artifacts.displaySapWebAnalyticsStartupNotification": false
 }
