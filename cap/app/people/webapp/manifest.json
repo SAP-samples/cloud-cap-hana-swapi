@@ -117,6 +117,28 @@
                                         "route": "PeopleObjectPage"
                                     }
                                 }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "enablePaste": true,
+                                        "enableFullScreen": true,
+                                        "creationMode": {
+                                            "name": "Inline",
+                                            "createAtEnd": true
+                                        },
+                                        "personalization": {
+                                            "column": true,
+                                            "sort": true,
+                                            "filter": true
+                                        },
+                                        "editableHeaderContent": false,
+                                        "showRelatedApps": true,
+                                        "enableMassEdit": true,
+                                        "enableExport": true
+                                    }
+                                }
                             }
                         }
                     }

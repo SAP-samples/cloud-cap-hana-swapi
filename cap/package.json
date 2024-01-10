@@ -63,13 +63,13 @@
       ]
     },
     "fiori": {
-      "lean_draft": true
-    },
-    "preview": {
-      "ui5": {
-        "version": "1.120.4"
+      "bypass_draft": true,
+      "preview": {
+        "ui5": {
+          "version": "1.120.4"
+        }
       }
-    },
+    },    
     "cdsc": {
       "docs": true,
       "beta": {
