@@ -18,6 +18,13 @@ module.exports = cds.service.impl(function () {
                 Type: 'String'
               },
               {
+                Key: 'user',
+                IsSensitive: false,
+                Language: 'en',
+                Value: cds.context.user.id,
+                Type: 'String'
+              },
+              {
                 Key: 'name',
                 IsSensitive: true,
                 Language: 'en',

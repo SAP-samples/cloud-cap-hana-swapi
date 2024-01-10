@@ -1,0 +1,16 @@
+[
+    {
+      "NotificationTypeKey": "PeopleAltered",
+      "NotificationTypeVersion": "1",
+      "Templates": [
+        {
+          "Language": "en",
+          "TemplatePublic": "People Altered",
+          "TemplateSensitive": "People '{{name}}' Altered",
+          "TemplateGrouped": "People Altered",
+          "TemplateLanguage": "mustache",
+          "Subtitle": "People record '{{name}}' altered by {{user}}."
+        }
+      ]
+    }
+  ]
