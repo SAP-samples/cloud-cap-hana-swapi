@@ -476,6 +476,15 @@ entity People : cuid, managed {
                      on starships.pilot = $self;
 }
 
+ annotate People with @PersonalData : {
+    DataSubjectRole : 'Person',
+    EntitySemantics : 'DataSubject'
+}{
+    ID @PersonalData.FieldSemantics: 'DataSubjectID';
+    name @PersonalData.IsPotentiallyPersonal;
+    mass @PersonalData.IsPotentiallySensitive;
+} 
+
 
 define view peopleCount as
     select from People distinct {

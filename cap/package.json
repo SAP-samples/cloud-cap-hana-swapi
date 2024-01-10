@@ -1,12 +1,13 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.12.2",
+    "@cap-js/audit-logging": "^0.5.2",
     "@cap-js/graphql": "0.9.0",
     "@cap-js/postgres": "^1.4.1",
     "@cap-js/sqlite": "^1.4.0",

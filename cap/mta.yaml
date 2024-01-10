@@ -4,7 +4,7 @@
 ## approuter=
 _schema-version: '3.1'
 ID: cap-hana-swapi
-version: 1.2.4
+version: 1.2.5
 description: "A simple CAP project."
 parameters:
   enable-parallel-deployments: true
@@ -25,6 +25,7 @@ modules:
    requires:
     # Resources extracted from CAP configuration
     - name: starwars
+    - name: starwars-auditlog-service
    provides:
     - name: srv-api      # required by consumers of CAP services (e.g. approuter)
       properties:
@@ -54,4 +55,6 @@ resources:
      service-plan: hdi-shared
    properties:
      hdi-service-name: ${service-name}
+ - name: starwars-auditlog-service
+   type: org.cloudfoundry.existing-service
 

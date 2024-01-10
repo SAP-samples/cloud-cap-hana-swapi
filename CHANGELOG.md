@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.5] - 2024-01-10
+
+**Changed**
+
+- [CAP version 7.4.0](https://cap.cloud.sap/docs/releases/nov23)
+- [CAP version 7.5.0](https://cap.cloud.sap/docs/releases/dec23)
+- Add [Audit Logging](https://cap.cloud.sap/docs/guides/data-privacy/audit-logging) functionality - added to People entity
+- Update for SAPUI5 1.120
+
 ## [1.2.3] - 2023-09-06
 
 **Changed**
