@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - [CAP version 7.5.0](https://cap.cloud.sap/docs/releases/dec23)
 - Add [Audit Logging](https://cap.cloud.sap/docs/guides/data-privacy/audit-logging) functionality - added to People entity in schema.cds
 - Add [Notifications](https://cap.cloud.sap/docs/plugins/#notifications) - emit alert upon change/update/create of People entity - see people-service.js
+- Add [Change Tracking](https://github.com/cap-js/change-tracking) - see change-tracking.cds for annotations adding tacking to the People entity
 - Update for SAPUI5 1.120
 
 ## [1.2.3] - 2023-09-06
