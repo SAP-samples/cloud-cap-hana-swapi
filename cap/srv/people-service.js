@@ -21,7 +21,7 @@ module.exports = cds.service.impl(function () {
                 Key: 'name',
                 IsSensitive: true,
                 Language: 'en',
-                Value: req.data.ID,
+                Value: req.data.name,
                 Type: 'String'
               }
             ],
