@@ -9,6 +9,8 @@ srv:
       serviceInstanceName: hana
     messaging:
       serviceInstanceName: event-mesh
+    destination:
+      serviceInstanceName: 'destination'
   image:
     repository: ghcr.io/sap-samples/cap-hana-swapi-srv
     tag: latest
@@ -64,3 +66,8 @@ hana:
 event-mesh:
   serviceOfferingName: enterprise-messaging
   servicePlanName: default
+destination:
+  serviceOfferingName: 'destination'
+  servicePlanName: 'lite'
+  parameters:
+    version: '1.0.0'

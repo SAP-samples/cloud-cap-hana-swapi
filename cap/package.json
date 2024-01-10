@@ -84,6 +84,7 @@
       "deploy-format": "hdbtable"
     },
     "requires": {
+      "outbox": true,
       "[sqlite]": {
         "db": {
           "kind": "sqlite",

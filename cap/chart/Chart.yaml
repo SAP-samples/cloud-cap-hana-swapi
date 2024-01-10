@@ -20,3 +20,6 @@ dependencies:
   - name: service-instance
     alias: event-mesh
     version: 0.1.0
+  - name: service-instance
+    alias: destination
+    version: ">0.0.0"
