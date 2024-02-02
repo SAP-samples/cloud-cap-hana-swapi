@@ -1,5 +1,14 @@
 [
     {
+        "date": "2024-02-02",
+        "version": "1.2.7",
+        "Changed": [
+            "[CAP version 7.6.0](https://cap.cloud.sap/docs/releases/jan24)",
+            "Add [Telemetry Plugin](https://cap.cloud.sap/docs/releases/jan24#open-telemetry-plugin)",
+            "Update for SAPUI5 1.120.5"
+        ]
+    },
+    {
         "date": "2024-01-10",
         "version": "1.2.5",
         "Changed": [

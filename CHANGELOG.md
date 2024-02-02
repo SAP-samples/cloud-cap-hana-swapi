@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.2.7] - 2024-02-02
+
+**Changed**
+
+- [CAP version 7.6.0](https://cap.cloud.sap/docs/releases/jan24)
+- Add [Telemetry Plugin](https://cap.cloud.sap/docs/releases/jan24#open-telemetry-plugin)
+- Update for SAPUI5 1.120.5
+
 ## [1.2.5] - 2024-01-10
 
 **Changed**
