@@ -32,7 +32,7 @@ The projects described above have fallen out of maintenance but still offered th
 
 ![starships diagram](images/Starship.png)
 
-#### Vechicles
+#### Vehicles
 
 ![vehicles diagram](images/Vehicle.png)
 
