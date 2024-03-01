@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.0] - 2024-03-01
+
+**Changed**
+
+- [CAP version 7.7.0](https://cap.cloud.sap/docs/releases/feb24)
+- Update for SAPUI5 1.121.0
+
 ## [1.2.7] - 2024-02-02
 
 **Changed**

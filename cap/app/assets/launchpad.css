@@ -1,0 +1,7 @@
+.sapUshellShellIco {
+    cursor: auto;
+    pointer-events: none;
+}
+#meAreaHeaderButton {
+    display: none;
+}

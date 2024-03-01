@@ -1,0 +1,78 @@
+.customCellImageBackground {
+    color: #fff;
+    background-image: url("header.jpg");
+    background-size: cover;
+}
+.customCellImageBackground .sapUiBlockCellContent,
+.customCellImageBackground .sapUiBlockCellContent .sapMText {
+    color: #fff;
+}
+.launchpad {
+    height: 35rem;
+    width: 100%;
+}
+.titleLink {
+    margin-top: 0.75rem;
+    text-shadow: 0 0 BLACK !important;
+    color: #91C8F6 !important;
+}
+.sectionContentMargin {
+    margin-top: 2rem;
+}
+.blockLayoutContentRow {
+    margin-top: 4rem;
+}
+.parentTable {
+    margin-left: -1rem;
+}
+.childTable {
+    margin-bottom: 2rem;
+}
+.tableDescription {
+    padding: 0 0 0 0.5rem;
+}
+.webAppSeparator {
+    margin-bottom: 2rem;
+}
+.servicesSeparator {
+    margin-bottom: 1rem;
+}
+.transparentTable .sapUiTableCnt {
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    background-color: transparent;
+}
+.transparentTable .sapUiTableCCnt {
+    border-bottom: none;
+}
+.transparentTable .sapUiTableCell {
+    border-right: none;
+    border-bottom: none;
+}
+.transparentTable .sapUiTableContentRow {
+    background-color: transparent;
+}
+.transparentTable .sapUiTableContentRow .sapUiTableCellDummy {
+    background-color: transparent !important;
+    border-left: none;
+}
+.sapUiTableCell:focus::before {
+    outline: none !important;
+}
+.sapMLIBFocusable:focus {
+    outline: none;
+}
+.sapFShellBarHomeIcon {
+    cursor: auto;
+    pointer-events: none;
+}
+/* .transparentTable .sapUiTableColHdrCnt {
+    background-color: transparent;
+} */
+/* .transparentTable .sapUiTableCellDummy {
+    background-color: transparent;
+} */
+/* .transparentTable .sapUiTableHeaderRow {
+    background-color: transparent;
+} */
