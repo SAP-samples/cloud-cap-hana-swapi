@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.3.5] - 2024-05-17
+
+**Changed**
+
+- [CAP version 7.9.0](https://cap.cloud.sap/docs/releases/apr24#april-release)
+- Update for SAPUI5 1.124.0
+- Switch to [@cap-js/hana](https://cap.cloud.sap/docs/releases/mar24#new-sap-hana-database-service) for the HANA DB implementation
+- Reduce number of views by using [cds.sql.transitive_localized_views](https://cap.cloud.sap/docs/releases/apr24#fewer-views-in-database)
+
 ## [1.3.0] - 2024-03-01
 
 **Changed**

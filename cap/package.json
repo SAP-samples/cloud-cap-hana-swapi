@@ -1,28 +1,29 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.3.0",
+  "version": "1.3.5",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js-community/odata-v2-adapter": "^1.12.5",
-    "@cap-js/audit-logging": "^0.6.0",
-    "@cap-js/change-tracking": "^1.0.5",
-    "@cap-js/graphql": "0.10.0",
-    "@cap-js/notifications": "^0.1.0",
-    "@cap-js/postgres": "^1.5.1",
-    "@cap-js/sqlite": "^1.5.1",
-    "@cap-js/telemetry": "^0.0.4",
-    "@sap-cloud-sdk/resilience": "^3.12.0",
-    "@sap/cds": "^7.7.0",
+    "@cap-js-community/odata-v2-adapter": "^1.12.9",
+    "@cap-js/audit-logging": "^0.7.0",
+    "@cap-js/change-tracking": "^1.0.6",
+    "@cap-js/graphql": "0.10.1",
+    "@cap-js/hana": "^0.4.0",
+    "@cap-js/notifications": "^0.2.0",
+    "@cap-js/postgres": "^1.8.0",
+    "@cap-js/sqlite": "^1.7.1",
+    "@cap-js/telemetry": "^0.1.0",
+    "@sap-cloud-sdk/resilience": "^3.15.0",
+    "@sap/cds": "^7.9.1",
     "@sap/cds-common-content": "^1.3.1",
     "@sap/cds-fiori": "^1.2.3",
     "@sap/cds-hana": "^2.0.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.8.0",
     "cors": "^2.8.5",
-    "express": "^4.18.3",
+    "express": "^4.19.2",
     "uuid": "^9.0.1"
   },
   "engines": {
@@ -52,6 +53,9 @@
     "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
   },
   "cds": {
+    "sql": {
+      "transitive_localized_views": true
+    },
     "query": {
       "limit": {
         "reliablePaging": true
@@ -69,7 +73,7 @@
       "bypass_draft": true,
       "preview": {
         "ui5": {
-          "version": "1.121.0"
+          "version": "1.124.0"
         }
       }
     },
@@ -121,7 +125,8 @@
       },
       "middlewares": true,
       "db": {
-        "kind": "hana-cloud"
+        "kind": "hana-cloud",
+        "impl": "@cap-js/hana"
       },
       "db-ext": {
         "model": "db/hana"
@@ -158,12 +163,12 @@
     }
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7.7.0",
-    "@sap/eslint-plugin-cds": "^2.6.5",
-    "@sap/hdi-deploy": "^5.0.1",
-    "eslint": "^8.57.0",
+    "@sap/cds-dk": "^7.9.2",
+    "@sap/dev-cap-tools": "^1.34.0",
+    "@sap/eslint-plugin-cds": "^3.0.3",
+    "@sap/hdi-deploy": "^5.1.1",
+    "eslint": "^9.2.0",
     "stringify-changelog": "^0.2.1",
-    "widdershins": "^4.0.1",
-    "@sap/dev-cap-tools": "^1.31.0"
+    "widdershins": "^4.0.1"
   }
 }
