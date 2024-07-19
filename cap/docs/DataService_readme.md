@@ -23,7 +23,7 @@ headingLevel: 2
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-This service is located at [/-data/](/-data/)
+This service is located at [/odata/v4/-data/](/odata/v4/-data/)
 
 ## Entity Data Model
 ![ER Diagram](https://yuml.me/diagram/class/[Entities{bg:lightslategray}],[Entities]-*[Entities_columns],[Data{bg:lightslategray}],[Data]++-*[Data_record],[Entities_columns{bg:lightslategray}],[Data_record],[Entities_columns%20{bg:lawngreen}]++-*>[Entities_columns],[Data%20{bg:lawngreen}]++-*>[Data],[Entities%20{bg:lawngreen}]++-*>[Entities])
@@ -33,25 +33,25 @@ This service is located at [/-data/](/-data/)
 
 Base URLs:
 
-* <a href="/-data">/-data</a>
+* <a href="/odata/v4/-data">/odata/v4/-data</a>
 
 <h1 id="-data">Data</h1>
 
 The actual data, organized by column name
 
-## Retrieve a list of data.
+## Retrieves a list of data.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET /-data/Data \
+curl -X GET /odata/v4/-data/Data \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET /-data/Data HTTP/1.1
+GET /odata/v4/-data/Data HTTP/1.1
 
 Accept: application/json
 
@@ -63,7 +63,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Data',
+fetch('/odata/v4/-data/Data',
 {
   method: 'GET',
 
@@ -85,7 +85,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '/-data/Data',
+result = RestClient.get '/odata/v4/-data/Data',
   params: {
   }, headers: headers
 
@@ -99,7 +99,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/-data/Data', headers = headers)
+r = requests.get('/odata/v4/-data/Data', headers = headers)
 
 print(r.json())
 
@@ -120,7 +120,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','/-data/Data', array(
+    $response = $client->request('GET','/odata/v4/-data/Data', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -137,7 +137,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Data");
+URL obj = new URL("/odata/v4/-data/Data");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -168,7 +168,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/-data/Data", data)
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Data", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -180,7 +180,7 @@ func main() {
 
 `GET /Data`
 
-<h3 id="retrieve-a-list-of-data.-parameters">Parameters</h3>
+<h3 id="retrieves-a-list-of-data.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -211,7 +211,7 @@ func main() {
 
 ```json
 {
-  "@odata.count": 0,
+  "@count": 0,
   "value": [
     {
       "dummy": "string",
@@ -226,14 +226,14 @@ func main() {
 }
 ```
 
-<h3 id="retrieve-a-list-of-data.-responses">Responses</h3>
+<h3 id="retrieves-a-list-of-data.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved data|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
 
-<h3 id="retrieve-a-list-of-data.-responseschema">Response Schema</h3>
+<h3 id="retrieves-a-list-of-data.-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -241,7 +241,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» @odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|» @count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 
 *anyOf*
 
@@ -259,11 +259,11 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» value|[[DataService.Data](#schemadataservice.data)]|false|none|[The actual data, organized by column name]|
-|»» The actual data, organized by column name|[DataService.Data](#schemadataservice.data)|false|none|The actual data, organized by column name|
-|»»» dummy|string¦null|false|none|none|
-|»»» record|[[DataService.Data_record](#schemadataservice.data_record)]|false|none|none|
-|»»»» Data_record|[DataService.Data_record](#schemadataservice.data_record)|false|none|none|
+|» value|[[DataService.Data](#schemadataservice.data)]|false|none|none|
+|»» The actual data, organized by column name|[DataService.Data](#schemadataservice.data)|false|none|none|
+|»»» dummy|string|false|none|none|
+|»»» record|[allOf]|false|none|none|
+|»»»» Data_record|[DataService.Data_record](#schemadataservice.data_record)¦null|false|none|none|
 |»»»»» column|string¦null|false|none|none|
 |»»»»» data|string¦null|false|none|none|
 
@@ -271,20 +271,20 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a single datum.
+## Creates a single datum.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST /-data/Data \
+curl -X POST /odata/v4/-data/Data \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-POST /-data/Data HTTP/1.1
+POST /odata/v4/-data/Data HTTP/1.1
 
 Content-Type: application/json
 Accept: application/json
@@ -306,7 +306,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Data',
+fetch('/odata/v4/-data/Data',
 {
   method: 'POST',
   body: inputBody,
@@ -329,7 +329,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.post '/-data/Data',
+result = RestClient.post '/odata/v4/-data/Data',
   params: {
   }, headers: headers
 
@@ -344,7 +344,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('/-data/Data', headers = headers)
+r = requests.post('/odata/v4/-data/Data', headers = headers)
 
 print(r.json())
 
@@ -366,7 +366,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('POST','/-data/Data', array(
+    $response = $client->request('POST','/odata/v4/-data/Data', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -383,7 +383,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Data");
+URL obj = new URL("/odata/v4/-data/Data");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -415,7 +415,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "/-data/Data", data)
+    req, err := http.NewRequest("POST", "/odata/v4/-data/Data", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -441,7 +441,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-datum.-parameters">Parameters</h3>
+<h3 id="creates-a-single-datum.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -463,7 +463,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-datum.-responses">Responses</h3>
+<h3 id="creates-a-single-datum.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -474,23 +474,19 @@ func main() {
 This operation does not require authentication
 </aside>
 
-<h1 id="-entities">Entities</h1>
-
-Metadata like name and columns/elements
-
-## Retrieve a list of entities.
+## Retrieves a single datum.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET /-data/Entities \
+curl -X GET /odata/v4/-data/Data('{dummy}') \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET /-data/Entities HTTP/1.1
+GET /odata/v4/-data/Data('{dummy}') HTTP/1.1
 
 Accept: application/json
 
@@ -502,7 +498,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities',
+fetch('/odata/v4/-data/Data('{dummy}')',
 {
   method: 'GET',
 
@@ -524,7 +520,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '/-data/Entities',
+result = RestClient.get '/odata/v4/-data/Data('{dummy}')',
   params: {
   }, headers: headers
 
@@ -538,7 +534,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/-data/Entities', headers = headers)
+r = requests.get('/odata/v4/-data/Data('{dummy}')', headers = headers)
 
 print(r.json())
 
@@ -559,7 +555,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','/-data/Entities', array(
+    $response = $client->request('GET','/odata/v4/-data/Data('{dummy}')', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -576,7 +572,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities");
+URL obj = new URL("/odata/v4/-data/Data('{dummy}')");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -607,7 +603,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/-data/Entities", data)
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Data('{dummy}')", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -617,30 +613,21 @@ func main() {
 
 ```
 
-`GET /Entities`
+`GET /Data('{dummy}')`
 
-<h3 id="retrieve-a-list-of-entities.-parameters">Parameters</h3>
+<h3 id="retrieves-a-single-datum.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|$top|query|integer|false|Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)|
-|$skip|query|integer|false|Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)|
-|$search|query|string|false|Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)|
-|$filter|query|string|false|Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)|
-|$count|query|boolean|false|Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)|
-|$orderby|query|array[string]|false|Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)|
 |$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
-|$expand|query|array[string]|false|The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)|
+|dummy|path|string|true|key: dummy|
 
 #### Enumerated Values
 
 |Parameter|Value|
 |---|---|
-|$orderby|name|
-|$orderby|name desc|
-|$select|name|
-|$expand|*|
-|$expand|columns|
+|$select|dummy|
+|$select|record|
 
 > Example responses
 
@@ -648,88 +635,41 @@ func main() {
 
 ```json
 {
-  "@odata.count": 0,
-  "value": [
+  "dummy": "string",
+  "record": [
     {
-      "name": "string",
-      "columns": [
-        {
-          "up_": {},
-          "up__name": "string",
-          "name": "string",
-          "type": "string",
-          "isKey": true
-        }
-      ],
-      "columns@odata.count": 0
+      "column": "string",
+      "data": "string"
     }
   ]
 }
 ```
 
-<h3 id="retrieve-a-list-of-entities.-responses">Responses</h3>
+<h3 id="retrieves-a-single-datum.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entities|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved datum|[DataService.Data](#schemadataservice.data)|
 |4XX|Unknown|Error|[error](#schemaerror)|
-
-<h3 id="retrieve-a-list-of-entities.-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-*Collection of Entities*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» @odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
-
-*anyOf*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|»» *anonymous*|number|false|none|none|
-
-*or*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|»» *anonymous*|string|false|none|none|
-
-*continued*
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» value|[[DataService.Entities](#schemadataservice.entities)]|false|none|[Metadata like name and columns/elements]|
-|»» Metadata like name and columns/elements|[DataService.Entities](#schemadataservice.entities)|false|none|Metadata like name and columns/elements|
-|»»» name|string|false|none|none|
-|»»» columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
-|»»»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|Metadata like name and columns/elements|
-|»»»»» up__name|string|false|none|none|
-|»»»»» name|string¦null|false|none|none|
-|»»»»» type|string¦null|false|none|none|
-|»»»»» isKey|boolean¦null|false|none|none|
-|»»» columns@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Create a single entity.
+## Changes a single datum.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST /-data/Entities \
+curl -X PATCH /odata/v4/-data/Data('{dummy}') \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-POST /-data/Entities HTTP/1.1
+PATCH /odata/v4/-data/Data('{dummy}') HTTP/1.1
 
 Content-Type: application/json
 Accept: application/json
@@ -738,403 +678,19 @@ Accept: application/json
 
 ```javascript
 const inputBody = '{
-  "name": "string"
+  "record": [
+    {
+      "column": "string",
+      "data": "string"
+    }
+  ]
 }';
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json'
-}
-
-result = RestClient.post '/-data/Entities',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.post('/-data/Entities', headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','/-data/Entities', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/-data/Entities");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Content-Type": []string{"application/json"},
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "/-data/Entities", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`POST /Entities`
-
-> Body parameter
-
-```json
-{
-  "name": "string"
-}
-```
-
-<h3 id="create-a-single-entity.-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[DataService.Entities-create](#schemadataservice.entities-create)|true|Metadata like name and columns/elements|
-
-> Example responses
-
-> 201 Response
-
-```json
-{
-  "name": "string",
-  "columns": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [],
-        "columns@odata.count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
-  ],
-  "columns@odata.count": 0
-}
-```
-
-<h3 id="create-a-single-entity.-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created entity|[DataService.Entities](#schemadataservice.entities)|
-|4XX|Unknown|Error|[error](#schemaerror)|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## Retrieve a single entity.
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET /-data/Entities('{name}') \
-  -H 'Accept: application/json'
-
-```
-
-```http
-GET /-data/Entities('{name}') HTTP/1.1
-
-Accept: application/json
-
-```
-
-```javascript
-
-const headers = {
-  'Accept':'application/json'
-};
-
-fetch('/-data/Entities('{name}')',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get '/-data/Entities('{name}')',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('/-data/Entities('{name}')', headers = headers)
-
-print(r.json())
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-);
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','/-data/Entities('{name}')', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```java
-URL obj = new URL("/-data/Entities('{name}')");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/-data/Entities('{name}')", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /Entities('{name}')`
-
-<h3 id="retrieve-a-single-entity.-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
-|$expand|query|array[string]|false|The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)|
-|name|path|string|true|key: name|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|$select|name|
-|$expand|*|
-|$expand|columns|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "name": "string",
-  "columns": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [],
-        "columns@odata.count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
-  ],
-  "columns@odata.count": 0
-}
-```
-
-<h3 id="retrieve-a-single-entity.-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entity|[DataService.Entities](#schemadataservice.entities)|
-|4XX|Unknown|Error|[error](#schemaerror)|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## Change a single entity.
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X PATCH /-data/Entities('{name}') \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json'
-
-```
-
-```http
-PATCH /-data/Entities('{name}') HTTP/1.1
-
-Content-Type: application/json
-Accept: application/json
-
-```
-
-```javascript
-const inputBody = '{}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json'
-};
-
-fetch('/-data/Entities('{name}')',
+fetch('/odata/v4/-data/Data('{dummy}')',
 {
   method: 'PATCH',
   body: inputBody,
@@ -1157,7 +713,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.patch '/-data/Entities('{name}')',
+result = RestClient.patch '/odata/v4/-data/Data('{dummy}')',
   params: {
   }, headers: headers
 
@@ -1172,7 +728,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.patch('/-data/Entities('{name}')', headers = headers)
+r = requests.patch('/odata/v4/-data/Data('{dummy}')', headers = headers)
 
 print(r.json())
 
@@ -1194,7 +750,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('PATCH','/-data/Entities('{name}')', array(
+    $response = $client->request('PATCH','/odata/v4/-data/Data('{dummy}')', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -1211,7 +767,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities('{name}')");
+URL obj = new URL("/odata/v4/-data/Data('{dummy}')");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("PATCH");
 int responseCode = con.getResponseCode();
@@ -1243,7 +799,1046 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("PATCH", "/-data/Entities('{name}')", data)
+    req, err := http.NewRequest("PATCH", "/odata/v4/-data/Data('{dummy}')", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PATCH /Data('{dummy}')`
+
+> Body parameter
+
+```json
+{
+  "record": [
+    {
+      "column": "string",
+      "data": "string"
+    }
+  ]
+}
+```
+
+<h3 id="changes-a-single-datum.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[DataService.Data-update](#schemadataservice.data-update)|true|The actual data, organized by column name|
+|dummy|path|string|true|key: dummy|
+
+> Example responses
+
+> 4XX Response
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "target": "string",
+    "details": [
+      {
+        "code": "string",
+        "message": "string",
+        "target": "string"
+      }
+    ],
+    "innererror": {}
+  }
+}
+```
+
+<h3 id="changes-a-single-datum.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Deletes a single datum.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /odata/v4/-data/Data('{dummy}') \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE /odata/v4/-data/Data('{dummy}') HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/odata/v4/-data/Data('{dummy}')',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete '/odata/v4/-data/Data('{dummy}')',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('/odata/v4/-data/Data('{dummy}')', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','/odata/v4/-data/Data('{dummy}')', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/odata/v4/-data/Data('{dummy}')");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "/odata/v4/-data/Data('{dummy}')", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /Data('{dummy}')`
+
+<h3 id="deletes-a-single-datum.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|dummy|path|string|true|key: dummy|
+
+> Example responses
+
+> 4XX Response
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "target": "string",
+    "details": [
+      {
+        "code": "string",
+        "message": "string",
+        "target": "string"
+      }
+    ],
+    "innererror": {}
+  }
+}
+```
+
+<h3 id="deletes-a-single-datum.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h1 id="-entities">Entities</h1>
+
+Metadata like name and columns/elements
+
+## Retrieves a list of entities.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /odata/v4/-data/Entities \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /odata/v4/-data/Entities HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/odata/v4/-data/Entities',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/odata/v4/-data/Entities',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/odata/v4/-data/Entities', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/odata/v4/-data/Entities', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/odata/v4/-data/Entities");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Entities", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Entities`
+
+<h3 id="retrieves-a-list-of-entities.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$top|query|integer|false|Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)|
+|$skip|query|integer|false|Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)|
+|$search|query|string|false|Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)|
+|$filter|query|string|false|Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)|
+|$count|query|boolean|false|Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)|
+|$orderby|query|array[string]|false|Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|$expand|query|array[string]|false|The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$orderby|name|
+|$orderby|name desc|
+|$select|name|
+|$expand|*|
+|$expand|columns|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "@count": 0,
+  "value": [
+    {
+      "name": "string",
+      "columns": [
+        {
+          "up_": {},
+          "up__name": "string",
+          "name": "string",
+          "type": "string",
+          "isKey": true
+        }
+      ],
+      "columns@count": 0
+    }
+  ]
+}
+```
+
+<h3 id="retrieves-a-list-of-entities.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entities|Inline|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="retrieves-a-list-of-entities.-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*Collection of Entities*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» @count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+
+*anyOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|number|false|none|none|
+
+*or*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|string|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» value|[[DataService.Entities](#schemadataservice.entities)]|false|none|none|
+|»» Metadata like name and columns/elements|[DataService.Entities](#schemadataservice.entities)|false|none|none|
+|»»» name|string|false|none|none|
+|»»» columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
+|»»»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
+|»»»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
+|»»»»» up__name|string|false|none|none|
+|»»»»» name|string¦null|false|none|none|
+|»»»»» type|string¦null|false|none|none|
+|»»»»» isKey|boolean¦null|false|none|none|
+|»»» columns@count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Creates a single entity.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST /odata/v4/-data/Entities \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST /odata/v4/-data/Entities HTTP/1.1
+
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "name": "string",
+  "columns": [
+    {
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/odata/v4/-data/Entities',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post '/odata/v4/-data/Entities',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('/odata/v4/-data/Entities', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','/odata/v4/-data/Entities', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/odata/v4/-data/Entities");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "/odata/v4/-data/Entities", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /Entities`
+
+> Body parameter
+
+```json
+{
+  "name": "string",
+  "columns": [
+    {
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ]
+}
+```
+
+<h3 id="creates-a-single-entity.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[DataService.Entities-create](#schemadataservice.entities-create)|true|Metadata like name and columns/elements|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "name": "string",
+  "columns": [
+    {
+      "up_": {
+        "name": "string",
+        "columns": [],
+        "columns@count": 0
+      },
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ],
+  "columns@count": 0
+}
+```
+
+<h3 id="creates-a-single-entity.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created entity|[DataService.Entities](#schemadataservice.entities)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Retrieves a single entity.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /odata/v4/-data/Entities('{name}') \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /odata/v4/-data/Entities('{name}') HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/odata/v4/-data/Entities('{name}')',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/odata/v4/-data/Entities('{name}')',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/odata/v4/-data/Entities('{name}')', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/odata/v4/-data/Entities('{name}')', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/odata/v4/-data/Entities('{name}')");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Entities('{name}')", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Entities('{name}')`
+
+<h3 id="retrieves-a-single-entity.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|$expand|query|array[string]|false|The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)|
+|name|path|string|true|key: name|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$select|name|
+|$expand|*|
+|$expand|columns|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "string",
+  "columns": [
+    {
+      "up_": {
+        "name": "string",
+        "columns": [],
+        "columns@count": 0
+      },
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ],
+  "columns@count": 0
+}
+```
+
+<h3 id="retrieves-a-single-entity.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entity|[DataService.Entities](#schemadataservice.entities)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Changes a single entity.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PATCH /odata/v4/-data/Entities('{name}') \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PATCH /odata/v4/-data/Entities('{name}') HTTP/1.1
+
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "columns": [
+    {
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ]
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/odata/v4/-data/Entities('{name}')',
+{
+  method: 'PATCH',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.patch '/odata/v4/-data/Entities('{name}')',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.patch('/odata/v4/-data/Entities('{name}')', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PATCH','/odata/v4/-data/Entities('{name}')', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/odata/v4/-data/Entities('{name}')");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PATCH");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PATCH", "/odata/v4/-data/Entities('{name}')", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -1258,10 +1853,19 @@ func main() {
 > Body parameter
 
 ```json
-{}
+{
+  "columns": [
+    {
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ]
+}
 ```
 
-<h3 id="change-a-single-entity.-parameters">Parameters</h3>
+<h3 id="changes-a-single-entity.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1290,7 +1894,7 @@ func main() {
 }
 ```
 
-<h3 id="change-a-single-entity.-responses">Responses</h3>
+<h3 id="changes-a-single-entity.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1301,19 +1905,19 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Delete a single entity.
+## Deletes a single entity.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X DELETE /-data/Entities('{name}') \
+curl -X DELETE /odata/v4/-data/Entities('{name}') \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-DELETE /-data/Entities('{name}') HTTP/1.1
+DELETE /odata/v4/-data/Entities('{name}') HTTP/1.1
 
 Accept: application/json
 
@@ -1325,7 +1929,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities('{name}')',
+fetch('/odata/v4/-data/Entities('{name}')',
 {
   method: 'DELETE',
 
@@ -1347,7 +1951,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.delete '/-data/Entities('{name}')',
+result = RestClient.delete '/odata/v4/-data/Entities('{name}')',
   params: {
   }, headers: headers
 
@@ -1361,7 +1965,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.delete('/-data/Entities('{name}')', headers = headers)
+r = requests.delete('/odata/v4/-data/Entities('{name}')', headers = headers)
 
 print(r.json())
 
@@ -1382,7 +1986,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('DELETE','/-data/Entities('{name}')', array(
+    $response = $client->request('DELETE','/odata/v4/-data/Entities('{name}')', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -1399,7 +2003,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities('{name}')");
+URL obj = new URL("/odata/v4/-data/Entities('{name}')");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("DELETE");
 int responseCode = con.getResponseCode();
@@ -1430,7 +2034,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("DELETE", "/-data/Entities('{name}')", data)
+    req, err := http.NewRequest("DELETE", "/odata/v4/-data/Entities('{name}')", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -1442,7 +2046,7 @@ func main() {
 
 `DELETE /Entities('{name}')`
 
-<h3 id="delete-a-single-entity.-parameters">Parameters</h3>
+<h3 id="deletes-a-single-entity.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1470,7 +2074,7 @@ func main() {
 }
 ```
 
-<h3 id="delete-a-single-entity.-responses">Responses</h3>
+<h3 id="deletes-a-single-entity.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1481,19 +2085,19 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Retrieve a list of columns of a entity.
+## Retrieves a list of columns of a entity.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET /-data/Entities('{name}')/columns \
+curl -X GET /odata/v4/-data/Entities('{name}')/columns \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET /-data/Entities('{name}')/columns HTTP/1.1
+GET /odata/v4/-data/Entities('{name}')/columns HTTP/1.1
 
 Accept: application/json
 
@@ -1505,7 +2109,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities('{name}')/columns',
+fetch('/odata/v4/-data/Entities('{name}')/columns',
 {
   method: 'GET',
 
@@ -1527,7 +2131,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '/-data/Entities('{name}')/columns',
+result = RestClient.get '/odata/v4/-data/Entities('{name}')/columns',
   params: {
   }, headers: headers
 
@@ -1541,7 +2145,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/-data/Entities('{name}')/columns', headers = headers)
+r = requests.get('/odata/v4/-data/Entities('{name}')/columns', headers = headers)
 
 print(r.json())
 
@@ -1562,7 +2166,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','/-data/Entities('{name}')/columns', array(
+    $response = $client->request('GET','/odata/v4/-data/Entities('{name}')/columns', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -1579,7 +2183,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities('{name}')/columns");
+URL obj = new URL("/odata/v4/-data/Entities('{name}')/columns");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -1610,7 +2214,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/-data/Entities('{name}')/columns", data)
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Entities('{name}')/columns", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -1622,7 +2226,7 @@ func main() {
 
 `GET /Entities('{name}')/columns`
 
-<h3 id="retrieve-a-list-of-columns-of-a-entity.-parameters">Parameters</h3>
+<h3 id="retrieves-a-list-of-columns-of-a-entity.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1661,7 +2265,7 @@ func main() {
 
 ```json
 {
-  "@odata.count": 0,
+  "@count": 0,
   "value": [
     {
       "up_": {
@@ -1669,7 +2273,7 @@ func main() {
         "columns": [
           {}
         ],
-        "columns@odata.count": 0
+        "columns@count": 0
       },
       "up__name": "string",
       "name": "string",
@@ -1680,14 +2284,14 @@ func main() {
 }
 ```
 
-<h3 id="retrieve-a-list-of-columns-of-a-entity.-responses">Responses</h3>
+<h3 id="retrieves-a-list-of-columns-of-a-entity.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved columns|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
 
-<h3 id="retrieve-a-list-of-columns-of-a-entity.-responseschema">Response Schema</h3>
+<h3 id="retrieves-a-list-of-columns-of-a-entity.-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -1695,7 +2299,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» @odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|» @count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 
 *anyOf*
 
@@ -1715,11 +2319,11 @@ Status Code **200**
 |---|---|---|---|---|
 |» value|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
 |»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|Metadata like name and columns/elements|
+|»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
 |»»»» name|string|false|none|none|
 |»»»» columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
 |»»»»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»»» columns@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»»» columns@count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |»»» up__name|string|false|none|none|
 |»»» name|string¦null|false|none|none|
 |»»» type|string¦null|false|none|none|
@@ -1729,20 +2333,20 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a single column of a entity.
+## Creates a single column of a entity.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST /-data/Entities('{name}')/columns \
+curl -X POST /odata/v4/-data/Entities('{name}')/columns \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-POST /-data/Entities('{name}')/columns HTTP/1.1
+POST /odata/v4/-data/Entities('{name}')/columns HTTP/1.1
 
 Content-Type: application/json
 Accept: application/json
@@ -1761,7 +2365,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities('{name}')/columns',
+fetch('/odata/v4/-data/Entities('{name}')/columns',
 {
   method: 'POST',
   body: inputBody,
@@ -1784,7 +2388,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.post '/-data/Entities('{name}')/columns',
+result = RestClient.post '/odata/v4/-data/Entities('{name}')/columns',
   params: {
   }, headers: headers
 
@@ -1799,7 +2403,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('/-data/Entities('{name}')/columns', headers = headers)
+r = requests.post('/odata/v4/-data/Entities('{name}')/columns', headers = headers)
 
 print(r.json())
 
@@ -1821,7 +2425,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('POST','/-data/Entities('{name}')/columns', array(
+    $response = $client->request('POST','/odata/v4/-data/Entities('{name}')/columns', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -1838,7 +2442,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities('{name}')/columns");
+URL obj = new URL("/odata/v4/-data/Entities('{name}')/columns");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -1870,7 +2474,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "/-data/Entities('{name}')/columns", data)
+    req, err := http.NewRequest("POST", "/odata/v4/-data/Entities('{name}')/columns", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -1893,7 +2497,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-column-of-a-entity.-parameters">Parameters</h3>
+<h3 id="creates-a-single-column-of-a-entity.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1917,7 +2521,7 @@ func main() {
         "isKey": true
       }
     ],
-    "columns@odata.count": 0
+    "columns@count": 0
   },
   "up__name": "string",
   "name": "string",
@@ -1926,7 +2530,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-column-of-a-entity.-responses">Responses</h3>
+<h3 id="creates-a-single-column-of-a-entity.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1939,19 +2543,19 @@ This operation does not require authentication
 
 <h1 id="-entities_columns">Entities_columns</h1>
 
-## Retrieve a list of entities_columns.
+## Retrieves a list of entities_columns.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET /-data/Entities_columns \
+curl -X GET /odata/v4/-data/Entities_columns \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET /-data/Entities_columns HTTP/1.1
+GET /odata/v4/-data/Entities_columns HTTP/1.1
 
 Accept: application/json
 
@@ -1963,7 +2567,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities_columns',
+fetch('/odata/v4/-data/Entities_columns',
 {
   method: 'GET',
 
@@ -1985,7 +2589,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '/-data/Entities_columns',
+result = RestClient.get '/odata/v4/-data/Entities_columns',
   params: {
   }, headers: headers
 
@@ -1999,7 +2603,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/-data/Entities_columns', headers = headers)
+r = requests.get('/odata/v4/-data/Entities_columns', headers = headers)
 
 print(r.json())
 
@@ -2020,7 +2624,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','/-data/Entities_columns', array(
+    $response = $client->request('GET','/odata/v4/-data/Entities_columns', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -2037,7 +2641,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities_columns");
+URL obj = new URL("/odata/v4/-data/Entities_columns");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -2068,7 +2672,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/-data/Entities_columns", data)
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Entities_columns", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -2080,7 +2684,7 @@ func main() {
 
 `GET /Entities_columns`
 
-<h3 id="retrieve-a-list-of-entities_columns.-parameters">Parameters</h3>
+<h3 id="retrieves-a-list-of-entities_columns.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2118,7 +2722,7 @@ func main() {
 
 ```json
 {
-  "@odata.count": 0,
+  "@count": 0,
   "value": [
     {
       "up_": {
@@ -2126,7 +2730,7 @@ func main() {
         "columns": [
           {}
         ],
-        "columns@odata.count": 0
+        "columns@count": 0
       },
       "up__name": "string",
       "name": "string",
@@ -2137,14 +2741,14 @@ func main() {
 }
 ```
 
-<h3 id="retrieve-a-list-of-entities_columns.-responses">Responses</h3>
+<h3 id="retrieves-a-list-of-entities_columns.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entities_columns|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
 
-<h3 id="retrieve-a-list-of-entities_columns.-responseschema">Response Schema</h3>
+<h3 id="retrieves-a-list-of-entities_columns.-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -2152,7 +2756,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» @odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|» @count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 
 *anyOf*
 
@@ -2172,11 +2776,11 @@ Status Code **200**
 |---|---|---|---|---|
 |» value|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
 |»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|Metadata like name and columns/elements|
+|»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
 |»»»» name|string|false|none|none|
 |»»»» columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
 |»»»»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»»» columns@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»»» columns@count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |»»» up__name|string|false|none|none|
 |»»» name|string¦null|false|none|none|
 |»»» type|string¦null|false|none|none|
@@ -2186,20 +2790,20 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a single entities_column.
+## Creates a single entities_column.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST /-data/Entities_columns \
+curl -X POST /odata/v4/-data/Entities_columns \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-POST /-data/Entities_columns HTTP/1.1
+POST /odata/v4/-data/Entities_columns HTTP/1.1
 
 Content-Type: application/json
 Accept: application/json
@@ -2218,7 +2822,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities_columns',
+fetch('/odata/v4/-data/Entities_columns',
 {
   method: 'POST',
   body: inputBody,
@@ -2241,7 +2845,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.post '/-data/Entities_columns',
+result = RestClient.post '/odata/v4/-data/Entities_columns',
   params: {
   }, headers: headers
 
@@ -2256,7 +2860,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.post('/-data/Entities_columns', headers = headers)
+r = requests.post('/odata/v4/-data/Entities_columns', headers = headers)
 
 print(r.json())
 
@@ -2278,7 +2882,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('POST','/-data/Entities_columns', array(
+    $response = $client->request('POST','/odata/v4/-data/Entities_columns', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -2295,7 +2899,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities_columns");
+URL obj = new URL("/odata/v4/-data/Entities_columns");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -2327,7 +2931,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "/-data/Entities_columns", data)
+    req, err := http.NewRequest("POST", "/odata/v4/-data/Entities_columns", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -2350,7 +2954,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-entities_column.-parameters">Parameters</h3>
+<h3 id="creates-a-single-entities_column.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2373,7 +2977,7 @@ func main() {
         "isKey": true
       }
     ],
-    "columns@odata.count": 0
+    "columns@count": 0
   },
   "up__name": "string",
   "name": "string",
@@ -2382,7 +2986,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-entities_column.-responses">Responses</h3>
+<h3 id="creates-a-single-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2393,19 +2997,19 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Retrieve a single entities_column.
+## Retrieves a single entities_column.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET /-data/Entities_columns('{up__name}') \
+curl -X GET /odata/v4/-data/Entities_columns('{up__name}') \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET /-data/Entities_columns('{up__name}') HTTP/1.1
+GET /odata/v4/-data/Entities_columns('{up__name}') HTTP/1.1
 
 Accept: application/json
 
@@ -2417,7 +3021,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities_columns('{up__name}')',
+fetch('/odata/v4/-data/Entities_columns('{up__name}')',
 {
   method: 'GET',
 
@@ -2439,7 +3043,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '/-data/Entities_columns('{up__name}')',
+result = RestClient.get '/odata/v4/-data/Entities_columns('{up__name}')',
   params: {
   }, headers: headers
 
@@ -2453,7 +3057,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/-data/Entities_columns('{up__name}')', headers = headers)
+r = requests.get('/odata/v4/-data/Entities_columns('{up__name}')', headers = headers)
 
 print(r.json())
 
@@ -2474,7 +3078,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','/-data/Entities_columns('{up__name}')', array(
+    $response = $client->request('GET','/odata/v4/-data/Entities_columns('{up__name}')', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -2491,7 +3095,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities_columns('{up__name}')");
+URL obj = new URL("/odata/v4/-data/Entities_columns('{up__name}')");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -2522,7 +3126,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/-data/Entities_columns('{up__name}')", data)
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Entities_columns('{up__name}')", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -2534,7 +3138,7 @@ func main() {
 
 `GET /Entities_columns('{up__name}')`
 
-<h3 id="retrieve-a-single-entities_column.-parameters">Parameters</h3>
+<h3 id="retrieves-a-single-entities_column.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2570,7 +3174,7 @@ func main() {
         "isKey": true
       }
     ],
-    "columns@odata.count": 0
+    "columns@count": 0
   },
   "up__name": "string",
   "name": "string",
@@ -2579,7 +3183,7 @@ func main() {
 }
 ```
 
-<h3 id="retrieve-a-single-entities_column.-responses">Responses</h3>
+<h3 id="retrieves-a-single-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2590,20 +3194,20 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Change a single entities_column.
+## Changes a single entities_column.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X PATCH /-data/Entities_columns('{up__name}') \
+curl -X PATCH /odata/v4/-data/Entities_columns('{up__name}') \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-PATCH /-data/Entities_columns('{up__name}') HTTP/1.1
+PATCH /odata/v4/-data/Entities_columns('{up__name}') HTTP/1.1
 
 Content-Type: application/json
 Accept: application/json
@@ -2621,7 +3225,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities_columns('{up__name}')',
+fetch('/odata/v4/-data/Entities_columns('{up__name}')',
 {
   method: 'PATCH',
   body: inputBody,
@@ -2644,7 +3248,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.patch '/-data/Entities_columns('{up__name}')',
+result = RestClient.patch '/odata/v4/-data/Entities_columns('{up__name}')',
   params: {
   }, headers: headers
 
@@ -2659,7 +3263,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.patch('/-data/Entities_columns('{up__name}')', headers = headers)
+r = requests.patch('/odata/v4/-data/Entities_columns('{up__name}')', headers = headers)
 
 print(r.json())
 
@@ -2681,7 +3285,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('PATCH','/-data/Entities_columns('{up__name}')', array(
+    $response = $client->request('PATCH','/odata/v4/-data/Entities_columns('{up__name}')', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -2698,7 +3302,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities_columns('{up__name}')");
+URL obj = new URL("/odata/v4/-data/Entities_columns('{up__name}')");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("PATCH");
 int responseCode = con.getResponseCode();
@@ -2730,7 +3334,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("PATCH", "/-data/Entities_columns('{up__name}')", data)
+    req, err := http.NewRequest("PATCH", "/odata/v4/-data/Entities_columns('{up__name}')", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -2752,7 +3356,7 @@ func main() {
 }
 ```
 
-<h3 id="change-a-single-entities_column.-parameters">Parameters</h3>
+<h3 id="changes-a-single-entities_column.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2781,7 +3385,7 @@ func main() {
 }
 ```
 
-<h3 id="change-a-single-entities_column.-responses">Responses</h3>
+<h3 id="changes-a-single-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2792,19 +3396,19 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Delete a single entities_column.
+## Deletes a single entities_column.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X DELETE /-data/Entities_columns('{up__name}') \
+curl -X DELETE /odata/v4/-data/Entities_columns('{up__name}') \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-DELETE /-data/Entities_columns('{up__name}') HTTP/1.1
+DELETE /odata/v4/-data/Entities_columns('{up__name}') HTTP/1.1
 
 Accept: application/json
 
@@ -2816,7 +3420,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities_columns('{up__name}')',
+fetch('/odata/v4/-data/Entities_columns('{up__name}')',
 {
   method: 'DELETE',
 
@@ -2838,7 +3442,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.delete '/-data/Entities_columns('{up__name}')',
+result = RestClient.delete '/odata/v4/-data/Entities_columns('{up__name}')',
   params: {
   }, headers: headers
 
@@ -2852,7 +3456,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.delete('/-data/Entities_columns('{up__name}')', headers = headers)
+r = requests.delete('/odata/v4/-data/Entities_columns('{up__name}')', headers = headers)
 
 print(r.json())
 
@@ -2873,7 +3477,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('DELETE','/-data/Entities_columns('{up__name}')', array(
+    $response = $client->request('DELETE','/odata/v4/-data/Entities_columns('{up__name}')', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -2890,7 +3494,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities_columns('{up__name}')");
+URL obj = new URL("/odata/v4/-data/Entities_columns('{up__name}')");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("DELETE");
 int responseCode = con.getResponseCode();
@@ -2921,7 +3525,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("DELETE", "/-data/Entities_columns('{up__name}')", data)
+    req, err := http.NewRequest("DELETE", "/odata/v4/-data/Entities_columns('{up__name}')", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -2933,7 +3537,7 @@ func main() {
 
 `DELETE /Entities_columns('{up__name}')`
 
-<h3 id="delete-a-single-entities_column.-parameters">Parameters</h3>
+<h3 id="deletes-a-single-entities_column.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2961,7 +3565,7 @@ func main() {
 }
 ```
 
-<h3 id="delete-a-single-entities_column.-responses">Responses</h3>
+<h3 id="deletes-a-single-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2972,19 +3576,19 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Retrieve up_ of a entities_column.
+## Retrieves up_ of a entities_column.
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X GET /-data/Entities_columns('{up__name}')/up_ \
+curl -X GET /odata/v4/-data/Entities_columns('{up__name}')/up_ \
   -H 'Accept: application/json'
 
 ```
 
 ```http
-GET /-data/Entities_columns('{up__name}')/up_ HTTP/1.1
+GET /odata/v4/-data/Entities_columns('{up__name}')/up_ HTTP/1.1
 
 Accept: application/json
 
@@ -2996,7 +3600,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/-data/Entities_columns('{up__name}')/up_',
+fetch('/odata/v4/-data/Entities_columns('{up__name}')/up_',
 {
   method: 'GET',
 
@@ -3018,7 +3622,7 @@ headers = {
   'Accept' => 'application/json'
 }
 
-result = RestClient.get '/-data/Entities_columns('{up__name}')/up_',
+result = RestClient.get '/odata/v4/-data/Entities_columns('{up__name}')/up_',
   params: {
   }, headers: headers
 
@@ -3032,7 +3636,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/-data/Entities_columns('{up__name}')/up_', headers = headers)
+r = requests.get('/odata/v4/-data/Entities_columns('{up__name}')/up_', headers = headers)
 
 print(r.json())
 
@@ -3053,7 +3657,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('GET','/-data/Entities_columns('{up__name}')/up_', array(
+    $response = $client->request('GET','/odata/v4/-data/Entities_columns('{up__name}')/up_', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -3070,7 +3674,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/Entities_columns('{up__name}')/up_");
+URL obj = new URL("/odata/v4/-data/Entities_columns('{up__name}')/up_");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -3101,7 +3705,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/-data/Entities_columns('{up__name}')/up_", data)
+    req, err := http.NewRequest("GET", "/odata/v4/-data/Entities_columns('{up__name}')/up_", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -3113,7 +3717,7 @@ func main() {
 
 `GET /Entities_columns('{up__name}')/up_`
 
-<h3 id="retrieve-up_-of-a-entities_column.-parameters">Parameters</h3>
+<h3 id="retrieves-up_-of-a-entities_column.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -3141,7 +3745,7 @@ func main() {
       "up_": {
         "name": "string",
         "columns": [],
-        "columns@odata.count": 0
+        "columns@count": 0
       },
       "up__name": "string",
       "name": "string",
@@ -3149,11 +3753,11 @@ func main() {
       "isKey": true
     }
   ],
-  "columns@odata.count": 0
+  "columns@count": 0
 }
 ```
 
-<h3 id="retrieve-up_-of-a-entities_column.-responses">Responses</h3>
+<h3 id="retrieves-up_-of-a-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3166,20 +3770,20 @@ This operation does not require authentication
 
 <h1 id="-batch-requests">Batch Requests</h1>
 
-## Send a group of requests
+## Sends a group of requests
 
 > Code samples
 
 ```shell
 # You can also use wget
-curl -X POST /-data/$batch \
+curl -X POST /odata/v4/-data/$batch \
   -H 'Content-Type: multipart/mixed;boundary=request-separator' \
   -H 'Accept: multipart/mixed'
 
 ```
 
 ```http
-POST /-data/$batch HTTP/1.1
+POST /odata/v4/-data/$batch HTTP/1.1
 
 Content-Type: multipart/mixed;boundary=request-separator
 Accept: multipart/mixed
@@ -3193,7 +3797,7 @@ const headers = {
   'Accept':'multipart/mixed'
 };
 
-fetch('/-data/$batch',
+fetch('/odata/v4/-data/$batch',
 {
   method: 'POST',
   body: inputBody,
@@ -3216,7 +3820,7 @@ headers = {
   'Accept' => 'multipart/mixed'
 }
 
-result = RestClient.post '/-data/$batch',
+result = RestClient.post '/odata/v4/-data/$batch',
   params: {
   }, headers: headers
 
@@ -3231,7 +3835,7 @@ headers = {
   'Accept': 'multipart/mixed'
 }
 
-r = requests.post('/-data/$batch', headers = headers)
+r = requests.post('/odata/v4/-data/$batch', headers = headers)
 
 print(r.json())
 
@@ -3253,7 +3857,7 @@ $client = new \GuzzleHttp\Client();
 $request_body = array();
 
 try {
-    $response = $client->request('POST','/-data/$batch', array(
+    $response = $client->request('POST','/odata/v4/-data/$batch', array(
         'headers' => $headers,
         'json' => $request_body,
        )
@@ -3270,7 +3874,7 @@ try {
 ```
 
 ```java
-URL obj = new URL("/-data/$batch");
+URL obj = new URL("/odata/v4/-data/$batch");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("POST");
 int responseCode = con.getResponseCode();
@@ -3302,7 +3906,7 @@ func main() {
     }
 
     data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "/-data/$batch", data)
+    req, err := http.NewRequest("POST", "/odata/v4/-data/$batch", data)
     req.Header = headers
 
     client := &http.Client{}
@@ -3320,7 +3924,7 @@ Group multiple requests into a single request payload, see [Batch Requests](http
 
 > Body parameter
 
-<h3 id="send-a-group-of-requests-parameters">Parameters</h3>
+<h3 id="sends-a-group-of-requests-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -3350,7 +3954,7 @@ Group multiple requests into a single request payload, see [Batch Requests](http
 }
 ```
 
-<h3 id="send-a-group-of-requests-responses">Responses</h3>
+<h3 id="sends-a-group-of-requests-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3389,8 +3993,8 @@ The actual data, organized by column name
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|dummy|string¦null|false|none|none|
-|record|[[DataService.Data_record](#schemadataservice.data_record)]|false|none|none|
+|dummy|string|false|none|none|
+|record|[allOf]|false|none|none|
 
 <h2 id="tocS_DataService.Data-create">DataService.Data-create</h2>
 <!-- backwards compatibility -->
@@ -3418,8 +4022,35 @@ The actual data, organized by column name (for create)
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|dummy|string¦null|false|none|none|
-|record|[[DataService.Data_record-create](#schemadataservice.data_record-create)]|false|none|none|
+|dummy|string|true|none|none|
+|record|[allOf]|false|none|none|
+
+<h2 id="tocS_DataService.Data-update">DataService.Data-update</h2>
+<!-- backwards compatibility -->
+<a id="schemadataservice.data-update"></a>
+<a id="schema_DataService.Data-update"></a>
+<a id="tocSdataservice.data-update"></a>
+<a id="tocsdataservice.data-update"></a>
+
+```json
+{
+  "record": [
+    {
+      "column": "string",
+      "data": "string"
+    }
+  ]
+}
+
+```
+
+The actual data, organized by column name (for update)
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|record|[allOf]|false|none|none|
 
 <h2 id="tocS_DataService.Data_record">DataService.Data_record</h2>
 <!-- backwards compatibility -->
@@ -3469,6 +4100,30 @@ Data_record (for create)
 |column|string¦null|false|none|none|
 |data|string¦null|false|none|none|
 
+<h2 id="tocS_DataService.Data_record-update">DataService.Data_record-update</h2>
+<!-- backwards compatibility -->
+<a id="schemadataservice.data_record-update"></a>
+<a id="schema_DataService.Data_record-update"></a>
+<a id="tocSdataservice.data_record-update"></a>
+<a id="tocsdataservice.data_record-update"></a>
+
+```json
+{
+  "column": "string",
+  "data": "string"
+}
+
+```
+
+Data_record (for update)
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|column|string¦null|false|none|none|
+|data|string¦null|false|none|none|
+
 <h2 id="tocS_DataService.Entities">DataService.Entities</h2>
 <!-- backwards compatibility -->
 <a id="schemadataservice.entities"></a>
@@ -3484,7 +4139,7 @@ Data_record (for create)
       "up_": {
         "name": "string",
         "columns": [],
-        "columns@odata.count": 0
+        "columns@count": 0
       },
       "up__name": "string",
       "name": "string",
@@ -3492,7 +4147,7 @@ Data_record (for create)
       "isKey": true
     }
   ],
-  "columns@odata.count": 0
+  "columns@count": 0
 }
 
 ```
@@ -3505,7 +4160,7 @@ Metadata like name and columns/elements
 |---|---|---|---|---|
 |name|string|false|none|none|
 |columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
-|columns@odata.count|[count](#schemacount)|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|columns@count|[count](#schemacount)|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 
 <h2 id="tocS_DataService.Entities-create">DataService.Entities-create</h2>
 <!-- backwards compatibility -->
@@ -3516,7 +4171,15 @@ Metadata like name and columns/elements
 
 ```json
 {
-  "name": "string"
+  "name": "string",
+  "columns": [
+    {
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ]
 }
 
 ```
@@ -3528,6 +4191,7 @@ Metadata like name and columns/elements (for create)
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |name|string|true|none|none|
+|columns|[[DataService.Entities_columns-create](#schemadataservice.entities_columns-create)]|false|none|none|
 
 <h2 id="tocS_DataService.Entities-update">DataService.Entities-update</h2>
 <!-- backwards compatibility -->
@@ -3537,7 +4201,16 @@ Metadata like name and columns/elements (for create)
 <a id="tocsdataservice.entities-update"></a>
 
 ```json
-{}
+{
+  "columns": [
+    {
+      "up__name": "string",
+      "name": "string",
+      "type": "string",
+      "isKey": true
+    }
+  ]
+}
 
 ```
 
@@ -3545,7 +4218,9 @@ Metadata like name and columns/elements (for update)
 
 ### Properties
 
-*None*
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|columns|[[DataService.Entities_columns-create](#schemadataservice.entities_columns-create)]|false|none|none|
 
 <h2 id="tocS_DataService.Entities_columns">DataService.Entities_columns</h2>
 <!-- backwards compatibility -->
@@ -3567,7 +4242,7 @@ Metadata like name and columns/elements (for update)
         "isKey": true
       }
     ],
-    "columns@odata.count": 0
+    "columns@count": 0
   },
   "up__name": "string",
   "name": "string",
@@ -3583,7 +4258,7 @@ Entities_columns
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|up_|[DataService.Entities](#schemadataservice.entities)|false|none|Metadata like name and columns/elements|
+|up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
 |up__name|string|false|none|none|
 |name|string¦null|false|none|none|
 |type|string¦null|false|none|none|

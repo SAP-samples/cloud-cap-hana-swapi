@@ -21,7 +21,7 @@ service DataService @( path:'-data' ) {
    * The actual data, organized by column name
    */
   entity Data {
-    dummy: String;
+    key dummy: String;
     record   : array of {
       column : String;
       data   : String;

@@ -1,30 +1,27 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.3.5",
+  "version": "1.4.0",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js-community/odata-v2-adapter": "^1.12.9",
-    "@cap-js/audit-logging": "^0.7.0",
+    "@cap-js-community/odata-v2-adapter": "^1.13.0",
     "@cap-js/change-tracking": "^1.0.6",
     "@cap-js/graphql": "0.10.1",
-    "@cap-js/hana": "^0.4.0",
-    "@cap-js/notifications": "^0.2.0",
-    "@cap-js/postgres": "^1.8.0",
-    "@cap-js/sqlite": "^1.7.1",
-    "@cap-js/telemetry": "^0.1.0",
-    "@sap-cloud-sdk/resilience": "^3.15.0",
-    "@sap/cds": "^7.9.1",
-    "@sap/cds-common-content": "^1.3.1",
-    "@sap/cds-fiori": "^1.2.3",
-    "@sap/cds-hana": "^2.0.0",
+    "@cap-js/hana": "^1.1.0",
+     "@cap-js/postgres": "^1.9.1",
+    "@cap-js/sqlite": "^1.7.3",
+    "@cap-js/telemetry": "^0.2.3",
+    "@sap-cloud-sdk/resilience": "^3.16.0",
+    "@sap/cds": "8.0.4",
+    "@sap/cds-common-content": "^2.0.0",
+    "@sap/cds-fiori": "^1.2.7",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
-    "cds-swagger-ui-express": "^0.8.0",
+    "cds-swagger-ui-express": "^0.9.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "uuid": "^9.0.1"
+    "uuid": "^10.0.0"
   },
   "engines": {
     "node": ">=18"
@@ -53,14 +50,6 @@
     "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
   },
   "cds": {
-    "sql": {
-      "transitive_localized_views": true
-    },
-    "query": {
-      "limit": {
-        "reliablePaging": true
-      }
-    },
     "cov2ap": {
       "plugin": true
     },
@@ -70,22 +59,14 @@
       ]
     },
     "fiori": {
-      "bypass_draft": true,
       "preview": {
         "ui5": {
-          "version": "1.124.0"
+          "version": "1.125.1"
         }
-      }
-    },
-    "cdsc": {
-      "docs": true,
-      "beta": {
-        "sqlSnippets": true
       }
     },
     "hana": {
       "journal": {
-        "enable-drop": false,
         "change-mode": "alter"
       },
       "deploy-format": "hdbtable"
@@ -144,13 +125,8 @@
       }
     },
     "features": {
-      "preserve_computed": true,
       "kibana_formatter": true,
-      "audit_personal_data": true,
-      "optimized_search": true,
-      "rest_new_adapter": true,
-      "assert_integrity": "db",
-      "odata_new_parser": true
+      "optimized_search": true
     },
     "protocols": {
       "graphql": {
@@ -163,11 +139,10 @@
     }
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7.9.2",
-    "@sap/dev-cap-tools": "^1.34.0",
-    "@sap/eslint-plugin-cds": "^3.0.3",
-    "@sap/hdi-deploy": "^5.1.1",
-    "eslint": "^9.2.0",
+    "@sap/dev-cap-tools": "^1.36.1",
+    "@sap/eslint-plugin-cds": "^3.0.4",
+    "@sap/hdi-deploy": "^5.2.0",
+    "eslint": "^9.7.0",
     "stringify-changelog": "^0.2.1",
     "widdershins": "^4.0.1"
   }

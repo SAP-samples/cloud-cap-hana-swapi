@@ -176,8 +176,8 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v4.5.0",
-    "build": "CDS Build v7.5.2"
+    "creator": "CDS Compiler v5.0.6",
+    "build": "CDS Build v8.0.3"
   },
   "$version": "2.0"
 }

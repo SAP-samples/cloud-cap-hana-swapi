@@ -2,15 +2,15 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Service for namespace StarWarsSpecies",
-    "description": "This service is located at [/StarWarsSpecies/](/StarWarsSpecies/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Species{bg:lightslategray}],[Species]-0..1>[Planet],[Species]0..1-*[Species2People],[Species]0..1-*[Film2Species],[Species]++-0..1>[DraftAdministrativeData],[Species]-0..1>[Species],[Planet{bg:lightslategray}],[Planet]0..1-*[Film2Planets],[Film{bg:lightslategray}],[Film]0..1-*[Film2People],[People{bg:lightslategray}],[People]-0..1>[Planet],[People]0..1-*[Film2People],[Film2Species{bg:lightslategray}],[Film2Species]*-0..1[Film],[Film2Species]++-0..1>[DraftAdministrativeData],[Film2Species]-0..1>[Film2Species],[Species2People{bg:lightslategray}],[Species2People]*-0..1[People],[Species2People]++-0..1>[DraftAdministrativeData],[Species2People]-0..1>[Species2People],[hair_colors{bg:lightslategray}],[eye_colors{bg:lightslategray}],[skin_colors{bg:lightslategray}],[classification{bg:lightslategray}],[designation{bg:lightslategray}],[language{bg:lightslategray}],[Film2Planets{bg:lightslategray}],[Film2Planets]*-0..1[Film],[Planet2People{bg:lightslategray}],[Planet2People]*-0..1[Planet],[Planet2People]-0..1>[People],[Film2People{bg:lightslategray}],[Film2Starships{bg:lightslategray}],[Film2Starships]*-0..1[Film],[Film2Vehicles{bg:lightslategray}],[Film2Vehicles]*-0..1[Film],[Vehicle2Pilot{bg:lightslategray}],[Vehicle2Pilot]*-0..1[People],[Starship2Pilot{bg:lightslategray}],[Starship2Pilot]*-0..1[People],[Starship{bg:lightslategray}],[Starship]0..1-*[Film2Starships],[Starship]0..1-*[Starship2Pilot],[Vehicles{bg:lightslategray}],[Vehicles]0..1-*[Film2Vehicles],[Vehicles]0..1-*[Vehicle2Pilot],[DraftAdministrativeData{bg:lightslategray}],[Vehicles%20{bg:lawngreen}]++-*>[Vehicles],[Starship%20{bg:lawngreen}]++-*>[Starship],[Starship2Pilot%20{bg:lawngreen}]++-*>[Starship2Pilot],[Vehicle2Pilot%20{bg:lawngreen}]++-*>[Vehicle2Pilot],[Film2Vehicles%20{bg:lawngreen}]++-*>[Film2Vehicles],[Film2Starships%20{bg:lawngreen}]++-*>[Film2Starships],[Film2People%20{bg:lawngreen}]++-*>[Film2People],[Planet2People%20{bg:lawngreen}]++-*>[Planet2People],[Film2Planets%20{bg:lawngreen}]++-*>[Film2Planets],[language%20{bg:lawngreen}]++-*>[language],[designation%20{bg:lawngreen}]++-*>[designation],[classification%20{bg:lawngreen}]++-*>[classification],[skin_colors%20{bg:lawngreen}]++-*>[skin_colors],[eye_colors%20{bg:lawngreen}]++-*>[eye_colors],[hair_colors%20{bg:lawngreen}]++-*>[hair_colors],[Species2People%20{bg:lawngreen}]++-*>[Species2People],[Film2Species%20{bg:lawngreen}]++-*>[Film2Species],[People%20{bg:lawngreen}]++-*>[People],[Film%20{bg:lawngreen}]++-*>[Film],[Planet%20{bg:lawngreen}]++-*>[Planet],[Species%20{bg:lawngreen}]++-*>[Species])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
+    "description": "This service is located at [/odata/v4/StarWarsSpecies/](/odata/v4/StarWarsSpecies/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Species{bg:lightslategray}],[Species]-0..1>[Planet],[Species]0..1-*[Species2People],[Species]0..1-*[Film2Species],[Species]++-0..1>[DraftAdministrativeData],[Species]-0..1>[Species],[Planet{bg:lightslategray}],[Planet]0..1-*[Film2Planets],[Film{bg:lightslategray}],[Film]0..1-*[Film2People],[People{bg:lightslategray}],[People]-0..1>[Planet],[People]0..1-*[Film2People],[Film2Species{bg:lightslategray}],[Film2Species]*-0..1[Film],[Film2Species]++-0..1>[DraftAdministrativeData],[Film2Species]-0..1>[Film2Species],[Species2People{bg:lightslategray}],[Species2People]*-0..1[People],[Species2People]++-0..1>[DraftAdministrativeData],[Species2People]-0..1>[Species2People],[hair_colors{bg:lightslategray}],[eye_colors{bg:lightslategray}],[skin_colors{bg:lightslategray}],[classification{bg:lightslategray}],[designation{bg:lightslategray}],[language{bg:lightslategray}],[Film2Planets{bg:lightslategray}],[Film2Planets]*-0..1[Film],[Planet2People{bg:lightslategray}],[Planet2People]*-0..1[Planet],[Planet2People]-0..1>[People],[Film2People{bg:lightslategray}],[Film2Starships{bg:lightslategray}],[Film2Starships]*-0..1[Film],[Film2Vehicles{bg:lightslategray}],[Film2Vehicles]*-0..1[Film],[Vehicle2Pilot{bg:lightslategray}],[Vehicle2Pilot]*-0..1[People],[Starship2Pilot{bg:lightslategray}],[Starship2Pilot]*-0..1[People],[Starship{bg:lightslategray}],[Starship]0..1-*[Film2Starships],[Starship]0..1-*[Starship2Pilot],[Vehicles{bg:lightslategray}],[Vehicles]0..1-*[Film2Vehicles],[Vehicles]0..1-*[Vehicle2Pilot],[DraftAdministrativeData{bg:lightslategray}],[Vehicles%20{bg:lawngreen}]++-*>[Vehicles],[Starship%20{bg:lawngreen}]++-*>[Starship],[Starship2Pilot%20{bg:lawngreen}]++-*>[Starship2Pilot],[Vehicle2Pilot%20{bg:lawngreen}]++-*>[Vehicle2Pilot],[Film2Vehicles%20{bg:lawngreen}]++-*>[Film2Vehicles],[Film2Starships%20{bg:lawngreen}]++-*>[Film2Starships],[Film2People%20{bg:lawngreen}]++-*>[Film2People],[Planet2People%20{bg:lawngreen}]++-*>[Planet2People],[Film2Planets%20{bg:lawngreen}]++-*>[Film2Planets],[language%20{bg:lawngreen}]++-*>[language],[designation%20{bg:lawngreen}]++-*>[designation],[classification%20{bg:lawngreen}]++-*>[classification],[skin_colors%20{bg:lawngreen}]++-*>[skin_colors],[eye_colors%20{bg:lawngreen}]++-*>[eye_colors],[hair_colors%20{bg:lawngreen}]++-*>[hair_colors],[Species2People%20{bg:lawngreen}]++-*>[Species2People],[Film2Species%20{bg:lawngreen}]++-*>[Film2Species],[People%20{bg:lawngreen}]++-*>[People],[Film%20{bg:lawngreen}]++-*>[Film],[Planet%20{bg:lawngreen}]++-*>[Planet],[Species%20{bg:lawngreen}]++-*>[Species])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
   "x-sap-api-type": "ODATAV4",
-  "x-odata-version": "4.0",
+  "x-odata-version": "4.01",
   "x-sap-shortText": "Service for namespace StarWarsSpecies",
   "servers": [
     {
-      "url": "/StarWarsSpecies"
+      "url": "/odata/v4/StarWarsSpecies"
     }
   ],
   "tags": [
@@ -102,7 +102,7 @@
   "paths": {
     "/$batch": {
       "post": {
-        "summary": "Send a group of requests",
+        "summary": "Sends a group of requests",
         "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
         "tags": [
           "Batch Requests"
@@ -139,7 +139,7 @@
     },
     "/Film": {
       "get": {
-        "summary": "Retrieve a list of film.",
+        "summary": "Retrieves a list of film.",
         "tags": [
           "{i18n>Film}"
         ],
@@ -258,7 +258,7 @@
                   "type": "object",
                   "title": "Collection of Film",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -293,7 +293,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single film.",
+        "summary": "Retrieves a single film.",
         "tags": [
           "{i18n>Film}"
         ],
@@ -378,7 +378,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of characters of a {i18n> film}.",
+        "summary": "Retrieves a list of characters of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2People"
@@ -471,7 +471,7 @@
                   "type": "object",
                   "title": "Collection of Film2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -491,7 +491,7 @@
         }
       },
       "post": {
-        "summary": "Create a single character of a {i18n> film}.",
+        "summary": "Creates a single character of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2People"
@@ -539,7 +539,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of planets of a {i18n> film}.",
+        "summary": "Retrieves a list of planets of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Planets"
@@ -632,7 +632,7 @@
                   "type": "object",
                   "title": "Collection of Film2Planets",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -652,7 +652,7 @@
         }
       },
       "post": {
-        "summary": "Create a single planet of a {i18n> film}.",
+        "summary": "Creates a single planet of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Planets"
@@ -700,7 +700,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of species of a {i18n> film}.",
+        "summary": "Retrieves a list of species of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Species"
@@ -804,7 +804,7 @@
                   "type": "object",
                   "title": "Collection of Film2Species",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -824,7 +824,7 @@
         }
       },
       "post": {
-        "summary": "Create a single species of a {i18n> film}.",
+        "summary": "Creates a single species of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Species"
@@ -872,7 +872,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of starships of a {i18n> film}.",
+        "summary": "Retrieves a list of starships of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Starships"
@@ -965,7 +965,7 @@
                   "type": "object",
                   "title": "Collection of Film2Starships",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -985,7 +985,7 @@
         }
       },
       "post": {
-        "summary": "Create a single starship of a {i18n> film}.",
+        "summary": "Creates a single starship of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Starships"
@@ -1033,7 +1033,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of vehicles of a {i18n> film}.",
+        "summary": "Retrieves a list of vehicles of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Vehicles"
@@ -1126,7 +1126,7 @@
                   "type": "object",
                   "title": "Collection of Film2Vehicles",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -1146,7 +1146,7 @@
         }
       },
       "post": {
-        "summary": "Create a single vehicle of a {i18n> film}.",
+        "summary": "Creates a single vehicle of a {i18n> film}.",
         "tags": [
           "{i18n>Film}",
           "Film2Vehicles"
@@ -1181,7 +1181,7 @@
     },
     "/Film2People": {
       "get": {
-        "summary": "Retrieve a list of film2 people.",
+        "summary": "Retrieves a list of film2 people.",
         "tags": [
           "Film2People"
         ],
@@ -1273,7 +1273,7 @@
                   "type": "object",
                   "title": "Collection of Film2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -1283,38 +1283,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single film2 person.",
-        "tags": [
-          "Film2People"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2People-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created film2 person",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Film2People"
                 }
               }
             }
@@ -1340,7 +1308,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single film2 person.",
+        "summary": "Retrieves a single film2 person.",
         "tags": [
           "Film2People"
         ],
@@ -1397,45 +1365,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single film2 person.",
-        "tags": [
-          "Film2People"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2People-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single film2 person.",
-        "tags": [
-          "Film2People"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Film2People({ID})/film": {
@@ -1453,7 +1382,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve film of a film2 person.",
+        "summary": "Retrieves film of a film2 person.",
         "tags": [
           "Film2People",
           "{i18n>Film}"
@@ -1539,7 +1468,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve people of a film2 person.",
+        "summary": "Retrieves people of a film2 person.",
         "tags": [
           "Film2People",
           "{i18n>People}"
@@ -1616,7 +1545,7 @@
     },
     "/Film2Planets": {
       "get": {
-        "summary": "Retrieve a list of film2 planets.",
+        "summary": "Retrieves a list of film2 planets.",
         "tags": [
           "Film2Planets"
         ],
@@ -1708,7 +1637,7 @@
                   "type": "object",
                   "title": "Collection of Film2Planets",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -1718,38 +1647,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single film2 planet.",
-        "tags": [
-          "Film2Planets"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Planets-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created film2 planet",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Film2Planets"
                 }
               }
             }
@@ -1775,7 +1672,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single film2 planet.",
+        "summary": "Retrieves a single film2 planet.",
         "tags": [
           "Film2Planets"
         ],
@@ -1832,45 +1729,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single film2 planet.",
-        "tags": [
-          "Film2Planets"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Planets-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single film2 planet.",
-        "tags": [
-          "Film2Planets"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Film2Planets({ID})/film": {
@@ -1888,7 +1746,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve film of a film2 planet.",
+        "summary": "Retrieves film of a film2 planet.",
         "tags": [
           "Film2Planets",
           "{i18n>Film}"
@@ -1974,7 +1832,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve planet of a film2 planet.",
+        "summary": "Retrieves planet of a film2 planet.",
         "tags": [
           "Film2Planets",
           "{i18n>Planet}"
@@ -2047,7 +1905,7 @@
     },
     "/Film2Species": {
       "get": {
-        "summary": "Retrieve a list of film2 species.",
+        "summary": "Retrieves a list of film2 species.",
         "tags": [
           "Film2Species"
         ],
@@ -2150,7 +2008,7 @@
                   "type": "object",
                   "title": "Collection of Film2Species",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -2170,7 +2028,7 @@
         }
       },
       "post": {
-        "summary": "Create a single film2 specy.",
+        "summary": "Creates a single film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2227,7 +2085,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single film2 specy.",
+        "summary": "Retrieves a single film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2291,7 +2149,7 @@
         }
       },
       "patch": {
-        "summary": "Change a single film2 specy.",
+        "summary": "Changes a single film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2316,7 +2174,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a single film2 specy.",
+        "summary": "Deletes a single film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2355,7 +2213,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve draft administrative data of a film2 specy.",
+        "summary": "Retrieves draft administrative data of a film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2401,7 +2259,7 @@
         }
       },
       "patch": {
-        "summary": "Change draft administrative data of a film2 specy.",
+        "summary": "Changes draft administrative data of a film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2426,7 +2284,7 @@
         }
       },
       "delete": {
-        "summary": "Delete draft administrative data of a film2 specy.",
+        "summary": "Deletes draft administrative data of a film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2465,7 +2323,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve sibling entity of a film2 specy.",
+        "summary": "Retrieves sibling entity of a film2 specy.",
         "tags": [
           "Film2Species"
         ],
@@ -2531,7 +2389,7 @@
     },
     "/Film2Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "Film2Species"
         ],
@@ -2598,7 +2456,7 @@
     },
     "/Film2Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "Film2Species"
         ],
@@ -2688,7 +2546,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve film of a film2 specy.",
+        "summary": "Retrieves film of a film2 specy.",
         "tags": [
           "Film2Species",
           "{i18n>Film}"
@@ -2784,7 +2642,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve specie of a film2 specy.",
+        "summary": "Retrieves specie of a film2 specy.",
         "tags": [
           "Film2Species",
           "{i18n>Species}"
@@ -2864,7 +2722,7 @@
     },
     "/Film2Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/specie/StarWarsSpecies.draftActivate": {
       "post": {
-        "summary": "Invoke action draftActivate",
+        "summary": "Invokes action draftActivate",
         "tags": [
           "Film2Species"
         ],
@@ -2915,7 +2773,7 @@
     },
     "/Film2Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/specie/StarWarsSpecies.draftEdit": {
       "post": {
-        "summary": "Invoke action draftEdit",
+        "summary": "Invokes action draftEdit",
         "tags": [
           "Film2Species"
         ],
@@ -2982,7 +2840,7 @@
     },
     "/Film2Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/specie/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "Film2Species"
         ],
@@ -3049,7 +2907,7 @@
     },
     "/Film2Starships": {
       "get": {
-        "summary": "Retrieve a list of film2 starships.",
+        "summary": "Retrieves a list of film2 starships.",
         "tags": [
           "Film2Starships"
         ],
@@ -3141,7 +2999,7 @@
                   "type": "object",
                   "title": "Collection of Film2Starships",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -3151,38 +3009,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single film2 starship.",
-        "tags": [
-          "Film2Starships"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Starships-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created film2 starship",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Film2Starships"
                 }
               }
             }
@@ -3208,7 +3034,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single film2 starship.",
+        "summary": "Retrieves a single film2 starship.",
         "tags": [
           "Film2Starships"
         ],
@@ -3265,45 +3091,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single film2 starship.",
-        "tags": [
-          "Film2Starships"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Starships-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single film2 starship.",
-        "tags": [
-          "Film2Starships"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Film2Starships({ID})/film": {
@@ -3321,7 +3108,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve film of a film2 starship.",
+        "summary": "Retrieves film of a film2 starship.",
         "tags": [
           "Film2Starships",
           "{i18n>Film}"
@@ -3407,7 +3194,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve starship of a film2 starship.",
+        "summary": "Retrieves starship of a film2 starship.",
         "tags": [
           "Film2Starships",
           "{i18n>Starship}"
@@ -3484,7 +3271,7 @@
     },
     "/Film2Vehicles": {
       "get": {
-        "summary": "Retrieve a list of film2 vehicles.",
+        "summary": "Retrieves a list of film2 vehicles.",
         "tags": [
           "Film2Vehicles"
         ],
@@ -3576,7 +3363,7 @@
                   "type": "object",
                   "title": "Collection of Film2Vehicles",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -3586,38 +3373,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single film2 vehicle.",
-        "tags": [
-          "Film2Vehicles"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Vehicles-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created film2 vehicle",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Film2Vehicles"
                 }
               }
             }
@@ -3643,7 +3398,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single film2 vehicle.",
+        "summary": "Retrieves a single film2 vehicle.",
         "tags": [
           "Film2Vehicles"
         ],
@@ -3700,45 +3455,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single film2 vehicle.",
-        "tags": [
-          "Film2Vehicles"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Vehicles-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single film2 vehicle.",
-        "tags": [
-          "Film2Vehicles"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Film2Vehicles({ID})/film": {
@@ -3756,7 +3472,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve film of a film2 vehicle.",
+        "summary": "Retrieves film of a film2 vehicle.",
         "tags": [
           "Film2Vehicles",
           "{i18n>Film}"
@@ -3842,7 +3558,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve vehicle of a film2 vehicle.",
+        "summary": "Retrieves vehicle of a film2 vehicle.",
         "tags": [
           "Film2Vehicles",
           "{i18n>Vehicles}"
@@ -3917,7 +3633,7 @@
     },
     "/People": {
       "get": {
-        "summary": "Retrieve a list of people.",
+        "summary": "Retrieves a list of people.",
         "tags": [
           "{i18n>People}"
         ],
@@ -4048,7 +3764,7 @@
                   "type": "object",
                   "title": "Collection of People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -4083,7 +3799,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single person.",
+        "summary": "Retrieves a single person.",
         "tags": [
           "{i18n>People}"
         ],
@@ -4172,7 +3888,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a {i18n> people}.",
+        "summary": "Retrieves a list of films of a {i18n> people}.",
         "tags": [
           "{i18n>People}",
           "Film2People"
@@ -4265,7 +3981,7 @@
                   "type": "object",
                   "title": "Collection of Film2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -4275,39 +3991,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single film of a {i18n> people}.",
-        "tags": [
-          "{i18n>People}",
-          "Film2People"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2People-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created film",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Film2People"
                 }
               }
             }
@@ -4333,7 +4016,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve homeworld of a {i18n> people}.",
+        "summary": "Retrieves homeworld of a {i18n> people}.",
         "tags": [
           "{i18n>People}",
           "{i18n>Planet}"
@@ -4419,7 +4102,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of species of a {i18n> people}.",
+        "summary": "Retrieves a list of species of a {i18n> people}.",
         "tags": [
           "{i18n>People}",
           "Species2People"
@@ -4523,7 +4206,7 @@
                   "type": "object",
                   "title": "Collection of Species2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -4533,39 +4216,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single species of a {i18n> people}.",
-        "tags": [
-          "{i18n>People}",
-          "Species2People"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Species2People-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created species",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Species2People"
                 }
               }
             }
@@ -4591,7 +4241,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of starships of a {i18n> people}.",
+        "summary": "Retrieves a list of starships of a {i18n> people}.",
         "tags": [
           "{i18n>People}",
           "Starship2Pilot"
@@ -4684,7 +4334,7 @@
                   "type": "object",
                   "title": "Collection of Starship2Pilot",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -4694,39 +4344,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single starship of a {i18n> people}.",
-        "tags": [
-          "{i18n>People}",
-          "Starship2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created starship",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot"
                 }
               }
             }
@@ -4752,7 +4369,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of vehicles of a {i18n> people}.",
+        "summary": "Retrieves a list of vehicles of a {i18n> people}.",
         "tags": [
           "{i18n>People}",
           "Vehicle2Pilot"
@@ -4845,7 +4462,7 @@
                   "type": "object",
                   "title": "Collection of Vehicle2Pilot",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -4863,44 +4480,11 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "post": {
-        "summary": "Create a single vehicle of a {i18n> people}.",
-        "tags": [
-          "{i18n>People}",
-          "Vehicle2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created vehicle",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Planet": {
       "get": {
-        "summary": "Retrieve a list of planet.",
+        "summary": "Retrieves a list of planet.",
         "tags": [
           "{i18n>Planet}"
         ],
@@ -5025,7 +4609,7 @@
                   "type": "object",
                   "title": "Collection of Planet",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -5060,7 +4644,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single planet.",
+        "summary": "Retrieves a single planet.",
         "tags": [
           "{i18n>Planet}"
         ],
@@ -5145,7 +4729,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a {i18n> planet}.",
+        "summary": "Retrieves a list of films of a {i18n> planet}.",
         "tags": [
           "{i18n>Planet}",
           "Film2Planets"
@@ -5238,7 +4822,7 @@
                   "type": "object",
                   "title": "Collection of Film2Planets",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -5258,7 +4842,7 @@
         }
       },
       "post": {
-        "summary": "Create a single film of a {i18n> planet}.",
+        "summary": "Creates a single film of a {i18n> planet}.",
         "tags": [
           "{i18n>Planet}",
           "Film2Planets"
@@ -5306,7 +4890,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of residents of a {i18n> planet}.",
+        "summary": "Retrieves a list of residents of a {i18n> planet}.",
         "tags": [
           "{i18n>Planet}",
           "Planet2People"
@@ -5399,7 +4983,7 @@
                   "type": "object",
                   "title": "Collection of Planet2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -5419,7 +5003,7 @@
         }
       },
       "post": {
-        "summary": "Create a single resident of a {i18n> planet}.",
+        "summary": "Creates a single resident of a {i18n> planet}.",
         "tags": [
           "{i18n>Planet}",
           "Planet2People"
@@ -5454,7 +5038,7 @@
     },
     "/Planet2People": {
       "get": {
-        "summary": "Retrieve a list of planet2 people.",
+        "summary": "Retrieves a list of planet2 people.",
         "tags": [
           "Planet2People"
         ],
@@ -5546,7 +5130,7 @@
                   "type": "object",
                   "title": "Collection of Planet2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -5556,38 +5140,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single planet2 person.",
-        "tags": [
-          "Planet2People"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Planet2People-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created planet2 person",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Planet2People"
                 }
               }
             }
@@ -5613,7 +5165,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single planet2 person.",
+        "summary": "Retrieves a single planet2 person.",
         "tags": [
           "Planet2People"
         ],
@@ -5670,45 +5222,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single planet2 person.",
-        "tags": [
-          "Planet2People"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Planet2People-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single planet2 person.",
-        "tags": [
-          "Planet2People"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Planet2People({ID})/people": {
@@ -5726,7 +5239,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve people of a planet2 person.",
+        "summary": "Retrieves people of a planet2 person.",
         "tags": [
           "Planet2People",
           "{i18n>People}"
@@ -5816,7 +5329,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve planet of a planet2 person.",
+        "summary": "Retrieves planet of a planet2 person.",
         "tags": [
           "Planet2People",
           "{i18n>Planet}"
@@ -5889,7 +5402,7 @@
     },
     "/Species": {
       "get": {
-        "summary": "Retrieve a list of species.",
+        "summary": "Retrieves a list of species.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6029,7 +5542,7 @@
                   "type": "object",
                   "title": "Collection of Species",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -6049,7 +5562,7 @@
         }
       },
       "post": {
-        "summary": "Create a single species.",
+        "summary": "Creates a single species.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6106,7 +5619,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single species.",
+        "summary": "Retrieves a single species.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6183,7 +5696,7 @@
         }
       },
       "patch": {
-        "summary": "Change a single species.",
+        "summary": "Changes a single species.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6208,7 +5721,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a single species.",
+        "summary": "Deletes a single species.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6247,7 +5760,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve draft administrative data of a {i18n> species}.",
+        "summary": "Retrieves draft administrative data of a {i18n> species}.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6293,7 +5806,7 @@
         }
       },
       "patch": {
-        "summary": "Change draft administrative data of a {i18n> species}.",
+        "summary": "Changes draft administrative data of a {i18n> species}.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6318,7 +5831,7 @@
         }
       },
       "delete": {
-        "summary": "Delete draft administrative data of a {i18n> species}.",
+        "summary": "Deletes draft administrative data of a {i18n> species}.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6357,7 +5870,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve sibling entity of a {i18n> species}.",
+        "summary": "Retrieves sibling entity of a {i18n> species}.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6436,7 +5949,7 @@
     },
     "/Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/StarWarsSpecies.draftActivate": {
       "post": {
-        "summary": "Invoke action draftActivate",
+        "summary": "Invokes action draftActivate",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6487,7 +6000,7 @@
     },
     "/Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/StarWarsSpecies.draftEdit": {
       "post": {
-        "summary": "Invoke action draftEdit",
+        "summary": "Invokes action draftEdit",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6554,7 +6067,7 @@
     },
     "/Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6621,7 +6134,7 @@
     },
     "/Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/StarWarsSpecies.draftActivate": {
       "post": {
-        "summary": "Invoke action draftActivate",
+        "summary": "Invokes action draftActivate",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6672,7 +6185,7 @@
     },
     "/Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/StarWarsSpecies.draftEdit": {
       "post": {
-        "summary": "Invoke action draftEdit",
+        "summary": "Invokes action draftEdit",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6739,7 +6252,7 @@
     },
     "/Species(ID={ID},IsActiveEntity='{IsActiveEntity}')/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "{i18n>Species}"
         ],
@@ -6829,7 +6342,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a {i18n> species}.",
+        "summary": "Retrieves a list of films of a {i18n> species}.",
         "tags": [
           "{i18n>Species}",
           "Film2Species"
@@ -6933,7 +6446,7 @@
                   "type": "object",
                   "title": "Collection of Film2Species",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -6953,7 +6466,7 @@
         }
       },
       "post": {
-        "summary": "Create a single film of a {i18n> species}.",
+        "summary": "Creates a single film of a {i18n> species}.",
         "tags": [
           "{i18n>Species}",
           "Film2Species"
@@ -7011,7 +6524,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve homeworld of a {i18n> species}.",
+        "summary": "Retrieves homeworld of a {i18n> species}.",
         "tags": [
           "{i18n>Species}",
           "{i18n>Planet}"
@@ -7107,7 +6620,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of people of a {i18n> species}.",
+        "summary": "Retrieves a list of people of a {i18n> species}.",
         "tags": [
           "{i18n>Species}",
           "Species2People"
@@ -7211,7 +6724,7 @@
                   "type": "object",
                   "title": "Collection of Species2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -7231,7 +6744,7 @@
         }
       },
       "post": {
-        "summary": "Create a single person of a {i18n> species}.",
+        "summary": "Creates a single person of a {i18n> species}.",
         "tags": [
           "{i18n>Species}",
           "Species2People"
@@ -7266,7 +6779,7 @@
     },
     "/Species2People": {
       "get": {
-        "summary": "Retrieve a list of species2 people.",
+        "summary": "Retrieves a list of species2 people.",
         "tags": [
           "Species2People"
         ],
@@ -7369,7 +6882,7 @@
                   "type": "object",
                   "title": "Collection of Species2People",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -7389,7 +6902,7 @@
         }
       },
       "post": {
-        "summary": "Create a single species2 person.",
+        "summary": "Creates a single species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7446,7 +6959,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single species2 person.",
+        "summary": "Retrieves a single species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7510,7 +7023,7 @@
         }
       },
       "patch": {
-        "summary": "Change a single species2 person.",
+        "summary": "Changes a single species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7535,7 +7048,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a single species2 person.",
+        "summary": "Deletes a single species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7574,7 +7087,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve draft administrative data of a species2 person.",
+        "summary": "Retrieves draft administrative data of a species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7620,7 +7133,7 @@
         }
       },
       "patch": {
-        "summary": "Change draft administrative data of a species2 person.",
+        "summary": "Changes draft administrative data of a species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7645,7 +7158,7 @@
         }
       },
       "delete": {
-        "summary": "Delete draft administrative data of a species2 person.",
+        "summary": "Deletes draft administrative data of a species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7684,7 +7197,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve sibling entity of a species2 person.",
+        "summary": "Retrieves sibling entity of a species2 person.",
         "tags": [
           "Species2People"
         ],
@@ -7750,7 +7263,7 @@
     },
     "/Species2People(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "Species2People"
         ],
@@ -7817,7 +7330,7 @@
     },
     "/Species2People(ID={ID},IsActiveEntity='{IsActiveEntity}')/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "Species2People"
         ],
@@ -7907,7 +7420,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve people of a species2 person.",
+        "summary": "Retrieves people of a species2 person.",
         "tags": [
           "Species2People",
           "{i18n>People}"
@@ -8007,7 +7520,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve species of a species2 person.",
+        "summary": "Retrieves species of a species2 person.",
         "tags": [
           "Species2People",
           "{i18n>Species}"
@@ -8087,7 +7600,7 @@
     },
     "/Species2People(ID={ID},IsActiveEntity='{IsActiveEntity}')/species/StarWarsSpecies.draftActivate": {
       "post": {
-        "summary": "Invoke action draftActivate",
+        "summary": "Invokes action draftActivate",
         "tags": [
           "Species2People"
         ],
@@ -8138,7 +7651,7 @@
     },
     "/Species2People(ID={ID},IsActiveEntity='{IsActiveEntity}')/species/StarWarsSpecies.draftEdit": {
       "post": {
-        "summary": "Invoke action draftEdit",
+        "summary": "Invokes action draftEdit",
         "tags": [
           "Species2People"
         ],
@@ -8205,7 +7718,7 @@
     },
     "/Species2People(ID={ID},IsActiveEntity='{IsActiveEntity}')/species/StarWarsSpecies.draftPrepare": {
       "post": {
-        "summary": "Invoke action draftPrepare",
+        "summary": "Invokes action draftPrepare",
         "tags": [
           "Species2People"
         ],
@@ -8272,7 +7785,7 @@
     },
     "/Starship": {
       "get": {
-        "summary": "Retrieve a list of starship.",
+        "summary": "Retrieves a list of starship.",
         "tags": [
           "{i18n>Starship}"
         ],
@@ -8409,7 +7922,7 @@
                   "type": "object",
                   "title": "Collection of Starship",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -8419,38 +7932,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single starship.",
-        "tags": [
-          "{i18n>Starship}"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Starship-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created starship",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Starship"
                 }
               }
             }
@@ -8476,7 +7957,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single starship.",
+        "summary": "Retrieves a single starship.",
         "tags": [
           "{i18n>Starship}"
         ],
@@ -8548,45 +8029,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single starship.",
-        "tags": [
-          "{i18n>Starship}"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Starship-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single starship.",
-        "tags": [
-          "{i18n>Starship}"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Starship({ID})/films": {
@@ -8604,7 +8046,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a {i18n> starship}.",
+        "summary": "Retrieves a list of films of a {i18n> starship}.",
         "tags": [
           "{i18n>Starship}",
           "Film2Starships"
@@ -8697,7 +8139,7 @@
                   "type": "object",
                   "title": "Collection of Film2Starships",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -8707,39 +8149,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single film of a {i18n> starship}.",
-        "tags": [
-          "{i18n>Starship}",
-          "Film2Starships"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Starships-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created film",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Film2Starships"
                 }
               }
             }
@@ -8765,7 +8174,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of pilots of a {i18n> starship}.",
+        "summary": "Retrieves a list of pilots of a {i18n> starship}.",
         "tags": [
           "{i18n>Starship}",
           "Starship2Pilot"
@@ -8858,7 +8267,7 @@
                   "type": "object",
                   "title": "Collection of Starship2Pilot",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -8876,44 +8285,11 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "post": {
-        "summary": "Create a single pilot of a {i18n> starship}.",
-        "tags": [
-          "{i18n>Starship}",
-          "Starship2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created pilot",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Starship2Pilot": {
       "get": {
-        "summary": "Retrieve a list of starship2 pilot.",
+        "summary": "Retrieves a list of starship2 pilot.",
         "tags": [
           "Starship2Pilot"
         ],
@@ -9005,7 +8381,7 @@
                   "type": "object",
                   "title": "Collection of Starship2Pilot",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -9015,38 +8391,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single starship2 pilot.",
-        "tags": [
-          "Starship2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created starship2 pilot",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot"
                 }
               }
             }
@@ -9072,7 +8416,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single starship2 pilot.",
+        "summary": "Retrieves a single starship2 pilot.",
         "tags": [
           "Starship2Pilot"
         ],
@@ -9129,45 +8473,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single starship2 pilot.",
-        "tags": [
-          "Starship2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single starship2 pilot.",
-        "tags": [
-          "Starship2Pilot"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Starship2Pilot({ID})/pilot": {
@@ -9185,7 +8490,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve pilot of a starship2 pilot.",
+        "summary": "Retrieves pilot of a starship2 pilot.",
         "tags": [
           "Starship2Pilot",
           "{i18n>People}"
@@ -9275,7 +8580,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve starship of a starship2 pilot.",
+        "summary": "Retrieves starship of a starship2 pilot.",
         "tags": [
           "Starship2Pilot",
           "{i18n>Starship}"
@@ -9352,7 +8657,7 @@
     },
     "/Vehicle2Pilot": {
       "get": {
-        "summary": "Retrieve a list of vehicle2 pilot.",
+        "summary": "Retrieves a list of vehicle2 pilot.",
         "tags": [
           "Vehicle2Pilot"
         ],
@@ -9444,7 +8749,7 @@
                   "type": "object",
                   "title": "Collection of Vehicle2Pilot",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -9454,38 +8759,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single vehicle2 pilot.",
-        "tags": [
-          "Vehicle2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created vehicle2 pilot",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot"
                 }
               }
             }
@@ -9511,7 +8784,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single vehicle2 pilot.",
+        "summary": "Retrieves a single vehicle2 pilot.",
         "tags": [
           "Vehicle2Pilot"
         ],
@@ -9568,45 +8841,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single vehicle2 pilot.",
-        "tags": [
-          "Vehicle2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single vehicle2 pilot.",
-        "tags": [
-          "Vehicle2Pilot"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Vehicle2Pilot({ID})/pilot": {
@@ -9624,7 +8858,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve pilot of a vehicle2 pilot.",
+        "summary": "Retrieves pilot of a vehicle2 pilot.",
         "tags": [
           "Vehicle2Pilot",
           "{i18n>People}"
@@ -9714,7 +8948,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve vehicle of a vehicle2 pilot.",
+        "summary": "Retrieves vehicle of a vehicle2 pilot.",
         "tags": [
           "Vehicle2Pilot",
           "{i18n>Vehicles}"
@@ -9789,7 +9023,7 @@
     },
     "/Vehicles": {
       "get": {
-        "summary": "Retrieve a list of vehicles.",
+        "summary": "Retrieves a list of vehicles.",
         "tags": [
           "{i18n>Vehicles}"
         ],
@@ -9920,7 +9154,7 @@
                   "type": "object",
                   "title": "Collection of Vehicles",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -9930,38 +9164,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single vehicle.",
-        "tags": [
-          "{i18n>Vehicles}"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Vehicles-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created vehicle",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Vehicles"
                 }
               }
             }
@@ -9987,7 +9189,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single vehicle.",
+        "summary": "Retrieves a single vehicle.",
         "tags": [
           "{i18n>Vehicles}"
         ],
@@ -10057,45 +9259,6 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Change a single vehicle.",
-        "tags": [
-          "{i18n>Vehicles}"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Vehicles-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete a single vehicle.",
-        "tags": [
-          "{i18n>Vehicles}"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/Vehicles({ID})/films": {
@@ -10113,7 +9276,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of films of a {i18n> vehicles}.",
+        "summary": "Retrieves a list of films of a {i18n> vehicles}.",
         "tags": [
           "{i18n>Vehicles}",
           "Film2Vehicles"
@@ -10206,7 +9369,7 @@
                   "type": "object",
                   "title": "Collection of Film2Vehicles",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -10216,39 +9379,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a single film of a {i18n> vehicles}.",
-        "tags": [
-          "{i18n>Vehicles}",
-          "Film2Vehicles"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Film2Vehicles-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created film",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Film2Vehicles"
                 }
               }
             }
@@ -10274,7 +9404,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of pilots of a {i18n> vehicles}.",
+        "summary": "Retrieves a list of pilots of a {i18n> vehicles}.",
         "tags": [
           "{i18n>Vehicles}",
           "Vehicle2Pilot"
@@ -10367,7 +9497,7 @@
                   "type": "object",
                   "title": "Collection of Vehicle2Pilot",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -10385,44 +9515,11 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "post": {
-        "summary": "Create a single pilot of a {i18n> vehicles}.",
-        "tags": [
-          "{i18n>Vehicles}",
-          "Vehicle2Pilot"
-        ],
-        "requestBody": {
-          "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created pilot",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
     "/classification": {
       "get": {
-        "summary": "Retrieve a list of classification.",
+        "summary": "Retrieves a list of classification.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10490,7 +9587,7 @@
                   "type": "object",
                   "title": "Collection of classification",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -10523,7 +9620,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single classification.",
+        "summary": "Retrieves a single classification.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10564,7 +9661,7 @@
     },
     "/designation": {
       "get": {
-        "summary": "Retrieve a list of designation.",
+        "summary": "Retrieves a list of designation.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10632,7 +9729,7 @@
                   "type": "object",
                   "title": "Collection of designation",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -10665,7 +9762,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single designation.",
+        "summary": "Retrieves a single designation.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10706,7 +9803,7 @@
     },
     "/eye_colors": {
       "get": {
-        "summary": "Retrieve a list of eye_colors.",
+        "summary": "Retrieves a list of eye_colors.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10774,7 +9871,7 @@
                   "type": "object",
                   "title": "Collection of eye_colors",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -10807,7 +9904,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single eye_color.",
+        "summary": "Retrieves a single eye_color.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10848,7 +9945,7 @@
     },
     "/hair_colors": {
       "get": {
-        "summary": "Retrieve a list of hair_colors.",
+        "summary": "Retrieves a list of hair_colors.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10916,7 +10013,7 @@
                   "type": "object",
                   "title": "Collection of hair_colors",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -10949,7 +10046,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single hair_color.",
+        "summary": "Retrieves a single hair_color.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -10990,7 +10087,7 @@
     },
     "/language": {
       "get": {
-        "summary": "Retrieve a list of language.",
+        "summary": "Retrieves a list of language.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -11058,7 +10155,7 @@
                   "type": "object",
                   "title": "Collection of language",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -11091,7 +10188,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single language.",
+        "summary": "Retrieves a single language.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -11132,7 +10229,7 @@
     },
     "/skin_colors": {
       "get": {
-        "summary": "Retrieve a list of skin_colors.",
+        "summary": "Retrieves a list of skin_colors.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -11200,7 +10297,7 @@
                   "type": "object",
                   "title": "Collection of skin_colors",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -11233,7 +10330,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single skin_color.",
+        "summary": "Retrieves a single skin_color.",
         "tags": [
           "{i18n>Species}"
         ],
@@ -11429,8 +10526,7 @@
           "createdBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "modifiedAt": {
             "type": "string",
@@ -11441,8 +10537,7 @@
           "modifiedBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "title": {
             "type": "string",
@@ -11455,6 +10550,7 @@
           },
           "opening_crawl": {
             "type": "string",
+            "maxLength": 2500,
             "nullable": true
           },
           "director": {
@@ -11477,7 +10573,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2People"
             }
           },
-          "characters@odata.count": {
+          "characters@count": {
             "$ref": "#/components/schemas/count"
           },
           "planets": {
@@ -11486,7 +10582,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Planets"
             }
           },
-          "planets@odata.count": {
+          "planets@count": {
             "$ref": "#/components/schemas/count"
           },
           "starships": {
@@ -11495,7 +10591,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Starships"
             }
           },
-          "starships@odata.count": {
+          "starships@count": {
             "$ref": "#/components/schemas/count"
           },
           "vehicles": {
@@ -11504,7 +10600,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Vehicles"
             }
           },
-          "vehicles@odata.count": {
+          "vehicles@count": {
             "$ref": "#/components/schemas/count"
           },
           "species": {
@@ -11513,11 +10609,10 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Species"
             }
           },
-          "species@odata.count": {
+          "species@count": {
             "$ref": "#/components/schemas/count"
           }
-        },
-        "description": "All Films in the Star Wars Skywalker Saga"
+        }
       },
       "StarWarsSpecies.Film2People": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -11556,8 +10651,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2People-create": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
@@ -11575,27 +10669,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Film2People-update": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Planets": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -11634,8 +10708,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Planets-create": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
@@ -11653,27 +10726,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Film2Planets-update": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Species": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -11740,8 +10793,7 @@
             ],
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Species-create": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
@@ -11782,8 +10834,7 @@
         },
         "required": [
           "IsActiveEntity"
-        ],
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        ]
       },
       "StarWarsSpecies.Film2Species-update": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
@@ -11808,9 +10859,16 @@
           "HasDraftEntity": {
             "type": "boolean",
             "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsSpecies.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Starships": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -11849,8 +10907,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Starships-create": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
@@ -11868,27 +10925,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Film2Starships-update": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Vehicles": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -11927,8 +10964,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Film2Vehicles-create": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
@@ -11946,27 +10982,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Film2Vehicles-update": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
-        "type": "object",
-        "properties": {
-          "film_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.People": {
         "title": "All People and Aliens in Star Wars",
@@ -11986,8 +11002,7 @@
           "createdBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "modifiedAt": {
             "type": "string",
@@ -11998,8 +11013,7 @@
           "modifiedBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -12016,8 +11030,7 @@
           },
           "hair_color": {
             "type": "string",
-            "nullable": true,
-            "description": "Person's Hair Color"
+            "nullable": true
           },
           "skin_color": {
             "type": "string",
@@ -12060,7 +11073,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2People"
             }
           },
-          "films@odata.count": {
+          "films@count": {
             "$ref": "#/components/schemas/count"
           },
           "species": {
@@ -12069,7 +11082,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Species2People"
             }
           },
-          "species@odata.count": {
+          "species@count": {
             "$ref": "#/components/schemas/count"
           },
           "vehicles": {
@@ -12078,7 +11091,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot"
             }
           },
-          "vehicles@odata.count": {
+          "vehicles@count": {
             "$ref": "#/components/schemas/count"
           },
           "starships": {
@@ -12087,11 +11100,10 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot"
             }
           },
-          "starships@odata.count": {
+          "starships@count": {
             "$ref": "#/components/schemas/count"
           }
-        },
-        "description": "All People and Aliens in Star Wars"
+        }
       },
       "StarWarsSpecies.Planet": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -12111,8 +11123,7 @@
           "createdBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "modifiedAt": {
             "type": "string",
@@ -12123,8 +11134,7 @@
           "modifiedBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -12168,7 +11178,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Planets"
             }
           },
-          "films@odata.count": {
+          "films@count": {
             "$ref": "#/components/schemas/count"
           },
           "residents": {
@@ -12177,11 +11187,10 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Planet2People"
             }
           },
-          "residents@odata.count": {
+          "residents@count": {
             "$ref": "#/components/schemas/count"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.Planet2People": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -12220,8 +11229,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Planet2People-create": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
@@ -12239,27 +11247,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Planet2People-update": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
-        "type": "object",
-        "properties": {
-          "planet_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "people_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Species": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -12279,8 +11267,7 @@
           "createdBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "modifiedAt": {
             "type": "string",
@@ -12291,8 +11278,7 @@
           "modifiedBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -12350,7 +11336,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Species2People"
             }
           },
-          "people@odata.count": {
+          "people@count": {
             "$ref": "#/components/schemas/count"
           },
           "films": {
@@ -12359,7 +11345,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Species"
             }
           },
-          "films@odata.count": {
+          "films@count": {
             "$ref": "#/components/schemas/count"
           },
           "IsActiveEntity": {
@@ -12390,8 +11376,7 @@
             ],
             "nullable": true
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.Species-create": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for create)",
@@ -12439,6 +11424,18 @@
             "type": "string",
             "nullable": true
           },
+          "people": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsSpecies.Species2People-create"
+            }
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsSpecies.Film2Species-create"
+            }
+          },
           "IsActiveEntity": {
             "type": "boolean",
             "default": true
@@ -12462,8 +11459,7 @@
         },
         "required": [
           "IsActiveEntity"
-        ],
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        ]
       },
       "StarWarsSpecies.Species-update": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for update)",
@@ -12511,6 +11507,18 @@
             "type": "string",
             "nullable": true
           },
+          "people": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsSpecies.Species2People-create"
+            }
+          },
+          "films": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StarWarsSpecies.Film2Species-create"
+            }
+          },
           "HasActiveEntity": {
             "type": "boolean",
             "default": false
@@ -12518,9 +11526,16 @@
           "HasDraftEntity": {
             "type": "boolean",
             "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsSpecies.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.Species2People": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -12587,8 +11602,7 @@
             ],
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Species2People-create": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
@@ -12629,8 +11643,7 @@
         },
         "required": [
           "IsActiveEntity"
-        ],
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        ]
       },
       "StarWarsSpecies.Species2People-update": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
@@ -12655,9 +11668,16 @@
           "HasDraftEntity": {
             "type": "boolean",
             "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StarWarsSpecies.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Starship": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -12677,8 +11697,7 @@
           "createdBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "modifiedAt": {
             "type": "string",
@@ -12689,8 +11708,7 @@
           "modifiedBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -12750,7 +11768,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Starships"
             }
           },
-          "films@odata.count": {
+          "films@count": {
             "$ref": "#/components/schemas/count"
           },
           "pilots": {
@@ -12759,129 +11777,10 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Starship2Pilot"
             }
           },
-          "pilots@odata.count": {
+          "pilots@count": {
             "$ref": "#/components/schemas/count"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsSpecies.Starship-create": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for create)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "starship_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "hyperdrive_rating": {
-            "type": "string",
-            "nullable": true
-          },
-          "MGLT": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsSpecies.Starship-update": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for update)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "starship_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "hyperdrive_rating": {
-            "type": "string",
-            "nullable": true
-          },
-          "MGLT": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.Starship2Pilot": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -12920,46 +11819,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Starship2Pilot-create": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
-        "type": "object",
-        "properties": {
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Starship2Pilot-update": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
-        "type": "object",
-        "properties": {
-          "starship_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Vehicle2Pilot": {
         "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid",
@@ -12998,46 +11858,7 @@
             "example": "01234567-89ab-cdef-0123-456789abcdef",
             "nullable": true
           }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Vehicle2Pilot-create": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for create)",
-        "type": "object",
-        "properties": {
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
-      },
-      "StarWarsSpecies.Vehicle2Pilot-update": {
-        "title": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid (for update)",
-        "type": "object",
-        "properties": {
-          "vehicle_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "pilot_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          }
-        },
-        "description": "Aspect for entities with canonical universal IDs\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-cuid"
+        }
       },
       "StarWarsSpecies.Vehicles": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -13057,8 +11878,7 @@
           "createdBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "modifiedAt": {
             "type": "string",
@@ -13069,8 +11889,7 @@
           "modifiedBy": {
             "type": "string",
             "maxLength": 255,
-            "nullable": true,
-            "description": "{i18n>UserID.Description}"
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -13122,7 +11941,7 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Film2Vehicles"
             }
           },
-          "films@odata.count": {
+          "films@count": {
             "$ref": "#/components/schemas/count"
           },
           "pilots": {
@@ -13131,113 +11950,10 @@
               "$ref": "#/components/schemas/StarWarsSpecies.Vehicle2Pilot"
             }
           },
-          "pilots@odata.count": {
+          "pilots@count": {
             "$ref": "#/components/schemas/count"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsSpecies.Vehicles-create": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for create)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "vehicle_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
-      },
-      "StarWarsSpecies.Vehicles-update": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for update)",
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "model": {
-            "type": "string",
-            "nullable": true
-          },
-          "vehicle_class": {
-            "type": "string",
-            "nullable": true
-          },
-          "manufacturer": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost_in_credits": {
-            "type": "string",
-            "nullable": true
-          },
-          "length": {
-            "type": "string",
-            "nullable": true
-          },
-          "crew": {
-            "type": "string",
-            "nullable": true
-          },
-          "passengers": {
-            "type": "string",
-            "nullable": true
-          },
-          "max_atmosphering_speed": {
-            "type": "string",
-            "nullable": true
-          },
-          "cargo_capacity": {
-            "type": "string",
-            "nullable": true
-          },
-          "consumables": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.classification": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -13246,8 +11962,7 @@
           "classification": {
             "type": "string"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.designation": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -13256,8 +11971,7 @@
           "designation": {
             "type": "string"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.eye_colors": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -13266,8 +11980,7 @@
           "eye_colors": {
             "type": "string"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.hair_colors": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -13276,8 +11989,7 @@
           "hair_colors": {
             "type": "string"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.language": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -13286,8 +11998,7 @@
           "language": {
             "type": "string"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "StarWarsSpecies.skin_colors": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
@@ -13296,8 +12007,7 @@
           "skin_colors": {
             "type": "string"
           }
-        },
-        "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed"
+        }
       },
       "count": {
         "anyOf": [

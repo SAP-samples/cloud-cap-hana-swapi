@@ -2,15 +2,15 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Exposes data + entity metadata",
-    "description": "This service is located at [/-data/](/-data/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Entities{bg:lightslategray}],[Entities]-*[Entities_columns],[Data{bg:lightslategray}],[Data]++-*[Data_record],[Entities_columns{bg:lightslategray}],[Data_record],[Entities_columns%20{bg:lawngreen}]++-*>[Entities_columns],[Data%20{bg:lawngreen}]++-*>[Data],[Entities%20{bg:lawngreen}]++-*>[Entities])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
+    "description": "This service is located at [/odata/v4/-data/](/odata/v4/-data/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Entities{bg:lightslategray}],[Entities]-*[Entities_columns],[Data{bg:lightslategray}],[Data]++-*[Data_record],[Entities_columns{bg:lightslategray}],[Data_record],[Entities_columns%20{bg:lawngreen}]++-*>[Entities_columns],[Data%20{bg:lawngreen}]++-*>[Data],[Entities%20{bg:lawngreen}]++-*>[Entities])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
   "x-sap-api-type": "ODATAV4",
-  "x-odata-version": "4.0",
+  "x-odata-version": "4.01",
   "x-sap-shortText": "Exposes data + entity metadata",
   "servers": [
     {
-      "url": "/-data"
+      "url": "/odata/v4/-data"
     }
   ],
   "tags": [
@@ -29,7 +29,7 @@
   "paths": {
     "/$batch": {
       "post": {
-        "summary": "Send a group of requests",
+        "summary": "Sends a group of requests",
         "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
         "tags": [
           "Batch Requests"
@@ -66,7 +66,7 @@
     },
     "/Data": {
       "get": {
-        "summary": "Retrieve a list of data.",
+        "summary": "Retrieves a list of data.",
         "tags": [
           "Data"
         ],
@@ -139,7 +139,7 @@
                   "type": "object",
                   "title": "Collection of Data",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -159,7 +159,7 @@
         }
       },
       "post": {
-        "summary": "Create a single datum.",
+        "summary": "Creates a single datum.",
         "tags": [
           "Data"
         ],
@@ -191,9 +191,101 @@
         }
       }
     },
+    "/Data('{dummy}')": {
+      "parameters": [
+        {
+          "description": "key: dummy",
+          "in": "path",
+          "name": "dummy",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieves a single datum.",
+        "tags": [
+          "Data"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "dummy",
+                  "record"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved datum",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataService.Data"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Changes a single datum.",
+        "tags": [
+          "Data"
+        ],
+        "requestBody": {
+          "description": "The actual data, organized by column name",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataService.Data-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a single datum.",
+        "tags": [
+          "Data"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
     "/Entities": {
       "get": {
-        "summary": "Retrieve a list of entities.",
+        "summary": "Retrieves a list of entities.",
         "tags": [
           "Entities"
         ],
@@ -278,7 +370,7 @@
                   "type": "object",
                   "title": "Collection of Entities",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -298,7 +390,7 @@
         }
       },
       "post": {
-        "summary": "Create a single entity.",
+        "summary": "Creates a single entity.",
         "tags": [
           "Entities"
         ],
@@ -343,7 +435,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single entity.",
+        "summary": "Retrieves a single entity.",
         "tags": [
           "Entities"
         ],
@@ -399,7 +491,7 @@
         }
       },
       "patch": {
-        "summary": "Change a single entity.",
+        "summary": "Changes a single entity.",
         "tags": [
           "Entities"
         ],
@@ -424,7 +516,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a single entity.",
+        "summary": "Deletes a single entity.",
         "tags": [
           "Entities"
         ],
@@ -451,7 +543,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of columns of a entity.",
+        "summary": "Retrieves a list of columns of a entity.",
         "tags": [
           "Entities",
           "Entities_columns"
@@ -546,7 +638,7 @@
                   "type": "object",
                   "title": "Collection of Entities_columns",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -566,7 +658,7 @@
         }
       },
       "post": {
-        "summary": "Create a single column of a entity.",
+        "summary": "Creates a single column of a entity.",
         "tags": [
           "Entities",
           "Entities_columns"
@@ -601,7 +693,7 @@
     },
     "/Entities_columns": {
       "get": {
-        "summary": "Retrieve a list of entities_columns.",
+        "summary": "Retrieves a list of entities_columns.",
         "tags": [
           "Entities_columns"
         ],
@@ -695,7 +787,7 @@
                   "type": "object",
                   "title": "Collection of Entities_columns",
                   "properties": {
-                    "@odata.count": {
+                    "@count": {
                       "$ref": "#/components/schemas/count"
                     },
                     "value": {
@@ -715,7 +807,7 @@
         }
       },
       "post": {
-        "summary": "Create a single entities_column.",
+        "summary": "Creates a single entities_column.",
         "tags": [
           "Entities_columns"
         ],
@@ -760,7 +852,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a single entities_column.",
+        "summary": "Retrieves a single entities_column.",
         "tags": [
           "Entities_columns"
         ],
@@ -819,7 +911,7 @@
         }
       },
       "patch": {
-        "summary": "Change a single entities_column.",
+        "summary": "Changes a single entities_column.",
         "tags": [
           "Entities_columns"
         ],
@@ -844,7 +936,7 @@
         }
       },
       "delete": {
-        "summary": "Delete a single entities_column.",
+        "summary": "Deletes a single entities_column.",
         "tags": [
           "Entities_columns"
         ],
@@ -871,7 +963,7 @@
         }
       ],
       "get": {
-        "summary": "Retrieve up_ of a entities_column.",
+        "summary": "Retrieves up_ of a entities_column.",
         "tags": [
           "Entities_columns",
           "Entities"
@@ -936,34 +1028,60 @@
         "type": "object",
         "properties": {
           "dummy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "record": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DataService.Data_record"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DataService.Data_record"
+                }
+              ],
+              "nullable": true
             }
           }
-        },
-        "description": "The actual data, organized by column name"
+        }
       },
       "DataService.Data-create": {
         "title": "The actual data, organized by column name (for create)",
         "type": "object",
         "properties": {
           "dummy": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "record": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/DataService.Data_record-create"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DataService.Data_record-create"
+                }
+              ],
+              "nullable": true
             }
           }
         },
-        "description": "The actual data, organized by column name"
+        "required": [
+          "dummy"
+        ]
+      },
+      "DataService.Data-update": {
+        "title": "The actual data, organized by column name (for update)",
+        "type": "object",
+        "properties": {
+          "record": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DataService.Data_record-update"
+                }
+              ],
+              "nullable": true
+            }
+          }
+        }
       },
       "DataService.Data_record": {
         "title": "Data_record",
@@ -993,6 +1111,20 @@
           }
         }
       },
+      "DataService.Data_record-update": {
+        "title": "Data_record (for update)",
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "DataService.Entities": {
         "title": "Metadata like name and columns/elements",
         "type": "object",
@@ -1006,11 +1138,10 @@
               "$ref": "#/components/schemas/DataService.Entities_columns"
             }
           },
-          "columns@odata.count": {
+          "columns@count": {
             "$ref": "#/components/schemas/count"
           }
-        },
-        "description": "Metadata like name and columns/elements"
+        }
       },
       "DataService.Entities-create": {
         "title": "Metadata like name and columns/elements (for create)",
@@ -1018,17 +1149,29 @@
         "properties": {
           "name": {
             "type": "string"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataService.Entities_columns-create"
+            }
           }
         },
         "required": [
           "name"
-        ],
-        "description": "Metadata like name and columns/elements"
+        ]
       },
       "DataService.Entities-update": {
         "title": "Metadata like name and columns/elements (for update)",
         "type": "object",
-        "description": "Metadata like name and columns/elements"
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataService.Entities_columns-create"
+            }
+          }
+        }
       },
       "DataService.Entities_columns": {
         "title": "Entities_columns",
