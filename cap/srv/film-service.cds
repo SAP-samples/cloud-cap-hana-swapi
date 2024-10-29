@@ -1,6 +1,8 @@
 using {star.wars as StarWars} from '../db/schema';
 
-@protocol: ['odata-v4', 'rest', 'graphql']
+@title : 'Star Wars Film Information'
+@Core.LongDescription: 'A long time ago in a galaxy far, far away...'
+@protocol: ['odata', 'graphql', 'rest']
 service StarWarsFilm @(path : 'StarWarsFilm') {
 
     @odata.draft.enabled : true

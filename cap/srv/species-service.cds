@@ -1,6 +1,8 @@
 using {star.wars as StarWars} from '../db/schema';
 
-@protocol: ['odata-v4', 'rest', 'graphql']
+@title : 'Star Wars Alien Species'
+@Core.LongDescription: 'A long time ago in a galaxy far, far away...'
+@protocol: ['odata-v4', 'graphql', 'rest']
 service StarWarsSpecies @(path : 'StarWarsSpecies') {
     @odata.draft.enabled : true
     entity Species        as projection on StarWars.Species {

@@ -2,7 +2,7 @@
  * Exposes data + entity metadata
  */
 //@requires:'admin'
-@protocol: ['odata-v4', 'rest', 'graphql']
+@protocol: ['odata-v4', 'graphql', 'rest']
 service DataService @( path:'-data' ) {
 
   /**

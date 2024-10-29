@@ -39,9 +39,9 @@ function addLinkToRest(service) {
   const provider = (entity) => {
     if (!service._adapters.rest) return //no Rest Adapter Configured
     if(entity){
-      return { href: `${service._adapters.rest.path}/${entity}`, name: 'REST', title: 'Show in Plain REST' }
+      return { href: `/rest/${service.name}/${entity}`, name: 'REST', title: 'Show in Plain REST' }
     }else{
-      return { href: service._adapters.rest.path, name: 'REST', title: 'Show in Plain REST' }
+      return { href: `/rest/${service.name}`, name: 'REST', title: 'Show in Plain REST' }
     }
 
   }

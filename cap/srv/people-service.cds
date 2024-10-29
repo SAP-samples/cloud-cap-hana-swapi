@@ -3,7 +3,9 @@ using {star.wars as StarWars} from '../db/schema';
 @AsyncAPI.Title        : 'Star Wars People Events'
 @AsyncAPI.SchemaVersion: '1.0.0'
 @AsyncAPI.Description  : 'Events emitted by the Star Wars People Service'
-@protocol: ['odata-v4', 'rest', 'graphql']
+@title : 'Star Wars Characters'
+@Core.LongDescription: 'A long time ago in a galaxy far, far away...'
+@protocol: ['odata-v4', 'graphql', 'rest']
 service StarWarsPeople @(path : 'StarWarsPeople') {
   @AsyncAPI.EventSpecVersion    : '2.0'
   @AsyncAPI.EventCharacteristics: {
