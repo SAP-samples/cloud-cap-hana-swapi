@@ -46,8 +46,8 @@
     "readme": "widdershins --summary docs/DataService.openapi3.json -o docs/DataService_readme.md && widdershins --summary docs/StarWarsFilm.openapi3.json -o docs/StarWarsFilm_readme.md",
     "helm": "helm upgrade --install swapi ./chart --namespace teched22",
     "changeLog": "node CHANGELOG.mjs",
-    "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder:base",
-    "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder:base"
+    "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder-jammy-base",
+    "pack": "pack build cap-hana-swapi-srv --path gen/srv --builder paketobuildpacks/builder-jammy-base"
   },
   "cds": {
     "cov2ap": {
