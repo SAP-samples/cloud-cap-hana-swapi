@@ -3,7 +3,6 @@
   "definitions": {
     "star.wars.Film": {
       "kind": "entity",
-      "doc": "All Films in the Star Wars Skywalker Saga",
       "@cds.persistence.journal": true,
       "elements": {
         "ID": {
@@ -18,7 +17,6 @@
           "@cds.persistence.name": "CREATEDAT"
         },
         "createdBy": {
-          "doc": "Canonical user ID",
           "type": "cds.String",
           "length": 255,
           "@cds.persistence.name": "CREATEDBY"
@@ -28,7 +26,6 @@
           "@cds.persistence.name": "MODIFIEDAT"
         },
         "modifiedBy": {
-          "doc": "Canonical user ID",
           "type": "cds.String",
           "length": 255,
           "@cds.persistence.name": "MODIFIEDBY"
@@ -172,12 +169,13 @@
           "@cds.persistence.name": "SPECIES"
         }
       },
+      "change-tracking-isRootEntity": true,
       "@cds.persistence.name": "STAR_WARS_FILM"
     }
   },
   "meta": {
-    "creator": "CDS Compiler v5.0.6",
-    "build": "CDS Build v8.0.3"
+    "creator": "CDS Compiler v5.8.2",
+    "build": "CDS Build v8.8.2"
   },
   "$version": "2.0"
 }
