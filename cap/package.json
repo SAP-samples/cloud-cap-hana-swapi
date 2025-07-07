@@ -1,22 +1,23 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js-community/odata-v2-adapter": "^1.14.2",
-    "@cap-js/change-tracking": "^1.0.7",
-    "@cap-js/graphql": "0.11.0",
-    "@cap-js/hana": "^1.7.0",
-    "@cap-js/postgres": "^1.12.0",
-    "@cap-js/sqlite": "^1.9.0",
-    "@cap-js/telemetry": "^1.2.3",
-    "@sap-cloud-sdk/resilience": "^4.0.1",
-    "@sap/cds": "8.8.2",
-    "@sap/cds-common-content": "^2.1.0",
-    "@sap/cds-fiori": "^1.4.0",
+    "@cap-js-community/odata-v2-adapter": "^1.15.2",
+    "@cap-js/change-tracking": "^1.0.8",
+    "@cap-js/graphql": "0.12.0",
+    "@cap-js/hana": "^2.1.1",
+    "@cap-js/postgres": "^2.0.3",
+    "@cap-js/sqlite": "^2.0.2",
+    "@cap-js/telemetry": "^1.4.1",
+    "@cap-js/notifications": "0.2.5",
+    "@sap-cloud-sdk/resilience": "^4.0.2",
+    "@sap/cds": "9.1.0",
+    "@sap/cds-common-content": "^3.0.1",
+    "@sap/cds-fiori": "^2.0.1",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.10.0",
     "cors": "^2.8.5",
@@ -24,7 +25,7 @@
     "uuid": "^11.1.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
     "start-local": "npm run generate-entry-point && npm run watch",
@@ -61,7 +62,7 @@
     "fiori": {
       "preview": {
         "ui5": {
-          "version": "1.133.0"
+          "version": "1.136.2"
         }
       }
     },
@@ -72,7 +73,7 @@
       "deploy-format": "hdbtable"
     },
     "requires": {
-      "outbox": true,
+      "queue": true,
       "[sqlite]": {
         "db": {
           "kind": "sqlite",
@@ -97,7 +98,7 @@
             "port": 5432,
             "user": "postgres",
             "password": "postgres",
-            "database": "postgres"
+            "db": "postgres"
           }
         },
         "db-ext": {
@@ -139,10 +140,10 @@
     }
   },
   "devDependencies": {
-    "@sap/dev-cap-tools": "^1.44.1",
-    "@sap/eslint-plugin-cds": "^3.2.0",
-    "@sap/hdi-deploy": "^5.4.1",
-    "eslint": "^9.22.0",
+    "@sap/dev-cap-tools": "^1.47.0",
+    "@sap/eslint-plugin-cds": "^4.0.2",
+    "@sap/hdi-deploy": "^5.4.2",
+    "eslint": "^9.30.1",
     "stringify-changelog": "^0.2.1",
     "widdershins": "^4.0.1"
   }

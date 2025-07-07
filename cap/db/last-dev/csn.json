@@ -57,116 +57,6 @@
         "release_date": {
           "type": "cds.Date",
           "@cds.persistence.name": "RELEASE_DATE"
-        },
-        "characters": {
-          "type": "cds.Composition",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "star.wars.Film2People",
-          "on": [
-            {
-              "ref": [
-                "characters",
-                "film_ID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ],
-          "@cds.persistence.name": "CHARACTERS"
-        },
-        "planets": {
-          "type": "cds.Composition",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "star.wars.Film2Planets",
-          "on": [
-            {
-              "ref": [
-                "planets",
-                "film_ID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ],
-          "@cds.persistence.name": "PLANETS"
-        },
-        "starships": {
-          "type": "cds.Composition",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "star.wars.Film2Starships",
-          "on": [
-            {
-              "ref": [
-                "starships",
-                "film_ID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ],
-          "@cds.persistence.name": "STARSHIPS"
-        },
-        "vehicles": {
-          "type": "cds.Composition",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "star.wars.Film2Vehicles",
-          "on": [
-            {
-              "ref": [
-                "vehicles",
-                "film_ID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ],
-          "@cds.persistence.name": "VEHICLES"
-        },
-        "species": {
-          "type": "cds.Composition",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "star.wars.Film2Species",
-          "on": [
-            {
-              "ref": [
-                "species",
-                "film_ID"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "ID"
-              ]
-            }
-          ],
-          "@cds.persistence.name": "SPECIES"
         }
       },
       "change-tracking-isRootEntity": true,
@@ -174,8 +64,8 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v5.8.2",
-    "build": "CDS Build v8.8.2"
+    "creator": "CDS Compiler v6.1.0",
+    "build": "CDS Build v9.1.0"
   },
   "$version": "2.0"
 }
