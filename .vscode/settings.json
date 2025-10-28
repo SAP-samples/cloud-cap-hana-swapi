@@ -2,5 +2,9 @@
     "SAP HANA Database Explorer.displaySapWebAnalyticsStartupNotification": false,
     "SAP HANA Database Artifacts.displaySapWebAnalyticsStartupNotification": false,
     "SAP HANA SQLScript LSP.URL": "https://hana-cockpit.cfapps.us10.hana.ondemand.com",
-    "SAP HANA Project Explorer.deploy.confirm migration-table development mode": false
+    "SAP HANA Project Explorer.deploy.confirm migration-table development mode": false,
+    "workbench.tree.renderIndentGuides": "always",
+    "workbench.colorCustomizations": {
+        "tree.indentGuidesStroke": "#008070"
+    }
 }

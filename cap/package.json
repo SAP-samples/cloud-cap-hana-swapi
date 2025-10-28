@@ -1,28 +1,28 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "@cap-js-community/odata-v2-adapter": "^1.15.2",
-    "@cap-js/change-tracking": "^1.0.8",
-    "@cap-js/graphql": "0.13.0",
-    "@cap-js/hana": "^2.1.1",
-    "@cap-js/postgres": "^2.0.3",
-    "@cap-js/sqlite": "^2.0.2",
-    "@cap-js/telemetry": "^1.4.1",
+    "@cap-js-community/odata-v2-adapter": "^1.15.5",
+    "@cap-js/change-tracking": "^1.1.3",
+    "@cap-js/graphql": "0.14.0",
+    "@cap-js/hana": "^2.3.4",
+    "@cap-js/postgres": "^2.0.6",
+    "@cap-js/sqlite": "^2.0.4",
+    "@cap-js/telemetry": "^1.5.4",
     "@cap-js/notifications": "0.2.5",
-    "@sap-cloud-sdk/resilience": "^4.0.2",
-    "@sap/cds": "9.1.0",
+    "@sap-cloud-sdk/resilience": "^4.1.2",
+    "@sap/cds": "9.4.4",
     "@sap/cds-common-content": "^3.0.1",
-    "@sap/cds-fiori": "^2.0.1",
+    "@sap/cds-fiori": "^2.1.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.10.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "uuid": "^11.1.0"
+    "uuid": "^13.0.0"
   },
   "engines": {
     "node": ">=20"
@@ -62,7 +62,7 @@
     "fiori": {
       "preview": {
         "ui5": {
-          "version": "1.136.2"
+          "version": "1.141.3"
         }
       }
     },
@@ -140,9 +140,9 @@
     }
   },
   "devDependencies": {
-    "@sap/dev-cap-tools": "^1.47.0",
-    "@sap/eslint-plugin-cds": "^4.0.2",
-    "@sap/hdi-deploy": "^5.4.2",
+    "@sap/dev-cap-tools": "^1.47.10",
+    "@sap/eslint-plugin-cds": "^4.1.0",
+    "@sap/hdi-deploy": "^5.5.1",
     "eslint": "^9.30.1",
     "stringify-changelog": "^0.2.1",
     "widdershins": "^4.0.1"
