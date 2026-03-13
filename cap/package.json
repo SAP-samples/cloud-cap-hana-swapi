@@ -10,10 +10,10 @@
     "@cap-js/change-tracking": "^1.1.4",
     "@cap-js/graphql": "0.14.0",
     "@cap-js/hana": "^2.7.0",
+    "@cap-js/notifications": "0.3.0",
     "@cap-js/postgres": "^2.2.0",
     "@cap-js/sqlite": "^2.2.0",
     "@cap-js/telemetry": "^1.6.0",
-    "@cap-js/notifications": "0.3.0",
     "@sap-cloud-sdk/resilience": "^4.5.1",
     "@sap/cds": "9.8.3",
     "@sap/cds-common-content": "^3.1.0",
@@ -37,6 +37,7 @@
     "load": "cds bind --exec node convertData.js --profile hybrid",
     "load_sqlite": "cds bind --exec node convertData.js --profile sqlite",
     "load_pg": "cds bind --exec node convertData.js --profile pg",
+    "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js",
     "test:migration": "node --test test/convertData.test.js test/convertData.report.test.js",
     "start": "cds-serve",
     "watch": "cds watch --profile hybrid --livereload false",
@@ -141,6 +142,7 @@
     }
   },
   "devDependencies": {
+    "@cap-js/cds-test": "^0.4.1",
     "@sap/dev-cap-tools": "^1.53.1",
     "@sap/eslint-plugin-cds": "^4.2.1",
     "@sap/hdi-deploy": "^5.6.1",
