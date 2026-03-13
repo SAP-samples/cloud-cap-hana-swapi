@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - [CAP version 8.0](https://cap.cloud.sap/docs/releases/jun24)
 - Update for SAPUI5 1.126.0
+- If you have ran this project locally previously, I recommend deleting your node_modules folder and doing a clean install of all dependencies
 
 ## [1.3.0] - 2024-03-01
 

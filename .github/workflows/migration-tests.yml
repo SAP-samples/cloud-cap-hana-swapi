@@ -1,0 +1,39 @@
+name: Migration tests
+
+on:
+  push:
+    paths:
+      - 'cap/convertData.js'
+      - 'cap/convertDataLite.js'
+      - 'cap/test/convertData*.test.js'
+      - '.github/workflows/migration-tests.yml'
+  pull_request:
+    paths:
+      - 'cap/convertData.js'
+      - 'cap/convertDataLite.js'
+      - 'cap/test/convertData*.test.js'
+      - '.github/workflows/migration-tests.yml'
+
+jobs:
+  test:
+    name: Run migration unit tests
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: cap
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: cap/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run migration unit tests
+        run: npm run test:migration
