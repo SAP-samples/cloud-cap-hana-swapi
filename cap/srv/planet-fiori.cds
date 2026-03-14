@@ -186,7 +186,8 @@ annotate sws.Planet2People with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : people_ID,
+            Value             : people.name,
+            Label             : '{i18n>People}',
             ![@UI.Importance] : #High
         },
         {
@@ -249,13 +250,14 @@ annotate sws.Planet2People with @( // header-level annotations
                 Value : planet.name
             },
             TypeName       : '{i18n>People}',
-            TypeNamePlural : '{i18n>PeopleM}',
+            TypeNamePlural : '{i18n>PeoplePlural}',
             Description    : {Value : people.name}
         },
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : people_ID,
+            Value : people.name,
+            Label : '{i18n>People}',
         },
         {
             $Type                   : 'UI.DataField',
@@ -334,7 +336,8 @@ annotate sws.Film2Planets with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : film_ID,
+            Value             : film.title,
+            Label             : '{i18n>Film}',
             ![@UI.Importance] : #High
         },
         {
@@ -391,7 +394,8 @@ annotate sws.Film2Planets with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : film_ID,
+            Value : film.title,
+            Label : '{i18n>Film}',
         },
         {
             $Type                   : 'UI.DataField',

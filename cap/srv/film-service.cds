@@ -2,7 +2,7 @@ using {star.wars as StarWars} from '../db/schema';
 
 @title : 'Star Wars Film Information'
 @Core.LongDescription: 'A long time ago in a galaxy far, far away...'
-@protocol: ['odata', 'graphql', 'rest']
+@protocol: ['odata-v4', 'graphql', 'rest']
 service StarWarsFilm @(path : 'StarWarsFilm') {
 
     @odata.draft.enabled : true
@@ -39,7 +39,8 @@ service StarWarsFilm @(path : 'StarWarsFilm') {
     };
 
     entity Film2Species    as projection on StarWars.Film2Species {
-        * , film : redirected to Film, specie as species : redirected to Species
+        // Keep both `specie` (source naming) and `species` (consumer-friendly alias)
+        * , film : redirected to Film, specie : redirected to Species, specie as species : redirected to Species
     };
 
     entity Film2Vehicles   as projection on StarWars.Film2Vehicles {

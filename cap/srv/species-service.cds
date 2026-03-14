@@ -24,6 +24,7 @@ service StarWarsSpecies @(path : 'StarWarsSpecies') {
     entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
 
     entity Film2Species   as projection on StarWars.Film2Species {
+        // Keep both `specie` (source naming) and `species` (consumer-friendly alias)
         * , specie : redirected to Species, specie as species : redirected to Species
     };
 

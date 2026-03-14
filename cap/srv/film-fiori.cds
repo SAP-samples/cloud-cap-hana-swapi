@@ -163,7 +163,8 @@ annotate sws.Film2People with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : people_ID,
+            Value             : people.name,
+            Label             : '{i18n>People}',
             ![@UI.Importance] : #High
         },
         {
@@ -238,7 +239,8 @@ annotate sws.Film2People with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : people_ID,
+            Value : people.name,
+            Label : '{i18n>People}',
         },
         {
             $Type                   : 'UI.DataField',
@@ -317,7 +319,8 @@ annotate sws.Film2Species with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : specie_ID,
+            Value             : specie.name,
+            Label             : '{i18n>Species}',
             ![@UI.Importance] : #High
         },
         {
@@ -368,7 +371,8 @@ annotate sws.Film2Species with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : specie_ID,
+            Value : specie.name,
+            Label : '{i18n>Species}',
         },
         {
             $Type                   : 'UI.DataField',
@@ -414,13 +418,14 @@ annotate sws.Film2Vehicles with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // List Report
     // ---------------------------------------------------------------------------
-    // Vehicle List
+    // Starship List
     UI        : {
         TextArrangement     : #TextOnly,
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : vehicle_ID,
+            Value             : vehicle.name,
+            Label             : '{i18n>Vehicle}',
             ![@UI.Importance] : #High
         },
         {
@@ -493,7 +498,7 @@ annotate sws.Film2Vehicles with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // Object Page
     // ---------------------------------------------------------------------------
-    // Vehicle Page Header
+    // Starship Page Header
     UI        : {
         HeaderInfo              : {
             Title          : {
@@ -507,7 +512,8 @@ annotate sws.Film2Vehicles with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : vehicle_ID,
+            Value : vehicle.name,
+            Label : '{i18n>Vehicle}',
         },
         {
             $Type                   : 'UI.DataField',
@@ -595,7 +601,8 @@ annotate sws.Film2Starships with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : starship_ID,
+            Value             : starship.name,
+            Label             : '{i18n>Starship}',
             ![@UI.Importance] : #High
         },
         {
@@ -694,7 +701,8 @@ annotate sws.Film2Starships with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : starship_ID,
+            Value : starship.name,
+            Label : '{i18n>Starship}',
         },
         {
             $Type                   : 'UI.DataField',
@@ -794,7 +802,8 @@ annotate sws.Film2Planets with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : planet_ID,
+            Value             : planet.name,
+            Label             : '{i18n>Planet}',
             ![@UI.Importance] : #High
         },
         {
@@ -869,7 +878,8 @@ annotate sws.Film2Planets with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : planet_ID,
+            Value : planet.name,
+            Label : '{i18n>Planet}',
         },
         {
             $Type                   : 'UI.DataField',

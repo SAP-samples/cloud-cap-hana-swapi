@@ -227,7 +227,8 @@ annotate sws.Film2Starships with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : film_ID,
+            Value             : film.title,
+            Label             : '{i18n>Film}',
             ![@UI.Importance] : #High
         },
         {
@@ -284,7 +285,8 @@ annotate sws.Film2Starships with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : film_ID,
+            Value : film.title,
+            Label : '{i18n>Film}',
         },
         {
             $Type                   : 'UI.DataField',
@@ -339,13 +341,14 @@ annotate sws.Starship2Pilot with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // List Report
     // ---------------------------------------------------------------------------
-    // People List
+    // Pilot List
     UI        : {
         TextArrangement     : #TextOnly,
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : pilot_ID,
+            Value             : pilot.name,
+            Label             : '{i18n>Pilot}',
             ![@UI.Importance] : #High
         },
         {
@@ -406,7 +409,7 @@ annotate sws.Starship2Pilot with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // Object Page
     // ---------------------------------------------------------------------------
-    // People Page Header
+    // Pilot Page Header
     UI        : {
         HeaderInfo              : {
             Title          : {
@@ -420,7 +423,8 @@ annotate sws.Starship2Pilot with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : pilot_ID,
+            Value : pilot.name,
+            Label : '{i18n>Pilot}',
         },
         {
             $Type                   : 'UI.DataField',

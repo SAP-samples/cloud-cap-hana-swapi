@@ -14,7 +14,8 @@ annotate sws.Species with @( // header-level annotations
         },
         {
             $Type             : 'UI.DataField',
-            Value             : homeworld_ID,
+            Value             : homeworld.name,
+            Label             : '{i18n>homeworld}',
             ![@UI.Importance] : #High
         },
         {
@@ -64,7 +65,7 @@ annotate sws.Species with @( // header-level annotations
         },
         SelectionFields     : [
         name,
-        homeworld_ID,
+        homeworld.name,
         classification,
         designation,
         hair_colors,
@@ -83,8 +84,8 @@ annotate sws.Species with @( // header-level annotations
                 Value : name,
             },
             TypeName       : '{i18n>Species}',
-            TypeNamePlural : '{i18n>SpeciesM}',
-            Description    : {Value : homeworld_ID}
+            TypeNamePlural : '{i18n>SpeciesPlural}',
+            Description    : {Value : homeworld.name}
         },
         HeaderFacets            : [{
             $Type             : 'UI.ReferenceFacet',
@@ -98,7 +99,8 @@ annotate sws.Species with @( // header-level annotations
         FieldGroup #Details     : {Data : [
         {
             $Type             : 'UI.DataField',
-            Value             : homeworld_ID,
+            Value             : homeworld.name,
+            Label             : '{i18n>homeworld}',
             ![@UI.Importance] : #High
         },
         {
@@ -194,13 +196,14 @@ annotate sws.Film2Species with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // List Report
     // ---------------------------------------------------------------------------
-    // Film List
+    // People List
     UI        : {
         TextArrangement     : #TextOnly,
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : film_ID,
+            Value             : film.title,
+            Label             : '{i18n>Film}',
             ![@UI.Importance] : #High
         },
         {
@@ -243,7 +246,7 @@ annotate sws.Film2Species with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // Object Page
     // ---------------------------------------------------------------------------
-    // Film Page Header
+    // People Page Header
     UI        : {
         HeaderInfo              : {
             Title          : {
@@ -257,7 +260,8 @@ annotate sws.Film2Species with @( // header-level annotations
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : film_ID,
+            Value : film.title,
+            Label : '{i18n>Film}',
         },
         {
             $Type                   : 'UI.DataField',
@@ -319,7 +323,8 @@ annotate sws.Species2People with @( // header-level annotations
         LineItem            : [
         {
             $Type             : 'UI.DataField',
-            Value             : people_ID,
+            Value             : people.name,
+            Label             : '{i18n>People}',
             ![@UI.Importance] : #High
         },
         {
@@ -388,13 +393,14 @@ annotate sws.Species2People with @( // header-level annotations
                 Value : species.name
             },
             TypeName       : '{i18n>People}',
-            TypeNamePlural : '{i18n>PeopleM}',
+            TypeNamePlural : '{i18n>PeoplePlural}',
             Description    : {Value : people.name}
         },
         FieldGroup #Description : {Data : [
         {
             $Type : 'UI.DataField',
-            Value : people_ID,
+            Value : people.name,
+            Label : '{i18n>People}',
         },
         {
             $Type                   : 'UI.DataField',
