@@ -18,7 +18,25 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
 
     @odata.draft.enabled : true
     entity People @(cds.redirection.target : false)     as projection on StarWars.People {
-        * , homeworld : redirected to Planet
+        * ,
+        homeworld         : redirected to Planet,
+        /**
+         * Showcase: virtual element — not persisted, computed in the after-READ handler.
+         * Pattern: <name> (<birth_year>) e.g. "Luke Skywalker (19BBY)"
+         */
+        virtual displayTitle : String
+    } actions {
+        /**
+         * Showcase: bound action — renames this character and emits a People.Changed.v1 event.
+         * Bound to a single People instance; the entity key is available in req.params[0].
+         * Handler: people-service.js  →  this.on('rename', 'People', ...)
+         * HTTP example: POST /odata/v4/StarWarsPeople/People(<ID>)/rename  { "newName": "..." }
+                 *
+                 * To restrict to authenticated users only, add:  @requires: 'authenticated-user'
+                 * To restrict to a specific role, add:           @requires: 'Editor'
+                 * See: labs/lab-04-auth/README.md (stretch exercise)
+         */
+        action rename (newName : String not null) returns People;
     };
 
     event People.Changed.v1 : projection on StarWarsPeople.People;
@@ -70,4 +88,11 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
     entity Vehicle2Pilot                                as projection on StarWars.Vehicle2Pilot {
         * , pilot : redirected to People
     };
+
+    /**
+     * Showcase: unbound function — returns the count of characters matching the given gender.
+     * No entity binding; runs custom handler logic in people-service.js.
+     * HTTP example: GET /odata/v4/StarWarsPeople/countByGender(gender='female')
+     */
+    function countByGender (gender : String) returns Integer;
 }
