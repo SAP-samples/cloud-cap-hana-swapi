@@ -35,6 +35,9 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
     entity Vehicles                                     as projection on StarWars.Vehicles;
 
     @readonly : true
+    entity Vehicle @(cds.redirection.target : false)   as projection on StarWars.Vehicles;
+
+    @readonly : true
     entity genders @(cds.redirection.target : false)    as projection on StarWars.genders;
 
     @readonly : true
@@ -45,6 +48,12 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
 
     @readonly : true
     entity skinColors @(cds.redirection.target : false) as projection on StarWars.skinColors;
+
+    @readonly : true
+    entity peopleCount @(cds.redirection.target : false) as select from StarWars.peopleCount {
+        key name,
+            people_count
+    };
 
     entity Film2People                                  as projection on StarWars.Film2People {
         * , people : redirected to People

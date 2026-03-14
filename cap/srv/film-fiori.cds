@@ -56,8 +56,8 @@ annotate sws.Film with @( // header-level annotations
                 $Type : 'UI.DataField',
                 Value : title,
             },
-            TypeName       : '{i18n>People}',
-            TypeNamePlural : '{i18n>PeopleM}',
+            TypeName       : '{i18n>Film}',
+            TypeNamePlural : '{i18n>Films}',
             Description    : {Value : episode_id }
         },
         HeaderFacets            : [{
@@ -231,8 +231,8 @@ annotate sws.Film2People with @( // header-level annotations
                 $Type : 'UI.DataField',
                 Value : film.title
             },
-            TypeName       : '{i18n>People}',
-            TypeNamePlural : '{i18n>PeopleM}',
+            TypeName       : '{i18n>Film}',
+            TypeNamePlural : '{i18n>Films}',
             Description    : {Value : people.name}
         },
         FieldGroup #Description : {Data : [

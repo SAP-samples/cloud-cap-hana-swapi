@@ -40,3 +40,9 @@ Learn more at <https://cap.cloud.sap/docs/get-started/>.
 - Run full model tests: `npm run test`
 - Run profile-scoping regression tests only: `npm run test:profile`
 - CI tip: use `npm run test:profile` as a fast gate for profile-specific model/service exposure checks.
+
+## Upgrade Notes
+
+- **Breaking change**: legacy value-help helper endpoints were removed in favor of `*Values` entities.
+- If your UI/integration code called legacy endpoints directly, update it using:
+  - `docs/value-help-migration.md`

@@ -78,6 +78,30 @@ function normalizeDate(value) {
     return parsed.toISOString().slice(0, 10)
 }
 
+function normalizeBirthYear(value) {
+    const normalized = normalizeString(value)
+    if (!normalized) {
+        return null
+    }
+
+    const canonical = normalized.replaceAll(' ', '').toUpperCase()
+    if (!/^[0-9]+(?:BBY|ABY)$/.test(canonical)) {
+        return null
+    }
+
+    return canonical
+}
+
+function hasMandatoryValue(value, entityName, fieldName, sourcePk, report) {
+    if (value !== null && value !== undefined) {
+        return true
+    }
+
+    report.stats.skippedRecords += 1
+    report.warnings.push(`[MissingMandatory] ${entityName}.${fieldName}(${sourcePk}) is required`)
+    return false
+}
+
 function deterministicId(kind, sourceKey) {
     return uuidv5(`${kind}:${sourceKey}`, MIGRATION_ID_NAMESPACE)
 }
@@ -212,9 +236,14 @@ function transformFixtures(fixtures, report) {
     }
 
     for (const planet of planets) {
+        const name = normalizeString(planet.fields.name)
+        if (!hasMandatoryValue(name, 'Planet', 'name', planet.pk, report)) {
+            continue
+        }
+
         pushRow(rows.Planet, dedupe.Planet, {
             ID: planet.ID,
-            name: normalizeString(planet.fields.name),
+            name,
             diameter: normalizeString(planet.fields.diameter),
             rotation_period: normalizeString(planet.fields.rotation_period),
             orbital_period: normalizeString(planet.fields.orbital_period),
@@ -228,16 +257,21 @@ function transformFixtures(fixtures, report) {
 
     for (const person of people) {
         const homeworld = resolveReference(planetsByPk, person.fields.homeworld, `People.homeworld(${person.pk})`, report)
+        const name = normalizeString(person.fields.name)
+        if (!hasMandatoryValue(name, 'People', 'name', person.pk, report)) {
+            continue
+        }
+
         pushRow(rows.People, dedupe.People, {
             ID: person.ID,
             homeworld_ID: homeworld?.ID ?? null,
-            name: normalizeString(person.fields.name),
+            name,
             height: normalizeString(person.fields.height),
             mass: normalizeString(person.fields.mass),
             hair_color: normalizeString(person.fields.hair_color),
             skin_color: normalizeString(person.fields.skin_color),
             eye_color: normalizeString(person.fields.eye_color),
-            birth_year: normalizeString(person.fields.birth_year),
+            birth_year: normalizeBirthYear(person.fields.birth_year),
             gender: normalizeString(person.fields.gender)
         })
 
@@ -257,9 +291,14 @@ function transformFixtures(fixtures, report) {
             continue
         }
 
+        const name = normalizeString(transport.fields.name)
+        if (!hasMandatoryValue(name, 'Starship', 'name', ship.pk, report)) {
+            continue
+        }
+
         pushRow(rows.Starship, dedupe.Starship, {
             ID: ship.ID,
-            name: normalizeString(transport.fields.name),
+            name,
             model: normalizeString(transport.fields.model),
             starship_class: normalizeString(ship.fields.starship_class),
             manufacturer: normalizeString(transport.fields.manufacturer),
@@ -296,9 +335,14 @@ function transformFixtures(fixtures, report) {
             continue
         }
 
+        const name = normalizeString(transport.fields.name)
+        if (!hasMandatoryValue(name, 'Vehicles', 'name', vehicle.pk, report)) {
+            continue
+        }
+
         pushRow(rows.Vehicles, dedupe.Vehicles, {
             ID: vehicle.ID,
-            name: normalizeString(transport.fields.name),
+            name,
             model: normalizeString(transport.fields.model),
             vehicle_class: normalizeString(vehicle.fields.vehicle_class),
             manufacturer: normalizeString(transport.fields.manufacturer),
@@ -328,9 +372,14 @@ function transformFixtures(fixtures, report) {
 
     for (const specie of species) {
         const homeworld = resolveReference(planetsByPk, specie.fields.homeworld, `Species.homeworld(${specie.pk})`, report)
+        const name = normalizeString(specie.fields.name)
+        if (!hasMandatoryValue(name, 'Species', 'name', specie.pk, report)) {
+            continue
+        }
+
         pushRow(rows.Species, dedupe.Species, {
             ID: specie.ID,
-            name: normalizeString(specie.fields.name),
+            name,
             classification: normalizeString(specie.fields.classification),
             designation: normalizeString(specie.fields.designation),
             eye_colors: normalizeString(specie.fields.eye_colors),
@@ -363,10 +412,15 @@ function transformFixtures(fixtures, report) {
             continue
         }
 
+        const title = normalizeString(film.fields.title)
+        if (!hasMandatoryValue(title, 'Film', 'title', film.pk, report)) {
+            continue
+        }
+
         pushRow(rows.Film, dedupe.Film, {
             ID: film.ID,
             producer: normalizeString(film.fields.producer),
-            title: normalizeString(film.fields.title),
+            title,
             episode_id: Number.parseInt(film.fields.episode_id, 10) || 0,
             director: normalizeString(film.fields.director),
             release_date: normalizeDate(film.fields.release_date),
@@ -569,6 +623,8 @@ module.exports = {
     __internals: {
         normalizeString,
         normalizeDate,
+        normalizeBirthYear,
+        hasMandatoryValue,
         deterministicId,
         deterministicLinkId,
         parseArgs,

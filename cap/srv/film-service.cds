@@ -23,6 +23,9 @@ service StarWarsFilm @(path : 'StarWarsFilm') {
     @readonly : true
     entity Vehicles        as projection on StarWars.Vehicles;
 
+    @readonly : true
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+
     entity Film2People     as projection on StarWars.Film2People {
         * , people : redirected to People, film : redirected to Film
     };
@@ -36,7 +39,7 @@ service StarWarsFilm @(path : 'StarWarsFilm') {
     };
 
     entity Film2Species    as projection on StarWars.Film2Species {
-        * , film : redirected to Film
+        * , film : redirected to Film, specie as species : redirected to Species
     };
 
     entity Film2Vehicles   as projection on StarWars.Film2Vehicles {

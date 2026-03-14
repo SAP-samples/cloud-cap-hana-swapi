@@ -12,6 +12,9 @@ service StarWarsPlanet @(path : 'StarWarsPlanet') {
     entity People        as projection on StarWars.People {*, homeworld : redirected to Planet};
 
     @readonly : true
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+
+    @readonly : true
     entity Film          as projection on StarWars.Film;
 
 
@@ -22,12 +25,10 @@ service StarWarsPlanet @(path : 'StarWarsPlanet') {
     entity Planet2People as projection on StarWars.Planet2People {
         * , people : redirected to People, planet : redirected to Planet
     };
-
+    @readonly : true
+    entity climateValues as projection on StarWars.climateValues;
 
     @readonly : true
-    entity climate       as projection on StarWars.climate;
-
-    @readonly : true
-    entity terrain       as projection on StarWars.terrain;
+    entity terrainValues as projection on StarWars.terrainValues;
 
 }

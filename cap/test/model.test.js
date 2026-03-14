@@ -280,7 +280,7 @@ describe('Star Wars CDS Model Tests', () => {
       if (planetId) await db.run(DELETE.from('star.wars.Planet').where({ ID: planetId }))
     })
 
-    it('People.height defaults to "Test" when not provided', async () => {
+    it('People.height is null when not provided', async () => {
       await db.run(INSERT.into('star.wars.People').entries({
         name: 'Han Solo-peopletest',
         gender: 'male',
@@ -290,7 +290,7 @@ describe('Star Wars CDS Model Tests', () => {
       const [person] = await db.run(
         SELECT.from('star.wars.People').where({ name: 'Han Solo-peopletest' })
       )
-      assert.equal(person.height, 'Test', 'height should default to "Test" per CDS model definition')
+      assert.equal(person.height, null, 'height should remain null when not provided')
     })
 
     it('People.scoundrel defaults to false when not provided', async () => {

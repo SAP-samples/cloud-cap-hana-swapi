@@ -20,30 +20,31 @@ service StarWarsSpecies @(path : 'StarWarsSpecies') {
         * , homeworld : redirected to Planet
     };
 
+    @readonly : true
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+
     entity Film2Species   as projection on StarWars.Film2Species {
-        * , specie : redirected to Species
+        * , specie : redirected to Species, specie as species : redirected to Species
     };
 
     entity Species2People as projection on StarWars.Species2People {
         * , people : redirected to People, species : redirected to Species
     }
+    @readonly : true
+    entity hairColorValues as projection on StarWars.hairColorValues;
 
     @readonly : true
-    entity hair_colors    as projection on StarWars.hair_colors;
+    entity eyeColorValues as projection on StarWars.eyeColorValues;
 
     @readonly : true
-    entity eye_colors     as projection on StarWars.eye_colors;
+    entity skinColorValues as projection on StarWars.skinColorValues;
 
     @readonly : true
-    entity skin_colors    as projection on StarWars.skin_colors;
-
-
-    @readonly : true
-    entity classification as projection on StarWars.classification;
+    entity classificationValues as projection on StarWars.classificationValues;
 
     @readonly : true
-    entity designation    as projection on StarWars.designation;
+    entity designationValues as projection on StarWars.designationValues;
 
     @readonly : true
-    entity language       as projection on StarWars.language;
+    entity languageValues as projection on StarWars.languageValues;
 }

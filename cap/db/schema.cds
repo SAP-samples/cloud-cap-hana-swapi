@@ -1,6 +1,5 @@
 using {
     managed,
-    sap,
     cuid
 } from '@sap/cds/common';
 
@@ -8,14 +7,17 @@ using from '@sap/cds-common-content';
 
 namespace star.wars;
 
+type NumericString : String @assert.format: '^[0-9][0-9,]*(?:\\.[0-9]+)?$';
+type IntegerLikeString : String @assert.format: '^[0-9][0-9,]*$';
+type YearString : String @assert.format: '^[0-9]+(?:BBY|ABY)$';
+
 /**
  * All Films in the Star Wars Skywalker Saga
  */
 @cds.persistence.journal
 entity Film : cuid, managed {
-    title         : String;
+    title         : String @mandatory;
     @assert.range
-    @Validation.AllowedValues 
     episode_id    : Integer enum {
         I     = 1;
         II    = 2;
@@ -77,7 +79,6 @@ annotate Film with @(
     episode_id    @(
         title                           : '{i18n>episode_id}',
         assert.enum,
-        Validation.AllowedValues, 
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
             CollectionPath : 'FilmEpisodeDesc',
@@ -198,6 +199,8 @@ entity Film2People : cuid {
     people : Association to People;
 }
 
+annotate Film2People with @assert.unique.filmPeoplePair : [film, people];
+
 annotate Film2People with {
     ID     @Core.Computed;
     film   @(
@@ -246,6 +249,8 @@ entity Film2Planets : cuid {
     film   : Association to Film;
     planet : Association to Planet;
 }
+
+annotate Film2Planets with @assert.unique.filmPlanetPair : [film, planet];
 
 annotate Film2Planets with {
     ID     @Core.Computed;
@@ -297,6 +302,8 @@ entity Film2Starships : cuid {
     starship : Association to Starship;
 }
 
+annotate Film2Starships with @assert.unique.filmStarshipPair : [film, starship];
+
 annotate Film2Starships with {
     ID       @Core.Computed;
     film     @(
@@ -346,6 +353,8 @@ entity Film2Vehicles : cuid {
     vehicle : Association to Vehicles;
 }
 
+annotate Film2Vehicles with @assert.unique.filmVehiclePair : [film, vehicle];
+
 annotate Film2Vehicles with {
     ID      @Core.Computed;
     film    @(
@@ -394,6 +403,8 @@ entity Film2Species : cuid {
     film   : Association to Film;
     specie : Association to Species;
 }
+
+annotate Film2Species with @assert.unique.filmSpeciesPair : [film, specie];
 
 annotate Film2Species with {
     ID     @Core.Computed;
@@ -452,16 +463,16 @@ annotate Film2Species with {
  */
 @cds.autoexpose : true
 entity People : cuid, managed {
-    name       : String;
-    height     : String default 'Test';
-    mass       : String;
+    name       : String @mandatory;
+    height     : IntegerLikeString;
+    mass       : NumericString;
     /**
      * Person's Hair Color
      */
     hair_color : String;
     skin_color : String;
     eye_color  : String;
-    birth_year : String;
+    birth_year : YearString;
     gender     : String;
     scoundrel  : Boolean default false;
     @assert.target
@@ -638,15 +649,15 @@ annotate People with @(
 
 @cds.odata.valuelist
 entity Planet : cuid, managed {
-    name            : String;
-    diameter        : String;
-    rotation_period : String;
-    orbital_period  : String;
+    name            : String @mandatory;
+    diameter        : IntegerLikeString;
+    rotation_period : IntegerLikeString;
+    orbital_period  : IntegerLikeString;
     gravity         : String;
-    population      : String;
+    population      : IntegerLikeString;
     climate         : String;
     terrain         : String;
-    surface_water   : String;
+    surface_water   : IntegerLikeString;
     films           : Composition of many Film2Planets
                           on films.planet = $self;
     residents       : Composition of many Planet2People
@@ -670,7 +681,6 @@ annotate Planet with @(
     );
     name            @(
         title                           : '{i18n>planetName}',
-        Common.TextFor                  : ID,
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
             CollectionPath : 'Planet',
@@ -690,7 +700,7 @@ annotate Planet with @(
         title                           : '{i18n>climate}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'climate',
+            CollectionPath : 'climateValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'climate',
@@ -702,7 +712,7 @@ annotate Planet with @(
         title                           : '{i18n>terrain}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'terrain',
+            CollectionPath : 'terrainValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'terrain',
@@ -720,6 +730,8 @@ entity Planet2People : cuid {
     planet : Association to Planet;
     people : Association to People;
 }
+
+annotate Planet2People with @assert.unique.planetPeoplePair : [planet, people];
 
 annotate Planet2People with {
     ID     @Core.Computed;
@@ -765,23 +777,23 @@ annotate Planet2People with {
     );
 };
 
-define view climate as
+define view climateValues as
     select from Planet distinct {
         key climate
     };
 
-define view terrain as
+define view terrainValues as
     select from Planet distinct {
         key terrain
     };
 
 
 entity Species : cuid, managed {
-    name             : String;
+    name             : String @mandatory;
     classification   : String;
     designation      : String;
-    average_height   : String;
-    average_lifespan : String;
+    average_height   : IntegerLikeString;
+    average_lifespan : IntegerLikeString;
     hair_colors      : String;
     skin_colors      : String;
     eye_colors       : String;
@@ -793,32 +805,32 @@ entity Species : cuid, managed {
                            on films.specie = $self;
 }
 
-define view classification as
+define view classificationValues as
     select from Species distinct {
         key classification
     };
 
-define view designation as
+define view designationValues as
     select from Species distinct {
         key designation
     };
 
-define view hair_colors as
+define view hairColorValues as
     select from Species distinct {
         key hair_colors
     };
 
-define view skin_colors as
+define view skinColorValues as
     select from Species distinct {
         key skin_colors
     };
 
-define view language as
+define view languageValues as
     select from Species distinct {
         key language
     };
 
-define view eye_colors as
+define view eyeColorValues as
     select from Species distinct {
         key eye_colors
     };
@@ -855,7 +867,7 @@ annotate Species with @(
         title                           : '{i18n>classification}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'classification',
+            CollectionPath : 'classificationValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'classification',
@@ -867,7 +879,7 @@ annotate Species with @(
         title                           : '{i18n>designation}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'designation',
+            CollectionPath : 'designationValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'designation',
@@ -881,7 +893,7 @@ annotate Species with @(
         title                           : '{i18n>hair_color}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'hair_colors',
+            CollectionPath : 'hairColorValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'hair_colors',
@@ -893,7 +905,7 @@ annotate Species with @(
         title                           : '{i18n>skin_color}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'skin_colors',
+            CollectionPath : 'skinColorValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'skin_colors',
@@ -905,7 +917,7 @@ annotate Species with @(
         title                           : '{i18n>eye_color}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'eye_colors',
+            CollectionPath : 'eyeColorValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'eye_colors',
@@ -949,7 +961,7 @@ annotate Species with @(
         title                           : '{i18n>language}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'language',
+            CollectionPath : 'languageValues',
             Parameters     : [{
                 $Type             : 'Common.ValueListParameterInOut',
                 LocalDataProperty : 'language',
@@ -965,6 +977,8 @@ entity Species2People : cuid {
     species : Association to Species;
     people  : Association to People;
 }
+
+annotate Species2People with @assert.unique.speciesPeoplePair : [species, people];
 
 annotate Species2People with {
     ID      @Core.Computed;
@@ -1012,18 +1026,18 @@ annotate Species2People with {
 
 @cds.autoexpose : true
 entity Starship : cuid, managed {
-    name                   : String;
+    name                   : String @mandatory;
     model                  : String;
     starship_class         : String;
     manufacturer           : String;
-    cost_in_credits        : String;
-    length                 : String;
-    crew                   : String;
-    passengers             : String;
-    max_atmosphering_speed : String;
-    hyperdrive_rating      : String;
-    MGLT                   : String;
-    cargo_capacity         : String;
+    cost_in_credits        : IntegerLikeString;
+    length                 : NumericString;
+    crew                   : IntegerLikeString;
+    passengers             : IntegerLikeString;
+    max_atmosphering_speed : IntegerLikeString;
+    hyperdrive_rating      : NumericString;
+    MGLT                   : IntegerLikeString;
+    cargo_capacity         : IntegerLikeString;
     consumables            : String;
     films                  : Composition of many Film2Starships
                                  on films.starship = $self;
@@ -1128,6 +1142,8 @@ entity Starship2Pilot : cuid {
     pilot    : Association to People;
 }
 
+annotate Starship2Pilot with @assert.unique.starshipPilotPair : [starship, pilot];
+
 annotate Starship2Pilot with {
     ID       @Core.Computed;
     starship @(
@@ -1178,16 +1194,16 @@ annotate Starship2Pilot with {
 
 @cds.autoexpose : true
 entity Vehicles : cuid, managed {
-    name                   : String;
+    name                   : String @mandatory;
     model                  : String;
     vehicle_class          : String;
     manufacturer           : String;
-    cost_in_credits        : String;
-    length                 : String;
-    crew                   : String;
-    passengers             : String;
-    max_atmosphering_speed : String;
-    cargo_capacity         : String;
+    cost_in_credits        : IntegerLikeString;
+    length                 : NumericString;
+    crew                   : IntegerLikeString;
+    passengers             : IntegerLikeString;
+    max_atmosphering_speed : IntegerLikeString;
+    cargo_capacity         : IntegerLikeString;
     consumables            : String;
     films                  : Composition of many Film2Vehicles
                                  on films.vehicle = $self;
@@ -1290,6 +1306,8 @@ entity Vehicle2Pilot : cuid {
     vehicle : Association to Vehicles;
     pilot   : Association to People;
 }
+
+annotate Vehicle2Pilot with @assert.unique.vehiclePilotPair : [vehicle, pilot];
 
 annotate Vehicle2Pilot with {
     ID      @Core.Computed;

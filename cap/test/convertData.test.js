@@ -6,6 +6,7 @@ const { __internals } = require('../convertData')
 const {
     normalizeString,
     normalizeDate,
+    normalizeBirthYear,
     deterministicId,
     deterministicLinkId,
     parseChunkSize,
@@ -43,7 +44,7 @@ function createFixtures() {
                 hair_color: 'blond',
                 skin_color: 'fair',
                 eye_color: 'blue',
-                birth_year: '19BBY',
+                birth_year: '19bby',
                 gender: 'male'
             }
         },
@@ -195,6 +196,11 @@ test('normalization handles unknown/empty values and parses dates safely', () =>
     assert.equal(normalizeDate('1977-05-25'), '1977-05-25')
     assert.equal(normalizeDate('invalid-date'), null)
     assert.equal(normalizeDate('unknown'), null)
+
+    assert.equal(normalizeBirthYear('19bby'), '19BBY')
+    assert.equal(normalizeBirthYear('5 ABY'), '5ABY')
+    assert.equal(normalizeBirthYear('unknown'), null)
+    assert.equal(normalizeBirthYear('year-5'), null)
 })
 
 test('chunk-size parser falls back on invalid input', () => {
@@ -228,6 +234,8 @@ test('transformFixtures creates expected rows and records missing references', (
     assert.equal(mysteryPerson.homeworld_ID, null)
     assert.equal(mysteryPerson.height, null)
     assert.equal(mysteryPerson.mass, null)
+    const luke = rows.People.find(row => row.name === 'Luke Skywalker')
+    assert.equal(luke.birth_year, '19BBY')
 
     assert.equal(rows.Film[0].episode_id, 4)
     assert.equal(rows.Film[0].release_date, '1977-05-25')

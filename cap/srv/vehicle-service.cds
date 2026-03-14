@@ -8,22 +8,25 @@ service StarWarsVehicle @(path : 'StarWarsVehicle') {
     entity Vehicles      as projection on StarWars.Vehicles;
 
     @readonly : true
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+
+    @readonly : true
     entity Film          as projection on StarWars.Film;
 
     @readonly : true
-    entity People        as projection on StarWars.People
+    entity People        as projection on StarWars.People;
 
     @readonly : true
-    entity Planet        as projection on StarWars.Planet
+    entity Planet        as projection on StarWars.Planet;
 
     entity Film2Vehicles as projection on StarWars.Film2Vehicles {
         * , vehicle : redirected to Vehicles
-    }
+    };
 
 
     entity Vehicle2Pilot as projection on StarWars.Vehicle2Pilot {
         * , pilot : redirected to People, vehicle : redirected to Vehicles
-    }
+    };
 
     @readonly : true
     entity vModels       as projection on StarWars.vModels;

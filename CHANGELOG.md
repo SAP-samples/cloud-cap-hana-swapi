@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [1.8.0] - 2026-03-14
+
+**Changed**
+
+- Enhance README and improve project documentation
+- Add PostgreSQL profile-specific model exposure updates across CDS models and service projection
+- Add and expand Star Wars CDS model unit tests, including profile-specific exposure coverage
+- Update project dependencies and bump version to 1.8.0
+- Update dev container setup (Dockerfile and devcontainer.json) for Node.js LTS and Cloud Foundry CLI installation
+- Add CAP modeling and handler guidelines plus validation prompt workflows
+- Add compatibility-safe value-help entity migration (`*Values` helper entities) and keep legacy helper entities/projections with deprecation comments for phased removal
+- BREAKING: remove legacy value-help helper entities/projections (`climate`, `terrain`, `hair_colors`, `eye_colors`, `skin_colors`, `classification`, `designation`, `language`) in favor of `*Values` artifacts
+- Migration details: `cap/docs/value-help-migration.md`
+
 ## [1.4.0] - 2024-07-19
 
 **Changed**

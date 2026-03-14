@@ -63,6 +63,12 @@ From the Cloud Application Programming Model preview (which opens locally when u
 
 ![Fiori Preveiw Overview Edit](images/Fiori_Preview_Overview_Edit.png)
 
+## Upgrade Notes
+
+* **Breaking change**: legacy value-help helper endpoints were removed in favor of `*Values` entities.
+* Migration details and endpoint mapping are documented in:
+  * [`cap/docs/value-help-migration.md`](./cap/docs/value-help-migration.md)
+
 ## Known Issues
 
 If you receive an error like the following when running the convertData script
@@ -75,7 +81,7 @@ If you receive an error like the following when running the convertData script
 }
 ```
 
-This is caused by the parallel nature of the loading of the data in SQLite.  The default script with its parallel loading works fine when you use HANA as the target persistence. However if you are using SQLite for your tempoary testing persistence, then you can use the alternative convertDataLite script instead. 
+This is caused by the parallel nature of the loading of the data in SQLite.  The default script with its parallel loading works fine when you use HANA as the target persistence. However if you are using SQLite for your tempoary testing persistence, then you can use the alternative convertDataLite script instead.
 
 **Note**: due to some strange circumstances in the latest versions of CAP it seems the `/gen/srv` folder is getting cleared after any deployment to HANA.  Therefore just execute a `cds build` or `npm run build` after any deployment to restore the `/gen` folder until we find the root cause of this issue.
 
