@@ -38,6 +38,7 @@
     "load_sqlite": "cds bind --exec node convertData.js --profile sqlite",
     "load_pg": "cds bind --exec node convertData.js --profile pg",
     "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js",
+    "test:profile": "node --env-file=test/test.env --test --test-timeout 60000 --test-name-pattern \"Profile-specific model exposure\" test/model.test.js",
     "test:migration": "node --test test/convertData.test.js test/convertData.report.test.js",
     "start": "cds-serve",
     "watch": "cds watch --profile hybrid --livereload false",
@@ -74,20 +75,22 @@
       },
       "deploy-format": "hdbtable"
     },
+    "sql": {
+      "native_hana_associations": false
+    },
     "requires": {
       "queue": true,
-      "[sqlite]": {
-        "db": {
-          "kind": "sqlite",
-          "impl": "@cap-js/sqlite",
-          "credentials": {
-            "url": "db.sqlite"
-          },
-          "schema_evolution": "auto"
+      "middlewares": true,
+      "db": {
+        "kind": "sqlite",
+        "impl": "@cap-js/sqlite",
+        "credentials": {
+          "url": "db.sqlite"
         },
-        "db-ext": {
-          "model": "db/sqlite"
-        }
+        "schema_evolution": "auto"
+      },
+      "db-ext": {
+        "model": "db/sqlite"
       },
       "[pg]": {
         "db": {
@@ -98,22 +101,30 @@
           "credentials": {
             "host": "localhost",
             "port": 5432,
-            "user": "postgres",
-            "password": "postgres",
             "db": "postgres"
           }
         },
         "db-ext": {
-          "model": "db/sqlite"
+          "model": "db/postgres"
         }
       },
-      "middlewares": true,
-      "db": {
-        "kind": "hana-cloud",
-        "impl": "@cap-js/hana"
+      "[hybrid]": {
+        "db": {
+          "kind": "hana-cloud",
+          "impl": "@cap-js/hana"
+        },
+        "db-ext": {
+          "model": "db/hana"
+        }
       },
-      "db-ext": {
-        "model": "db/hana"
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud",
+          "impl": "@cap-js/hana"
+        },
+        "db-ext": {
+          "model": "db/hana"
+        }
       },
       "messaging": {
         "[production]": {
@@ -122,7 +133,7 @@
         "[development]": {
           "kind": "file-based-messaging"
         },
-        "[hybrid!]": {
+        "[hybrid]": {
           "kind": "file-based-messaging"
         }
       }

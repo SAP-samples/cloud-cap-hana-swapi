@@ -19,6 +19,7 @@ process.env.CDS_REQUIRES_DB_CREDENTIALS_URL = ':memory:'
 
 const { describe, it, before, after } = require('node:test')
 const assert = require('node:assert/strict')
+const { execFileSync } = require('node:child_process')
 const cds = require('@sap/cds')
 
 // Convenience shortcuts from the CDS query builder
@@ -625,6 +626,96 @@ describe('Star Wars CDS Model Tests', () => {
       assert.equal(status, 200)
       assert.equal(data.value.length, 1)
       assert.equal(data.value[0].homeworld?.name, 'Species Homeworld-speciestest')
+    })
+  })
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Profile-specific model exposure (pg only)
+  // peopleFirstNamePg is intentionally added via db/postgres model extension
+  // and must not leak into default/sqlite or hybrid/hana runtime profiles.
+  // ─────────────────────────────────────────────────────────────────────────
+  describe('Profile-specific model exposure (pg only)', () => {
+    it('default sqlite profile does NOT include peopleFirstNamePg artifacts', async () => {
+      const model = await cds.load('*')
+      assert.equal(
+        model.definitions['star.wars.peopleFirstNamePg'] !== undefined,
+        false,
+        'star.wars.peopleFirstNamePg must not be present in default sqlite profile'
+      )
+      assert.equal(
+        model.definitions['StarWarsPeople.peopleFirstNamePg'] !== undefined,
+        false,
+        'StarWarsPeople.peopleFirstNamePg must not be exposed in default sqlite profile'
+      )
+    })
+
+    it('pg profile includes both db view and service projection artifacts', () => {
+      const script = `
+        process.env.CDS_ENV = 'pg'
+        const cds = require('@sap/cds')
+        cds.load('*').then((model) => {
+          const result = {
+            view: !!model.definitions['star.wars.peopleFirstNamePg'],
+            service: !!model.definitions['StarWarsPeople.peopleFirstNamePg']
+          }
+          console.log(JSON.stringify(result))
+        }).catch((err) => {
+          console.error(err)
+          process.exit(1)
+        })
+      `
+
+      const output = execFileSync(process.execPath, ['-e', script], {
+        cwd: __dirname + '/..',
+        encoding: 'utf8'
+      })
+
+      const jsonLine = output
+        .split(/\r?\n/)
+        .map(l => l.trim())
+        .filter(Boolean)
+        .findLast(l => l.startsWith('{') && l.endsWith('}'))
+
+      assert.ok(jsonLine, 'Expected JSON result from pg profile model check')
+      const result = JSON.parse(jsonLine)
+
+      assert.equal(result.view, true, 'pg profile should include star.wars.peopleFirstNamePg')
+      assert.equal(result.service, true, 'pg profile should include StarWarsPeople.peopleFirstNamePg')
+    })
+
+    it('pg profile includes peopleFirstNamePg in StarWarsPeople metadata document', () => {
+      const script = `
+        process.env.CDS_ENV = 'pg'
+        const cds = require('@sap/cds')
+
+        ;(async () => {
+          const model = await cds.load('*')
+          const edmx = cds.compile.to.edmx(model, { service: 'StarWarsPeople' })
+          console.log(JSON.stringify({
+            hasEntity: String(edmx).includes('peopleFirstNamePg')
+          }))
+          process.exit(0)
+        })().catch((err) => {
+          console.error(err)
+          process.exit(1)
+        })
+      `
+
+      const output = execFileSync(process.execPath, ['-e', script], {
+        cwd: __dirname + '/..',
+        encoding: 'utf8'
+      })
+
+      const jsonLine = output
+        .split(/\r?\n/)
+        .map(l => l.trim())
+        .filter(Boolean)
+        .findLast(l => l.startsWith('{') && l.endsWith('}'))
+
+      assert.ok(jsonLine, 'Expected JSON result from pg profile metadata endpoint check')
+      const result = JSON.parse(jsonLine)
+
+      assert.equal(result.hasEntity, true, 'Expected peopleFirstNamePg in pg profile StarWarsPeople metadata')
     })
   })
 })

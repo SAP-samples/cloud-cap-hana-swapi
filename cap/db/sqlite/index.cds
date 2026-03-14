@@ -1,1 +1,1 @@
-using {star.wars} from '../schema';
+using from '../schema';
