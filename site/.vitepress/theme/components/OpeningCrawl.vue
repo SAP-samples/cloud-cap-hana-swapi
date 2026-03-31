@@ -1,7 +1,7 @@
 <template>
   <div class="crawl-wrapper">
     <!-- ── Cinematic crawl ── -->
-    <div class="crawl-scene">
+    <div class="crawl-scene" ref="crawlScene">
       <canvas ref="starCanvas" class="star-canvas" />
       <div class="crawl-logo" :class="{ visible: logoVisible }">
         STAR WARS
@@ -82,12 +82,14 @@ const rolling = ref(false)
 const btnVisible = ref(false)
 const muted = ref(false)
 const starCanvas = ref(null)
+const crawlScene = ref(null)
 
 let animFrame = null
 let synths = []
 let themeObserver = null
 let ToneLib = null
 let MidiLib = null
+let isMounted = false
 
 function isDarkMode() {
   return document.documentElement.classList.contains('dark')
@@ -109,7 +111,7 @@ async function stopAudio() {
 
 async function playMidi(dark) {
   stopAudio()
-  if (muted.value) return
+  if (muted.value || !isMounted) return
 
   const url = midiUrl(dark)
 
@@ -120,6 +122,9 @@ async function playMidi(dark) {
     console.warn('[SWAPI docs] MIDI file not found:', url)
     return
   }
+
+  // Guard again after the async fetch — component may have unmounted by now
+  if (!isMounted) return
 
   const oscType = dark ? 'sawtooth4' : 'triangle8'
   const now = ToneLib.now() + 0.5
@@ -174,27 +179,26 @@ function initStars(canvas) {
 // ── Lifecycle ──────────────────────────────────────────────────────────────
 
 onMounted(async () => {
+  isMounted = true
   setTimeout(() => { logoVisible.value = true }, 500)
   setTimeout(() => { rolling.value = true }, 2000)
   setTimeout(() => { btnVisible.value = true }, 10000)
 
   if (starCanvas.value) initStars(starCanvas.value)
 
-  // Register click listener immediately — before modules load — so the gesture
-  // isn't missed if the user clicks while imports are still in flight.
+  // Register click listener on the crawl scene only — not document — so
+  // clicks on nav links outside the scene don't trigger audio.
   let audioReady = false
   let pendingPlay = false
 
   const onFirstClick = () => {
     if (!audioReady) {
-      // Modules still loading; remember the click and play when ready
       pendingPlay = true
       return
     }
-    // Call Tone.start() synchronously within the gesture — no awaits before this
     ToneLib.start().then(() => playMidi(isDarkMode()))
   }
-  document.addEventListener('click', onFirstClick, { once: true })
+  crawlScene.value?.addEventListener('click', onFirstClick, { once: true })
 
   // Pre-load modules (onMounted is client-only, SSR-safe)
   const [toneModule, { Midi }] = await Promise.all([
@@ -222,6 +226,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  isMounted = false
   if (animFrame) cancelAnimationFrame(animFrame)
   stopAudio()
   themeObserver?.disconnect()
