@@ -174,11 +174,11 @@ function scrollToCards() {
 .crawl-logo.visible { opacity: 1; }
 
 .crawl-subtitle {
-  font-size: 0.35em;
+  font-size: 0.44em;
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: #ccc;
-  margin-top: 0.4em;
+  margin-top: 0.8em;
   text-align: center;
 }
 
