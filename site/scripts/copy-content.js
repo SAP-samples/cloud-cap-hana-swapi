@@ -42,7 +42,7 @@ for (const { src, dest, stripFrontmatter } of mappings) {
   if (stripFrontmatter) {
     let content = readFileSync(srcPath, 'utf8')
     // Replace leading ---...--- frontmatter block with minimal VitePress frontmatter
-    content = content.replace(/^---[\s\S]*?---\n/, '---\ntitle: API Reference\n---\n')
+    content = content.replace(/^---[\s\S]*?---\r?\n/, '---\ntitle: API Reference\n---\n')
     writeFileSync(destPath, content, 'utf8')
   } else {
     cpSync(srcPath, destPath)
