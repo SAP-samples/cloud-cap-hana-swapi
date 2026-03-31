@@ -30,6 +30,10 @@ A Node.js script at `site/scripts/copy-content.js` handles all copying before Vi
 | `cap/docs/pitfalls.md` | `site/reference/pitfalls.md` | Common Pitfalls | |
 | `cap/docs/value-help-migration.md` | `site/reference/migration.md` | Value-Help Migration | |
 | `cap/docs/DataService_readme.md` | `site/api/index.md` | API Reference | Strip Widdershins frontmatter (see note) |
+| `HANA_CLI_QUICKSTART.md` | `site/hana-cli/quickstart.md` | Quick Start | Root-level file |
+| `HANA_CLI_EXAMPLES.md` | `site/hana-cli/examples.md` | Examples | Root-level file |
+| `HANA_CLI_WORKFLOWS.md` | `site/hana-cli/workflows.md` | Workflows | Root-level file |
+| `HANA_CLI_REFERENCE.md` | `site/hana-cli/reference.md` | Command Reference | Root-level file; 99 KB — no conflicting frontmatter |
 | `cap/labs/README.md` | `site/labs/index.md` | Labs Overview | |
 | `cap/labs/lab-01-model/README.md` | `site/labs/lab-01.md` | Lab 01: Domain Model | |
 | `cap/labs/lab-02-service/README.md` | `site/labs/lab-02.md` | Lab 02: Service Projections | |
@@ -67,6 +71,7 @@ title: API Reference
 ├── labs/                           # git-ignored, populated at build time
 ├── reference/                      # git-ignored, populated at build time
 ├── api/                            # git-ignored, populated at build time
+├── hana-cli/                       # git-ignored, populated at build time
 ├── .gitignore                      # Ignores copied dirs and dist/
 └── package.json
 ```
@@ -78,7 +83,7 @@ title: API Reference
 **Top navbar:**
 
 ```text
-[⬡ SWAPI DOCS]   Getting Started   Architecture   Labs   Reference   API
+[⬡ SWAPI DOCS]   Getting Started   Architecture   Labs   Reference   HANA CLI   API
 ```
 
 **Sidebar — Getting Started:**
@@ -109,6 +114,13 @@ title: API Reference
 **Sidebar — API:**
 
 - API Reference (DataService)
+
+**Sidebar — HANA CLI:**
+
+- Quick Start
+- Examples
+- Workflows
+- Command Reference
 
 ---
 
@@ -205,6 +217,7 @@ The crawl always renders on a space-black backdrop regardless of light/dark mode
 - `site/**`
 - `cap/docs/**`
 - `cap/labs/**/README.md`
+- `HANA_CLI_*.md`
 - `.github/workflows/docs.yml`
 
 **Job-level configuration:**
@@ -257,7 +270,7 @@ No runtime dependencies. The copy script uses only Node.js built-ins (`fs`, `pat
 | File | Action |
 | --- | --- |
 | `site/package.json` | Create |
-| `site/.gitignore` | Create — ignores `guide/`, `architecture/`, `labs/`, `reference/`, `api/`, `.vitepress/dist/`, `.vitepress/cache/` |
+| `site/.gitignore` | Create — ignores `guide/`, `architecture/`, `labs/`, `reference/`, `api/`, `hana-cli/`, `.vitepress/dist/`, `.vitepress/cache/` |
 | `site/.vitepress/config.mts` | Create |
 | `site/.vitepress/theme/index.ts` | Create |
 | `site/.vitepress/theme/style.css` | Create |
