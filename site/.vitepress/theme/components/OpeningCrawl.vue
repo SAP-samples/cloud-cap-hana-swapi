@@ -108,12 +108,10 @@ async function stopAudio() {
 }
 
 async function playMidi(dark) {
-  await stopAudio()
+  stopAudio()
   if (muted.value) return
 
   const url = midiUrl(dark)
-
-  await ToneLib.start()
 
   let midi
   try {
@@ -182,18 +180,36 @@ onMounted(async () => {
 
   if (starCanvas.value) initStars(starCanvas.value)
 
-  // Pre-load modules now (onMounted is client-only, SSR-safe) so the click
-  // handler can call Tone.start() synchronously within the user gesture.
+  // Register click listener immediately — before modules load — so the gesture
+  // isn't missed if the user clicks while imports are still in flight.
+  let audioReady = false
+  let pendingPlay = false
+
+  const onFirstClick = () => {
+    if (!audioReady) {
+      // Modules still loading; remember the click and play when ready
+      pendingPlay = true
+      return
+    }
+    // Call Tone.start() synchronously within the gesture — no awaits before this
+    ToneLib.start().then(() => playMidi(isDarkMode()))
+  }
+  document.addEventListener('click', onFirstClick, { once: true })
+
+  // Pre-load modules (onMounted is client-only, SSR-safe)
   const [toneModule, { Midi }] = await Promise.all([
     import('tone'),
     import('@tonejs/midi'),
   ])
   ToneLib = toneModule
   MidiLib = Midi
+  audioReady = true
 
-  // Start audio on first click (browser autoplay policy requires a gesture)
-  const onFirstClick = () => playMidi(isDarkMode())
-  document.addEventListener('click', onFirstClick, { once: true })
+  // If the user clicked while we were loading, play now (best-effort — the
+  // AudioContext may still be locked, but most browsers are lenient here)
+  if (pendingPlay) {
+    ToneLib.start().then(() => playMidi(isDarkMode()))
+  }
 
   // Re-start with correct track when theme toggles
   themeObserver = new MutationObserver(() => {
@@ -218,7 +234,7 @@ function toggleMute() {
   if (muted.value) {
     stopAudio()
   } else {
-    playMidi(isDarkMode())
+    ToneLib.start().then(() => playMidi(isDarkMode()))
   }
 }
 
