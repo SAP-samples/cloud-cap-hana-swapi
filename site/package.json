@@ -1,0 +1,13 @@
+{
+  "name": "cloud-cap-hana-swapi-docs",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/copy-content.js && vitepress dev",
+    "build": "node scripts/copy-content.js && vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.0",
+    "vue": "^3.5.0"
+  }
+}
