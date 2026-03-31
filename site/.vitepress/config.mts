@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 import { readFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -8,7 +9,7 @@ const cdsGrammar = JSON.parse(readFileSync(resolve(__dirname, '../cds.tmLanguage
 // Shiki matches by name — grammar.name is "CDS" but fenced blocks use lowercase "cds"
 cdsGrammar.name = 'cds'
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: 'SWAPI Docs',
   description: 'SAP Cloud Application Programming Model — Star Wars API sample',
   base: '/cloud-cap-hana-swapi/',
@@ -89,4 +90,4 @@ export default defineConfig({
 
     search: { provider: 'local' },
   },
-})
+}))
