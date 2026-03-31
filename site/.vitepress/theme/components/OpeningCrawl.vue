@@ -2,6 +2,7 @@
   <div class="crawl-wrapper">
     <!-- ── Cinematic crawl ── -->
     <div class="crawl-scene">
+      <canvas ref="starCanvas" class="star-canvas" />
       <div class="crawl-logo" :class="{ visible: logoVisible }">STAR WARS</div>
       <div class="crawl-perspective">
         <div class="crawl-content" :class="{ rolling: rolling }">
@@ -65,16 +66,56 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const logoVisible = ref(false)
 const rolling = ref(false)
 const btnVisible = ref(false)
+const starCanvas = ref(null)
+
+let animFrame = null
+
+function initStars(canvas) {
+  const ctx = canvas.getContext('2d')
+  const W = canvas.width = canvas.offsetWidth
+  const H = canvas.height = canvas.offsetHeight
+
+  const COUNT = Math.floor((W * H) / 4000)
+  const stars = Array.from({ length: COUNT }, () => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    r: Math.random() * 1.4 + 0.3,
+    base: Math.random() * 0.6 + 0.2,   // base opacity
+    speed: Math.random() * 0.015 + 0.005, // twinkle speed
+    phase: Math.random() * Math.PI * 2,   // twinkle offset
+  }))
+
+  let t = 0
+  function draw() {
+    ctx.clearRect(0, 0, W, H)
+    t += 1
+    for (const s of stars) {
+      const alpha = s.base + Math.sin(t * s.speed + s.phase) * 0.35
+      ctx.beginPath()
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(255,255,255,${Math.max(0, Math.min(1, alpha))})`
+      ctx.fill()
+    }
+    animFrame = requestAnimationFrame(draw)
+  }
+  draw()
+}
 
 onMounted(() => {
   setTimeout(() => { logoVisible.value = true }, 500)
   setTimeout(() => { rolling.value = true }, 2000)
   setTimeout(() => { btnVisible.value = true }, 10000)
+
+  if (starCanvas.value) initStars(starCanvas.value)
+})
+
+onUnmounted(() => {
+  if (animFrame) cancelAnimationFrame(animFrame)
 })
 
 function scrollToCards() {
@@ -104,6 +145,16 @@ function scrollToCards() {
   background: #000;
 }
 
+/* ── Starfield canvas ── */
+.star-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
 /* ── STAR WARS logo ── */
 .crawl-logo {
   position: absolute;
@@ -128,6 +179,7 @@ function scrollToCards() {
   height: 70vh;
   perspective: 300px;
   overflow: hidden;
+  z-index: 1;
 }
 
 .crawl-content {
