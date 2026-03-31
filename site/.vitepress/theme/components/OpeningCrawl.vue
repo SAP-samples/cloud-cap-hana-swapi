@@ -1,0 +1,268 @@
+<template>
+  <div class="crawl-wrapper">
+    <!-- ── Cinematic crawl ── -->
+    <div class="crawl-scene">
+      <div class="crawl-logo" :class="{ visible: logoVisible }">STAR WARS</div>
+      <div class="crawl-perspective">
+        <div class="crawl-content" :class="{ rolling: rolling }">
+          <p class="crawl-episode">Episode IV</p>
+          <h1 class="crawl-title">A NEW HOPE<br><span>For CAP Developers</span></h1>
+          <p>
+            It is a period of learning. Rebel developers,
+            striking from hidden terminals, have won their
+            first victory against the complexity of
+            enterprise relationships.
+          </p>
+          <p>
+            During the battle, Rebel spies managed to steal
+            secret plans to the Empire's ultimate weapon,
+            the SAP HANA database — an armoured data store
+            with enough join depth to destroy an entire
+            microservice architecture.
+          </p>
+          <p>
+            Pursued by the Empire's sinister agents, the
+            Rebels race to master the SAP Cloud Application
+            Programming Model and restore freedom to the
+            galaxy of enterprise developers...
+          </p>
+        </div>
+      </div>
+      <button
+        class="crawl-btn"
+        :class="{ visible: btnVisible }"
+        @click="scrollToCards"
+      >
+        BEGIN YOUR JOURNEY ↓
+      </button>
+    </div>
+
+    <!-- ── Feature cards ── -->
+    <div id="feature-cards" class="feature-section">
+      <h2 class="feature-heading">Choose Your Path</h2>
+      <div class="feature-cards">
+        <a href="/cloud-cap-hana-swapi/guide/overview" class="feature-card">
+          <div class="card-icon">▲</div>
+          <h3>Beginner</h3>
+          <p>CDS modeling, OData exploration, domain entities. Start your journey here.</p>
+          <span class="card-link">Start Learning →</span>
+        </a>
+        <a href="/cloud-cap-hana-swapi/guide/learning-path" class="feature-card featured">
+          <div class="card-icon">◈</div>
+          <h3>Intermediate</h3>
+          <p>Service handlers, lifecycle hooks, events, and custom actions.</p>
+          <span class="card-link">Go Deeper →</span>
+        </a>
+        <a href="/cloud-cap-hana-swapi/labs/" class="feature-card">
+          <div class="card-icon">⬡</div>
+          <h3>Advanced</h3>
+          <p>Authorization, testing by layer, profile comparison, and hands-on labs.</p>
+          <span class="card-link">Take the Labs →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const logoVisible = ref(false)
+const rolling = ref(false)
+const btnVisible = ref(false)
+
+onMounted(() => {
+  setTimeout(() => { logoVisible.value = true }, 500)
+  setTimeout(() => { rolling.value = true }, 2000)
+  setTimeout(() => { btnVisible.value = true }, 10000)
+})
+
+function scrollToCards() {
+  document.getElementById('feature-cards')?.scrollIntoView({ behavior: 'smooth' })
+}
+</script>
+
+<style scoped>
+/* ── Layout ── */
+.crawl-wrapper {
+  background: #000;
+  color: #f0c040;
+  font-family: 'Georgia', serif;
+  overflow-x: hidden;
+}
+
+/* ── Crawl scene ── */
+.crawl-scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ── STAR WARS logo ── */
+.crawl-logo {
+  position: absolute;
+  top: 12%;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #f0c040;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: 10;
+}
+.crawl-logo.visible { opacity: 1; }
+
+/* ── 3-D perspective tilt ── */
+.crawl-perspective {
+  position: absolute;
+  bottom: 0;
+  width: 60%;
+  max-width: 700px;
+  height: 70vh;
+  perspective: 300px;
+  overflow: hidden;
+}
+
+.crawl-content {
+  position: absolute;
+  bottom: -100%;
+  width: 100%;
+  transform: rotateX(20deg);
+  transform-origin: bottom center;
+  text-align: center;
+  line-height: 1.8;
+  padding: 0 1rem;
+}
+
+.crawl-content.rolling {
+  animation: crawl 30s linear forwards;
+}
+
+@keyframes crawl {
+  from { bottom: -100%; }
+  to   { bottom: 200%;  }
+}
+
+.crawl-episode {
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #7eb8d4;
+  margin-bottom: 0.5rem;
+}
+
+.crawl-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f0c040;
+  margin-bottom: 2rem;
+}
+.crawl-title span { font-size: 0.7em; color: #ccc; }
+
+.crawl-content p {
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  color: #ddd;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Begin button ── */
+.crawl-btn {
+  position: absolute;
+  bottom: 8%;
+  background: transparent;
+  border: 2px solid #f0c040;
+  color: #f0c040;
+  padding: 0.7rem 2rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 1s ease, background 0.2s ease;
+  z-index: 20;
+}
+.crawl-btn.visible { opacity: 1; }
+.crawl-btn:hover   { background: rgba(240, 192, 64, 0.15); }
+
+/* ── Feature cards section ── */
+.feature-section {
+  background: var(--vp-c-bg, #0a0a0f);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.feature-heading {
+  font-size: 1.8rem;
+  color: var(--vp-c-brand-1, #c0392b);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.feature-cards {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  flex: 1 1 240px;
+  max-width: 280px;
+  background: var(--vp-c-bg-soft, #0d0d14);
+  border: 1px solid var(--vp-c-border, #1e1e2e);
+  border-radius: 6px;
+  padding: 2rem 1.5rem;
+  text-decoration: none;
+  color: var(--vp-c-text-1, #e0e0e0);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.feature-card:hover {
+  border-color: var(--vp-c-brand-1, #c0392b);
+  transform: translateY(-4px);
+}
+.feature-card.featured {
+  border-color: var(--vp-c-brand-1, #c0392b);
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: var(--vp-c-brand-1, #c0392b);
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  color: var(--vp-c-text-1, #e0e0e0);
+  margin: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: inherit;
+}
+
+.feature-card p {
+  font-size: 0.88rem;
+  color: var(--vp-c-text-2, #aaa);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.card-link {
+  font-size: 0.82rem;
+  color: var(--vp-c-brand-1, #c0392b);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+</style>
