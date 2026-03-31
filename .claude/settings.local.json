@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"README|\\\\.md$\")",
+      "Bash(C:UsersI809764.claudepluginscacheclaude-plugins-officialsuperpowers5.0.5scriptsstart-server.sh --project-dir d:/projects/cloud-cap-hana-swapi)",
+      "Bash(xargs cat:*)"
+    ]
+  }
+}
