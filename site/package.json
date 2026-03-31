@@ -1,6 +1,7 @@
 {
   "name": "cloud-cap-hana-swapi-docs",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "node scripts/copy-content.js && vitepress dev",
     "build": "node scripts/copy-content.js && vitepress build",
