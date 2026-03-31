@@ -3,7 +3,10 @@
     <!-- ── Cinematic crawl ── -->
     <div class="crawl-scene">
       <canvas ref="starCanvas" class="star-canvas" />
-      <div class="crawl-logo" :class="{ visible: logoVisible }">STAR WARS</div>
+      <div class="crawl-logo" :class="{ visible: logoVisible }">
+        STAR WARS
+        <div class="crawl-subtitle">CAP API</div>
+      </div>
       <div class="crawl-perspective">
         <div class="crawl-content" :class="{ rolling: rolling }">
           <p class="crawl-episode">Episode IV</p>
@@ -169,6 +172,15 @@ function scrollToCards() {
   z-index: 10;
 }
 .crawl-logo.visible { opacity: 1; }
+
+.crawl-subtitle {
+  font-size: 0.35em;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-top: 0.4em;
+  text-align: center;
+}
 
 /* ── 3-D perspective tilt ── */
 .crawl-perspective {
