@@ -1,0 +1,42 @@
+name: Deploy docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'cap/docs/**'
+      - 'cap/labs/**/README.md'
+      - 'HANA_CLI_*.md'
+      - '.github/workflows/docs.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+        working-directory: site
+      - name: Copy content
+        run: node scripts/copy-content.js
+        working-directory: site
+      - name: Build VitePress site
+        run: npx vitepress build
+        working-directory: site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/.vitepress/dist
+      - uses: actions/deploy-pages@v4
+        id: deployment
