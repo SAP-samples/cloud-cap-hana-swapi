@@ -1,4 +1,12 @@
 import { defineConfig } from 'vitepress'
+import { readFileSync } from 'fs'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const cdsGrammar = JSON.parse(readFileSync(resolve(__dirname, '../cds.tmLanguage.json'), 'utf-8'))
+// Shiki matches by name — grammar.name is "CDS" but fenced blocks use lowercase "cds"
+cdsGrammar.name = 'cds'
 
 export default defineConfig({
   title: 'SWAPI Docs',
@@ -14,6 +22,7 @@ export default defineConfig({
       dark: 'vitesse-dark',
       light: 'vitesse-light',
     },
+    languages: [cdsGrammar],
   },
 
   themeConfig: {
