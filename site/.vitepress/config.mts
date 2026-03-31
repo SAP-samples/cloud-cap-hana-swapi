@@ -5,6 +5,10 @@ export default defineConfig({
   description: 'SAP Cloud Application Programming Model — Star Wars API sample',
   base: '/cloud-cap-hana-swapi/',
 
+  // Copied source files contain links to repo source files (.cds, .js) and
+  // localhost dev URLs that are intentionally not part of the docs site.
+  ignoreDeadLinks: true,
+
   markdown: {
     theme: {
       dark: 'vitesse-dark',
