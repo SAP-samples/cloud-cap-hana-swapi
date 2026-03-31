@@ -103,6 +103,22 @@ Use `cds.log()` for operational logging. Use `cds.connect.to()` for service/DB c
 - Development/Hybrid: File-based messaging (`file-based-messaging`)
 - Persistent outbox queue enabled via `cds.requires.queue: true`
 
+## Documentation Site (`site/`)
+
+A VitePress site lives in `site/`. Content markdown files are **not** committed there — they are copied at build time from `cap/docs/`, `cap/labs/`, HANA CLI files, and `cap/README.md` by `site/scripts/copy-content.js`.
+
+```bash
+cd site
+npm ci             # install deps (first time)
+npm run dev        # copies content + starts dev server
+npm run build      # copies content + builds to site/.vitepress/dist/
+npm run preview    # preview the built site
+```
+
+GitHub Actions auto-deploys to GitHub Pages on push to `main` when files under `site/**`, `cap/docs/**`, `cap/labs/**/README.md`, or `HANA_CLI_*.md` change (`.github/workflows/docs.yml`).
+
+**Do not commit generated dirs** (`site/guide/`, `site/architecture/`, `site/labs/`, `site/reference/`, `site/api/`, `site/hana-cli/`) — they are git-ignored and regenerated at build time.
+
 ## Key Conventions
 
 - **CDS modeling**: Preserve namespace and `managed`/`cuid` patterns. Prefer explicit many-to-many junction entities. Keep `Common.ValueList` and `UI.*` patterns consistent.
