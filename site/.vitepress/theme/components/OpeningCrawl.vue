@@ -328,7 +328,7 @@ function scrollToCards() {
 }
 
 .crawl-content.rolling {
-  animation: crawl 30s linear infinite;
+  animation: crawl 45s linear infinite;
 }
 
 @keyframes crawl {
