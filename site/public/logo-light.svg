@@ -1,5 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="none" stroke="#00897b" stroke-width="2"/>
-  <polygon points="16,7 24,11.5 24,20.5 16,25 8,20.5 8,11.5" fill="#00897b" opacity="0.15"/>
-  <text x="16" y="21" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#00897b">SW</text>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512 512" xml:space="preserve">
+<path style="fill:#78B9EB;" d="M280,360V24c0-13.254-10.746-24-24-24s-24,10.746-24,24v336H280z"/>
+<rect x="232" y="424" style="fill:#5A8BB0;" width="48" height="88"/>
+<g>
+	<rect x="368" y="184" style="fill:#93C7EF;" width="96" height="48"/>
+	
+		<rect x="356.134" y="59.019" transform="matrix(-0.6311 -0.7757 0.7757 -0.6311 537.0215 469.429)" style="fill:#93C7EF;" width="47.998" height="96"/>
+</g>
+<g>
+	<rect x="48" y="184" style="fill:#BFE4F8;" width="96" height="48"/>
+	
+		<rect x="83.885" y="83.021" transform="matrix(-0.7757 -0.6311 0.6311 -0.7757 166.6473 273.2688)" style="fill:#BFE4F8;" width="96" height="47.998"/>
+</g>
+<rect x="208" y="320" style="fill:#3C5D76;" width="96" height="160"/>
+<rect x="256" y="320" style="fill:#1E2E3B;" width="48" height="160"/>
 </svg>
