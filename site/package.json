@@ -10,5 +10,9 @@
   "devDependencies": {
     "vitepress": "^1.6.0",
     "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@tonejs/midi": "^2.0.28",
+    "tone": "^15.1.22"
   }
 }

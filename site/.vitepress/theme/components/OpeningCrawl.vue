@@ -39,6 +39,9 @@
       >
         BEGIN YOUR JOURNEY ↓
       </button>
+      <button class="mute-btn" @click="toggleMute" :title="muted ? 'Unmute' : 'Mute'">
+        {{ muted ? '🔇' : '🔊' }}
+      </button>
     </div>
 
     <!-- ── Feature cards ── -->
@@ -70,13 +73,74 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useData } from 'vitepress'
+
+const { site } = useData()
 
 const logoVisible = ref(false)
 const rolling = ref(false)
 const btnVisible = ref(false)
+const muted = ref(false)
 const starCanvas = ref(null)
 
 let animFrame = null
+let synths = []
+let themeObserver = null
+let ToneLib = null
+let MidiLib = null
+
+function isDarkMode() {
+  return document.documentElement.classList.contains('dark')
+}
+
+function midiUrl(dark) {
+  const base = (site.value.base || '/').replace(/\/$/, '')
+  return dark ? `${base}/imperial-march.mid` : `${base}/jedi-theme.mid`
+}
+
+async function stopAudio() {
+  synths.forEach(s => { try { s.releaseAll(); s.dispose() } catch {} })
+  synths = []
+  if (ToneLib) {
+    ToneLib.Transport.stop()
+    ToneLib.Transport.cancel()
+  }
+}
+
+async function playMidi(dark) {
+  await stopAudio()
+  if (muted.value) return
+
+  const url = midiUrl(dark)
+
+  await ToneLib.start()
+
+  let midi
+  try {
+    midi = await MidiLib.fromUrl(url)
+  } catch {
+    console.warn('[SWAPI docs] MIDI file not found:', url)
+    return
+  }
+
+  const oscType = dark ? 'sawtooth4' : 'triangle8'
+  const now = ToneLib.now() + 0.5
+
+  midi.tracks.forEach(track => {
+    if (!track.notes.length) return
+    const synth = new ToneLib.PolySynth(ToneLib.Synth, {
+      oscillator: { type: oscType },
+      envelope: { attack: 0.05, decay: 0.3, sustain: 0.4, release: 1.5 },
+      volume: -14,
+    }).toDestination()
+    synths.push(synth)
+    track.notes.forEach(note => {
+      synth.triggerAttackRelease(note.name, note.duration, note.time + now, note.velocity)
+    })
+  })
+}
+
+// ── Starfield ──────────────────────────────────────────────────────────────
 
 function initStars(canvas) {
   const ctx = canvas.getContext('2d')
@@ -88,9 +152,9 @@ function initStars(canvas) {
     x: Math.random() * W,
     y: Math.random() * H,
     r: Math.random() * 1.4 + 0.3,
-    base: Math.random() * 0.6 + 0.2,   // base opacity
-    speed: Math.random() * 0.015 + 0.005, // twinkle speed
-    phase: Math.random() * Math.PI * 2,   // twinkle offset
+    base: Math.random() * 0.6 + 0.2,
+    speed: Math.random() * 0.015 + 0.005,
+    phase: Math.random() * Math.PI * 2,
   }))
 
   let t = 0
@@ -109,17 +173,54 @@ function initStars(canvas) {
   draw()
 }
 
-onMounted(() => {
+// ── Lifecycle ──────────────────────────────────────────────────────────────
+
+onMounted(async () => {
   setTimeout(() => { logoVisible.value = true }, 500)
   setTimeout(() => { rolling.value = true }, 2000)
   setTimeout(() => { btnVisible.value = true }, 10000)
 
   if (starCanvas.value) initStars(starCanvas.value)
+
+  // Pre-load modules now (onMounted is client-only, SSR-safe) so the click
+  // handler can call Tone.start() synchronously within the user gesture.
+  const [toneModule, { Midi }] = await Promise.all([
+    import('tone'),
+    import('@tonejs/midi'),
+  ])
+  ToneLib = toneModule
+  MidiLib = Midi
+
+  // Start audio on first click (browser autoplay policy requires a gesture)
+  const onFirstClick = () => playMidi(isDarkMode())
+  document.addEventListener('click', onFirstClick, { once: true })
+
+  // Re-start with correct track when theme toggles
+  themeObserver = new MutationObserver(() => {
+    if (!muted.value) playMidi(isDarkMode())
+  })
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
+  })
 })
 
 onUnmounted(() => {
   if (animFrame) cancelAnimationFrame(animFrame)
+  stopAudio()
+  themeObserver?.disconnect()
 })
+
+// ── Controls ───────────────────────────────────────────────────────────────
+
+function toggleMute() {
+  muted.value = !muted.value
+  if (muted.value) {
+    stopAudio()
+  } else {
+    playMidi(isDarkMode())
+  }
+}
 
 function scrollToCards() {
   document.getElementById('feature-cards')?.scrollIntoView({ behavior: 'smooth' })
@@ -255,6 +356,28 @@ function scrollToCards() {
 }
 .crawl-btn.visible { opacity: 1; }
 .crawl-btn:hover   { background: rgba(240, 192, 64, 0.15); }
+
+/* ── Mute button ── */
+.mute-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 30;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.mute-btn:hover { opacity: 1; }
 
 /* ── Feature cards section ── */
 .feature-section {
