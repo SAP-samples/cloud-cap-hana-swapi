@@ -1,0 +1,79 @@
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  title: 'SWAPI Docs',
+  description: 'SAP Cloud Application Programming Model — Star Wars API sample',
+  base: '/cloud-cap-hana-swapi/',
+
+  markdown: {
+    theme: {
+      dark: 'vitesse-dark',
+      light: 'vitesse-light',
+    },
+  },
+
+  themeConfig: {
+    logo: { light: '/logo-light.svg', dark: '/logo-dark.svg', alt: 'SWAPI' },
+    siteTitle: 'SWAPI DOCS',
+
+    nav: [
+      { text: 'Getting Started', link: '/guide/overview' },
+      { text: 'Architecture',    link: '/architecture/' },
+      { text: 'Labs',            link: '/labs/' },
+      { text: 'Reference',       link: '/reference/cheat-sheet' },
+      { text: 'HANA CLI',        link: '/hana-cli/quickstart' },
+      { text: 'API',             link: '/api/' },
+    ],
+
+    sidebar: {
+      '/guide/': [
+        { text: 'Getting Started', items: [
+          { text: 'Overview',      link: '/guide/overview' },
+          { text: 'Learning Path', link: '/guide/learning-path' },
+        ]},
+      ],
+      '/architecture/': [
+        { text: 'Architecture', items: [
+          { text: 'CAP Architecture',  link: '/architecture/' },
+          { text: 'Profile Comparison', link: '/architecture/profiles' },
+        ]},
+      ],
+      '/labs/': [
+        { text: 'Hands-On Labs', items: [
+          { text: 'Labs Overview',           link: '/labs/' },
+          { text: 'Lab 01: Domain Model',    link: '/labs/lab-01' },
+          { text: 'Lab 02: Service Projections', link: '/labs/lab-02' },
+          { text: 'Lab 03: Handler Logic',   link: '/labs/lab-03' },
+          { text: 'Lab 04: Authorization',   link: '/labs/lab-04' },
+          { text: 'Lab 05: Testing',         link: '/labs/lab-05' },
+        ]},
+      ],
+      '/reference/': [
+        { text: 'Reference', items: [
+          { text: 'CDS Cheat Sheet',      link: '/reference/cheat-sheet' },
+          { text: 'Common Pitfalls',      link: '/reference/pitfalls' },
+          { text: 'Value-Help Migration', link: '/reference/migration' },
+        ]},
+      ],
+      '/hana-cli/': [
+        { text: 'HANA CLI', items: [
+          { text: 'Quick Start',      link: '/hana-cli/quickstart' },
+          { text: 'Examples',         link: '/hana-cli/examples' },
+          { text: 'Workflows',        link: '/hana-cli/workflows' },
+          { text: 'Command Reference', link: '/hana-cli/reference' },
+        ]},
+      ],
+      '/api/': [
+        { text: 'API', items: [
+          { text: 'API Reference', link: '/api/' },
+        ]},
+      ],
+    },
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/SAP-samples/cloud-cap-hana-swapi' },
+    ],
+
+    search: { provider: 'local' },
+  },
+})
