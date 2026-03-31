@@ -323,7 +323,7 @@ function scrollToCards() {
 }
 
 .crawl-content.rolling {
-  animation: crawl 30s linear forwards;
+  animation: crawl 30s linear infinite;
 }
 
 @keyframes crawl {
