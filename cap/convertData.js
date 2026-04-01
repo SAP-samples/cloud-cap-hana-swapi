@@ -14,8 +14,9 @@ const DELETE_ORDER = [
     'Planet2People',
     'Film2People', 'Film2Planets', 'Film2Starships', 'Film2Vehicles', 'Film2Species',
     'Show2People', 'Show2Planets', 'Show2Starships', 'Show2Vehicles', 'Show2Species',
+    'Show',
     'Species2People', 'Starship2Pilot', 'Vehicle2Pilot',
-    'People', 'Starship', 'Vehicles', 'Species', 'Show', 'Film', 'Planet'
+    'People', 'Starship', 'Vehicles', 'Species', 'Film', 'Planet'
 ]
 
 const UPSERT_ORDER = [
