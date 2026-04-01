@@ -90,6 +90,73 @@ describe('Star Wars CDS Model Tests', () => {
   })
 
   // ─────────────────────────────────────────────────────────────────────────
+  // Show – CRUD and constraints
+  // ─────────────────────────────────────────────────────────────────────────
+  describe('Show – CRUD and constraints', () => {
+    let db
+    let showId
+
+    before(async () => {
+      db = await cds.connect.to('db')
+    })
+
+    after(async () => {
+      if (showId) {
+        await db.run(DELETE.from('star.wars.Show2People').where({ show_ID: showId }))
+        await db.run(DELETE.from('star.wars.Show').where({ ID: showId }))
+      }
+    })
+
+    it('creates a Show with valid fields', async () => {
+      const result = await db.run(
+        INSERT.into('star.wars.Show').entries({
+          title: 'The Mandalorian',
+          show_type: 'LIVE_ACTION_SERIES',
+          seasons: 3,
+          episode_count: 24,
+          network: 'Disney+',
+          director: 'Jon Favreau',
+          producer: 'Jon Favreau',
+          release_date: '2019-11-01'
+        })
+      )
+      assert.ok(result, 'INSERT should succeed')
+      const [show] = await db.run(SELECT.from('star.wars.Show').where({ title: 'The Mandalorian' }))
+      showId = show.ID
+      assert.equal(show.show_type, 'LIVE_ACTION_SERIES')
+      assert.equal(show.seasons, 3)
+    })
+
+    it('rejects a Show with a blank title', async () => {
+      const showSrv = await cds.connect.to('StarWarsShow')
+      await assert.rejects(
+        showSrv.run(INSERT.into('Show').entries({ title: '' })),
+        'Should reject blank title'
+      )
+    })
+
+    it('Media view returns both Films and Shows', async () => {
+      // Insert a test film (needed to ensure Film rows appear in Media)
+      await db.run(INSERT.into('star.wars.Film').entries({
+        title: 'Media-Test Film',
+        episode_id: 0,
+        opening_crawl: 'Test',
+        director: 'Test',
+        producer: 'Test',
+        release_date: '2020-01-01'
+      }))
+
+      const rows = await db.run(SELECT.from('star.wars.Media'))
+      const types = [...new Set(rows.map(r => r.media_type))]
+      assert.ok(types.includes('FILM'), 'Media should include FILM rows')
+      assert.ok(types.includes('SHOW'), 'Media should include SHOW rows')
+
+      // Cleanup
+      await db.run(DELETE.from('star.wars.Film').where({ title: 'Media-Test Film' }))
+    })
+  })
+
+  // ─────────────────────────────────────────────────────────────────────────
   // Planet – CRUD
   // Planet is a simple root entity with no draft workflow, making it ideal
   // for straightforward create / read / update / delete checks.
