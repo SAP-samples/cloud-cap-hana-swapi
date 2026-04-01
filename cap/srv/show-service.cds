@@ -54,4 +54,22 @@ service StarWarsShow @(path : 'StarWarsShow') {
     entity Show2Vehicles   as projection on StarWars.Show2Vehicles {
         * , show : redirected to Show
     };
+
+    @readonly : true
+    entity Media            as projection on StarWars.Media;
+
+    @readonly : true
+    entity MediaCharacters  as projection on StarWars.MediaCharacters;
+
+    @readonly : true
+    entity MediaPlanets     as projection on StarWars.MediaPlanets;
+
+    @readonly : true
+    entity MediaSpecies     as projection on StarWars.MediaSpecies;
+
+    @readonly : true
+    entity MediaStarships   as projection on StarWars.MediaStarships;
+
+    @readonly : true
+    entity MediaVehicles    as projection on StarWars.MediaVehicles;
 }

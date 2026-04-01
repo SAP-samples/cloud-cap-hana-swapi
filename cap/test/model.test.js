@@ -53,6 +53,18 @@ describe('Star Wars CDS Model Tests', () => {
         assert.ok(Array.isArray(data.value), `Expected data.value to be an array for ${url}`)
       })
     }
+
+    it('StarWarsShow Media view returns HTTP 200 with OData value array', async () => {
+      const { status, data } = await GET('/odata/v4/StarWarsShow/Media')
+      assert.equal(status, 200, 'Expected 200 for /odata/v4/StarWarsShow/Media')
+      assert.ok(Array.isArray(data.value), 'Expected data.value to be an array')
+    })
+
+    it('StarWarsShow MediaCharacters view returns HTTP 200 with OData value array', async () => {
+      const { status, data } = await GET('/odata/v4/StarWarsShow/MediaCharacters')
+      assert.equal(status, 200)
+      assert.ok(Array.isArray(data.value))
+    })
   })
 
   // ─────────────────────────────────────────────────────────────────────────

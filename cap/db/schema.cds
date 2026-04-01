@@ -581,6 +581,67 @@ annotate Show2Species with {
     specie @(Common.Text : specie.name,   Common.TextArrangement : #TextOnly);
 };
 
+// ─── Unified Media Views ──────────────────────────────────────────────────────
+// Read-only UNION views across Film and Show.
+// media_type is always 'FILM' or 'SHOW' — use show_type on the Show entity
+// itself for finer-grained show classification.
+// ─────────────────────────────────────────────────────────────────────────────
+
+define view Media as
+    select from Film {
+        key ID,
+        title,
+        'FILM'        as media_type    : String,
+        director,
+        producer,
+        release_date,
+        episode_id,
+        opening_crawl,
+        null          as show_type     : String,
+        null          as seasons       : Integer,
+        null          as episode_count : Integer,
+        null          as network       : String
+    }
+    union all select from Show {
+        key ID,
+        title,
+        'SHOW'        as media_type    : String,
+        director,
+        producer,
+        release_date,
+        null          as episode_id    : Integer,
+        null          as opening_crawl : String(2500),
+        show_type,
+        seasons,
+        episode_count,
+        network
+    };
+
+define view MediaCharacters as
+    select from Film2People   { key film.ID as media_ID, 'FILM' as media_type : String, people }
+    union all
+    select from Show2People   { key show.ID as media_ID, 'SHOW' as media_type : String, people };
+
+define view MediaPlanets as
+    select from Film2Planets  { key film.ID as media_ID, 'FILM' as media_type : String, planet }
+    union all
+    select from Show2Planets  { key show.ID as media_ID, 'SHOW' as media_type : String, planet };
+
+define view MediaSpecies as
+    select from Film2Species  { key film.ID as media_ID, 'FILM' as media_type : String, specie }
+    union all
+    select from Show2Species  { key show.ID as media_ID, 'SHOW' as media_type : String, specie };
+
+define view MediaStarships as
+    select from Film2Starships  { key film.ID as media_ID, 'FILM' as media_type : String, starship }
+    union all
+    select from Show2Starships  { key show.ID as media_ID, 'SHOW' as media_type : String, starship };
+
+define view MediaVehicles as
+    select from Film2Vehicles  { key film.ID as media_ID, 'FILM' as media_type : String, vehicle }
+    union all
+    select from Show2Vehicles  { key show.ID as media_ID, 'SHOW' as media_type : String, vehicle };
+
 /**
  * All People and Aliens in Star Wars
  */
