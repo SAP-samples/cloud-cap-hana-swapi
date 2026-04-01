@@ -23,6 +23,10 @@ service StarWarsVehicle @(path : 'StarWarsVehicle') {
     entity Planet        as projection on StarWars.Planet
                             excluding { shows };
 
+    @readonly : true
+    entity Starship @(cds.redirection.target : false) as projection on StarWars.Starship
+                            excluding { shows };
+
     entity Film2Vehicles as projection on StarWars.Film2Vehicles {
         * , vehicle : redirected to Vehicles
     };

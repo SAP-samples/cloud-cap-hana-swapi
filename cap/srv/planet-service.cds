@@ -10,10 +10,20 @@ service StarWarsPlanet @(path : 'StarWarsPlanet') {
                             excluding { shows };
 
     @readonly : true
-    entity People        as projection on StarWars.People {*, homeworld : redirected to Planet};
+    entity People        as projection on StarWars.People {*, homeworld : redirected to Planet}
+                            excluding { shows };
 
     @readonly : true
-    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles
+                            excluding { shows };
+
+    @readonly : true
+    entity Vehicles       as projection on StarWars.Vehicles
+                            excluding { shows };
+
+    @readonly : true
+    entity Starship @(cds.redirection.target : false) as projection on StarWars.Starship
+                            excluding { shows };
 
     @readonly : true
     entity Film          as projection on StarWars.Film;

@@ -10,7 +10,8 @@ service StarWarsSpecies @(path : 'StarWarsSpecies') {
     } excluding { shows };
 
     @readonly : true
-    entity Planet         as projection on StarWars.Planet;
+    entity Planet         as projection on StarWars.Planet
+                             excluding { shows };
 
     @readonly : true
     entity Film           as projection on StarWars.Film;
@@ -18,10 +19,19 @@ service StarWarsSpecies @(path : 'StarWarsSpecies') {
     @readonly : true
     entity People         as projection on StarWars.People {
         * , homeworld : redirected to Planet
-    };
+    } excluding { shows };
 
     @readonly : true
-    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles
+                              excluding { shows };
+
+    @readonly : true
+    entity Vehicles       as projection on StarWars.Vehicles
+                              excluding { shows };
+
+    @readonly : true
+    entity Starship @(cds.redirection.target : false) as projection on StarWars.Starship
+                              excluding { shows };
 
     entity Film2Species   as projection on StarWars.Film2Species {
         // Keep both `specie` (source naming) and `species` (consumer-friendly alias)
