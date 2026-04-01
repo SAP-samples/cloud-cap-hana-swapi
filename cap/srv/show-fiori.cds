@@ -1,0 +1,53 @@
+using StarWarsShow as sws from './show-service';
+
+annotate sws.Show with @(UI.TextArrangement : #TextOnly);
+
+annotate sws.Show with @(
+    UI : {
+        LineItem : [
+            { $Type : 'UI.DataField', Value : title },
+            { $Type : 'UI.DataField', Value : show_type,     ![@UI.Importance] : #High },
+            { $Type : 'UI.DataField', Value : director,      ![@UI.Importance] : #High },
+            { $Type : 'UI.DataField', Value : release_date,  ![@UI.Importance] : #High },
+            { $Type : 'UI.DataField', Value : seasons,       ![@UI.Importance] : #Medium },
+            { $Type : 'UI.DataField', Value : episode_count, ![@UI.Importance] : #Medium },
+            { $Type : 'UI.DataField', Value : network,       ![@UI.Importance] : #Medium }
+        ],
+        SelectionFields : [show_type, network, director, release_date],
+        HeaderInfo : {
+            TypeName       : '{i18n>Show}',
+            TypeNamePlural : '{i18n>Shows}',
+            Title          : { Value : title },
+            Description    : { Value : show_type }
+        },
+        Facets : [
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>ShowDetails}',
+                Target : '@UI.FieldGroup#Main'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>characters}',
+                Target : 'characters/@UI.LineItem'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>planets}',
+                Target : 'planets/@UI.LineItem'
+            }
+        ],
+        FieldGroup#Main : {
+            Data : [
+                { $Type : 'UI.DataField', Value : title },
+                { $Type : 'UI.DataField', Value : show_type },
+                { $Type : 'UI.DataField', Value : seasons },
+                { $Type : 'UI.DataField', Value : episode_count },
+                { $Type : 'UI.DataField', Value : network },
+                { $Type : 'UI.DataField', Value : director },
+                { $Type : 'UI.DataField', Value : producer },
+                { $Type : 'UI.DataField', Value : release_date }
+            ]
+        }
+    }
+);

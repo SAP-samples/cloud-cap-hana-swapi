@@ -4,6 +4,7 @@ using { StarWarsPlanet } from './planet-service';
 using { StarWarsSpecies } from './species-service';
 using { StarWarsStarship } from './starship-service';
 using { StarWarsVehicle } from './vehicle-service';
+using { StarWarsShow } from './show-service';
 
 // ─── Showcase: Service-Level Access ──────────────────────────────────────────
 // All services are currently public (@requires: 'any') — no login required.
@@ -36,6 +37,7 @@ annotate StarWarsPlanet with @(requires: 'any');
 annotate StarWarsSpecies with @(requires: 'any');
 annotate StarWarsStarship with @(requires: 'any');
 annotate StarWarsVehicle with @(requires: 'any');
+annotate StarWarsShow with @(requires: 'any');
 
 // ─── Showcase: Entity-Level Role Restrictions ─────────────────────────────────
 // People is the only writable entity in this showcase (all others are @readonly).
