@@ -37,6 +37,8 @@
     "load": "cds bind --exec node convertData.js --profile hybrid",
     "load_sqlite": "cds bind --exec node convertData.js --profile sqlite",
     "load_pg": "cds bind --exec node convertData.js --profile pg",
+    "scrape": "node ../scripts/scraper/index.js",
+    "scrape:cache": "CACHE_ONLY=true node ../scripts/scraper/index.js",
     "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js test/handler.test.js",
     "test:handler": "node --env-file=test/test.env --test --test-timeout 60000 test/handler.test.js",
     "test:profile": "node --env-file=test/test.env --test --test-timeout 60000 --test-name-pattern \"Profile-specific model exposure\" test/model.test.js",
