@@ -503,7 +503,19 @@ annotate Show with @(
         Common.TextArrangement : #TextOnly
     );
     title     @title : '{i18n>title}';
-    show_type @title : '{i18n>show_type}';
+    show_type @(
+        title                           : '{i18n>show_type}',
+        assert.enum,
+        Common.ValueListWithFixedValues : true,
+        Common.ValueList                : {
+            CollectionPath : 'Show',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterOut',
+                LocalDataProperty : show_type,
+                ValueListProperty : 'show_type'
+            }]
+        }
+    );
     seasons   @title : '{i18n>seasons}';
     episode_count @title : '{i18n>episode_count}';
     network   @title : '{i18n>network}';

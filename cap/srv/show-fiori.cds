@@ -35,6 +35,21 @@ annotate sws.Show with @(
                 $Type  : 'UI.ReferenceFacet',
                 Label  : '{i18n>planets}',
                 Target : 'planets/@UI.LineItem'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>starships}',
+                Target : 'starships/@UI.LineItem'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>vehicles}',
+                Target : 'vehicles/@UI.LineItem'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>species}',
+                Target : 'species/@UI.LineItem'
             }
         ],
         FieldGroup#Main : {

@@ -10,28 +10,28 @@ service StarWarsShow @(path : 'StarWarsShow') {
 
     @readonly : true
     entity People          as projection on StarWars.People
-                              excluding { shows };
+                              excluding { shows, films, species, vehicles, starships };
 
     @readonly : true
     entity Planet          as projection on StarWars.Planet
-                              excluding { shows };
+                              excluding { shows, films, residents };
 
     @readonly : true
     entity Species         as projection on StarWars.Species
-                              excluding { shows };
+                              excluding { shows, films, people };
 
     @readonly : true
     entity Starship        as projection on StarWars.Starship
-                              excluding { shows };
+                              excluding { shows, films, pilots };
 
     @readonly : true
     entity Vehicles        as projection on StarWars.Vehicles
-                              excluding { shows };
+                              excluding { shows, films, pilots };
 
     @readonly : true
     entity Vehicle @(cds.redirection.target : false)
                            as projection on StarWars.Vehicles
-                              excluding { shows };
+                              excluding { shows, films, pilots };
 
     entity Show2People     as projection on StarWars.Show2People {
         * , people : redirected to People, show : redirected to Show
