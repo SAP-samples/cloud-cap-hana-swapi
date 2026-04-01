@@ -15,26 +15,27 @@ The existing Star Wars fixture data in `oldPython/resources/fixtures/` was sourc
 ## Decisions
 
 | Question | Decision |
-|---|---|
+| --- | --- |
 | Data source | Wookieepedia MediaWiki API (`starwars.fandom.com/api.php`) |
 | Content scope | Full canon: all theatrical films + live-action shows + animated shows |
 | TV show modeling | New `Show` entity alongside existing `Film` (no breaking changes to `Film`) |
 | Unified browsing | `Media` UNION view + 5 companion relationship UNION views |
-| Output format | Clean JSON in `scripts/data/raw/` (replaces Django fixture format) |
-| Pipeline integration | Update `convertData.js` and `convertDataLite.js` to read new format |
+| Output format | Clean JSON in `scripts/data/raw/` (full replacement of Django fixture format) |
+| Pipeline integration | Rewrite `convertData.js` and `convertDataLite.js` to read new format |
+| Data load strategy | Full replacement — old SWAPI fixtures retired; Wookieepedia data covers all episodes I–VI and beyond |
 
 ---
 
 ## Architecture Overview
 
-```
+```text
 Wookieepedia MediaWiki API
         ↓
 scripts/scraper/        ← standalone Node.js scraper (rate-limited, cached)
         ↓
 scripts/data/raw/       ← clean JSON output (committed to repo)
         ↓
-cap/convertData.js      ← updated to read new format, handle Show entity
+cap/convertData.js      ← rewritten to read new format, handle Show entity
         ↓
 CAP database (SQLite / HANA / PostgreSQL)
 ```
@@ -52,6 +53,9 @@ entity Show : cuid, managed {
         LIVE_ACTION_SERIES  = 'LIVE_ACTION_SERIES';
         ANIMATED_SERIES     = 'ANIMATED_SERIES';
         ANIMATED_FILM       = 'ANIMATED_FILM';
+        // Note: anthology theatrical films (Rogue One, Solo) go in Film
+        // using episode_id = 0 (OTHER), not here. ANTHOLOGY is reserved
+        // for potential future short-form anthology series only.
         ANTHOLOGY           = 'ANTHOLOGY';
     };
     seasons       : Integer;
@@ -71,6 +75,8 @@ entity Show : cuid, managed {
 ### Five New Junction Tables
 
 `Show2People`, `Show2Planets`, `Show2Starships`, `Show2Vehicles`, `Show2Species` — each identical in structure to their `Film2*` counterparts (cuid, association to Show, association to the target entity, `@assert.unique` pair constraint).
+
+**Important:** `Show2Vehicles` must use `vehicle : Association to Vehicles` (singular field name, plural entity type) to match `Film2Vehicles` exactly — the `MediaVehicles` companion UNION view requires both branches to project the same column name `vehicle`.
 
 ### Back-References on Existing Entities
 
@@ -110,7 +116,7 @@ define view Media as
     union all select from Show {
         ID,
         title,
-        show_type     as media_type,
+        'SHOW'        as media_type    : String,
         director,
         producer,
         release_date,
@@ -123,35 +129,37 @@ define view Media as
     };
 ```
 
+`media_type` is `'FILM'` for all films; `'SHOW'` for all shows. Use `show_type` to distinguish `LIVE_ACTION_SERIES` / `ANIMATED_SERIES` etc. within shows.
+
 ### Companion Relationship Views
 
 Five parallel UNION views enable cross-production relationship queries:
 
 ```cds
 define view MediaCharacters as
-    select from Film2People  { film.ID as media_ID, 'FILM' as media_type : String, people }
+    select from Film2People   { film.ID as media_ID, 'FILM' as media_type : String, people }
     union all
-    select from Show2People  { show.ID as media_ID, show_type as media_type, people };
+    select from Show2People   { show.ID as media_ID, show.show_type as media_type, people };
 
 define view MediaPlanets as
     select from Film2Planets  { film.ID as media_ID, 'FILM' as media_type : String, planet }
     union all
-    select from Show2Planets  { show.ID as media_ID, show_type as media_type, planet };
+    select from Show2Planets  { show.ID as media_ID, show.show_type as media_type, planet };
 
 define view MediaSpecies as
     select from Film2Species  { film.ID as media_ID, 'FILM' as media_type : String, specie }
     union all
-    select from Show2Species  { show.ID as media_ID, show_type as media_type, specie };
+    select from Show2Species  { show.ID as media_ID, show.show_type as media_type, specie };
 
 define view MediaStarships as
     select from Film2Starships  { film.ID as media_ID, 'FILM' as media_type : String, starship }
     union all
-    select from Show2Starships  { show.ID as media_ID, show_type as media_type, starship };
+    select from Show2Starships  { show.ID as media_ID, show.show_type as media_type, starship };
 
 define view MediaVehicles as
     select from Film2Vehicles  { film.ID as media_ID, 'FILM' as media_type : String, vehicle }
     union all
-    select from Show2Vehicles  { show.ID as media_ID, show_type as media_type, vehicle };
+    select from Show2Vehicles  { show.ID as media_ID, show.show_type as media_type, vehicle };
 ```
 
 Usage: `GET /MediaCharacters?$filter=media_ID eq '<uuid>'` returns all characters for any film or show.
@@ -162,7 +170,7 @@ Usage: `GET /MediaCharacters?$filter=media_ID eq '<uuid>'` returns all character
 
 ### Directory Structure
 
-```
+```text
 scripts/
   scraper/
     package.json          ← deps: axios, wtf_wikipedia, p-throttle
@@ -204,7 +212,7 @@ scripts/
 ### Wookieepedia Categories
 
 | Category | Yields |
-|---|---|
+| --- | --- |
 | `Canon films` | Film records |
 | `Canon television series` | Show records (live-action) |
 | `Canon animated television series` | Show records (animated) |
@@ -217,7 +225,7 @@ scripts/
 ### Dependencies
 
 | Package | Purpose |
-|---|---|
+| --- | --- |
 | `axios` | HTTP client for MediaWiki API calls |
 | `wtf_wikipedia` | Wikitext/infobox parser |
 | `p-throttle` | Rate limiting (1 req/s) |
@@ -267,11 +275,17 @@ Names are resolved to `uuidv5` UUIDs by `convertData.js` during the UPSERT trans
 
 ### `convertData.js` / `convertDataLite.js` Changes
 
+This is a **full rewrite of the data loading layer**, not an incremental update. The Django fixture format (`pk`, `model`, `fields` wrapper) is retired entirely. The new flat JSON format requires:
+
+- `readFixture()` replaced with `readRawJSON()` — reads flat arrays, no `item.fields` unwrapping
+- `transformFixtures()` replaced with `transformEntities()` — resolves name-keyed foreign refs to uuidv5 UUIDs directly (no `item.pk` lookups)
 - `ROUTES_DIR` updated to `scripts/data/raw/`
-- New `loadShows()` function
+- New `loadShows()` function added
 - `UPSERT_ORDER` gains: `Show`, `Show2People`, `Show2Planets`, `Show2Starships`, `Show2Vehicles`, `Show2Species`
 - `DELETE_ORDER` gains the same 6 entries (in reverse dependency order)
 - Relationship resolver extended for all 6 new junction tables
+
+**Load strategy:** Full replacement on every run. The old SWAPI data is retired — Wookieepedia data covers Episodes I–VI and all newer content. Running `npm run load` (or `load_sqlite`) deletes all existing records and re-inserts from `scripts/data/raw/`. The `uuidv5` ID generation ensures the same entity name always produces the same UUID, so re-runs are idempotent.
 
 ### New npm Scripts (in `cap/package.json`)
 
@@ -314,11 +328,31 @@ Names are resolved to `uuidv5` UUIDs by `convertData.js` during the UPSERT trans
 - Re-running `npm run scrape` only fetches pages with cache entries older than `CACHE_TTL_DAYS`
 - `scrape:cache` rebuilds `raw/` from existing cache — zero network calls, useful after normalizer changes
 
+### Disambiguation Pages
+
+Wookieepedia disambiguation pages (e.g. "Han Solo" may list multiple media entries) contain no infobox — `wtf_wikipedia` returns an empty template object. Detection: check for `{{Disambig}}` template presence or absence of any recognised infobox key. Disambig pages are skipped and logged to `failed.json` for manual review.
+
+### Infobox Field Aliasing
+
+Wookieepedia infobox field names are not standardised across articles. Each extractor in `extractors/` must implement an alias resolution step in `normalize.js`. Known aliases to handle at minimum:
+
+| Canonical field | Known Wookieepedia aliases |
+| --- | --- |
+| `director` | `directors`, `directed_by` |
+| `producer` | `producers`, `produced_by` |
+| `release_date` | `release`, `released`, `airdate`, `first_aired` |
+| `episode_count` | `episodes`, `num_episodes` |
+| `homeworld` | `home_world`, `homeplanet` |
+| `height` | `height_range` |
+
+The extractor tries each alias in order and takes the first non-null value. Unknown fields are logged at `debug` level.
+
 ---
 
 ## Files Changed / Created
 
 ### New files
+
 - `scripts/scraper/package.json`
 - `scripts/scraper/index.js`
 - `scripts/scraper/mediawiki.js`
@@ -334,10 +368,14 @@ Names are resolved to `uuidv5` UUIDs by `convertData.js` during the UPSERT trans
 - `scripts/scraper/extractors/vehicles.js`
 - `scripts/data/raw/` (output, committed)
 - `scripts/data/cache/` (gitignored)
+- `cap/srv/show-service.cds` (new — service contract exposing `Show` and `Show2*` entities)
+- `cap/srv/show-fiori.cds` (new — Fiori/UI annotations for `Show`)
 
 ### Modified files
+
 - `cap/db/schema.cds` — add `Show`, 5 junction tables, 5 back-references, `Media` view + 5 companion views
-- `cap/convertData.js` — new source dir, Show entity, 6 new junction tables
-- `cap/convertDataLite.js` — same changes as convertData.js
+- `cap/srv/services-auth.cds` — add `Show` to `Viewer`, `Editor`, and `Admin` role grants
+- `cap/convertData.js` — rewrite `readFixture`/`transformFixtures`, add `Show` entity + 6 junction tables
+- `cap/convertDataLite.js` — same changes as `convertData.js`
 - `cap/package.json` — add `scrape` and `scrape:cache` scripts
 - `.gitignore` — add `scripts/data/cache/`
