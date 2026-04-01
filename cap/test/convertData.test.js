@@ -10,163 +10,60 @@ const {
     deterministicId,
     deterministicLinkId,
     parseChunkSize,
-    transformFixtures
+    transformEntities
 } = __internals
 
-function createFixtures() {
-    const planets = [
-        {
-            pk: 1,
-            ID: deterministicId('Planet', 1),
-            fields: {
-                name: 'Tatooine',
-                diameter: '10465',
-                rotation_period: '23',
-                orbital_period: '304',
-                gravity: '1 standard',
-                population: '200000',
-                climate: 'arid',
-                terrain: 'desert',
-                surface_water: '1'
-            }
-        }
-    ]
-
-    const people = [
-        {
-            pk: 10,
-            ID: deterministicId('People', 10),
-            fields: {
-                homeworld: 1,
-                name: 'Luke Skywalker',
-                height: '172',
-                mass: '77',
-                hair_color: 'blond',
-                skin_color: 'fair',
-                eye_color: 'blue',
-                birth_year: '19bby',
-                gender: 'male'
-            }
-        },
-        {
-            pk: 11,
-            ID: deterministicId('People', 11),
-            fields: {
-                homeworld: 999,
-                name: 'Mystery Person',
-                height: 'unknown',
-                mass: 'n/a',
-                hair_color: '',
-                skin_color: null,
-                eye_color: 'green',
-                birth_year: 'unknown',
-                gender: 'none'
-            }
-        }
-    ]
-
-    const transportBase = {
-        fields: {
-            name: 'X-wing',
-            model: 'T-65 X-wing',
-            manufacturer: 'Incom',
-            cost_in_credits: '149999',
-            length: '12.5',
-            crew: '1',
-            passengers: '0',
-            max_atmosphering_speed: '1050',
-            cargo_capacity: '110',
-            consumables: '1 week'
-        }
-    }
-
-    const starships = [
-        {
-            pk: 20,
-            ID: deterministicId('Starship', 20),
-            fields: {
-                starship_class: 'Starfighter',
-                hyperdrive_rating: '1.0',
-                MGLT: '100',
-                pilots: [10, 999]
-            }
-        }
-    ]
-
-    const vehicles = [
-        {
-            pk: 30,
-            ID: deterministicId('Vehicles', 30),
-            fields: {
-                vehicle_class: 'Snowspeeder',
-                pilots: [10]
-            }
-        }
-    ]
-
-    const transports = [
-        {
-            pk: 20,
-            ...transportBase
-        },
-        {
-            pk: 30,
-            fields: {
-                ...transportBase.fields,
-                name: 'T-47 Airspeeder',
-                model: 't-47 airspeeder'
-            }
-        }
-    ]
-
-    const species = [
-        {
-            pk: 40,
-            ID: deterministicId('Species', 40),
-            fields: {
-                name: 'Human',
-                classification: 'mammal',
-                designation: 'sentient',
-                eye_colors: 'brown, blue, green',
-                skin_colors: 'light, dark',
-                language: 'Galactic Basic',
-                hair_colors: 'blond, brown, black',
-                average_lifespan: '120',
-                average_height: '180',
-                homeworld: 1,
-                people: [10, 999]
-            }
-        }
-    ]
-
-    const films = [
-        {
-            pk: 50,
-            ID: deterministicId('Film', 50),
-            fields: {
-                producer: 'Gary Kurtz, Rick McCallum',
-                title: 'A New Hope',
-                episode_id: '4',
-                director: 'George Lucas',
-                release_date: '1977-05-25',
-                opening_crawl: 'It is a period of civil war...',
-                starships: [20],
-                vehicles: [30],
-                planets: [1],
-                characters: [10, 999],
-                species: [40]
-            }
-        }
-    ]
-
+function createRawData() {
     return {
-        people,
-        planets,
-        films,
-        species,
-        starships,
-        vehicles,
-        transports
+        planets: [{ name: 'Tatooine', diameter: '10465', rotation_period: '23',
+                    orbital_period: '304', gravity: '1 standard', population: '200000',
+                    climate: 'arid', terrain: 'desert', surface_water: '1' }],
+        people:  [
+            { name: 'Luke Skywalker', height: '172', mass: '77',
+              hair_color: 'blond', skin_color: 'fair', eye_color: 'blue',
+              birth_year: '19BBY', gender: 'male', _homeworld: 'Tatooine',
+              _species: 'Human' },
+            { name: 'Mystery Person', height: 'unknown', mass: 'n/a',
+              hair_color: '', skin_color: null, eye_color: 'green',
+              birth_year: 'unknown', gender: 'none', _homeworld: null, _species: null }
+        ],
+        films:   [{ title: 'A New Hope', episode_id: 4, opening_crawl: 'It is a period of civil war...',
+                    director: 'George Lucas', producer: 'Gary Kurtz, Rick McCallum',
+                    release_date: '1977-05-25' }],
+        shows:   [{ title: 'The Mandalorian', show_type: 'LIVE_ACTION_SERIES',
+                    seasons: 3, episode_count: 24, network: 'Disney+',
+                    director: 'Jon Favreau', producer: 'Jon Favreau',
+                    release_date: '2019-11-01' }],
+        species:   [{ name: 'Human', classification: 'mammal', designation: 'sentient',
+                      eye_colors: 'brown, blue', skin_colors: 'light, dark',
+                      language: 'Galactic Basic', hair_colors: 'blond, brown',
+                      average_lifespan: '120', average_height: '180',
+                      _homeworld: 'Tatooine' }],
+        starships: [{ name: 'X-wing', model: 'T-65 X-wing', starship_class: 'Starfighter',
+                      manufacturer: 'Incom', cost_in_credits: '149999', length: '12.5',
+                      crew: '1', passengers: '0', max_atmosphering_speed: '1050',
+                      hyperdrive_rating: '1.0', MGLT: '100', cargo_capacity: '110',
+                      consumables: '1 week', _pilots: ['Luke Skywalker', 'Ghost Pilot'] }],
+        vehicles:  [{ name: 'T-47 Airspeeder', model: 'T-47 airspeeder', vehicle_class: 'Snowspeeder',
+                      manufacturer: 'Incom', cost_in_credits: null, length: '5.3',
+                      crew: '2', passengers: '0', max_atmosphering_speed: '1000',
+                      cargo_capacity: '10', consumables: 'none', _pilots: ['Luke Skywalker'] }],
+        relationships: {
+            film2people:    [{ film: 'A New Hope',      people: 'Luke Skywalker' },
+                             { film: 'A New Hope',      people: 'Ghost Character' }],
+            show2people:    [{ show: 'The Mandalorian', people: 'Luke Skywalker' }],
+            film2planets:   [{ film: 'A New Hope',      planet: 'Tatooine' }],
+            film2starships: [{ film: 'A New Hope',      starship: 'X-wing' }],
+            film2vehicles:  [{ film: 'A New Hope',      vehicle: 'T-47 Airspeeder' }],
+            film2species:   [{ film: 'A New Hope',      specie: 'Human' }],
+            show2planets:   [], show2starships: [], show2vehicles: [], show2species: [],
+            species2people: [{ species: 'Human',        people: 'Luke Skywalker' },
+                             { species: 'Human',        people: 'Ghost Person' }],
+            starship2pilot: [{ starship: 'X-wing',      pilot: 'Luke Skywalker' },
+                             { starship: 'X-wing',      pilot: 'Ghost Pilot' }],
+            vehicle2pilot:  [{ vehicle: 'T-47 Airspeeder', pilot: 'Luke Skywalker' }],
+            planet2people:  [{ planet: 'Tatooine',      people: 'Luke Skywalker' }]
+        }
     }
 }
 
@@ -210,36 +107,45 @@ test('chunk-size parser falls back on invalid input', () => {
     assert.equal(parseChunkSize(undefined), 1000)
 })
 
-test('transformFixtures creates expected rows and records missing references', () => {
+test('transformEntities creates expected rows and records missing references', () => {
     const report = {
-        stats: {
-            read: {},
-            persisted: {},
-            skippedRecords: 0,
-            missingReferences: 0
-        },
+        stats: { read: {}, persisted: {}, skippedRecords: 0, missingReferences: 0 },
         warnings: []
     }
 
-    const rows = transformFixtures(createFixtures(), report)
+    const rows = transformEntities(createRawData(), report)
 
-    assert.equal(rows.Planet.length, 1)
-    assert.equal(rows.People.length, 2)
-    assert.equal(rows.Planet2People.length, 1, 'only one person has resolvable homeworld')
-    assert.equal(rows.Starship2Pilot.length, 1, 'one starship pilot link should be skipped due to missing person')
-    assert.equal(rows.Species2People.length, 1, 'one species person link should be skipped due to missing person')
-    assert.equal(rows.Film2People.length, 1, 'one film character link should be skipped due to missing person')
+    assert.equal(rows.Planet.length, 1, 'one planet')
+    assert.equal(rows.People.length, 2, 'two people')
+    assert.equal(rows.Film.length, 1, 'one film')
+    assert.equal(rows.Show.length, 1, 'one show')
+    assert.equal(rows.Planet2People.length, 1, 'one planet-people link (Tatooine → Luke)')
+    assert.equal(rows.Starship2Pilot.length, 1, 'one pilot link — Ghost Pilot is missing')
+    assert.equal(rows.Vehicle2Pilot.length, 1, 'one vehicle pilot link')
+    assert.equal(rows.Species2People.length, 1, 'one species-people link — Ghost Person is missing')
+    assert.equal(rows.Film2People.length, 1, 'one film-people link — Ghost Character is missing')
+    assert.equal(rows.Film2Planets.length, 1)
+    assert.equal(rows.Film2Starships.length, 1)
+    assert.equal(rows.Film2Vehicles.length, 1)
+    assert.equal(rows.Film2Species.length, 1)
+    assert.equal(rows.Show2People.length, 1)
 
-    const mysteryPerson = rows.People.find(row => row.name === 'Mystery Person')
-    assert.equal(mysteryPerson.homeworld_ID, null)
-    assert.equal(mysteryPerson.height, null)
-    assert.equal(mysteryPerson.mass, null)
     const luke = rows.People.find(row => row.name === 'Luke Skywalker')
     assert.equal(luke.birth_year, '19BBY')
+
+    const mysteryPerson = rows.People.find(row => row.name === 'Mystery Person')
+    assert.equal(mysteryPerson.homeworld_ID, null, 'null _homeworld → null homeworld_ID')
+    assert.equal(mysteryPerson.height, null, 'unknown height → null')
+    assert.equal(mysteryPerson.mass, null, 'n/a mass → null')
 
     assert.equal(rows.Film[0].episode_id, 4)
     assert.equal(rows.Film[0].release_date, '1977-05-25')
 
-    assert.equal(report.stats.missingReferences, 4)
-    assert.equal(report.warnings.length, 4)
+    assert.equal(rows.Show[0].title, 'The Mandalorian')
+    assert.equal(rows.Show[0].show_type, 'LIVE_ACTION_SERIES')
+    assert.equal(rows.Show[0].seasons, 3)
+
+    // Missing references: Ghost Character (film2people) + Ghost Pilot (starship2pilot) +
+    //                     Ghost Person (species2people) = 3
+    assert.equal(report.stats.missingReferences, 3, 'three missing references')
 })

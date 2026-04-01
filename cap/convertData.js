@@ -6,44 +6,23 @@ const fs = require('fs/promises')
 const { v5: uuidv5 } = require('uuid')
 
 const { INSERT, UPSERT, DELETE } = cds.ql
-const ROUTES_DIR = path.join(global.__base, '../oldPython/resources/fixtures/')
+const ROUTES_DIR = path.join(global.__base, '../scripts/data/raw/')
 const MIGRATION_ID_NAMESPACE = 'efef8f84-52d4-4899-a93e-f00f1964e3d8'
 const DEFAULT_CHUNK_SIZE = 1000
 
 const DELETE_ORDER = [
     'Planet2People',
-    'Film2People',
-    'Film2Planets',
-    'Film2Starships',
-    'Film2Vehicles',
-    'Film2Species',
-    'Species2People',
-    'Starship2Pilot',
-    'Vehicle2Pilot',
-    'People',
-    'Starship',
-    'Vehicles',
-    'Species',
-    'Film',
-    'Planet'
+    'Film2People', 'Film2Planets', 'Film2Starships', 'Film2Vehicles', 'Film2Species',
+    'Show2People', 'Show2Planets', 'Show2Starships', 'Show2Vehicles', 'Show2Species',
+    'Species2People', 'Starship2Pilot', 'Vehicle2Pilot',
+    'People', 'Starship', 'Vehicles', 'Species', 'Show', 'Film', 'Planet'
 ]
 
 const UPSERT_ORDER = [
-    'Planet',
-    'People',
-    'Starship',
-    'Vehicles',
-    'Species',
-    'Film',
-    'Planet2People',
-    'Starship2Pilot',
-    'Vehicle2Pilot',
-    'Species2People',
-    'Film2People',
-    'Film2Planets',
-    'Film2Starships',
-    'Film2Vehicles',
-    'Film2Species'
+    'Planet', 'People', 'Starship', 'Vehicles', 'Species', 'Film', 'Show',
+    'Planet2People', 'Starship2Pilot', 'Vehicle2Pilot', 'Species2People',
+    'Film2People', 'Film2Planets', 'Film2Starships', 'Film2Vehicles', 'Film2Species',
+    'Show2People', 'Show2Planets', 'Show2Starships', 'Show2Vehicles', 'Show2Species'
 ]
 
 function normalizeString(value) {
@@ -150,38 +129,21 @@ function createReport({ mode, chunkSize }) {
     }
 }
 
-function buildIndex(items) {
-    return new Map(items.map(item => [item.pk, item]))
+function buildNameIndex(items, nameField = 'name') {
+    return new Map(items.map(item => [item[nameField], item]))
 }
 
-function resolveReference(index, sourcePk, context, report) {
-    if (sourcePk === undefined || sourcePk === null) {
-        return null
-    }
-
-    const resolved = index.get(sourcePk)
-    if (!resolved) {
-        report.stats.missingReferences += 1
-        report.warnings.push(`[MissingRef] ${context} -> source pk '${sourcePk}' not found`)
-        return null
-    }
-
-    return resolved
+function buildTitleIndex(items) {
+    return buildNameIndex(items, 'title')
 }
 
-async function readFixture(fileName, entityName, report, log) {
+async function readRawJSON(fileName, entityName, report, log) {
     const fullPath = path.join(ROUTES_DIR, fileName)
     log.info(`Reading ${fileName}`)
-    const importData = await fs.readFile(fullPath, 'utf8')
-    const data = JSON.parse(importData)
-
-    const output = data.map(item => ({
-        ...item,
-        ID: deterministicId(entityName, item.pk)
-    }))
-
-    report.stats.read[entityName] = output.length
-    return output
+    const raw = await fs.readFile(fullPath, 'utf8')
+    const data = JSON.parse(raw)
+    report.stats.read[entityName] = data.length
+    return data
 }
 
 function pushRow(rows, dedupeSet, row) {
@@ -193,309 +155,323 @@ function pushRow(rows, dedupeSet, row) {
     rows.push(row)
 }
 
-function transformFixtures(fixtures, report) {
-    const {
-        people,
-        planets,
-        films,
-        species,
-        starships,
-        vehicles,
-        transports
-    } = fixtures
+function transformEntities(rawData, report) {
+    const { planets, people, films, shows, species, starships, vehicles, relationships } = rawData
 
-    const peopleByPk = buildIndex(people)
-    const planetsByPk = buildIndex(planets)
-    const filmsByPk = buildIndex(films)
-    const speciesByPk = buildIndex(species)
-    const starshipsByPk = buildIndex(starships)
-    const vehiclesByPk = buildIndex(vehicles)
-    const transportsByPk = buildIndex(transports)
+    // Build name/title indexes for reference resolution
+    const planetsByName   = buildNameIndex(planets)
+    const peopleByName    = buildNameIndex(people)
+    const filmsByTitle    = buildTitleIndex(films)
+    const showsByTitle    = buildTitleIndex(shows)
+    const speciesByName   = buildNameIndex(species)
+    const starshipsByName = buildNameIndex(starships)
+    const vehiclesByName  = buildNameIndex(vehicles)
+
+    // Build ID indexes (used for link rows)
+    const planetIdByName   = new Map(planets.map(p  => [p.name, deterministicId('Planet', p.name)]))
+    const peopleIdByName   = new Map(people.map(p   => [p.name, deterministicId('People', p.name)]))
+    const filmIdByTitle    = new Map(films.map(f    => [f.title, deterministicId('Film', f.title)]))
+    const showIdByTitle    = new Map(shows.map(s    => [s.title, deterministicId('Show', s.title)]))
+    const speciesIdByName  = new Map(species.map(s  => [s.name, deterministicId('Species', s.name)]))
+    const starshipIdByName = new Map(starships.map(s => [s.name, deterministicId('Starship', s.name)]))
+    const vehicleIdByName  = new Map(vehicles.map(v => [v.name, deterministicId('Vehicles', v.name)]))
 
     const rows = {
-        Planet: [],
-        People: [],
-        Starship: [],
-        Vehicles: [],
-        Species: [],
-        Film: [],
-        Planet2People: [],
-        Starship2Pilot: [],
-        Vehicle2Pilot: [],
-        Species2People: [],
-        Film2People: [],
-        Film2Planets: [],
-        Film2Starships: [],
-        Film2Vehicles: [],
-        Film2Species: []
+        Planet: [], People: [], Starship: [], Vehicles: [], Species: [], Film: [], Show: [],
+        Planet2People: [], Starship2Pilot: [], Vehicle2Pilot: [], Species2People: [],
+        Film2People: [], Film2Planets: [], Film2Starships: [], Film2Vehicles: [], Film2Species: [],
+        Show2People: [], Show2Planets: [], Show2Starships: [], Show2Vehicles: [], Show2Species: []
     }
 
     const dedupe = {}
-    for (const key of Object.keys(rows)) {
-        dedupe[key] = new Set()
-    }
+    for (const key of Object.keys(rows)) dedupe[key] = new Set()
 
+    // ── Planets ──
     for (const planet of planets) {
-        const name = normalizeString(planet.fields.name)
-        if (!hasMandatoryValue(name, 'Planet', 'name', planet.pk, report)) {
-            continue
-        }
-
+        const name = normalizeString(planet.name)
+        if (!hasMandatoryValue(name, 'Planet', 'name', planet.name, report)) continue
+        const ID = deterministicId('Planet', name)
         pushRow(rows.Planet, dedupe.Planet, {
-            ID: planet.ID,
-            name,
-            diameter: normalizeString(planet.fields.diameter),
-            rotation_period: normalizeString(planet.fields.rotation_period),
-            orbital_period: normalizeString(planet.fields.orbital_period),
-            gravity: normalizeString(planet.fields.gravity),
-            population: normalizeString(planet.fields.population),
-            climate: normalizeString(planet.fields.climate),
-            terrain: normalizeString(planet.fields.terrain),
-            surface_water: normalizeString(planet.fields.surface_water)
+            ID, name,
+            diameter:        normalizeString(planet.diameter),
+            rotation_period: normalizeString(planet.rotation_period),
+            orbital_period:  normalizeString(planet.orbital_period),
+            gravity:         normalizeString(planet.gravity),
+            population:      normalizeString(planet.population),
+            climate:         normalizeString(planet.climate),
+            terrain:         normalizeString(planet.terrain),
+            surface_water:   normalizeString(planet.surface_water)
         })
     }
 
+    // ── People ──
     for (const person of people) {
-        const homeworld = resolveReference(planetsByPk, person.fields.homeworld, `People.homeworld(${person.pk})`, report)
-        const name = normalizeString(person.fields.name)
-        if (!hasMandatoryValue(name, 'People', 'name', person.pk, report)) {
-            continue
-        }
-
+        const name = normalizeString(person.name)
+        if (!hasMandatoryValue(name, 'People', 'name', person.name, report)) continue
+        const ID = deterministicId('People', name)
+        const homeworldID = person._homeworld ? planetIdByName.get(person._homeworld) ?? null : null
         pushRow(rows.People, dedupe.People, {
-            ID: person.ID,
-            homeworld_ID: homeworld?.ID ?? null,
+            ID,
             name,
-            height: normalizeString(person.fields.height),
-            mass: normalizeString(person.fields.mass),
-            hair_color: normalizeString(person.fields.hair_color),
-            skin_color: normalizeString(person.fields.skin_color),
-            eye_color: normalizeString(person.fields.eye_color),
-            birth_year: normalizeBirthYear(person.fields.birth_year),
-            gender: normalizeString(person.fields.gender)
+            homeworld_ID:  homeworldID,
+            height:        normalizeString(person.height),
+            mass:          normalizeString(person.mass),
+            hair_color:    normalizeString(person.hair_color),
+            skin_color:    normalizeString(person.skin_color),
+            eye_color:     normalizeString(person.eye_color),
+            birth_year:    normalizeBirthYear(person.birth_year),
+            gender:        normalizeString(person.gender)
         })
-
-        if (homeworld) {
-            pushRow(rows.Planet2People, dedupe.Planet2People, {
-                ID: deterministicLinkId('Planet2People', homeworld.ID, person.ID),
-                planet_ID: homeworld.ID,
-                people_ID: person.ID
-            })
-        }
     }
 
+    // ── Starships ──
     for (const ship of starships) {
-        const transport = resolveReference(transportsByPk, ship.pk, `Starship.transport(${ship.pk})`, report)
-        if (!transport) {
-            report.stats.skippedRecords += 1
-            continue
-        }
-
-        const name = normalizeString(transport.fields.name)
-        if (!hasMandatoryValue(name, 'Starship', 'name', ship.pk, report)) {
-            continue
-        }
-
+        const name = normalizeString(ship.name)
+        if (!hasMandatoryValue(name, 'Starship', 'name', ship.name, report)) continue
+        const ID = deterministicId('Starship', name)
         pushRow(rows.Starship, dedupe.Starship, {
-            ID: ship.ID,
-            name,
-            model: normalizeString(transport.fields.model),
-            starship_class: normalizeString(ship.fields.starship_class),
-            manufacturer: normalizeString(transport.fields.manufacturer),
-            cost_in_credits: normalizeString(transport.fields.cost_in_credits),
-            length: normalizeString(transport.fields.length),
-            crew: normalizeString(transport.fields.crew),
-            passengers: normalizeString(transport.fields.passengers),
-            max_atmosphering_speed: normalizeString(transport.fields.max_atmosphering_speed),
-            hyperdrive_rating: normalizeString(ship.fields.hyperdrive_rating),
-            MGLT: normalizeString(ship.fields.MGLT),
-            cargo_capacity: normalizeString(transport.fields.cargo_capacity),
-            consumables: normalizeString(transport.fields.consumables)
+            ID, name,
+            model:                  normalizeString(ship.model),
+            starship_class:         normalizeString(ship.starship_class),
+            manufacturer:           normalizeString(ship.manufacturer),
+            cost_in_credits:        normalizeString(ship.cost_in_credits),
+            length:                 normalizeString(ship.length),
+            crew:                   normalizeString(ship.crew),
+            passengers:             normalizeString(ship.passengers),
+            max_atmosphering_speed: normalizeString(ship.max_atmosphering_speed),
+            hyperdrive_rating:      normalizeString(ship.hyperdrive_rating),
+            MGLT:                   normalizeString(ship.MGLT),
+            cargo_capacity:         normalizeString(ship.cargo_capacity),
+            consumables:            normalizeString(ship.consumables)
         })
-
-        const pilots = Array.isArray(ship.fields.pilots) ? ship.fields.pilots : []
-        for (const pilotPk of pilots) {
-            const pilot = resolveReference(peopleByPk, pilotPk, `Starship.pilot(${ship.pk})`, report)
-            if (!pilot) {
-                continue
-            }
-
-            pushRow(rows.Starship2Pilot, dedupe.Starship2Pilot, {
-                ID: deterministicLinkId('Starship2Pilot', ship.ID, pilot.ID),
-                starship_ID: ship.ID,
-                pilot_ID: pilot.ID
-            })
-        }
     }
 
+    // ── Vehicles ──
     for (const vehicle of vehicles) {
-        const transport = resolveReference(transportsByPk, vehicle.pk, `Vehicle.transport(${vehicle.pk})`, report)
-        if (!transport) {
-            report.stats.skippedRecords += 1
-            continue
-        }
-
-        const name = normalizeString(transport.fields.name)
-        if (!hasMandatoryValue(name, 'Vehicles', 'name', vehicle.pk, report)) {
-            continue
-        }
-
+        const name = normalizeString(vehicle.name)
+        if (!hasMandatoryValue(name, 'Vehicles', 'name', vehicle.name, report)) continue
+        const ID = deterministicId('Vehicles', name)
         pushRow(rows.Vehicles, dedupe.Vehicles, {
-            ID: vehicle.ID,
-            name,
-            model: normalizeString(transport.fields.model),
-            vehicle_class: normalizeString(vehicle.fields.vehicle_class),
-            manufacturer: normalizeString(transport.fields.manufacturer),
-            cost_in_credits: normalizeString(transport.fields.cost_in_credits),
-            length: normalizeString(transport.fields.length),
-            crew: normalizeString(transport.fields.crew),
-            passengers: normalizeString(transport.fields.passengers),
-            max_atmosphering_speed: normalizeString(transport.fields.max_atmosphering_speed),
-            cargo_capacity: normalizeString(transport.fields.cargo_capacity),
-            consumables: normalizeString(transport.fields.consumables)
+            ID, name,
+            model:                  normalizeString(vehicle.model),
+            vehicle_class:          normalizeString(vehicle.vehicle_class),
+            manufacturer:           normalizeString(vehicle.manufacturer),
+            cost_in_credits:        normalizeString(vehicle.cost_in_credits),
+            length:                 normalizeString(vehicle.length),
+            crew:                   normalizeString(vehicle.crew),
+            passengers:             normalizeString(vehicle.passengers),
+            max_atmosphering_speed: normalizeString(vehicle.max_atmosphering_speed),
+            cargo_capacity:         normalizeString(vehicle.cargo_capacity),
+            consumables:            normalizeString(vehicle.consumables)
         })
-
-        const pilots = Array.isArray(vehicle.fields.pilots) ? vehicle.fields.pilots : []
-        for (const pilotPk of pilots) {
-            const pilot = resolveReference(peopleByPk, pilotPk, `Vehicle.pilot(${vehicle.pk})`, report)
-            if (!pilot) {
-                continue
-            }
-
-            pushRow(rows.Vehicle2Pilot, dedupe.Vehicle2Pilot, {
-                ID: deterministicLinkId('Vehicle2Pilot', vehicle.ID, pilot.ID),
-                vehicle_ID: vehicle.ID,
-                pilot_ID: pilot.ID
-            })
-        }
     }
 
+    // ── Species ──
     for (const specie of species) {
-        const homeworld = resolveReference(planetsByPk, specie.fields.homeworld, `Species.homeworld(${specie.pk})`, report)
-        const name = normalizeString(specie.fields.name)
-        if (!hasMandatoryValue(name, 'Species', 'name', specie.pk, report)) {
-            continue
-        }
-
+        const name = normalizeString(specie.name)
+        if (!hasMandatoryValue(name, 'Species', 'name', specie.name, report)) continue
+        const ID = deterministicId('Species', name)
+        const homeworldID = specie._homeworld ? planetIdByName.get(specie._homeworld) ?? null : null
         pushRow(rows.Species, dedupe.Species, {
-            ID: specie.ID,
-            name,
-            classification: normalizeString(specie.fields.classification),
-            designation: normalizeString(specie.fields.designation),
-            eye_colors: normalizeString(specie.fields.eye_colors),
-            skin_colors: normalizeString(specie.fields.skin_colors),
-            language: normalizeString(specie.fields.language),
-            hair_colors: normalizeString(specie.fields.hair_colors),
-            average_lifespan: normalizeString(specie.fields.average_lifespan),
-            average_height: normalizeString(specie.fields.average_height),
-            homeworld_ID: homeworld?.ID ?? null
+            ID, name,
+            classification:   normalizeString(specie.classification),
+            designation:      normalizeString(specie.designation),
+            eye_colors:       normalizeString(specie.eye_colors),
+            skin_colors:      normalizeString(specie.skin_colors),
+            language:         normalizeString(specie.language),
+            hair_colors:      normalizeString(specie.hair_colors),
+            average_lifespan: normalizeString(specie.average_lifespan),
+            average_height:   normalizeString(specie.average_height),
+            homeworld_ID:     homeworldID
         })
-
-        const speciePeople = Array.isArray(specie.fields.people) ? specie.fields.people : []
-        for (const personPk of speciePeople) {
-            const person = resolveReference(peopleByPk, personPk, `Species.people(${specie.pk})`, report)
-            if (!person) {
-                continue
-            }
-
-            pushRow(rows.Species2People, dedupe.Species2People, {
-                ID: deterministicLinkId('Species2People', specie.ID, person.ID),
-                species_ID: specie.ID,
-                people_ID: person.ID
-            })
-        }
     }
 
+    // ── Films ──
     for (const film of films) {
-        if (!filmsByPk.has(film.pk)) {
-            report.stats.skippedRecords += 1
-            continue
-        }
-
-        const title = normalizeString(film.fields.title)
-        if (!hasMandatoryValue(title, 'Film', 'title', film.pk, report)) {
-            continue
-        }
-
+        const title = normalizeString(film.title)
+        if (!hasMandatoryValue(title, 'Film', 'title', film.title, report)) continue
+        const ID = deterministicId('Film', title)
         pushRow(rows.Film, dedupe.Film, {
-            ID: film.ID,
-            producer: normalizeString(film.fields.producer),
-            title,
-            episode_id: Number.parseInt(film.fields.episode_id, 10) || 0,
-            director: normalizeString(film.fields.director),
-            release_date: normalizeDate(film.fields.release_date),
-            opening_crawl: normalizeString(film.fields.opening_crawl)
+            ID, title,
+            producer:      normalizeString(film.producer),
+            episode_id:    Number.parseInt(film.episode_id, 10) || 0,
+            director:      normalizeString(film.director),
+            release_date:  normalizeDate(film.release_date),
+            opening_crawl: normalizeString(film.opening_crawl)
         })
+    }
 
-        const filmStarships = Array.isArray(film.fields.starships) ? film.fields.starships : []
-        for (const starshipPk of filmStarships) {
-            const starship = resolveReference(starshipsByPk, starshipPk, `Film.starships(${film.pk})`, report)
-            if (!starship) {
-                continue
-            }
+    // ── Shows ──
+    for (const show of shows) {
+        const title = normalizeString(show.title)
+        if (!hasMandatoryValue(title, 'Show', 'title', show.title, report)) continue
+        const ID = deterministicId('Show', title)
+        pushRow(rows.Show, dedupe.Show, {
+            ID, title,
+            show_type:     normalizeString(show.show_type),
+            seasons:       show.seasons ?? null,
+            episode_count: show.episode_count ?? null,
+            network:       normalizeString(show.network),
+            director:      normalizeString(show.director),
+            producer:      normalizeString(show.producer),
+            release_date:  normalizeDate(show.release_date)
+        })
+    }
 
-            pushRow(rows.Film2Starships, dedupe.Film2Starships, {
-                ID: deterministicLinkId('Film2Starships', film.ID, starship.ID),
-                film_ID: film.ID,
-                starship_ID: starship.ID
-            })
-        }
+    // ── Junction tables from relationships ──
 
-        const filmVehicles = Array.isArray(film.fields.vehicles) ? film.fields.vehicles : []
-        for (const vehiclePk of filmVehicles) {
-            const vehicle = resolveReference(vehiclesByPk, vehiclePk, `Film.vehicles(${film.pk})`, report)
-            if (!vehicle) {
-                continue
-            }
+    // planet2people
+    for (const rel of (relationships.planet2people ?? [])) {
+        const planetID = planetIdByName.get(rel.planet)
+        const personID = peopleIdByName.get(rel.people)
+        if (!planetID || !personID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Planet2People, dedupe.Planet2People, {
+            ID: deterministicLinkId('Planet2People', planetID, personID),
+            planet_ID: planetID, people_ID: personID
+        })
+    }
 
-            pushRow(rows.Film2Vehicles, dedupe.Film2Vehicles, {
-                ID: deterministicLinkId('Film2Vehicles', film.ID, vehicle.ID),
-                film_ID: film.ID,
-                vehicle_ID: vehicle.ID
-            })
-        }
+    // starship2pilot
+    for (const rel of (relationships.starship2pilot ?? [])) {
+        const starshipID = starshipIdByName.get(rel.starship)
+        const pilotID    = peopleIdByName.get(rel.pilot)
+        if (!starshipID || !pilotID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Starship2Pilot, dedupe.Starship2Pilot, {
+            ID: deterministicLinkId('Starship2Pilot', starshipID, pilotID),
+            starship_ID: starshipID, pilot_ID: pilotID
+        })
+    }
 
-        const filmPlanets = Array.isArray(film.fields.planets) ? film.fields.planets : []
-        for (const planetPk of filmPlanets) {
-            const planet = resolveReference(planetsByPk, planetPk, `Film.planets(${film.pk})`, report)
-            if (!planet) {
-                continue
-            }
+    // vehicle2pilot
+    for (const rel of (relationships.vehicle2pilot ?? [])) {
+        const vehicleID = vehicleIdByName.get(rel.vehicle)
+        const pilotID   = peopleIdByName.get(rel.pilot)
+        if (!vehicleID || !pilotID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Vehicle2Pilot, dedupe.Vehicle2Pilot, {
+            ID: deterministicLinkId('Vehicle2Pilot', vehicleID, pilotID),
+            vehicle_ID: vehicleID, pilot_ID: pilotID
+        })
+    }
 
-            pushRow(rows.Film2Planets, dedupe.Film2Planets, {
-                ID: deterministicLinkId('Film2Planets', film.ID, planet.ID),
-                film_ID: film.ID,
-                planet_ID: planet.ID
-            })
-        }
+    // species2people
+    for (const rel of (relationships.species2people ?? [])) {
+        const speciesID = speciesIdByName.get(rel.species)
+        const personID  = peopleIdByName.get(rel.people)
+        if (!speciesID || !personID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Species2People, dedupe.Species2People, {
+            ID: deterministicLinkId('Species2People', speciesID, personID),
+            species_ID: speciesID, people_ID: personID
+        })
+    }
 
-        const filmPeople = Array.isArray(film.fields.characters) ? film.fields.characters : []
-        for (const personPk of filmPeople) {
-            const person = resolveReference(peopleByPk, personPk, `Film.characters(${film.pk})`, report)
-            if (!person) {
-                continue
-            }
+    // film2people
+    for (const rel of (relationships.film2people ?? [])) {
+        const filmID   = filmIdByTitle.get(rel.film)
+        const personID = peopleIdByName.get(rel.people)
+        if (!filmID || !personID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Film2People, dedupe.Film2People, {
+            ID: deterministicLinkId('Film2People', filmID, personID),
+            film_ID: filmID, people_ID: personID
+        })
+    }
 
-            pushRow(rows.Film2People, dedupe.Film2People, {
-                ID: deterministicLinkId('Film2People', film.ID, person.ID),
-                film_ID: film.ID,
-                people_ID: person.ID
-            })
-        }
+    // film2planets
+    for (const rel of (relationships.film2planets ?? [])) {
+        const filmID   = filmIdByTitle.get(rel.film)
+        const planetID = planetIdByName.get(rel.planet)
+        if (!filmID || !planetID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Film2Planets, dedupe.Film2Planets, {
+            ID: deterministicLinkId('Film2Planets', filmID, planetID),
+            film_ID: filmID, planet_ID: planetID
+        })
+    }
 
-        const filmSpecies = Array.isArray(film.fields.species) ? film.fields.species : []
-        for (const speciePk of filmSpecies) {
-            const specie = resolveReference(speciesByPk, speciePk, `Film.species(${film.pk})`, report)
-            if (!specie) {
-                continue
-            }
+    // film2starships
+    for (const rel of (relationships.film2starships ?? [])) {
+        const filmID     = filmIdByTitle.get(rel.film)
+        const starshipID = starshipIdByName.get(rel.starship)
+        if (!filmID || !starshipID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Film2Starships, dedupe.Film2Starships, {
+            ID: deterministicLinkId('Film2Starships', filmID, starshipID),
+            film_ID: filmID, starship_ID: starshipID
+        })
+    }
 
-            pushRow(rows.Film2Species, dedupe.Film2Species, {
-                ID: deterministicLinkId('Film2Species', film.ID, specie.ID),
-                film_ID: film.ID,
-                specie_ID: specie.ID
-            })
-        }
+    // film2vehicles
+    for (const rel of (relationships.film2vehicles ?? [])) {
+        const filmID    = filmIdByTitle.get(rel.film)
+        const vehicleID = vehicleIdByName.get(rel.vehicle)
+        if (!filmID || !vehicleID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Film2Vehicles, dedupe.Film2Vehicles, {
+            ID: deterministicLinkId('Film2Vehicles', filmID, vehicleID),
+            film_ID: filmID, vehicle_ID: vehicleID
+        })
+    }
+
+    // film2species
+    for (const rel of (relationships.film2species ?? [])) {
+        const filmID   = filmIdByTitle.get(rel.film)
+        const specieID = speciesIdByName.get(rel.specie)
+        if (!filmID || !specieID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Film2Species, dedupe.Film2Species, {
+            ID: deterministicLinkId('Film2Species', filmID, specieID),
+            film_ID: filmID, specie_ID: specieID
+        })
+    }
+
+    // show2people
+    for (const rel of (relationships.show2people ?? [])) {
+        const showID   = showIdByTitle.get(rel.show)
+        const personID = peopleIdByName.get(rel.people)
+        if (!showID || !personID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Show2People, dedupe.Show2People, {
+            ID: deterministicLinkId('Show2People', showID, personID),
+            show_ID: showID, people_ID: personID
+        })
+    }
+
+    // show2planets
+    for (const rel of (relationships.show2planets ?? [])) {
+        const showID   = showIdByTitle.get(rel.show)
+        const planetID = planetIdByName.get(rel.planet)
+        if (!showID || !planetID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Show2Planets, dedupe.Show2Planets, {
+            ID: deterministicLinkId('Show2Planets', showID, planetID),
+            show_ID: showID, planet_ID: planetID
+        })
+    }
+
+    // show2starships
+    for (const rel of (relationships.show2starships ?? [])) {
+        const showID     = showIdByTitle.get(rel.show)
+        const starshipID = starshipIdByName.get(rel.starship)
+        if (!showID || !starshipID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Show2Starships, dedupe.Show2Starships, {
+            ID: deterministicLinkId('Show2Starships', showID, starshipID),
+            show_ID: showID, starship_ID: starshipID
+        })
+    }
+
+    // show2vehicles
+    for (const rel of (relationships.show2vehicles ?? [])) {
+        const showID    = showIdByTitle.get(rel.show)
+        const vehicleID = vehicleIdByName.get(rel.vehicle)
+        if (!showID || !vehicleID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Show2Vehicles, dedupe.Show2Vehicles, {
+            ID: deterministicLinkId('Show2Vehicles', showID, vehicleID),
+            show_ID: showID, vehicle_ID: vehicleID
+        })
+    }
+
+    // show2species
+    for (const rel of (relationships.show2species ?? [])) {
+        const showID   = showIdByTitle.get(rel.show)
+        const specieID = speciesIdByName.get(rel.specie)
+        if (!showID || !specieID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Show2Species, dedupe.Show2Species, {
+            ID: deterministicLinkId('Show2Species', showID, specieID),
+            show_ID: showID, specie_ID: specieID
+        })
     }
 
     return rows
@@ -581,24 +557,19 @@ async function runMigration(options = {}) {
             log.info('Running in delta mode: existing rows are preserved and matching keys are upserted')
         }
 
-        const [people, planets, films, species, starships, vehicles, transports] = await Promise.all([
-            readFixture('people.json', 'People', report, log),
-            readFixture('planets.json', 'Planet', report, log),
-            readFixture('films.json', 'Film', report, log),
-            readFixture('species.json', 'Species', report, log),
-            readFixture('starships.json', 'Starship', report, log),
-            readFixture('vehicles.json', 'Vehicles', report, log),
-            readFixture('transport.json', 'Transport', report, log)
+        const [planets, people, films, shows, species, starships, vehicles, relationships] = await Promise.all([
+            readRawJSON('planets.json', 'Planet', report, log),
+            readRawJSON('people.json', 'People', report, log),
+            readRawJSON('films.json', 'Film', report, log),
+            readRawJSON('shows.json', 'Show', report, log),
+            readRawJSON('species.json', 'Species', report, log),
+            readRawJSON('starships.json', 'Starship', report, log),
+            readRawJSON('vehicles.json', 'Vehicles', report, log),
+            readRawJSON('relationships.json', 'Relationships', report, log)
         ])
 
-        const transformedRows = transformFixtures({
-            people,
-            planets,
-            films,
-            species,
-            starships,
-            vehicles,
-            transports
+        const transformedRows = transformEntities({
+            planets, people, films, shows, species, starships, vehicles, relationships
         }, report)
 
         for (const entityName of UPSERT_ORDER) {
@@ -632,6 +603,7 @@ module.exports = {
         createReport,
         persistInChunks,
         writeReport,
-        transformFixtures
+        transformEntities,
+        readRawJSON
     }
 }
