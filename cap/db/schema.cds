@@ -521,8 +521,46 @@ annotate Show2People with @assert.unique.showPeoplePair : [show, people];
 
 annotate Show2People with {
     ID     @Core.Computed;
-    show   @(Common.Text : show.title,   Common.TextArrangement : #TextOnly);
-    people @(Common.Text : people.name,  Common.TextArrangement : #TextOnly);
+    show   @(
+        Common.Text                     : show.title,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
+        Common.ValueList                : {
+            CollectionPath : 'Show',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'show_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
+            ]
+        }
+    );
+    people @(
+        Common.Text                     : people.name,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>People}',
+        Common.ValueList                : {
+            CollectionPath : 'People',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'people_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
+            ]
+        }
+    );
 };
 
 entity Show2Planets : cuid {
@@ -534,8 +572,46 @@ annotate Show2Planets with @assert.unique.showPlanetPair : [show, planet];
 
 annotate Show2Planets with {
     ID     @Core.Computed;
-    show   @(Common.Text : show.title,   Common.TextArrangement : #TextOnly);
-    planet @(Common.Text : planet.name,  Common.TextArrangement : #TextOnly);
+    show   @(
+        Common.Text                     : show.title,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
+        Common.ValueList                : {
+            CollectionPath : 'Show',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'show_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
+            ]
+        }
+    );
+    planet @(
+        Common.Text                     : planet.name,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Planet}',
+        Common.ValueList                : {
+            CollectionPath : 'Planet',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'planet_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'terrain'
+                },
+            ]
+        }
+    );
 };
 
 entity Show2Starships : cuid {
@@ -547,8 +623,46 @@ annotate Show2Starships with @assert.unique.showStarshipPair : [show, starship];
 
 annotate Show2Starships with {
     ID       @Core.Computed;
-    show     @(Common.Text : show.title,      Common.TextArrangement : #TextOnly);
-    starship @(Common.Text : starship.name,   Common.TextArrangement : #TextOnly);
+    show     @(
+        Common.Text                     : show.title,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
+        Common.ValueList                : {
+            CollectionPath : 'Show',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'show_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
+            ]
+        }
+    );
+    starship @(
+        Common.Text                     : starship.name,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Starship}',
+        Common.ValueList                : {
+            CollectionPath : 'Starship',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'starship_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'model'
+                },
+            ]
+        }
+    );
 };
 
 // Note: field name is `vehicle` (singular) to match Film2Vehicles and keep
@@ -562,8 +676,46 @@ annotate Show2Vehicles with @assert.unique.showVehiclePair : [show, vehicle];
 
 annotate Show2Vehicles with {
     ID      @Core.Computed;
-    show    @(Common.Text : show.title,    Common.TextArrangement : #TextOnly);
-    vehicle @(Common.Text : vehicle.name,  Common.TextArrangement : #TextOnly);
+    show    @(
+        Common.Text                     : show.title,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
+        Common.ValueList                : {
+            CollectionPath : 'Show',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'show_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
+            ]
+        }
+    );
+    vehicle @(
+        Common.Text                     : vehicle.name,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Vehicle}',
+        Common.ValueList                : {
+            CollectionPath : 'Vehicles',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'vehicle_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'model'
+                },
+            ]
+        }
+    );
 };
 
 // Note: field name is `specie` (singular) to match Film2Species and keep
@@ -577,8 +729,54 @@ annotate Show2Species with @assert.unique.showSpeciesPair : [show, specie];
 
 annotate Show2Species with {
     ID     @Core.Computed;
-    show   @(Common.Text : show.title,    Common.TextArrangement : #TextOnly);
-    specie @(Common.Text : specie.name,   Common.TextArrangement : #TextOnly);
+    show   @(
+        Common.Text                     : show.title,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>title}',
+        Common.ValueList                : {
+            CollectionPath : 'Show',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'show_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
+            ]
+        }
+    );
+    specie @(
+        Common.Text                     : specie.name,
+        Common.TextArrangement          : #TextOnly,
+        Common.ValueListWithFixedValues : false,
+        title                           : '{i18n>Species}',
+        Common.ValueList                : {
+            CollectionPath : 'Species',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'specie_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'classification'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'language'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'homeworld.name'
+                }
+            ]
+        }
+    );
 };
 
 // ─── Unified Media Views ──────────────────────────────────────────────────────
