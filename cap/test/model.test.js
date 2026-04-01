@@ -43,6 +43,7 @@ describe('Star Wars CDS Model Tests', () => {
       ['/odata/v4/StarWarsSpecies/Species',    'StarWarsSpecies – Species'],
       ['/odata/v4/StarWarsStarship/Starship',  'StarWarsStarship – Starship'],
       ['/odata/v4/StarWarsVehicle/Vehicles',   'StarWarsVehicle – Vehicles'],
+      ['/odata/v4/StarWarsShow/Show',          'StarWarsShow – Show'],
     ]
 
     for (const [url, label] of endpoints) {
@@ -67,6 +68,11 @@ describe('Star Wars CDS Model Tests', () => {
 
     it('StarWarsPeople service exposes valid $metadata document', async () => {
       const { status } = await GET('/odata/v4/StarWarsPeople/$metadata')
+      assert.equal(status, 200)
+    })
+
+    it('StarWarsShow service exposes valid $metadata document', async () => {
+      const { status } = await GET('/odata/v4/StarWarsShow/$metadata')
       assert.equal(status, 200)
     })
   })

@@ -7,7 +7,7 @@ service StarWarsSpecies @(path : 'StarWarsSpecies') {
     @odata.draft.enabled : true
     entity Species        as projection on StarWars.Species {
         * , homeworld : redirected to Planet
-    };
+    } excluding { shows };
 
     @readonly : true
     entity Planet         as projection on StarWars.Planet;

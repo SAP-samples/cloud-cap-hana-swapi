@@ -6,7 +6,8 @@ using {star.wars as StarWars} from '../db/schema';
 service StarWarsPlanet @(path : 'StarWarsPlanet') {
 
     @odata.draft.enabled : true
-    entity Planet        as projection on StarWars.Planet;
+    entity Planet        as projection on StarWars.Planet
+                            excluding { shows };
 
     @readonly : true
     entity People        as projection on StarWars.People {*, homeworld : redirected to Planet};

@@ -459,6 +459,129 @@ annotate Film2Species with {
 };
 
 /**
+ * All Star Wars TV Shows, Animated Series, and Streaming Content
+ */
+@cds.persistence.journal
+entity Show : cuid, managed {
+    title         : String @mandatory;
+    @assert.range
+    show_type     : String enum {
+        LIVE_ACTION_SERIES  = 'LIVE_ACTION_SERIES';
+        ANIMATED_SERIES     = 'ANIMATED_SERIES';
+        ANIMATED_FILM       = 'ANIMATED_FILM';
+        // Anthology theatrical films (Rogue One, Solo) go in Film using episode_id = 0.
+        // ANTHOLOGY is reserved for potential future short-form anthology series only.
+        ANTHOLOGY           = 'ANTHOLOGY';
+    };
+    seasons       : Integer;
+    episode_count : Integer;
+    network       : String;
+    director      : String;
+    producer      : String;
+    release_date  : Date;
+    characters    : Composition of many Show2People    on characters.show = $self;
+    planets       : Composition of many Show2Planets   on planets.show    = $self;
+    starships     : Composition of many Show2Starships on starships.show  = $self;
+    vehicles      : Composition of many Show2Vehicles  on vehicles.show   = $self;
+    species       : Composition of many Show2Species   on species.show    = $self;
+}
+
+annotate Show with @(
+    title              : '{i18n>Show}',
+    Common.Label       : '{i18n>Show}',
+    UI.TextArrangement : #TextOnly,
+    cds.odata.valuelist,
+    Common.SemanticKey : [title],
+    UI.Identification  : [{
+        $Type : 'UI.DataField',
+        Value : title
+    }]
+) {
+    ID        @(
+        Core.Computed,
+        Common.Text            : title,
+        Common.TextArrangement : #TextOnly
+    );
+    title     @title : '{i18n>title}';
+    show_type @title : '{i18n>show_type}';
+    seasons   @title : '{i18n>seasons}';
+    episode_count @title : '{i18n>episode_count}';
+    network   @title : '{i18n>network}';
+    director  @title : '{i18n>director}';
+    producer  @title : '{i18n>producer}';
+    release_date @title : '{i18n>release_date}';
+}
+
+entity Show2People : cuid {
+    show   : Association to Show;
+    people : Association to People;
+}
+
+annotate Show2People with @assert.unique.showPeoplePair : [show, people];
+
+annotate Show2People with {
+    ID     @Core.Computed;
+    show   @(Common.Text : show.title,   Common.TextArrangement : #TextOnly);
+    people @(Common.Text : people.name,  Common.TextArrangement : #TextOnly);
+};
+
+entity Show2Planets : cuid {
+    show   : Association to Show;
+    planet : Association to Planet;
+}
+
+annotate Show2Planets with @assert.unique.showPlanetPair : [show, planet];
+
+annotate Show2Planets with {
+    ID     @Core.Computed;
+    show   @(Common.Text : show.title,   Common.TextArrangement : #TextOnly);
+    planet @(Common.Text : planet.name,  Common.TextArrangement : #TextOnly);
+};
+
+entity Show2Starships : cuid {
+    show     : Association to Show;
+    starship : Association to Starship;
+}
+
+annotate Show2Starships with @assert.unique.showStarshipPair : [show, starship];
+
+annotate Show2Starships with {
+    ID       @Core.Computed;
+    show     @(Common.Text : show.title,      Common.TextArrangement : #TextOnly);
+    starship @(Common.Text : starship.name,   Common.TextArrangement : #TextOnly);
+};
+
+// Note: field name is `vehicle` (singular) to match Film2Vehicles and keep
+// MediaVehicles UNION branches column-compatible.
+entity Show2Vehicles : cuid {
+    show    : Association to Show;
+    vehicle : Association to Vehicles;
+}
+
+annotate Show2Vehicles with @assert.unique.showVehiclePair : [show, vehicle];
+
+annotate Show2Vehicles with {
+    ID      @Core.Computed;
+    show    @(Common.Text : show.title,    Common.TextArrangement : #TextOnly);
+    vehicle @(Common.Text : vehicle.name,  Common.TextArrangement : #TextOnly);
+};
+
+// Note: field name is `specie` (singular) to match Film2Species and keep
+// MediaSpecies UNION branches column-compatible.
+entity Show2Species : cuid {
+    show   : Association to Show;
+    specie : Association to Species;
+}
+
+annotate Show2Species with @assert.unique.showSpeciesPair : [show, specie];
+
+annotate Show2Species with {
+    ID     @Core.Computed;
+    show   @(Common.Text : show.title,    Common.TextArrangement : #TextOnly);
+    specie @(Common.Text : specie.name,   Common.TextArrangement : #TextOnly);
+};
+
+/**
  * All People and Aliens in Star Wars
  */
 @cds.autoexpose : true
@@ -485,6 +608,8 @@ entity People : cuid, managed {
                      on vehicles.pilot = $self;
     starships  : Composition of many Starship2Pilot
                      on starships.pilot = $self;
+    shows      : Composition of many Show2People
+                     on shows.people = $self;
 }
 
  annotate People with @PersonalData : {
@@ -662,6 +787,8 @@ entity Planet : cuid, managed {
                           on films.planet = $self;
     residents       : Composition of many Planet2People
                           on residents.planet = $self;
+    shows           : Composition of many Show2Planets
+                          on shows.planet = $self;
 }
 
 annotate Planet with @(
@@ -803,6 +930,8 @@ entity Species : cuid, managed {
                            on people.species = $self;
     films            : Composition of many Film2Species
                            on films.specie = $self;
+    shows            : Composition of many Show2Species
+                           on shows.specie = $self;
 }
 
 define view classificationValues as
@@ -1043,6 +1172,8 @@ entity Starship : cuid, managed {
                                  on films.starship = $self;
     pilots                 : Composition of many Starship2Pilot
                                  on pilots.starship = $self;
+    shows                  : Composition of many Show2Starships
+                                 on shows.starship = $self;
 }
 
 annotate Starship with @(
@@ -1209,8 +1340,9 @@ entity Vehicles : cuid, managed {
                                  on films.vehicle = $self;
     pilots                 : Composition of many Vehicle2Pilot
                                  on pilots.vehicle = $self;
+    shows                  : Composition of many Show2Vehicles
+                                 on shows.vehicle = $self;
 }
-
 annotate Vehicles with @(
     title              : '{i18n>Vehicles}',
     UI.TextArrangement : #TextOnly,

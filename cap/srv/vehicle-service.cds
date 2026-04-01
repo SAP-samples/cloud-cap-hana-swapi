@@ -5,19 +5,23 @@ using {star.wars as StarWars} from '../db/schema';
 @protocol: ['odata-v4', 'graphql','rest']
 service StarWarsVehicle @(path : 'StarWarsVehicle') {
     @odata.draft.enabled : true
-    entity Vehicles      as projection on StarWars.Vehicles;
+    entity Vehicles      as projection on StarWars.Vehicles
+                            excluding { shows };
 
     @readonly : true
-    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles
+                            excluding { shows };
 
     @readonly : true
     entity Film          as projection on StarWars.Film;
 
     @readonly : true
-    entity People        as projection on StarWars.People;
+    entity People        as projection on StarWars.People
+                            excluding { shows };
 
     @readonly : true
-    entity Planet        as projection on StarWars.Planet;
+    entity Planet        as projection on StarWars.Planet
+                            excluding { shows };
 
     entity Film2Vehicles as projection on StarWars.Film2Vehicles {
         * , vehicle : redirected to Vehicles
