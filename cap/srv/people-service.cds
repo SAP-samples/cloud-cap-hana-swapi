@@ -25,7 +25,7 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
          * Pattern: <name> (<birth_year>) e.g. "Luke Skywalker (19BBY)"
          */
         virtual displayTitle : String
-    } actions {
+    } excluding { shows } actions {
         /**
          * Showcase: bound action — renames this character and emits a People.Changed.v1 event.
          * Bound to a single People instance; the entity key is available in req.params[0].
@@ -41,19 +41,24 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
 
     event People.Changed.v1 : projection on StarWarsPeople.People;
     @readonly : true
-    entity Planet                                       as projection on StarWars.Planet;
+    entity Planet                                       as projection on StarWars.Planet
+                                                           excluding { shows };
 
     @readonly : true
-    entity Species                                      as projection on StarWars.Species;
+    entity Species                                      as projection on StarWars.Species
+                                                           excluding { shows };
 
     @readonly : true
-    entity Starship                                     as projection on StarWars.Starship;
+    entity Starship                                     as projection on StarWars.Starship
+                                                           excluding { shows };
 
     @readonly : true
-    entity Vehicles                                     as projection on StarWars.Vehicles;
+    entity Vehicles                                     as projection on StarWars.Vehicles
+                                                           excluding { shows };
 
     @readonly : true
-    entity Vehicle @(cds.redirection.target : false)   as projection on StarWars.Vehicles;
+    entity Vehicle @(cds.redirection.target : false)   as projection on StarWars.Vehicles
+                                                           excluding { shows };
 
     @readonly : true
     entity genders @(cds.redirection.target : false)    as projection on StarWars.genders;

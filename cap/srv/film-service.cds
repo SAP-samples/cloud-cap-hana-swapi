@@ -9,22 +9,28 @@ service StarWarsFilm @(path : 'StarWarsFilm') {
     entity Film            as projection on StarWars.Film;
 
     @readonly : true
-    entity People          as projection on StarWars.People;
+    entity People          as projection on StarWars.People
+                              excluding { shows };
 
     @readonly : true
-    entity Planet          as projection on StarWars.Planet;
+    entity Planet          as projection on StarWars.Planet
+                              excluding { shows };
 
     @readonly : true
-    entity Species         as projection on StarWars.Species;
+    entity Species         as projection on StarWars.Species
+                              excluding { shows };
 
     @readonly : true
-    entity Starship        as projection on StarWars.Starship;
+    entity Starship        as projection on StarWars.Starship
+                              excluding { shows };
 
     @readonly : true
-    entity Vehicles        as projection on StarWars.Vehicles;
+    entity Vehicles        as projection on StarWars.Vehicles
+                              excluding { shows };
 
     @readonly : true
-    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles;
+    entity Vehicle @(cds.redirection.target : false) as projection on StarWars.Vehicles
+                              excluding { shows };
 
     entity Film2People     as projection on StarWars.Film2People {
         * , people : redirected to People, film : redirected to Film
