@@ -13,9 +13,27 @@ function normalizeString(value) {
 function normalizeDate(value) {
     const s = normalizeString(value)
     if (!s) return null
-    const d = new Date(s)
-    if (Number.isNaN(d.getTime())) return null
-    return d.toISOString().slice(0, 10)
+    // Wookieepedia sometimes has multiple dates like "May 25, 1977 , January 31, 1997"
+    // or "May 19, 1999, February 10, 2012 {{C|In 3D}}"
+    // Strategy: try ' , ' split first (space-comma-space), then split on the first year boundary
+    const spacedComma = s.split(/\s+,\s+|\n/)[0].trim()
+    // If the first segment already parses as a date, use it
+    let d = new Date(spacedComma)
+    if (!Number.isNaN(d.getTime())) return d.toISOString().slice(0, 10)
+
+    // Fall back: split on ', ' after a 4-digit year (optionally followed by parenthetical)
+    // e.g. "May 19, 1999, February..." → take "May 19, 1999"
+    // e.g. "December 15, 2016 (UK), December 16, 2016 (US)" → take "December 15, 2016"
+    const yearBoundary = spacedComma.match(/^(.*?\d{4})\s*(?:\([^)]*\))?\s*,\s+/)
+    if (yearBoundary) {
+        d = new Date(yearBoundary[1].trim())
+        if (!Number.isNaN(d.getTime())) return d.toISOString().slice(0, 10)
+    }
+
+    // Last attempt: just the first space-delimited segment that has a year
+    const firstDate = spacedComma.replace(/\*\s*/, '').trim()
+    d = new Date(firstDate)
+    return Number.isNaN(d.getTime()) ? null : d.toISOString().slice(0, 10)
 }
 
 function normalizeInteger(value) {
@@ -43,11 +61,11 @@ function resolveField(infobox, _field, aliases) {
 // Canonical alias maps for Wookieepedia infobox fields
 const FIELD_ALIASES = {
     director:      ['director', 'directors', 'directed_by'],
-    producer:      ['producer', 'producers', 'produced_by', 'executive_producer'],
-    release_date:  ['release_date', 'release', 'released', 'airdate', 'first_aired', 'premiere'],
-    episode_count: ['episode_count', 'episodes', 'num_episodes'],
+    producer:      ['producer', 'producers', 'produced_by', 'executive_producer', 'executive producers', 'creators'],
+    release_date:  ['release_date', 'release', 'released', 'release date', 'airdate', 'first_aired', 'premiere', 'first aired'],
+    episode_count: ['episode_count', 'episodes', 'num_episodes', 'num episodes'],
     network:       ['network', 'broadcaster', 'channel', 'streaming'],
-    seasons:       ['seasons', 'series', 'num_seasons'],
+    seasons:       ['seasons', 'series', 'num_seasons', 'num seasons'],
     homeworld:     ['homeworld', 'home_world', 'homeplanet', 'home_planet'],
     height:        ['height', 'height_range'],
     species:       ['species', 'race'],

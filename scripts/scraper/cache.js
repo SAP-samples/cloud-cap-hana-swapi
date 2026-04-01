@@ -3,7 +3,7 @@
 const fs = require('fs/promises')
 const path = require('path')
 
-const CACHE_DIR = path.join(__dirname, '../../data/cache')
+const CACHE_DIR = path.join(__dirname, '../data/cache')
 const TTL_DAYS = parseInt(process.env.CACHE_TTL_DAYS ?? '30', 10)
 const TTL_MS = TTL_DAYS * 24 * 60 * 60 * 1000
 

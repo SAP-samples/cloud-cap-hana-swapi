@@ -56,9 +56,21 @@ async function run() {
     }
 
     // ── Step 2: Process each production page ─────────────────────────────────
+    // Filter out Wookieepedia "collection overview" pages and cancelled/unreleased films
+    // that appear in film categories but are not released individual films.
+    const FILM_COLLECTION_PAGES = new Set([
+        'Original trilogy', 'Prequel trilogy', 'Sequel trilogy',
+        'Star Wars saga', 'Star Wars Anthology Series',
+        'Untitled Boba Fett film',
+    ])
+
     console.log(`Processing ${productionQueue.length} production pages...`)
 
     for (const { title, type } of productionQueue) {
+        // Skip known collection overview pages
+        if (type === 'film' && FILM_COLLECTION_PAGES.has(title)) {
+            stats.skipped++; continue
+        }
         try {
             const wikitext = await fetchWikitext(title)
             if (!wikitext) { stats.skipped++; continue }

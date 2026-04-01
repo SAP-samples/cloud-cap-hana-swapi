@@ -15,10 +15,22 @@ const SHOW_TYPE_MAP = {
 }
 
 function inferShowType(network, title) {
-    const mapped = SHOW_TYPE_MAP[network]
-    if (mapped) return mapped
-    // Fallback: animated in title heuristic
-    if (/animated|clone wars|rebels|resistance/i.test(title)) return 'ANIMATED_SERIES'
+    // Title heuristic takes precedence — some animated shows air on Disney+ which
+    // maps to LIVE_ACTION_SERIES by default, but the title is definitive.
+    if (/animated|clone wars|rebels|resistance|bad batch|young jedi|tales of|tales from|^tales$/i.test(title)) return 'ANIMATED_SERIES'
+
+    // network may be comma-separated (e.g. "Disney Channel , Disney XD")
+    // Check each segment against the map; ANIMATED_SERIES wins if any segment matches
+    if (network) {
+        const segments = network.split(/[,/]/).map(s => s.trim())
+        let result = null
+        for (const seg of segments) {
+            const mapped = SHOW_TYPE_MAP[seg]
+            if (mapped === 'ANIMATED_SERIES') return 'ANIMATED_SERIES'
+            if (mapped) result = mapped
+        }
+        if (result) return result
+    }
     return 'LIVE_ACTION_SERIES'
 }
 

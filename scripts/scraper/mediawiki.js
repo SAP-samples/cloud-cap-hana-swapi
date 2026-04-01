@@ -19,6 +19,7 @@ const rawFetch = throttle(async (pageTitle) => {
         rvslots: 'main',
         format: 'json',
         formatversion: '2',
+        redirects: '1',  // follow redirects automatically
     }
 
     const response = await axios.get(API_URL, {
