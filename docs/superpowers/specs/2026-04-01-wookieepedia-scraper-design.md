@@ -139,30 +139,30 @@ Five parallel UNION views enable cross-production relationship queries:
 define view MediaCharacters as
     select from Film2People   { film.ID as media_ID, 'FILM' as media_type : String, people }
     union all
-    select from Show2People   { show.ID as media_ID, show.show_type as media_type, people };
+    select from Show2People   { show.ID as media_ID, 'SHOW' as media_type : String, people };
 
 define view MediaPlanets as
     select from Film2Planets  { film.ID as media_ID, 'FILM' as media_type : String, planet }
     union all
-    select from Show2Planets  { show.ID as media_ID, show.show_type as media_type, planet };
+    select from Show2Planets  { show.ID as media_ID, 'SHOW' as media_type : String, planet };
 
 define view MediaSpecies as
     select from Film2Species  { film.ID as media_ID, 'FILM' as media_type : String, specie }
     union all
-    select from Show2Species  { show.ID as media_ID, show.show_type as media_type, specie };
+    select from Show2Species  { show.ID as media_ID, 'SHOW' as media_type : String, specie };
 
 define view MediaStarships as
     select from Film2Starships  { film.ID as media_ID, 'FILM' as media_type : String, starship }
     union all
-    select from Show2Starships  { show.ID as media_ID, show.show_type as media_type, starship };
+    select from Show2Starships  { show.ID as media_ID, 'SHOW' as media_type : String, starship };
 
 define view MediaVehicles as
     select from Film2Vehicles  { film.ID as media_ID, 'FILM' as media_type : String, vehicle }
     union all
-    select from Show2Vehicles  { show.ID as media_ID, show.show_type as media_type, vehicle };
+    select from Show2Vehicles  { show.ID as media_ID, 'SHOW' as media_type : String, vehicle };
 ```
 
-Usage: `GET /MediaCharacters?$filter=media_ID eq '<uuid>'` returns all characters for any film or show.
+`media_type` is always `'FILM'` or `'SHOW'` in all six views — consistent with the `Media` discriminator. Use `show_type` on the `Show` entity itself when finer-grained show classification is needed.
 
 ---
 
@@ -368,13 +368,18 @@ The extractor tries each alias in order and takes the first non-null value. Unkn
 - `scripts/scraper/extractors/vehicles.js`
 - `scripts/data/raw/` (output, committed)
 - `scripts/data/cache/` (gitignored)
-- `cap/srv/show-service.cds` (new — service contract exposing `Show` and `Show2*` entities)
-- `cap/srv/show-fiori.cds` (new — Fiori/UI annotations for `Show`)
+- `cap/srv/show-service.cds` (new — `StarWarsShow` service following the `film-service.cds` pattern exactly):
+  - `@odata.draft.enabled: true` on `Show`
+  - `@readonly` projections for `People`, `Planet`, `Species`, `Starship`, `Vehicles`
+  - Junction table projections with `redirected to` for `Show2People`, `Show2Planets`, `Show2Starships`, `Show2Vehicles`, `Show2Species`
+  - `@readonly` projections for `Media`, `MediaCharacters`, `MediaPlanets`, `MediaSpecies`, `MediaStarships`, `MediaVehicles` views (Media views are exposed here, not in a separate service)
+- `cap/srv/show-fiori.cds` (new — Fiori/UI annotations for `Show`, following `film-fiori.cds` patterns)
 
 ### Modified files
 
-- `cap/db/schema.cds` — add `Show`, 5 junction tables, 5 back-references, `Media` view + 5 companion views
-- `cap/srv/services-auth.cds` — add `Show` to `Viewer`, `Editor`, and `Admin` role grants
+- `cap/db/schema.cds` — add `Show`, 5 junction tables, 5 back-references on existing entities (`People`, `Planet`, `Species`, `Starship`, `Vehicles`), `Media` view + 5 companion views; **note:** the new back-reference compositions will surface as navigation properties in all existing services — each existing `*-service.cds` (`film-service.cds`, `people-service.cds`, etc.) needs a `redirected to` clause for the new `Show2*` back-reference to suppress CDS compiler warnings
+- `cap/srv/services-auth.cds` — add `using { StarWarsShow } from './show-service';` import at top; add `annotate StarWarsShow with @(requires: 'any');` following the identical pattern used for the six existing services
+- `cap/srv/film-service.cds`, `people-service.cds`, `planet-service.cds`, `species-service.cds`, `starship-service.cds`, `vehicle-service.cds` — add `redirected to` clauses for the new `Show2*` back-references introduced on the shared entities
 - `cap/convertData.js` — rewrite `readFixture`/`transformFixtures`, add `Show` entity + 6 junction tables
 - `cap/convertDataLite.js` — same changes as `convertData.js`
 - `cap/package.json` — add `scrape` and `scrape:cache` scripts
