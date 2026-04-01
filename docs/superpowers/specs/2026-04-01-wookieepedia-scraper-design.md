@@ -76,7 +76,10 @@ entity Show : cuid, managed {
 
 `Show2People`, `Show2Planets`, `Show2Starships`, `Show2Vehicles`, `Show2Species` — each identical in structure to their `Film2*` counterparts (cuid, association to Show, association to the target entity, `@assert.unique` pair constraint).
 
-**Important:** `Show2Vehicles` must use `vehicle : Association to Vehicles` (singular field name, plural entity type) to match `Film2Vehicles` exactly — the `MediaVehicles` companion UNION view requires both branches to project the same column name `vehicle`.
+**Important — field naming constraints:**
+
+- `Show2Vehicles` must use `vehicle : Association to Vehicles` (singular field name, plural entity type) to match `Film2Vehicles` exactly — the `MediaVehicles` UNION requires both branches to project the same column name.
+- `Show2Species` must use `specie : Association to Species` (singular, matching `Film2Species`) — the `MediaSpecies` UNION requires both branches to project `specie`. Note that `show-service.cds` should expose the same `specie as species` alias that `film-service.cds` uses for consumer friendliness.
 
 ### Back-References on Existing Entities
 
@@ -379,7 +382,7 @@ The extractor tries each alias in order and takes the first non-null value. Unkn
 
 - `cap/db/schema.cds` — add `Show`, 5 junction tables, 5 back-references on existing entities (`People`, `Planet`, `Species`, `Starship`, `Vehicles`), `Media` view + 5 companion views; **note:** the new back-reference compositions will surface as navigation properties in all existing services — each existing `*-service.cds` (`film-service.cds`, `people-service.cds`, etc.) needs a `redirected to` clause for the new `Show2*` back-reference to suppress CDS compiler warnings
 - `cap/srv/services-auth.cds` — add `using { StarWarsShow } from './show-service';` import at top; add `annotate StarWarsShow with @(requires: 'any');` following the identical pattern used for the six existing services
-- `cap/srv/film-service.cds`, `people-service.cds`, `planet-service.cds`, `species-service.cds`, `starship-service.cds`, `vehicle-service.cds` — add `redirected to` clauses for the new `Show2*` back-references introduced on the shared entities
+- `cap/srv/film-service.cds`, `people-service.cds`, `planet-service.cds`, `species-service.cds`, `starship-service.cds`, `vehicle-service.cds` — these services expose shared entities (`People`, `Planet`, etc.) that will gain new `shows` back-reference compositions. Since none of these services expose `Show`, the new navigations must be suppressed on each projected entity using `@cds.redirection.target: false` — the same pattern already used for the `Vehicle` alias in `film-service.cds`. Without suppression, the CDS compiler will warn about unresolvable redirections.
 - `cap/convertData.js` — rewrite `readFixture`/`transformFixtures`, add `Show` entity + 6 junction tables
 - `cap/convertDataLite.js` — same changes as `convertData.js`
 - `cap/package.json` — add `scrape` and `scrape:cache` scripts
