@@ -33,10 +33,12 @@ const rawFetch = throttle(async (pageTitle) => {
     return pages[0]?.revisions?.[0]?.slots?.main?.content ?? null
 })
 
-async function fetchWikitext(pageTitle) {
-    // Check cache first
-    const cached = await cache.read(pageTitle)
-    if (cached !== null) return cached
+async function fetchWikitext(pageTitle, bypassCache = false) {
+    // Check cache first (skip if bypass requested)
+    if (!bypassCache) {
+        const cached = await cache.read(pageTitle)
+        if (cached !== null) return cached
+    }
 
     // Fetch with retry
     let lastError

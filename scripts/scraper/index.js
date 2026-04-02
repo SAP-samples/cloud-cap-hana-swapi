@@ -2,6 +2,7 @@
 
 const fs = require('fs/promises')
 const path = require('path')
+const readline = require('readline')
 
 const { fetchWikitext, fetchCategoryMembers } = require('./mediawiki')
 const { PRODUCTION_CATEGORIES } = require('./categories')
@@ -18,10 +19,12 @@ const { extractEpisode } = require('./extractors/episodes')
 const RAW_DIR = path.join(__dirname, '../data/raw')
 const FAILED_LOG = path.join(__dirname, '../data/cache/failed.json')
 
+const ARGS = new Set(process.argv.slice(2))
+const BYPASS_CACHE = ARGS.has('--bypass-cache')
+const FILMS_ONLY = ARGS.has('--films-only')
+
 /**
  * Extract season page titles from a show's wikitext.
- * Season links follow patterns like [[ShowTitle/Season N]] or [[Show Season N]].
- * We collect any [[...]] wikilink whose title contains "Season" (case-insensitive).
  */
 function extractSeasonLinks(wikitext) {
     const re = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g
@@ -34,24 +37,47 @@ function extractSeasonLinks(wikitext) {
     return [...new Set(titles)]
 }
 
+async function confirm(question) {
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+    return new Promise(resolve => {
+        rl.question(question, answer => {
+            rl.close()
+            resolve(answer.trim().toLowerCase())
+        })
+    })
+}
+
 async function run() {
-    const CACHE_ONLY = process.env.CACHE_ONLY === 'true'
+    // --bypass-cache: require explicit confirmation before fetching live data
+    if (BYPASS_CACHE) {
+        console.log('⚠️  --bypass-cache: This will fetch fresh data from Wookieepedia and overwrite cached pages.')
+        console.log('    Existing cache files for pages that are re-fetched will be replaced.')
+        const answer = await confirm('    Type "yes" to continue, anything else to abort: ')
+        if (answer !== 'yes') {
+            console.log('Aborted.')
+            process.exit(0)
+        }
+    }
+
+    if (FILMS_ONLY) {
+        console.log('Running in --films-only mode: scraping films and their entities only (no shows or episodes).')
+    }
 
     const stats = { scraped: 0, failed: 0, skipped: 0 }
     const failed = []
 
     // Collections
-    const films = new Map()      // title → film record
-    const shows = new Map()      // title → show record
-    const people = new Map()     // name  → person record
+    const films = new Map()
+    const shows = new Map()
+    const people = new Map()
     const planets = new Map()
     const speciesMap = new Map()
     const starships = new Map()
     const vehicles = new Map()
-    const episodes        = new Map()  // episodeTitle → scraped record (null until scraped)
-    const episodeShowMap  = new Map()  // episodeTitle → parent show title
+    const episodes        = new Map()
+    const episodeShowMap  = new Map()
 
-    // Relationship sets (using 'title::name' keys for deduplication)
+    // Relationship sets
     const rels = {
         film2people:    new Set(), film2planets:   new Set(),
         film2starships: new Set(), film2vehicles:  new Set(), film2species: new Set(),
@@ -68,21 +94,19 @@ async function run() {
 
     // ── Step 1: Fetch production page titles from categories ──────────────────
     console.log('Fetching production categories...')
-    const productionQueue = [] // { title, type }
+    const productionQueue = []
 
-    for (const { category, type } of PRODUCTION_CATEGORIES) {
-        if (CACHE_ONLY) {
-            console.log(`  [cache-only] Skipping category fetch: ${category}`)
-            continue
-        }
+    const activeCategories = FILMS_ONLY
+        ? PRODUCTION_CATEGORIES.filter(c => c.type === 'film')
+        : PRODUCTION_CATEGORIES
+
+    for (const { category, type } of activeCategories) {
         console.log(`  Fetching category: ${category}`)
         const titles = await fetchCategoryMembers(category)
         titles.forEach(t => productionQueue.push({ title: t, type }))
     }
 
     // ── Step 2: Process each production page ─────────────────────────────────
-    // Filter out Wookieepedia "collection overview" pages and cancelled/unreleased films
-    // that appear in film categories but are not released individual films.
     const FILM_COLLECTION_PAGES = new Set([
         'Original trilogy', 'Prequel trilogy', 'Sequel trilogy',
         'Star Wars saga', 'Star Wars Anthology Series',
@@ -92,12 +116,11 @@ async function run() {
     console.log(`Processing ${productionQueue.length} production pages...`)
 
     for (const { title, type } of productionQueue) {
-        // Skip known collection overview pages
         if (type === 'film' && FILM_COLLECTION_PAGES.has(title)) {
             stats.skipped++; continue
         }
         try {
-            const wikitext = await fetchWikitext(title)
+            const wikitext = await fetchWikitext(title, BYPASS_CACHE)
             if (!wikitext) { stats.skipped++; continue }
 
             if (type === 'film') {
@@ -121,17 +144,16 @@ async function run() {
                 record._vehicles.forEach(n => { vehicles.set(n, null); rels.show2vehicles.add(`${title}::${n}`) })
                 record._species.forEach(n => { speciesMap.set(n, null); rels.show2species.add(`${title}::${n}`) })
 
-                // Crawl season pages to discover episode titles for this show
                 const seasonLinks = extractSeasonLinks(wikitext)
                 for (const seasonTitle of seasonLinks) {
                     try {
-                        const seasonWikitext = await fetchWikitext(seasonTitle)
+                        const seasonWikitext = await fetchWikitext(seasonTitle, BYPASS_CACHE)
                         if (!seasonWikitext) continue
                         const episodeTitles = extractSeasonEpisodeTitles(seasonWikitext)
                         for (const epTitle of episodeTitles) {
                             if (!episodes.has(epTitle)) {
-                                episodes.set(epTitle, null)          // null = not yet scraped
-                                episodeShowMap.set(epTitle, title)   // store parent show title
+                                episodes.set(epTitle, null)
+                                episodeShowMap.set(epTitle, title)
                             }
                         }
                     } catch (err) {
@@ -157,10 +179,10 @@ async function run() {
 
     async function scrapeEntities(map, extractor, label) {
         for (const [name] of map) {
-            if (map.get(name) !== null) continue  // already scraped
+            if (map.get(name) !== null) continue
             try {
-                const wikitext = await fetchWikitext(name)
-                if (!wikitext) { stats.skipped++; } else {
+                const wikitext = await fetchWikitext(name, BYPASS_CACHE)
+                if (!wikitext) { stats.skipped++ } else {
                     const record = extractor(name, wikitext)
                     if (record) { map.set(name, record); stats.scraped++ }
                     else stats.skipped++
@@ -183,37 +205,38 @@ async function run() {
     await scrapeEntities(vehicles, extractVehicle, 'Vehicle')
     process.stdout.write('\n')
 
-    // Scrape episode pages (requires showTitle, so can't use generic scrapeEntities)
-    console.log(`Scraping ${episodes.size} episodes...`)
-    let epDone = 0
-    for (const [epTitle] of episodes) {
-        if (episodes.get(epTitle) !== null) continue  // already scraped
-        const showTitle = episodeShowMap.get(epTitle) ?? ''
-        try {
-            const wikitext = await fetchWikitext(epTitle)
-            if (!wikitext) { stats.skipped++ } else {
-                const record = extractEpisode(epTitle, wikitext, showTitle)
-                if (record) { episodes.set(epTitle, record); stats.scraped++ }
-                else stats.skipped++
+    if (!FILMS_ONLY) {
+        // Scrape episode pages
+        console.log(`Scraping ${episodes.size} episodes...`)
+        let epDone = 0
+        for (const [epTitle] of episodes) {
+            if (episodes.get(epTitle) !== null) continue
+            const showTitle = episodeShowMap.get(epTitle) ?? ''
+            try {
+                const wikitext = await fetchWikitext(epTitle, BYPASS_CACHE)
+                if (!wikitext) { stats.skipped++ } else {
+                    const record = extractEpisode(epTitle, wikitext, showTitle)
+                    if (record) { episodes.set(epTitle, record); stats.scraped++ }
+                    else stats.skipped++
+                }
+            } catch (err) {
+                stats.failed++
+                failed.push({ title: epTitle, error: String(err) })
+                console.warn(`  [FAIL] Episode ${epTitle}: ${err.message}`)
             }
-        } catch (err) {
-            stats.failed++
-            failed.push({ title: epTitle, error: String(err) })
-            console.warn(`  [FAIL] Episode ${epTitle}: ${err.message}`)
+            epDone++
+            const pct = Math.round(epDone / episodes.size * 100)
+            process.stdout.write(`\r  [${epDone}/${episodes.size}] ${pct}% — Episode: ${epTitle.slice(0, 50)}`.padEnd(80))
         }
-        epDone++
-        const pct = Math.round(epDone / episodes.size * 100)
-        process.stdout.write(`\r  [${epDone}/${episodes.size}] ${pct}% — Episode: ${epTitle.slice(0, 50)}`.padEnd(80))
+        process.stdout.write('\n')
     }
-    process.stdout.write('\n')
 
-    // ── Step 4: Build planet2people and species2people from entity back-refs ──
+    // ── Step 4: Build back-ref relationships ─────────────────────────────────
     for (const [name, person] of people) {
         if (!person) continue
         if (person._homeworld) rels.planet2people.add(`${person._homeworld}::${name}`)
         if (person._species)   rels.species2people.add(`${person._species}::${name}`)
     }
-    // pilot links come from starship/vehicle extractors
     for (const [name, ship] of starships) {
         if (!ship) continue
         ship._pilots.forEach(p => rels.starship2pilot.add(`${name}::${p}`))
@@ -223,49 +246,50 @@ async function run() {
         veh._pilots.forEach(p => rels.vehicle2pilot.add(`${name}::${p}`))
     }
 
-    // Episode entity relationships (back-populated from scraped episode records)
-    for (const [name, ep] of episodes) {
-        if (!ep) continue
-        ep._characters.forEach(p => { people.set(p, people.get(p) ?? null);       rels.episode2people.add(`${name}::${p}`) })
-        ep._planets.forEach(n   => { planets.set(n, planets.get(n) ?? null);      rels.episode2planets.add(`${name}::${n}`) })
-        ep._starships.forEach(n => { starships.set(n, starships.get(n) ?? null);  rels.episode2starships.add(`${name}::${n}`) })
-        ep._vehicles.forEach(n  => { vehicles.set(n, vehicles.get(n) ?? null);    rels.episode2vehicles.add(`${name}::${n}`) })
-        ep._species.forEach(n   => { speciesMap.set(n, speciesMap.get(n) ?? null); rels.episode2species.add(`${name}::${n}`) })
-    }
-
-    // ── Second-pass entity scrape (entities discovered only through episode back-refs) ──
-    const newEntityCount = [people, planets, speciesMap, starships, vehicles]
-        .reduce((acc, m) => acc + [...m.values()].filter(v => v === null).length, 0)
-    if (newEntityCount > 0) {
-        console.log(`Second-pass scrape: ${newEntityCount} entities discovered via episode back-refs...`)
-        let epEntityDone = 0
-        const pairs = [
-            [people, extractPerson, 'People'],
-            [planets, extractPlanet, 'Planet'],
-            [speciesMap, extractSpecies, 'Species'],
-            [starships, extractStarship, 'Starship'],
-            [vehicles, extractVehicle, 'Vehicle'],
-        ]
-        for (const [map, extractor, label] of pairs) {
-            for (const [name] of map) {
-                if (map.get(name) !== null) continue  // already scraped
-                try {
-                    const wikitext = await fetchWikitext(name)
-                    if (!wikitext) { stats.skipped++ } else {
-                        const record = extractor(name, wikitext)
-                        if (record) { map.set(name, record); stats.scraped++ }
-                        else stats.skipped++
-                    }
-                } catch (err) {
-                    stats.failed++
-                    failed.push({ title: name, error: String(err) })
-                    console.warn(`  [FAIL] ${label} ${name}: ${err.message}`)
-                }
-                epEntityDone++
-                process.stdout.write(`\r  [${epEntityDone}/${newEntityCount}] — ${label}: ${name.slice(0, 50)}`.padEnd(80))
-            }
+    if (!FILMS_ONLY) {
+        // Episode entity relationships + second-pass scrape
+        for (const [name, ep] of episodes) {
+            if (!ep) continue
+            ep._characters.forEach(p => { people.set(p, people.get(p) ?? null);       rels.episode2people.add(`${name}::${p}`) })
+            ep._planets.forEach(n   => { planets.set(n, planets.get(n) ?? null);      rels.episode2planets.add(`${name}::${n}`) })
+            ep._starships.forEach(n => { starships.set(n, starships.get(n) ?? null);  rels.episode2starships.add(`${name}::${n}`) })
+            ep._vehicles.forEach(n  => { vehicles.set(n, vehicles.get(n) ?? null);    rels.episode2vehicles.add(`${name}::${n}`) })
+            ep._species.forEach(n   => { speciesMap.set(n, speciesMap.get(n) ?? null); rels.episode2species.add(`${name}::${n}`) })
         }
-        process.stdout.write('\n')
+
+        const newEntityCount = [people, planets, speciesMap, starships, vehicles]
+            .reduce((acc, m) => acc + [...m.values()].filter(v => v === null).length, 0)
+        if (newEntityCount > 0) {
+            console.log(`Second-pass scrape: ${newEntityCount} entities discovered via episode back-refs...`)
+            let epEntityDone = 0
+            const pairs = [
+                [people, extractPerson, 'People'],
+                [planets, extractPlanet, 'Planet'],
+                [speciesMap, extractSpecies, 'Species'],
+                [starships, extractStarship, 'Starship'],
+                [vehicles, extractVehicle, 'Vehicle'],
+            ]
+            for (const [map, extractor, label] of pairs) {
+                for (const [name] of map) {
+                    if (map.get(name) !== null) continue
+                    try {
+                        const wikitext = await fetchWikitext(name, BYPASS_CACHE)
+                        if (!wikitext) { stats.skipped++ } else {
+                            const record = extractor(name, wikitext)
+                            if (record) { map.set(name, record); stats.scraped++ }
+                            else stats.skipped++
+                        }
+                    } catch (err) {
+                        stats.failed++
+                        failed.push({ title: name, error: String(err) })
+                        console.warn(`  [FAIL] ${label} ${name}: ${err.message}`)
+                    }
+                    epEntityDone++
+                    process.stdout.write(`\r  [${epEntityDone}/${newEntityCount}] — ${label}: ${name.slice(0, 50)}`.padEnd(80))
+                }
+            }
+            process.stdout.write('\n')
+        }
     }
 
     // ── Step 5: Build relationships.json ─────────────────────────────────────
@@ -320,7 +344,7 @@ async function run() {
     console.log(`\nDone. Scraped: ${stats.scraped}, Failed: ${stats.failed}, Skipped: ${stats.skipped}`)
     console.log(`Films: ${films.size}, Shows: ${shows.size}, People: ${people.size}, Planets: ${planets.size}`)
     console.log(`Species: ${speciesMap.size}, Starships: ${starships.size}, Vehicles: ${vehicles.size}`)
-    console.log(`Episodes: ${episodes.size}`)
+    if (!FILMS_ONLY) console.log(`Episodes: ${episodes.size}`)
     if (failed.length) console.log(`Failed pages logged to: ${FAILED_LOG}`)
 }
 

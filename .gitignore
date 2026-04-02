@@ -1,6 +1,4 @@
 docs/superpowers/
 .superpowers/
 
-# Wookieepedia scraper cache (raw API responses)
-scripts/data/cache/
 scripts/scraper/node_modules/

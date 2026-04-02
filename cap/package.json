@@ -1,6 +1,6 @@
 {
   "name": "cap-hana-swapi",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
@@ -38,7 +38,8 @@
     "load_sqlite": "cds bind --exec node convertData.js --profile sqlite",
     "load_pg": "cds bind --exec node convertData.js --profile pg",
     "scrape": "node ../scripts/scraper/index.js",
-    "scrape:cache": "CACHE_ONLY=true node ../scripts/scraper/index.js",
+    "scrape:films": "node ../scripts/scraper/index.js --films-only",
+    "scrape:bypass-cache": "node ../scripts/scraper/index.js --bypass-cache",
     "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js test/handler.test.js",
     "test:handler": "node --env-file=test/test.env --test --test-timeout 60000 test/handler.test.js",
     "test:profile": "node --env-file=test/test.env --test --test-timeout 60000 --test-name-pattern \"Profile-specific model exposure\" test/model.test.js",
