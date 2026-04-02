@@ -264,3 +264,113 @@ describe('extractVehicle', () => {
         assert.equal(extractVehicle('Test', '{{Disambig}}'), null)
     })
 })
+
+// ── Season page fixtures ──────────────────────────────────────────────────────
+
+// Standard format: episode title in quoted wikilink "[[Title]]"
+const MANDO_S1_WIKITEXT = `
+==Episodes==
+{|class="wikitable"
+|-
+|style="text-align: center;"|1
+|[[File:TheMandalorianChapter1.jpg|150px]]
+|"[[Chapter 1: The Mandalorian]]"
+|[[November 12]], [[2019]]
+|
+|-
+|style="text-align: center;"|2
+|[[File:TheMandalorianChapter2.jpg|150px]]
+|"[[Chapter 2: The Child]]"
+|[[November 15]], 2019
+|
+|-
+|}
+==Development==
+Some other content with [[wikilinks]] we should NOT pick up.
+`
+
+// Italic format: Rebels season premiere uses ''[[Title]]'' not "[[Title]]"
+const REBELS_S1_WIKITEXT = `
+==Episodes==
+{|class="wikitable"
+|-
+|style="text-align: center;"|1
+|[[File:RebelsS1E1.jpg|150px]]
+|''[[Star Wars Rebels: Spark of Rebellion]]''
+|[[October 3]], [[2014]]
+|
+|-
+|style="text-align: center;"|2
+|[[File:RebelsS1E2.jpg|150px]]
+|"[[Fighter Flight]]"
+|[[October 13]], 2014
+|
+|-
+|}
+`
+
+// No Episodes section — should return []
+const NO_EPISODES_WIKITEXT = `
+==Overview==
+Some content.
+==Cast==
+Other content.
+`
+
+// Piped wikilink format: "[[Title (episode)|Title]]" with "Month Day" airdate wikilink
+const ANDOR_S1_WIKITEXT = `
+==Episodes==
+{|class="wikitable"
+|-
+|style="text-align: center;"|1
+|[[File:AndorKassa.jpg|150px]]
+|"[[Kassa (episode)|Kassa]]"
+|[[September 21]], [[2022]]
+|
+|-
+|}
+`
+
+const { extractSeasonEpisodeTitles } = require('../extractors/seasons')
+
+describe('extractSeasonEpisodeTitles', () => {
+    it('returns [] for page with no Episodes section', () => {
+        const titles = extractSeasonEpisodeTitles(NO_EPISODES_WIKITEXT)
+        assert.deepEqual(titles, [])
+    })
+
+    it('returns [] for null/empty input', () => {
+        assert.deepEqual(extractSeasonEpisodeTitles(null), [])
+        assert.deepEqual(extractSeasonEpisodeTitles(''), [])
+    })
+
+    it('extracts quoted wikilink titles (standard format)', () => {
+        const titles = extractSeasonEpisodeTitles(MANDO_S1_WIKITEXT)
+        assert.equal(titles.length, 2)
+        assert.equal(titles[0], 'Chapter 1: The Mandalorian')
+        assert.equal(titles[1], 'Chapter 2: The Child')
+    })
+
+    it('does not include wikilinks from sections after Episodes', () => {
+        const titles = extractSeasonEpisodeTitles(MANDO_S1_WIKITEXT)
+        assert.ok(!titles.includes('wikilinks'), 'should not pick up links from Development section')
+    })
+
+    it('extracts italic wikilink titles (Rebels premiere format)', () => {
+        const titles = extractSeasonEpisodeTitles(REBELS_S1_WIKITEXT)
+        assert.ok(titles.includes('Star Wars Rebels: Spark of Rebellion'), 'italic premiere must be included')
+        assert.ok(titles.includes('Fighter Flight'), 'standard episode must also be included')
+        assert.equal(titles.length, 2, 'must not include date/file links')
+    })
+
+    it('does not include File: links', () => {
+        const titles = extractSeasonEpisodeTitles(MANDO_S1_WIKITEXT)
+        assert.ok(!titles.some(t => t.startsWith('File:')))
+    })
+
+    it('extracts piped wikilink titles (Andor format)', () => {
+        const titles = extractSeasonEpisodeTitles(ANDOR_S1_WIKITEXT)
+        assert.equal(titles.length, 1)
+        assert.equal(titles[0], 'Kassa (episode)')
+    })
+})
