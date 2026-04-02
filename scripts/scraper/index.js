@@ -233,6 +233,41 @@ async function run() {
         ep._species.forEach(n   => { speciesMap.set(n, speciesMap.get(n) ?? null); rels.episode2species.add(`${name}::${n}`) })
     }
 
+    // ── Second-pass entity scrape (entities discovered only through episode back-refs) ──
+    const newEntityCount = [people, planets, speciesMap, starships, vehicles]
+        .reduce((acc, m) => acc + [...m.values()].filter(v => v === null).length, 0)
+    if (newEntityCount > 0) {
+        console.log(`Second-pass scrape: ${newEntityCount} entities discovered via episode back-refs...`)
+        let epEntityDone = 0
+        const pairs = [
+            [people, extractPerson, 'People'],
+            [planets, extractPlanet, 'Planet'],
+            [speciesMap, extractSpecies, 'Species'],
+            [starships, extractStarship, 'Starship'],
+            [vehicles, extractVehicle, 'Vehicle'],
+        ]
+        for (const [map, extractor, label] of pairs) {
+            for (const [name] of map) {
+                if (map.get(name) !== null) continue  // already scraped
+                try {
+                    const wikitext = await fetchWikitext(name)
+                    if (!wikitext) { stats.skipped++ } else {
+                        const record = extractor(name, wikitext)
+                        if (record) { map.set(name, record); stats.scraped++ }
+                        else stats.skipped++
+                    }
+                } catch (err) {
+                    stats.failed++
+                    failed.push({ title: name, error: String(err) })
+                    console.warn(`  [FAIL] ${label} ${name}: ${err.message}`)
+                }
+                epEntityDone++
+                process.stdout.write(`\r  [${epEntityDone}/${newEntityCount}] — ${label}: ${name.slice(0, 50)}`.padEnd(80))
+            }
+        }
+        process.stdout.write('\n')
+    }
+
     // ── Step 5: Build relationships.json ─────────────────────────────────────
     function setToArray(set, leftKey, rightKey) {
         return [...set].map(entry => {
