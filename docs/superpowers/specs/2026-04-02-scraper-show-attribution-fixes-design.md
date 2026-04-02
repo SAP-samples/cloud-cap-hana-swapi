@@ -66,7 +66,10 @@ Call site: `extractSeasonLinks(wikitext, title)` (pass show title).
 **What this fixes:**
 - Resistance page: accepts "Star Wars Resistance Season One/Two"; rejects "The Clone Wars: Season Seven" (no "resistance") and "Complete Season One" (blocklist)
 - Ahsoka page: accepts "Ahsoka Season 1/2"; rejects "The Mandalorian Season Two" (no "ahsoka")
+- Boba Fett show page contains `[[The Mandalorian Season Two|...]]` and `[[The Mandalorian Season Three|...]]` as context references — both rejected (no "boba" or "fett")
 - After fix, Obi-Wan/Skeleton Crew/etc. season links will be correctly found and fetched
+
+**Edge case — empty `keyWords`:** If a show title consisted entirely of stopwords, `keyWords` would be empty and all season links would be rejected. All real Star Wars shows have at least one non-stopword in their title (e.g. "boba", "fett", "ahsoka", "mandalorian"), so this case does not occur and no fallback is needed for this scope.
 
 ---
 
@@ -133,11 +136,11 @@ npm run load           # full-replace load to HANA
 
 | File | Change |
 |---|---|
-| `scripts/scraper/index.js` | `extractSeasonLinks` — add `showTitle` param, distinctive word filter, NON_EPISODE_RE blocklist |
-| `scripts/scraper/normalize.js` | `normalizeInteger` — add `ORDINAL_TO_INT` map and ordinal fallback |
+| `scripts/scraper/index.js` | `extractSeasonLinks` — add `showTitle` param, distinctive word filter, NON_EPISODE_RE blocklist; **export the function** so it can be unit-tested |
+| `scripts/scraper/normalize.js` | `normalizeInteger` — add `ORDINAL_TO_INT` map and ordinal fallback (`normalizeInteger` has no existing tests; none will break) |
 | `scripts/scraper/extractors/episodes.js` | `extractEpisode` — use `infobox.series ?? showTitle` for `_show` |
 | `scripts/scraper/test/extractors.test.js` | Add `normalizeInteger` ordinal tests; add `extractEpisode` series-field tests |
-| `scripts/scraper/test/index.test.js` | New or extended tests for `extractSeasonLinks` with show-title filtering |
+| `scripts/scraper/test/index.test.js` | New file — tests for `extractSeasonLinks` (requires the function to be exported from `index.js`) |
 
 No schema changes. No `convertData.js` changes.
 
