@@ -14,46 +14,40 @@ service StarWarsShow @(path : 'StarWarsShow') {
 
     @readonly : true
     entity Planet          as projection on StarWars.Planet
-                              excluding { shows, films, residents };
+                              excluding { films, residents };
 
     @readonly : true
     entity Species         as projection on StarWars.Species
-                              excluding { shows, films, people };
+                              excluding { films, people };
 
     @readonly : true
     entity Starship        as projection on StarWars.Starship
-                              excluding { shows, films, pilots };
+                              excluding { films, pilots };
 
     @readonly : true
     entity Vehicles        as projection on StarWars.Vehicles
-                              excluding { shows, films, pilots };
+                              excluding { films, pilots };
 
     @readonly : true
     entity Vehicle @(cds.redirection.target : false)
                            as projection on StarWars.Vehicles
-                              excluding { shows, films, pilots };
+                              excluding { films, pilots };
 
     entity Show2People     as projection on StarWars.Show2People {
         * , people : redirected to People, show : redirected to Show
     };
 
-    entity Show2Planets    as projection on StarWars.Show2Planets {
-        * , show : redirected to Show
-    };
+    @readonly : true
+    entity Show2Planets    as projection on StarWars.Show2Planets;
 
-    entity Show2Starships  as projection on StarWars.Show2Starships {
-        * , show : redirected to Show
-    };
+    @readonly : true
+    entity Show2Starships  as projection on StarWars.Show2Starships;
 
-    entity Show2Species    as projection on StarWars.Show2Species {
-        // Keep both `specie` (source naming) and `species` (consumer-friendly alias)
-        * , show : redirected to Show, specie : redirected to Species,
-        specie as species : redirected to Species
-    };
+    @readonly : true
+    entity Show2Species    as projection on StarWars.Show2Species;
 
-    entity Show2Vehicles   as projection on StarWars.Show2Vehicles {
-        * , show : redirected to Show
-    };
+    @readonly : true
+    entity Show2Vehicles   as projection on StarWars.Show2Vehicles;
 
     @readonly : true
     entity Media            as projection on StarWars.Media;

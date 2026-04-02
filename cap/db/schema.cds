@@ -480,10 +480,7 @@ entity Show : cuid, managed {
     producer      : String;
     release_date  : Date;
     characters    : Composition of many Show2People    on characters.show = $self;
-    planets       : Composition of many Show2Planets   on planets.show    = $self;
-    starships     : Composition of many Show2Starships on starships.show  = $self;
-    vehicles      : Composition of many Show2Vehicles  on vehicles.show   = $self;
-    species       : Composition of many Show2Species   on species.show    = $self;
+    episodes      : Composition of many Episode         on episodes.show   = $self;
 }
 
 annotate Show with @(
@@ -575,220 +572,57 @@ annotate Show2People with {
     );
 };
 
-entity Show2Planets : cuid {
-    show   : Association to Show;
-    planet : Association to Planet;
+// ─── Episode ──────────────────────────────────────────────────────────────────
+/**
+ * A single episode of a Star Wars TV show.
+ * Owned by Show via composition (cascade delete applies).
+ */
+entity Episode : cuid, managed {
+    show          : Association to Show;
+    title         : String(255) @mandatory;
+    season_number : Integer;
+    episode_number: Integer;
+    air_date      : Date;
+    director      : String(255);
+    writer        : String(255);
+    runtime       : Integer;     // minutes
+    timeline      : String(50);  // e.g. "19 BBY"
 }
 
-annotate Show2Planets with @assert.unique.showPlanetPair : [show, planet];
+entity Episode2People    : cuid, managed { episode: Association to Episode; people:   Association to People;   }
+entity Episode2Planets   : cuid, managed { episode: Association to Episode; planet:   Association to Planet;   }
+entity Episode2Starships : cuid, managed { episode: Association to Episode; starship: Association to Starship; }
+entity Episode2Vehicles  : cuid, managed { episode: Association to Episode; vehicle:  Association to Vehicles; }
+entity Episode2Species   : cuid, managed { episode: Association to Episode; specie:   Association to Species;  }
 
-annotate Show2Planets with {
-    ID     @Core.Computed;
-    show   @(
-        Common.Text                     : show.title,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>title}',
-        Common.ValueList                : {
-            CollectionPath : 'Show',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'show_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'title'
-                },
-            ]
-        }
-    );
-    planet @(
-        Common.Text                     : planet.name,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>Planet}',
-        Common.ValueList                : {
-            CollectionPath : 'Planet',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'planet_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'terrain'
-                },
-            ]
-        }
-    );
+annotate Episode2People    with @assert.unique.episodePeoplePair    : [episode, people];
+annotate Episode2Planets   with @assert.unique.episodePlanetPair    : [episode, planet];
+annotate Episode2Starships with @assert.unique.episodeStarshipPair  : [episode, starship];
+annotate Episode2Vehicles  with @assert.unique.episodeVehiclePair   : [episode, vehicle];
+annotate Episode2Species   with @assert.unique.episodeSpeciesPair   : [episode, specie];
+
+// ─── Show2* Derived Views ─────────────────────────────────────────────────────
+// These replace the former physical junction tables.
+// Show-level entity relationships are derived by aggregating over Episode2* tables.
+// ─────────────────────────────────────────────────────────────────────────────
+define view Show2Planets as select from Episode2Planets {
+    key episode.show.ID as show_ID,
+    key planet.ID       as planet_ID
 };
 
-entity Show2Starships : cuid {
-    show     : Association to Show;
-    starship : Association to Starship;
-}
-
-annotate Show2Starships with @assert.unique.showStarshipPair : [show, starship];
-
-annotate Show2Starships with {
-    ID       @Core.Computed;
-    show     @(
-        Common.Text                     : show.title,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>title}',
-        Common.ValueList                : {
-            CollectionPath : 'Show',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'show_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'title'
-                },
-            ]
-        }
-    );
-    starship @(
-        Common.Text                     : starship.name,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>Starship}',
-        Common.ValueList                : {
-            CollectionPath : 'Starship',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'starship_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'model'
-                },
-            ]
-        }
-    );
+define view Show2Starships as select from Episode2Starships {
+    key episode.show.ID as show_ID,
+    key starship.ID     as starship_ID
 };
 
-// Note: field name is `vehicle` (singular) to match Film2Vehicles and keep
-// MediaVehicles UNION branches column-compatible.
-entity Show2Vehicles : cuid {
-    show    : Association to Show;
-    vehicle : Association to Vehicles;
-}
-
-annotate Show2Vehicles with @assert.unique.showVehiclePair : [show, vehicle];
-
-annotate Show2Vehicles with {
-    ID      @Core.Computed;
-    show    @(
-        Common.Text                     : show.title,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>title}',
-        Common.ValueList                : {
-            CollectionPath : 'Show',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'show_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'title'
-                },
-            ]
-        }
-    );
-    vehicle @(
-        Common.Text                     : vehicle.name,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>Vehicle}',
-        Common.ValueList                : {
-            CollectionPath : 'Vehicles',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'vehicle_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'model'
-                },
-            ]
-        }
-    );
+define view Show2Vehicles as select from Episode2Vehicles {
+    key episode.show.ID as show_ID,
+    key vehicle.ID      as vehicle_ID
 };
 
-// Note: field name is `specie` (singular) to match Film2Species and keep
-// MediaSpecies UNION branches column-compatible.
-entity Show2Species : cuid {
-    show   : Association to Show;
-    specie : Association to Species;
-}
-
-annotate Show2Species with @assert.unique.showSpeciesPair : [show, specie];
-
-annotate Show2Species with {
-    ID     @Core.Computed;
-    show   @(
-        Common.Text                     : show.title,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>title}',
-        Common.ValueList                : {
-            CollectionPath : 'Show',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'show_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'title'
-                },
-            ]
-        }
-    );
-    specie @(
-        Common.Text                     : specie.name,
-        Common.TextArrangement          : #TextOnly,
-        Common.ValueListWithFixedValues : false,
-        title                           : '{i18n>Species}',
-        Common.ValueList                : {
-            CollectionPath : 'Species',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'specie_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'classification'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'language'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'homeworld.name'
-                }
-            ]
-        }
-    );
+define view Show2Species as select from Episode2Species {
+    key episode.show.ID as show_ID,
+    key specie.ID       as specie_ID
 };
 
 // ─── Unified Media Views ──────────────────────────────────────────────────────
@@ -828,29 +662,31 @@ define view Media as
     };
 
 define view MediaCharacters as
-    select from Film2People   { key film.ID as media_ID, 'FILM' as media_type : String, people }
+    select from Film2People    { key film.ID as media_ID,    'FILM' as media_type : String, people }
     union all
-    select from Show2People   { key show.ID as media_ID, 'SHOW' as media_type : String, people };
+    select from Show2People    { key show.ID as media_ID,    'SHOW' as media_type : String, people }
+    union all
+    select from Episode2People { key episode.show.ID as media_ID, 'SHOW' as media_type : String, people };
 
 define view MediaPlanets as
-    select from Film2Planets  { key film.ID as media_ID, 'FILM' as media_type : String, planet }
+    select from Film2Planets    { key film.ID as media_ID,    'FILM' as media_type : String, planet }
     union all
-    select from Show2Planets  { key show.ID as media_ID, 'SHOW' as media_type : String, planet };
+    select from Episode2Planets { key episode.show.ID as media_ID, 'SHOW' as media_type : String, planet };
 
 define view MediaSpecies as
-    select from Film2Species  { key film.ID as media_ID, 'FILM' as media_type : String, specie }
+    select from Film2Species    { key film.ID as media_ID,    'FILM' as media_type : String, specie }
     union all
-    select from Show2Species  { key show.ID as media_ID, 'SHOW' as media_type : String, specie };
+    select from Episode2Species { key episode.show.ID as media_ID, 'SHOW' as media_type : String, specie };
 
 define view MediaStarships as
-    select from Film2Starships  { key film.ID as media_ID, 'FILM' as media_type : String, starship }
+    select from Film2Starships    { key film.ID as media_ID,    'FILM' as media_type : String, starship }
     union all
-    select from Show2Starships  { key show.ID as media_ID, 'SHOW' as media_type : String, starship };
+    select from Episode2Starships { key episode.show.ID as media_ID, 'SHOW' as media_type : String, starship };
 
 define view MediaVehicles as
-    select from Film2Vehicles  { key film.ID as media_ID, 'FILM' as media_type : String, vehicle }
+    select from Film2Vehicles    { key film.ID as media_ID,    'FILM' as media_type : String, vehicle }
     union all
-    select from Show2Vehicles  { key show.ID as media_ID, 'SHOW' as media_type : String, vehicle };
+    select from Episode2Vehicles { key episode.show.ID as media_ID, 'SHOW' as media_type : String, vehicle };
 
 /**
  * All People and Aliens in Star Wars
@@ -1058,8 +894,6 @@ entity Planet : cuid, managed {
                           on films.planet = $self;
     residents       : Composition of many Planet2People
                           on residents.planet = $self;
-    shows           : Composition of many Show2Planets
-                          on shows.planet = $self;
 }
 
 annotate Planet with @(
@@ -1201,8 +1035,6 @@ entity Species : cuid, managed {
                            on people.species = $self;
     films            : Composition of many Film2Species
                            on films.specie = $self;
-    shows            : Composition of many Show2Species
-                           on shows.specie = $self;
 }
 
 define view classificationValues as
@@ -1443,8 +1275,6 @@ entity Starship : cuid, managed {
                                  on films.starship = $self;
     pilots                 : Composition of many Starship2Pilot
                                  on pilots.starship = $self;
-    shows                  : Composition of many Show2Starships
-                                 on shows.starship = $self;
 }
 
 annotate Starship with @(
@@ -1611,8 +1441,6 @@ entity Vehicles : cuid, managed {
                                  on films.vehicle = $self;
     pilots                 : Composition of many Vehicle2Pilot
                                  on pilots.vehicle = $self;
-    shows                  : Composition of many Show2Vehicles
-                                 on shows.vehicle = $self;
 }
 annotate Vehicles with @(
     title              : '{i18n>Vehicles}',
