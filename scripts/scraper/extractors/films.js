@@ -3,6 +3,16 @@
 const { parseInfobox } = require('./_base')
 const { normalizeString, normalizeDate, resolveField, FIELD_ALIASES } = require('../normalize')
 
+// Roman numerals I–X covering all current and future saga episodes.
+// Regex uses word boundaries so "IX" does not match as "I" + word boundary
+// (the trailing \b fails because "X" is a word character after "I").
+const ROMAN_TO_INT = { I:1, II:2, III:3, IV:4, V:5, VI:6, VII:7, VIII:8, IX:9, X:10 }
+
+function parseEpisodeId(title) {
+    const m = title.match(/\bEpisode\s+(I{1,3}|IV|V|VI{0,3}|IX|X)\b/)
+    return m ? (ROMAN_TO_INT[m[1]] ?? 0) : 0
+}
+
 /**
  * Extract a film record from Wookieepedia wikitext.
  * Returns null if the page is a disambiguation page or has no infobox.
@@ -52,7 +62,7 @@ function extractFilm(pageTitle, wikitext) {
         producer:      resolveField(infobox, 'producer', FIELD_ALIASES.producer),
         release_date:  normalizeDate(resolveField(infobox, 'release_date', FIELD_ALIASES.release_date)),
         opening_crawl: normalizeString(infobox['opening crawl'] ?? infobox.opening_crawl ?? null),
-        episode_id:    null, // populated by orchestrator from episode roman numeral
+        episode_id:    parseEpisodeId(pageTitle),
         _legendsVariant: infobox._legendsVariant ?? false,
         // Relationship link lists — resolved to entity records by orchestrator
         _characters:   extractAppSection('c-characters'),

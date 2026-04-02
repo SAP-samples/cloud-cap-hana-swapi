@@ -69,6 +69,31 @@ describe('extractFilm', () => {
         const result = extractFilm('Test', '{{Disambig}}\nSome content')
         assert.equal(result, null)
     })
+
+    it('episode_id: Episode IV → 4', () => {
+        const film = extractFilm('Star Wars: Episode IV A New Hope', FILM_WIKITEXT)
+        assert.equal(film.episode_id, 4)
+    })
+
+    it('episode_id: Episode I → 1', () => {
+        const film = extractFilm('Star Wars: Episode I The Phantom Menace', FILM_WIKITEXT)
+        assert.equal(film.episode_id, 1)
+    })
+
+    it('episode_id: Episode IX → 9', () => {
+        const film = extractFilm('Star Wars: Episode IX The Rise of Skywalker', FILM_WIKITEXT)
+        assert.equal(film.episode_id, 9)
+    })
+
+    it('episode_id: anthology film → 0', () => {
+        const film = extractFilm('Rogue One: A Star Wars Story', FILM_WIKITEXT)
+        assert.equal(film.episode_id, 0)
+    })
+
+    it('episode_id: Solo anthology → 0', () => {
+        const film = extractFilm('Solo: A Star Wars Story', FILM_WIKITEXT)
+        assert.equal(film.episode_id, 0)
+    })
 })
 
 describe('extractShow', () => {
