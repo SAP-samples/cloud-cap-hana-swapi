@@ -36,12 +36,18 @@ function normalizeDate(value) {
     return Number.isNaN(d.getTime()) ? null : d.toISOString().slice(0, 10)
 }
 
+const ORDINAL_TO_INT = {
+    one: 1, two: 2, three: 3, four: 4, five: 5,
+    six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+}
+
 function normalizeInteger(value) {
     if (value === undefined || value === null) return null
     const s = normalizeString(String(value))
     if (!s) return null
     const n = parseInt(s, 10)
-    return Number.isNaN(n) ? null : n
+    if (!Number.isNaN(n)) return n
+    return ORDINAL_TO_INT[s.toLowerCase()] ?? null
 }
 
 /**

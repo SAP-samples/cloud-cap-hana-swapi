@@ -5,6 +5,7 @@ const assert = require('node:assert/strict')
 
 const { extractFilm } = require('../extractors/films')
 const { extractShow } = require('../extractors/shows')
+const { normalizeInteger } = require('../normalize')
 
 // Minimal fixture wikitext for a film
 const FILM_WIKITEXT = `
@@ -372,5 +373,39 @@ describe('extractSeasonEpisodeTitles', () => {
         const titles = extractSeasonEpisodeTitles(ANDOR_S1_WIKITEXT)
         assert.equal(titles.length, 1)
         assert.equal(titles[0], 'Kassa (episode)')
+    })
+})
+
+describe('normalizeInteger', () => {
+    it('parses numeric strings', () => {
+        assert.equal(normalizeInteger('1'), 1)
+        assert.equal(normalizeInteger('42'), 42)
+    })
+
+    it('parses ordinal word One → 1', () => {
+        assert.equal(normalizeInteger('One'), 1)
+    })
+
+    it('parses ordinal word Four → 4', () => {
+        assert.equal(normalizeInteger('Four'), 4)
+    })
+
+    it('parses ordinal word Ten → 10', () => {
+        assert.equal(normalizeInteger('Ten'), 10)
+    })
+
+    it('parses ordinal case-insensitively', () => {
+        assert.equal(normalizeInteger('ONE'), 1)
+        assert.equal(normalizeInteger('four'), 4)
+    })
+
+    it('returns null for unknown words', () => {
+        assert.equal(normalizeInteger('eleven'), null)
+        assert.equal(normalizeInteger('unknown'), null)
+    })
+
+    it('returns null for null/undefined', () => {
+        assert.equal(normalizeInteger(null), null)
+        assert.equal(normalizeInteger(undefined), null)
     })
 })
