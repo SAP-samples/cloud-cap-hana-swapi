@@ -579,14 +579,14 @@ annotate Show2People with {
  */
 entity Episode : cuid, managed {
     show          : Association to Show;
-    title         : String(255) @mandatory;
+    title         : String @mandatory;
     season_number : Integer;
     episode_number: Integer;
     air_date      : Date;
     director      : String;
     writer        : String;
     runtime       : Integer;     // minutes
-    timeline      : String(50);  // e.g. "19 BBY"
+    timeline      : String;      // e.g. "19 BBY"
 }
 
 entity Episode2People    : cuid, managed { episode: Association to Episode; people:   Association to People;   }
