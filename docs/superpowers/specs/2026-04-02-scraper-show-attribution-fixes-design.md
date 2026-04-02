@@ -12,7 +12,7 @@ After the previous extractor fixes (episode title row parsing, film episode_id),
 
 1. **Wrong show attribution for episodes** — `extractSeasonLinks()` scans every wikilink containing "season" across the entire show page. Cross-show references and merchandise pages are picked up as season pages for the wrong show:
    - Ahsoka show page links to `[[The Mandalorian Season Two|...]]` (context reference) → 8 Mandalorian S2 episodes attributed to Ahsoka
-   - Boba Fett season page links to `[[The Mandalorian Season Three|...]]` → 8 Mandalorian S3 episodes attributed to Boba Fett
+   - Boba Fett **show page** links to `[[The Mandalorian Season Two|...]]` and `[[The Mandalorian Season Three|...]]` (context references) → Mandalorian S2 and S3 episodes attributed to Boba Fett. (Confirmed: no separate Boba Fett season page exists in cache; the offending links are on the show page.)
    - Resistance show page links to `[[The Clone Wars: Season Seven|revival]]` → 12 Clone Wars S7 episodes attributed to Resistance
    - Resistance show page links to `[[Star Wars Resistance: Complete Season One|DVD]]` → DVD page processed as season page (episode titles not found, but page is fetched needlessly)
 
@@ -169,6 +169,8 @@ No schema changes. No `convertData.js` changes.
 | `"Star Wars Resistance"` | `[[Star Wars Resistance Season One\|One]]` | included |
 | `"Star Wars Resistance"` | `[[The Clone Wars: Season Seven\|revival]]` | excluded |
 | `"Star Wars Resistance"` | `[[Star Wars Resistance: Complete Season One\|DVD]]` | excluded (blocklist) |
+| `"Star Wars: The Book of Boba Fett"` | `[[The Mandalorian Season Two\|season two]]` | excluded (no "boba" or "fett") |
+| `"Star Wars: The Book of Boba Fett"` | `[[The Mandalorian Season Three\|third season]]` | excluded (no "boba" or "fett") |
 
 ### `extractEpisode` — series field attribution
 
