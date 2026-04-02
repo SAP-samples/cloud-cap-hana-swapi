@@ -12,9 +12,27 @@ const { extractPlanet } = require('./extractors/planets')
 const { extractSpecies } = require('./extractors/species')
 const { extractStarship } = require('./extractors/starships')
 const { extractVehicle } = require('./extractors/vehicles')
+const { extractSeasonEpisodeTitles } = require('./extractors/seasons')
+const { extractEpisode } = require('./extractors/episodes')
 
 const RAW_DIR = path.join(__dirname, '../data/raw')
 const FAILED_LOG = path.join(__dirname, '../data/cache/failed.json')
+
+/**
+ * Extract season page titles from a show's wikitext.
+ * Season links follow patterns like [[ShowTitle/Season N]] or [[Show Season N]].
+ * We collect any [[...]] wikilink whose title contains "Season" (case-insensitive).
+ */
+function extractSeasonLinks(wikitext) {
+    const re = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g
+    const titles = []
+    let m
+    while ((m = re.exec(wikitext)) !== null) {
+        const title = m[1].trim()
+        if (/season/i.test(title)) titles.push(title)
+    }
+    return [...new Set(titles)]
+}
 
 async function run() {
     const CACHE_ONLY = process.env.CACHE_ONLY === 'true'
@@ -30,6 +48,8 @@ async function run() {
     const speciesMap = new Map()
     const starships = new Map()
     const vehicles = new Map()
+    const episodes        = new Map()  // episodeTitle → scraped record (null until scraped)
+    const episodeShowMap  = new Map()  // episodeTitle → parent show title
 
     // Relationship sets (using 'title::name' keys for deduplication)
     const rels = {
@@ -39,6 +59,11 @@ async function run() {
         show2starships: new Set(), show2vehicles:  new Set(), show2species: new Set(),
         species2people: new Set(), starship2pilot: new Set(),
         vehicle2pilot:  new Set(), planet2people:  new Set(),
+        episode2people:    new Set(),
+        episode2planets:   new Set(),
+        episode2starships: new Set(),
+        episode2vehicles:  new Set(),
+        episode2species:   new Set(),
     }
 
     // ── Step 1: Fetch production page titles from categories ──────────────────
@@ -95,6 +120,26 @@ async function run() {
                 record._starships.forEach(n => { starships.set(n, null); rels.show2starships.add(`${title}::${n}`) })
                 record._vehicles.forEach(n => { vehicles.set(n, null); rels.show2vehicles.add(`${title}::${n}`) })
                 record._species.forEach(n => { speciesMap.set(n, null); rels.show2species.add(`${title}::${n}`) })
+
+                // Crawl season pages to discover episode titles for this show
+                const seasonLinks = extractSeasonLinks(wikitext)
+                for (const seasonTitle of seasonLinks) {
+                    try {
+                        const seasonWikitext = await fetchWikitext(seasonTitle)
+                        if (!seasonWikitext) continue
+                        const episodeTitles = extractSeasonEpisodeTitles(seasonWikitext)
+                        for (const epTitle of episodeTitles) {
+                            if (!episodes.has(epTitle)) {
+                                episodes.set(epTitle, null)          // null = not yet scraped
+                                episodeShowMap.set(epTitle, title)   // store parent show title
+                            }
+                        }
+                    } catch (err) {
+                        stats.failed++
+                        failed.push({ title: seasonTitle, error: String(err) })
+                        console.warn(`  [FAIL] Season ${seasonTitle}: ${err.message}`)
+                    }
+                }
             }
             stats.scraped++
         } catch (err) {
@@ -105,26 +150,29 @@ async function run() {
     }
 
     // ── Step 3: Process each unique entity page ───────────────────────────────
-    console.log(`Scraping ${people.size} people, ${planets.size} planets, ${speciesMap.size} species, ${starships.size} starships, ${vehicles.size} vehicles...`)
+    const totalEntities = people.size + planets.size + speciesMap.size + starships.size + vehicles.size
+    console.log(`Scraping ${people.size} people, ${planets.size} planets, ${speciesMap.size} species, ${starships.size} starships, ${vehicles.size} vehicles (${totalEntities} total)...`)
+
+    let entityDone = 0
 
     async function scrapeEntities(map, extractor, label) {
         for (const [name] of map) {
             if (map.get(name) !== null) continue  // already scraped
             try {
                 const wikitext = await fetchWikitext(name)
-                if (!wikitext) { stats.skipped++; continue }
-                const record = extractor(name, wikitext)
-                if (record) {
-                    map.set(name, record)
-                    stats.scraped++
-                } else {
-                    stats.skipped++
+                if (!wikitext) { stats.skipped++; } else {
+                    const record = extractor(name, wikitext)
+                    if (record) { map.set(name, record); stats.scraped++ }
+                    else stats.skipped++
                 }
             } catch (err) {
                 stats.failed++
                 failed.push({ title: name, error: String(err) })
                 console.warn(`  [FAIL] ${label} ${name}: ${err.message}`)
             }
+            entityDone++
+            const pct = Math.round(entityDone / totalEntities * 100)
+            process.stdout.write(`\r  [${entityDone}/${totalEntities}] ${pct}% — ${label}: ${name.slice(0, 50)}`.padEnd(80))
         }
     }
 
@@ -133,6 +181,31 @@ async function run() {
     await scrapeEntities(speciesMap, extractSpecies, 'Species')
     await scrapeEntities(starships, extractStarship, 'Starship')
     await scrapeEntities(vehicles, extractVehicle, 'Vehicle')
+    process.stdout.write('\n')
+
+    // Scrape episode pages (requires showTitle, so can't use generic scrapeEntities)
+    console.log(`Scraping ${episodes.size} episodes...`)
+    let epDone = 0
+    for (const [epTitle] of episodes) {
+        if (episodes.get(epTitle) !== null) continue  // already scraped
+        const showTitle = episodeShowMap.get(epTitle) ?? ''
+        try {
+            const wikitext = await fetchWikitext(epTitle)
+            if (!wikitext) { stats.skipped++ } else {
+                const record = extractEpisode(epTitle, wikitext, showTitle)
+                if (record) { episodes.set(epTitle, record); stats.scraped++ }
+                else stats.skipped++
+            }
+        } catch (err) {
+            stats.failed++
+            failed.push({ title: epTitle, error: String(err) })
+            console.warn(`  [FAIL] Episode ${epTitle}: ${err.message}`)
+        }
+        epDone++
+        const pct = Math.round(epDone / episodes.size * 100)
+        process.stdout.write(`\r  [${epDone}/${episodes.size}] ${pct}% — Episode: ${epTitle.slice(0, 50)}`.padEnd(80))
+    }
+    process.stdout.write('\n')
 
     // ── Step 4: Build planet2people and species2people from entity back-refs ──
     for (const [name, person] of people) {
@@ -148,6 +221,16 @@ async function run() {
     for (const [name, veh] of vehicles) {
         if (!veh) continue
         veh._pilots.forEach(p => rels.vehicle2pilot.add(`${name}::${p}`))
+    }
+
+    // Episode entity relationships (back-populated from scraped episode records)
+    for (const [name, ep] of episodes) {
+        if (!ep) continue
+        ep._characters.forEach(p => { people.set(p, people.get(p) ?? null);       rels.episode2people.add(`${name}::${p}`) })
+        ep._planets.forEach(n   => { planets.set(n, planets.get(n) ?? null);      rels.episode2planets.add(`${name}::${n}`) })
+        ep._starships.forEach(n => { starships.set(n, starships.get(n) ?? null);  rels.episode2starships.add(`${name}::${n}`) })
+        ep._vehicles.forEach(n  => { vehicles.set(n, vehicles.get(n) ?? null);    rels.episode2vehicles.add(`${name}::${n}`) })
+        ep._species.forEach(n   => { speciesMap.set(n, speciesMap.get(n) ?? null); rels.episode2species.add(`${name}::${n}`) })
     }
 
     // ── Step 5: Build relationships.json ─────────────────────────────────────
@@ -173,6 +256,11 @@ async function run() {
         starship2pilot: setToArray(rels.starship2pilot, 'starship','pilot'),
         vehicle2pilot:  setToArray(rels.vehicle2pilot,  'vehicle', 'pilot'),
         planet2people:  setToArray(rels.planet2people,  'planet',  'people'),
+        episode2people:    setToArray(rels.episode2people,    'episode', 'people'),
+        episode2planets:   setToArray(rels.episode2planets,   'episode', 'planet'),
+        episode2starships: setToArray(rels.episode2starships, 'episode', 'starship'),
+        episode2vehicles:  setToArray(rels.episode2vehicles,  'episode', 'vehicle'),
+        episode2species:   setToArray(rels.episode2species,   'episode', 'specie'),
     }
 
     // ── Step 6: Write output files ────────────────────────────────────────────
@@ -187,6 +275,7 @@ async function run() {
     await fs.writeFile(path.join(RAW_DIR, 'species.json'),       JSON.stringify(toArray(speciesMap), null, 2))
     await fs.writeFile(path.join(RAW_DIR, 'starships.json'),     JSON.stringify(toArray(starships),  null, 2))
     await fs.writeFile(path.join(RAW_DIR, 'vehicles.json'),      JSON.stringify(toArray(vehicles),   null, 2))
+    await fs.writeFile(path.join(RAW_DIR, 'episodes.json'),      JSON.stringify(toArray(episodes),   null, 2))
     await fs.writeFile(path.join(RAW_DIR, 'relationships.json'), JSON.stringify(relationships,       null, 2))
 
     if (failed.length) {
@@ -196,6 +285,7 @@ async function run() {
     console.log(`\nDone. Scraped: ${stats.scraped}, Failed: ${stats.failed}, Skipped: ${stats.skipped}`)
     console.log(`Films: ${films.size}, Shows: ${shows.size}, People: ${people.size}, Planets: ${planets.size}`)
     console.log(`Species: ${speciesMap.size}, Starships: ${starships.size}, Vehicles: ${vehicles.size}`)
+    console.log(`Episodes: ${episodes.size}`)
     if (failed.length) console.log(`Failed pages logged to: ${FAILED_LOG}`)
 }
 
