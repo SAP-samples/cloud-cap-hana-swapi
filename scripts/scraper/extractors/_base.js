@@ -8,14 +8,20 @@ const LEGENDS_MARKERS  = ['{{legends}}']
 
 // Known infobox template names used by Wookieepedia (case-insensitive, no spaces)
 const INFOBOX_NAMES = new Set([
+    // Productions
     'movie', 'film',
     'televisionseries', 'television series', 'tv series', 'tvseries', 'series',
+    'televisionepisode',
+    // Characters / beings
     'character',
-    'planet',
-    'species',
-    'starship',
-    'vehicle', 'ground vehicle',
     'droid', 'creature',
+    // Species
+    'species',
+    // Planets / locations
+    'planet', 'celestialbody', 'location',
+    // Starships / vehicles
+    'starship', 'starshipclass', 'individualship', 'shipseries', 'spacestation',
+    'vehicle', 'ground vehicle', 'groundvehicle', 'repulsorliftvehicle', 'aquaticvehicle',
 ])
 
 /**
