@@ -48,6 +48,19 @@ function createRawData() {
                       manufacturer: 'Incom', cost_in_credits: null, length: '5.3',
                       crew: '2', passengers: '0', max_atmosphering_speed: '1000',
                       cargo_capacity: '10', consumables: 'none', _pilots: ['Luke Skywalker'] }],
+        episodes: [
+            {
+                title:          'Chapter 1: The Mandalorian',
+                season_number:  1,
+                episode_number: 1,
+                air_date:       '2019-11-01',
+                director:       'Dave Filoni',
+                writer:         'Jon Favreau',
+                runtime:        39,
+                timeline:       '9 ABY',
+                _show:          'The Mandalorian',
+            }
+        ],
         relationships: {
             film2people:    [{ film: 'A New Hope',      people: 'Luke Skywalker' },
                              { film: 'A New Hope',      people: 'Ghost Character' }],
@@ -56,13 +69,17 @@ function createRawData() {
             film2starships: [{ film: 'A New Hope',      starship: 'X-wing' }],
             film2vehicles:  [{ film: 'A New Hope',      vehicle: 'T-47 Airspeeder' }],
             film2species:   [{ film: 'A New Hope',      specie: 'Human' }],
-            show2planets:   [], show2starships: [], show2vehicles: [], show2species: [],
             species2people: [{ species: 'Human',        people: 'Luke Skywalker' },
                              { species: 'Human',        people: 'Ghost Person' }],
             starship2pilot: [{ starship: 'X-wing',      pilot: 'Luke Skywalker' },
                              { starship: 'X-wing',      pilot: 'Ghost Pilot' }],
             vehicle2pilot:  [{ vehicle: 'T-47 Airspeeder', pilot: 'Luke Skywalker' }],
-            planet2people:  [{ planet: 'Tatooine',      people: 'Luke Skywalker' }]
+            planet2people:  [{ planet: 'Tatooine',      people: 'Luke Skywalker' }],
+            episode2people:    [{ episode: 'Chapter 1: The Mandalorian', people: 'Luke Skywalker' }],
+            episode2planets:   [{ episode: 'Chapter 1: The Mandalorian', planet: 'Tatooine' }],
+            episode2starships: [],
+            episode2vehicles:  [],
+            episode2species:   [{ episode: 'Chapter 1: The Mandalorian', specie: 'Human' }],
         }
     }
 }
@@ -131,6 +148,30 @@ test('transformEntities creates expected rows and records missing references', (
     assert.equal(rows.Show2People.length, 1)
 
     const luke = rows.People.find(row => row.name === 'Luke Skywalker')
+
+    // Episode rows
+    assert.equal(rows.Episode.length, 1, 'one episode')
+    assert.equal(rows.Episode[0].title, 'Chapter 1: The Mandalorian')
+    assert.equal(rows.Episode[0].season_number, 1)
+    assert.equal(rows.Episode[0].episode_number, 1)
+    assert.equal(rows.Episode[0].air_date, '2019-11-01')
+    assert.equal(rows.Episode[0].runtime, 39)
+    assert.equal(rows.Episode[0].timeline, '9 ABY')
+    assert.ok(rows.Episode[0].show_ID, 'episode has show_ID resolved from The Mandalorian')
+
+    // Episode junction rows
+    assert.equal(rows.Episode2People.length, 1, 'one episode2people link')
+    assert.equal(rows.Episode2Planets.length, 1, 'one episode2planets link')
+    assert.equal(rows.Episode2Species.length, 1, 'one episode2species link')
+    assert.equal(rows.Episode2Starships.length, 0)
+    assert.equal(rows.Episode2Vehicles.length, 0)
+
+    // Show2Planets/Starships/Vehicles/Species are now views — must NOT appear in rows
+    assert.equal(rows.Show2Planets,   undefined, 'Show2Planets removed from rows (now a view)')
+    assert.equal(rows.Show2Starships, undefined, 'Show2Starships removed from rows (now a view)')
+    assert.equal(rows.Show2Vehicles,  undefined, 'Show2Vehicles removed from rows (now a view)')
+    assert.equal(rows.Show2Species,   undefined, 'Show2Species removed from rows (now a view)')
+
     assert.equal(luke.birth_year, '19BBY')
 
     const mysteryPerson = rows.People.find(row => row.name === 'Mystery Person')
