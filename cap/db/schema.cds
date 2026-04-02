@@ -583,8 +583,8 @@ entity Episode : cuid, managed {
     season_number : Integer;
     episode_number: Integer;
     air_date      : Date;
-    director      : String(255);
-    writer        : String(255);
+    director      : String;
+    writer        : String;
     runtime       : Integer;     // minutes
     timeline      : String(50);  // e.g. "19 BBY"
 }
