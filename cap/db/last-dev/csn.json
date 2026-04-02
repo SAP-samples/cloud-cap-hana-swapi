@@ -1,6 +1,76 @@
 {
   "namespace": "star.wars",
   "definitions": {
+    "star.wars.Show": {
+      "kind": "entity",
+      "@cds.persistence.journal": true,
+      "elements": {
+        "ID": {
+          "@Core.Computed": true,
+          "key": true,
+          "type": "cds.String",
+          "length": 36,
+          "@cds.persistence.name": "ID"
+        },
+        "createdAt": {
+          "type": "cds.Timestamp",
+          "@cds.persistence.name": "CREATEDAT"
+        },
+        "createdBy": {
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "CREATEDBY"
+        },
+        "modifiedAt": {
+          "type": "cds.Timestamp",
+          "@cds.persistence.name": "MODIFIEDAT"
+        },
+        "modifiedBy": {
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "MODIFIEDBY"
+        },
+        "title": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "TITLE"
+        },
+        "show_type": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "SHOW_TYPE"
+        },
+        "seasons": {
+          "type": "cds.Integer",
+          "@cds.persistence.name": "SEASONS"
+        },
+        "episode_count": {
+          "type": "cds.Integer",
+          "@cds.persistence.name": "EPISODE_COUNT"
+        },
+        "network": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "NETWORK"
+        },
+        "director": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "DIRECTOR"
+        },
+        "producer": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "PRODUCER"
+        },
+        "release_date": {
+          "type": "cds.Date",
+          "@cds.persistence.name": "RELEASE_DATE"
+        }
+      },
+      "change-tracking-isRootEntity": true,
+      "@cds.persistence.name": "STAR_WARS_SHOW"
+    },
     "star.wars.Film": {
       "kind": "entity",
       "@cds.persistence.journal": true,
@@ -64,8 +134,11 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v6.1.0",
-    "build": "CDS Build v9.1.0"
+    "creator": "CDS Compiler v6.8.0",
+    "compilerCsnFlavor": "inferred",
+    "minified": true,
+    "sap.changelog.enhanced": true,
+    "build": "CDS Build v9.8.3"
   },
   "$version": "2.0"
 }

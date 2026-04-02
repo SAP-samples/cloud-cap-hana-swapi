@@ -34,13 +34,27 @@ function inferShowType(network, title) {
     return 'LIVE_ACTION_SERIES'
 }
 
-function extractLinks(raw) {
-    if (!raw) return []
-    return String(raw)
-        .replace(/\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g, '$1')
-        .split(/[,|]/)
-        .map(s => s.trim())
-        .filter(Boolean)
+/**
+ * Extract character page titles from the cast field of a {{Credits}} template.
+ * Cast lines follow the pattern: as '''[[CharacterPage|DisplayName]]'''
+ * We extract the page title (not the display name).
+ */
+function extractCreditsCharacters(wikitext) {
+    const marker = '|cast='
+    const start = wikitext.indexOf(marker)
+    if (start === -1) return []
+    const contentStart = start + marker.length
+    const nextField = wikitext.indexOf('\n|', contentStart)
+    const content = wikitext.slice(contentStart, nextField !== -1 ? nextField : undefined)
+
+    const chars = []
+    const re = /as\s+'''?\[\[([^\]|]+)(?:\|[^\]]+)?\]\]'''?/g
+    let m
+    while ((m = re.exec(content)) !== null) {
+        const name = m[1].trim()
+        if (name) chars.push(name)
+    }
+    return chars
 }
 
 function extractShow(pageTitle, wikitext) {
@@ -59,11 +73,13 @@ function extractShow(pageTitle, wikitext) {
         producer:       resolveField(infobox, 'producer', FIELD_ALIASES.producer),
         release_date:   normalizeDate(resolveField(infobox, 'release_date', FIELD_ALIASES.release_date)),
         _legendsVariant: infobox._legendsVariant ?? false,
-        _characters:    extractLinks(infobox.characters ?? infobox.cast),
-        _planets:       extractLinks(infobox.planets ?? infobox.locations),
-        _starships:     extractLinks(infobox.starships),
-        _vehicles:      extractLinks(infobox.vehicles),
-        _species:       extractLinks(infobox.species),
+        // Characters come from {{Credits}} cast field; planets/ships/species not available
+        // at the show level on Wookieepedia (they live on individual episode pages).
+        _characters:    extractCreditsCharacters(wikitext),
+        _planets:       [],
+        _starships:     [],
+        _vehicles:      [],
+        _species:       [],
     }
 }
 

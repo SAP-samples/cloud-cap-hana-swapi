@@ -1,0 +1,17 @@
+== version=1
+COLUMN TABLE star_wars_Show (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  title NVARCHAR(5000),
+  show_type NVARCHAR(5000),
+  seasons INTEGER,
+  episode_count INTEGER,
+  network NVARCHAR(5000),
+  director NVARCHAR(5000),
+  producer NVARCHAR(5000),
+  release_date DATE,
+  PRIMARY KEY(ID)
+)

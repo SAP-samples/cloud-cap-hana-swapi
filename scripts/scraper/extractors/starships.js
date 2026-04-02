@@ -30,7 +30,7 @@ function extractStarship(pageTitle, wikitext) {
         MGLT:                   normalizeString(infobox.mglt ?? infobox.MGLT),
         cargo_capacity:         normalizeString(infobox.cargo ?? infobox.cargo_capacity),
         consumables:            normalizeString(infobox.consumables),
-        _pilots:                extractLinks(infobox.pilots ?? infobox.crew_members),
+        _pilots:                extractLinks(infobox.pilots ?? infobox.captains ?? infobox.owners ?? infobox.crew_members),
         _legendsVariant:        infobox._legendsVariant ?? false,
     }
 }
