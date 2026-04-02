@@ -10,11 +10,47 @@ The original project was a data set and data model based in Python that exposed 
 
 The projects described above have fallen out of maintenance but still offered the opportunity for a fun yet challenging learning experience from a non-trivial data model. The many bi-directional, many-to-many relationships with the data provides a good basis for an SAP Cloud Application Programming Model and Fiori Draft UI sample.
 
+This project extends the original data set with **TV Shows and streaming series** (The Mandalorian, The Clone Wars, Andor, etc.) scraped live from Wookieepedia, and introduces unified `Media` views that query across both films and shows.
+
 ### Data Model
 
 #### Films
 
 ![film diagram](images/Film.png)
+
+#### Shows (TV Series & Streaming)
+
+The `Show` entity represents all canon Star Wars TV and streaming productions. It shares the same relationship structure as `Film` — each show can be linked to characters, planets, starships, vehicles, and species.
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `title` | String | `@mandatory` |
+| `show_type` | Enum | `LIVE_ACTION_SERIES`, `ANIMATED_SERIES`, `ANIMATED_FILM`, `ANTHOLOGY` |
+| `seasons` | Integer | Number of seasons |
+| `episode_count` | Integer | Total episode count |
+| `network` | String | Broadcaster / streaming platform |
+| `director` | String | Lead director(s) |
+| `producer` | String | Lead producer(s) |
+| `release_date` | Date | First air date |
+
+Each show owns a composition of `Episode` records (cascade-delete). The `Episode` entity captures per-episode metadata: `season_number`, `episode_number`, `title`, `air_date`, `director`, `writer`, `runtime` (minutes), and `timeline` (in-universe date, e.g. "19 BBY").
+
+Junction tables: `Show2People` (physical), `Episode2People`, `Episode2Planets`, `Episode2Starships`, `Episode2Vehicles`, `Episode2Species`
+
+`Show2Planets`, `Show2Starships`, `Show2Vehicles`, and `Show2Species` are **CDS `define view`** declarations that aggregate over the corresponding `Episode2*` tables. They are not physical tables — show-level relationship data is derived from episode-level scraping.
+
+#### Unified Media Views
+
+Six read-only `UNION ALL` views join `Film` and `Show` data across a single query surface. The relationship views each include a branch for `Episode2*` data so that episode-level associations are surfaced at the media level:
+
+| View | Returns |
+| --- | --- |
+| `Media` | All films and shows with a `media_type` discriminator (`'FILM'` / `'SHOW'`) |
+| `MediaCharacters` | All film+show+episode → character relationships |
+| `MediaPlanets` | All film+show+episode → planet relationships |
+| `MediaSpecies` | All film+show+episode → species relationships |
+| `MediaStarships` | All film+show+episode → starship relationships |
+| `MediaVehicles` | All film+show+episode → vehicle relationships |
 
 #### People
 
@@ -43,15 +79,45 @@ The projects described above have fallen out of maintenance but still offered th
 
 ## Download and Installation
 
-The original data model and data source files are in in the [oldPython\resources](./oldPython/resources/) folder.
+The rest of the operations can be performed within the [cap](./cap/) folder and there are scripts in the [package.json](./cap/package.json#L20) file for major operations.
 
-The rest of the operations can be performed within the [cap](./cap/) folder and there are scripts in the [package.json](./cap/package.json#L20) file major operations.
+You can use `npm run build` to perform the cds build and should be run before deployment to HANA or whenever you make changes to the data model.
 
-You can use `npm run build` to perform the cds build and should be ran before deployment to HANA or whenever you make changes to the data model.
+You can run `npm run hana` to deploy the content to your HANA database. Just be sure from the terminal that you are logged into the cf/xs cli and targeting the Account/Org/Space where you want the content to live. By default this command will create an HDI Container instance named **starwars**. **Note**: due to some strange circumstances in the latest versions of CAP it seems the `/gen/srv` folder is getting cleared after any deployment to HANA. Therefore just execute a `cds build` or `npm run build` after any deployment to restore the `/gen` folder until we find the root cause of this issue.
 
-You can run `npm run hana` to deploy the content to your HANA database.  Just be sure from the terminal that you are logged into the cf/xs cli and targeting the Account/Org/Space where you want the content to live. By default this command will create an HDI Container instance named **starwars**. **Note**: due to some strange circumstances in the latest versions of CAP it seems the `/gen/srv` folder is getting cleared after any deployment to HANA.  Therefore just execute a `cds build` or `npm run build` after any deployment to restore the `/gen` folder until we find the root cause of this issue.
+### Data Pipeline
 
-You can run the command `npm run load`. This command will read the original JSON data files from the source project and load them into your HANA database using Cloud Application Programming Model [CQL](https://cap.cloud.sap/docs/cds/cql). The loading script is [convertData.js](./cap/convertData.js)
+Star Wars data is sourced from [Wookieepedia](https://starwars.fandom.com/wiki/Wookieepedia) via a rate-limited MediaWiki API scraper. The pipeline is two steps:
+
+**Step 1 — Scrape** (optional — committed cache makes this instantaneous):
+
+```bash
+cd cap
+npm run scrape              # cache-first run — uses committed cache, completes in seconds
+npm run scrape:films        # films-only run (no episodes); reproduces the original SWAPI dataset
+npm run scrape:bypass-cache # fetch fresh data from Wookieepedia (prompts for confirmation)
+```
+
+The scraper crawls three levels deep: Show page → Season page → Episode page. It writes nine JSON files to `scripts/data/raw/`:
+`films.json`, `shows.json`, `episodes.json`, `people.json`, `planets.json`, `species.json`, `starships.json`, `vehicles.json`, `relationships.json`
+
+Cache files (`scripts/data/cache/`) are committed to the repository (~6,469 files), so clones can run `npm run scrape` without any network access. Use `--bypass-cache` only when you need genuinely fresh Wookieepedia data.
+
+**Step 2 — Load** into your target database:
+
+```bash
+npm run load_sqlite    # SQLite (local development)
+npm run load           # SAP HANA Cloud (hybrid profile — requires .cdsrc-private.json)
+npm run load_pg        # PostgreSQL
+```
+
+The loading script is [convertData.js](./cap/convertData.js). It reads the raw JSON files and upserts all entities and junction records using CAP CQL.
+
+**Scraped data included:**
+
+* **11 canon films** — Episodes I–IX, Rogue One, Solo (with directors, producers, release dates)
+* **15 shows** — 8 live-action series + 6 animated series (The Mandalorian, The Clone Wars, Andor, Rebels, etc.)
+* **772 episodes** — per-episode metadata and entity relationships (characters, planets, starships, vehicles, species)
 
 The command `npm start` or `cds run` will start the service running locally. It will open the standard CAP test page where you can explore the OData Services or the Fiori UI.
 

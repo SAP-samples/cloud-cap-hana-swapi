@@ -34,6 +34,11 @@ npm run hana          # Deploy to HANA HDI container ("starwars")
 npm run load          # Load Star Wars fixture data (hybrid/HANA profile)
 npm run load_sqlite   # Load fixture data into SQLite
 
+# Data scraping
+npm run scrape               # full run, cache-first (fast — uses committed cache)
+npm run scrape:films         # films-only, no episodes (reproduces original dataset)
+npm run scrape:bypass-cache  # fetch fresh from Wookieepedia (requires confirmation)
+
 # Docs generation
 npm run openapi       # Generate OpenAPI docs → docs/
 npm run asyncapi      # Generate AsyncAPI docs
@@ -62,13 +67,17 @@ cap/labs/        Hands-on exercises (lab-01 through lab-05)
 
 ### Domain Model (`cap/db/schema.cds`)
 
-Six core entities: **Film**, **People**, **Planet**, **Species**, **Starship**, **Vehicle**. Many-to-many relationships use explicit junction entities (`Film2People`, `Film2Planets`, etc.) with redirected projections in services. All entities use `managed` + `cuid` from `@sap/cds/common`.
+Core entities: **Film**, **People**, **Planet**, **Species**, **Starship**, **Vehicle**, **Show**, **Episode**. Many-to-many relationships use explicit junction entities (`Film2People`, `Film2Planets`, `Episode2People`, `Episode2Planets`, etc.) with redirected projections in services. All entities use `managed` + `cuid` from `@sap/cds/common`.
+
+`Episode` is a composition child of `Show` — episodes cascade-delete with their parent show. Five `Episode2*` junction tables (`Episode2People`, `Episode2Planets`, `Episode2Starships`, `Episode2Vehicles`, `Episode2Species`) link episodes to the core entity set.
+
+`Show2Planets`, `Show2Starships`, `Show2Vehicles`, and `Show2Species` are CDS `define view` declarations that aggregate over the corresponding `Episode2*` tables rather than being physical tables.
 
 Profile-specific extensions live in `cap/db/hana/`, `cap/db/sqlite/`, `cap/db/postgres/`. Always check these when making cross-profile changes.
 
 ### Service Layer (`cap/srv/`)
 
-Six domain services (one per entity): `StarWarsFilm`, `StarWarsPeople`, `StarWarsPlanet`, `StarWarsSpecies`, `StarWarsStarship`, `StarWarsVehicle`. Protocols: OData v4 (primary), OData v2 (adapter), GraphQL (`/graphql`), REST.
+Six domain services (one per entity): `StarWarsFilm`, `StarWarsPeople`, `StarWarsPlanet`, `StarWarsSpecies`, `StarWarsStarship`, `StarWarsVehicle`. A seventh service, `StarWarsEpisode`, exposes `Episodes` and `Episode2*` junctions as read-only projections (no handler logic required). Protocols: OData v4 (primary), OData v2 (adapter), GraphQL (`/graphql`), REST.
 
 **Critical file separation rule:**
 - Service contracts → `*-service.cds`
@@ -123,6 +132,6 @@ GitHub Actions auto-deploys to GitHub Pages on push to `main` when files under `
 
 - **CDS modeling**: Preserve namespace and `managed`/`cuid` patterns. Prefer explicit many-to-many junction entities. Keep `Common.ValueList` and `UI.*` patterns consistent.
 - **Breaking changes**: Avoid renames/removals without migration intent. See `docs/value-help-migration.md` for a past breaking-change example.
-- **Data loading**: Use `convertDataLite.js` for SQLite (avoids `SQLITE_BUSY`); use `convertData.js` for HANA (parallel chunk loading).
+- **Data loading**: Use `convertData.js` for all profiles (handles parallel chunk loading; SQLite-safe). The `load_sqlite` npm script invokes this directly.
 - **Generated folders**: `cap/gen/` is auto-generated. After HANA deployment, re-run `npm run build` if `gen/srv` is cleared.
 - **cds-mcp**: When editing CDS files, resolve entity/field definitions with `cds-mcp` before modifying models, and check CAP docs via `cds-mcp` before proposing CDS syntax or API usage.

@@ -78,9 +78,16 @@ db/schema.cds
         ├── Species
         ├── Starship
         ├── Vehicles
+        ├── Show          (draft-enabled)
+        │   └── Episode   (composition child — cascade delete)
         ├── Film2People   (M:N junction with @assert.unique)
-        └── ... (other junctions + views)
+        ├── Episode2People, Episode2Planets, Episode2Starships,
+        │   Episode2Vehicles, Episode2Species  (M:N junctions)
+        └── Show2Planets, Show2Starships, Show2Vehicles, Show2Species
+            (CDS define view over Episode2* — not physical tables)
 ```
+
+`define view` in CDS creates a SQL view rather than a physical table. It is the right choice when the data can be fully derived from another entity — there is no value in storing it redundantly. `Show2Planets` (and its siblings) are a concrete example: Wookieepedia show pages list no per-show relationships, but each episode page lists the planets it features. By defining the show-level view as an aggregation over `Episode2Planets`, show-level data is always correct and requires no separate load step.
 
 ### Service Layer (`srv/*-service.cds`)
 

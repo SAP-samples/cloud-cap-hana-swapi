@@ -22,6 +22,8 @@ Five progressive milestones, each building on the previous one. Every milestone 
 
 3. Trace how `Film2People` links `Film` and `People` (M:N relationship).
 
+4. Find the `define view` declarations for `Show2Planets`, `Show2Starships`, `Show2Vehicles`, and `Show2Species`. Explain why they are views instead of physical junction tables. (Hint: where does the underlying data actually come from?)
+
 **Key files:** `db/schema.cds`
 
 **Check your understanding:** Run `npm run test` — all model tests should pass.
@@ -55,7 +57,7 @@ Five progressive milestones, each building on the previous one. Every milestone 
 
 **Key files:** `srv/people-service.cds`, `srv/film-service.cds`
 
-**Check your understanding:** Open Swagger UI at `http://localhost:4004/api-docs` and explore the generated spec.
+**Check your understanding:** Open Swagger UI at `http://localhost:4004/api-docs` and explore the generated spec. Then compare `StarWarsEpisode` (`srv/episode-service.cds`) — a read-only service with no `.js` handler at all — with `StarWarsPeople`. Notice that CAP's generic provider handles all CRUD automatically when there is no `on` handler registered.
 
 ---
 
