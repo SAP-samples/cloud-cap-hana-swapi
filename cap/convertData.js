@@ -13,17 +13,20 @@ const DEFAULT_CHUNK_SIZE = 1000
 const DELETE_ORDER = [
     'Planet2People',
     'Film2People', 'Film2Planets', 'Film2Starships', 'Film2Vehicles', 'Film2Species',
-    'Show2People', 'Show2Planets', 'Show2Starships', 'Show2Vehicles', 'Show2Species',
+    'Show2People',
+    'Episode2People', 'Episode2Planets', 'Episode2Starships', 'Episode2Vehicles', 'Episode2Species',
+    'Episode',   // explicit before Show (composition cascade is implicit, but explicit is safer)
     'Show',
     'Species2People', 'Starship2Pilot', 'Vehicle2Pilot',
     'People', 'Starship', 'Vehicles', 'Species', 'Film', 'Planet'
 ]
 
 const UPSERT_ORDER = [
-    'Planet', 'People', 'Starship', 'Vehicles', 'Species', 'Film', 'Show',
+    'Planet', 'People', 'Starship', 'Vehicles', 'Species', 'Film', 'Show', 'Episode',
     'Planet2People', 'Starship2Pilot', 'Vehicle2Pilot', 'Species2People',
     'Film2People', 'Film2Planets', 'Film2Starships', 'Film2Vehicles', 'Film2Species',
-    'Show2People', 'Show2Planets', 'Show2Starships', 'Show2Vehicles', 'Show2Species'
+    'Show2People',
+    'Episode2People', 'Episode2Planets', 'Episode2Starships', 'Episode2Vehicles', 'Episode2Species'
 ]
 
 function normalizeString(value) {
@@ -157,7 +160,7 @@ function pushRow(rows, dedupeSet, row) {
 }
 
 function transformEntities(rawData, report) {
-    const { planets, people, films, shows, species, starships, vehicles, relationships } = rawData
+    const { planets, people, films, shows, species, starships, vehicles, episodes, relationships } = rawData
 
     // Build name/title indexes for reference resolution
     const planetsByName   = buildNameIndex(planets)
@@ -176,12 +179,14 @@ function transformEntities(rawData, report) {
     const speciesIdByName  = new Map(species.map(s  => [s.name, deterministicId('Species', s.name)]))
     const starshipIdByName = new Map(starships.map(s => [s.name, deterministicId('Starship', s.name)]))
     const vehicleIdByName  = new Map(vehicles.map(v => [v.name, deterministicId('Vehicles', v.name)]))
+    const episodeIdByTitle = new Map(episodes.map(e => [e.title, deterministicId('Episode', e.title)]))
 
     const rows = {
-        Planet: [], People: [], Starship: [], Vehicles: [], Species: [], Film: [], Show: [],
+        Planet: [], People: [], Starship: [], Vehicles: [], Species: [], Film: [], Show: [], Episode: [],
         Planet2People: [], Starship2Pilot: [], Vehicle2Pilot: [], Species2People: [],
         Film2People: [], Film2Planets: [], Film2Starships: [], Film2Vehicles: [], Film2Species: [],
-        Show2People: [], Show2Planets: [], Show2Starships: [], Show2Vehicles: [], Show2Species: []
+        Show2People: [],
+        Episode2People: [], Episode2Planets: [], Episode2Starships: [], Episode2Vehicles: [], Episode2Species: []
     }
 
     const dedupe = {}
@@ -319,6 +324,25 @@ function transformEntities(rawData, report) {
         })
     }
 
+    // ── Episodes ──
+    for (const ep of episodes) {
+        const title = normalizeString(ep.title)
+        if (!hasMandatoryValue(title, 'Episode', 'title', ep.title, report)) continue
+        const showID = showIdByTitle.get(ep._show) ?? null
+        const ID = deterministicId('Episode', title)
+        pushRow(rows.Episode, dedupe.Episode, {
+            ID, title,
+            show_ID:        showID,
+            season_number:  ep.season_number ?? null,
+            episode_number: ep.episode_number ?? null,
+            air_date:       normalizeDate(ep.air_date),
+            director:       normalizeString(ep.director),
+            writer:         normalizeString(ep.writer),
+            runtime:        ep.runtime ?? null,
+            timeline:       normalizeString(ep.timeline)
+        })
+    }
+
     // ── Junction tables from relationships ──
 
     // planet2people
@@ -431,47 +455,58 @@ function transformEntities(rawData, report) {
         })
     }
 
-    // show2planets
-    for (const rel of (relationships.show2planets ?? [])) {
-        const showID   = showIdByTitle.get(rel.show)
-        const planetID = planetIdByName.get(rel.planet)
-        if (!showID || !planetID) { report.stats.missingReferences++; continue }
-        pushRow(rows.Show2Planets, dedupe.Show2Planets, {
-            ID: deterministicLinkId('Show2Planets', showID, planetID),
-            show_ID: showID, planet_ID: planetID
+    // episode2people
+    for (const rel of (relationships.episode2people ?? [])) {
+        const episodeID = episodeIdByTitle.get(rel.episode)
+        const personID  = peopleIdByName.get(rel.people)
+        if (!episodeID || !personID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Episode2People, dedupe.Episode2People, {
+            ID: deterministicLinkId('Episode2People', episodeID, personID),
+            episode_ID: episodeID, people_ID: personID
         })
     }
 
-    // show2starships
-    for (const rel of (relationships.show2starships ?? [])) {
-        const showID     = showIdByTitle.get(rel.show)
+    // episode2planets
+    for (const rel of (relationships.episode2planets ?? [])) {
+        const episodeID = episodeIdByTitle.get(rel.episode)
+        const planetID  = planetIdByName.get(rel.planet)
+        if (!episodeID || !planetID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Episode2Planets, dedupe.Episode2Planets, {
+            ID: deterministicLinkId('Episode2Planets', episodeID, planetID),
+            episode_ID: episodeID, planet_ID: planetID
+        })
+    }
+
+    // episode2starships
+    for (const rel of (relationships.episode2starships ?? [])) {
+        const episodeID  = episodeIdByTitle.get(rel.episode)
         const starshipID = starshipIdByName.get(rel.starship)
-        if (!showID || !starshipID) { report.stats.missingReferences++; continue }
-        pushRow(rows.Show2Starships, dedupe.Show2Starships, {
-            ID: deterministicLinkId('Show2Starships', showID, starshipID),
-            show_ID: showID, starship_ID: starshipID
+        if (!episodeID || !starshipID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Episode2Starships, dedupe.Episode2Starships, {
+            ID: deterministicLinkId('Episode2Starships', episodeID, starshipID),
+            episode_ID: episodeID, starship_ID: starshipID
         })
     }
 
-    // show2vehicles
-    for (const rel of (relationships.show2vehicles ?? [])) {
-        const showID    = showIdByTitle.get(rel.show)
+    // episode2vehicles
+    for (const rel of (relationships.episode2vehicles ?? [])) {
+        const episodeID = episodeIdByTitle.get(rel.episode)
         const vehicleID = vehicleIdByName.get(rel.vehicle)
-        if (!showID || !vehicleID) { report.stats.missingReferences++; continue }
-        pushRow(rows.Show2Vehicles, dedupe.Show2Vehicles, {
-            ID: deterministicLinkId('Show2Vehicles', showID, vehicleID),
-            show_ID: showID, vehicle_ID: vehicleID
+        if (!episodeID || !vehicleID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Episode2Vehicles, dedupe.Episode2Vehicles, {
+            ID: deterministicLinkId('Episode2Vehicles', episodeID, vehicleID),
+            episode_ID: episodeID, vehicle_ID: vehicleID
         })
     }
 
-    // show2species
-    for (const rel of (relationships.show2species ?? [])) {
-        const showID   = showIdByTitle.get(rel.show)
-        const specieID = speciesIdByName.get(rel.specie)
-        if (!showID || !specieID) { report.stats.missingReferences++; continue }
-        pushRow(rows.Show2Species, dedupe.Show2Species, {
-            ID: deterministicLinkId('Show2Species', showID, specieID),
-            show_ID: showID, specie_ID: specieID
+    // episode2species — uses specie_ID (singular) matching Film2Species convention
+    for (const rel of (relationships.episode2species ?? [])) {
+        const episodeID = episodeIdByTitle.get(rel.episode)
+        const specieID  = speciesIdByName.get(rel.specie)
+        if (!episodeID || !specieID) { report.stats.missingReferences++; continue }
+        pushRow(rows.Episode2Species, dedupe.Episode2Species, {
+            ID: deterministicLinkId('Episode2Species', episodeID, specieID),
+            episode_ID: episodeID, specie_ID: specieID
         })
     }
 
@@ -558,7 +593,7 @@ async function runMigration(options = {}) {
             log.info('Running in delta mode: existing rows are preserved and matching keys are upserted')
         }
 
-        const [planets, people, films, shows, species, starships, vehicles, relationships] = await Promise.all([
+        const [planets, people, films, shows, species, starships, vehicles, episodes, relationships] = await Promise.all([
             readRawJSON('planets.json', 'Planet', report, log),
             readRawJSON('people.json', 'People', report, log),
             readRawJSON('films.json', 'Film', report, log),
@@ -566,11 +601,12 @@ async function runMigration(options = {}) {
             readRawJSON('species.json', 'Species', report, log),
             readRawJSON('starships.json', 'Starship', report, log),
             readRawJSON('vehicles.json', 'Vehicles', report, log),
+            readRawJSON('episodes.json', 'Episode', report, log),
             readRawJSON('relationships.json', 'Relationships', report, log)
         ])
 
         const transformedRows = transformEntities({
-            planets, people, films, shows, species, starships, vehicles, relationships
+            planets, people, films, shows, species, starships, vehicles, episodes, relationships
         }, report)
 
         for (const entityName of UPSERT_ORDER) {
