@@ -52,7 +52,7 @@ function extractSeasonLinks(wikitext, showTitle) {
     // Pass 2: links inside a ==Seasons== section, regardless of title
     // Handles anthology shows (e.g. Tales) where season sub-pages are linked
     // by series title rather than "Season N" page names.
-    const sectionMatch = wikitext.match(/==\s*Seasons?\s*==/i)
+    const sectionMatch = wikitext.match(/(?<!=)==\s*Seasons?\s*==(?!=)/i)
     if (sectionMatch) {
         const sectionStart = sectionMatch.index + sectionMatch[0].length
         const nextSection = wikitext.indexOf('\n==', sectionStart)
