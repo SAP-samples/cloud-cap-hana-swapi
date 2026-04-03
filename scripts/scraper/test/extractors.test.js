@@ -333,6 +333,27 @@ const ANDOR_S1_WIKITEXT = `
 |}
 `
 
+// Show page with inline episode table (no season sub-pages) — Boba Fett format
+const BOBA_FETT_SHOW_WIKITEXT = `
+==Episodes==
+{|{{Prettytable}}
+! Episode !! Image !! Title !! Original Airdate !! Prod. #
+|-
+|style="text-align: center;"|1
+|[[File:Chapter_1_Stranger_in_a_Strange_Land.jpg|150px]]
+|"[[Chapter 1: Stranger in a Strange Land]]"
+|[[December 29]], [[2021]]
+|101
+|-
+|style="text-align: center;"|2
+|[[File:Chapter_2_The_Tribes_of_Tatooine.jpg|150px]]
+|"[[Chapter 2: The Tribes of Tatooine]]"
+|[[January 5]], [[2022]]
+|102
+|-
+|}
+`
+
 const { extractSeasonEpisodeTitles } = require('../extractors/seasons')
 
 describe('extractSeasonEpisodeTitles', () => {
@@ -374,6 +395,13 @@ describe('extractSeasonEpisodeTitles', () => {
         const titles = extractSeasonEpisodeTitles(ANDOR_S1_WIKITEXT)
         assert.equal(titles.length, 1)
         assert.equal(titles[0], 'Kassa (episode)')
+    })
+
+    it('extracts episodes from a show page with inline episode table (no season sub-pages)', () => {
+        const titles = extractSeasonEpisodeTitles(BOBA_FETT_SHOW_WIKITEXT)
+        assert.equal(titles.length, 2)
+        assert.equal(titles[0], 'Chapter 1: Stranger in a Strange Land')
+        assert.equal(titles[1], 'Chapter 2: The Tribes of Tatooine')
     })
 })
 
