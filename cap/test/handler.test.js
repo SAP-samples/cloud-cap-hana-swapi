@@ -218,4 +218,67 @@ describe('People Service – Handler Behavior', () => {
                 'countByGender should be case-insensitive')
         })
     })
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // StarWarsShow – Media edit_url enrichment
+    // show-service.js registers an after-READ hook that sets edit_url based on
+    // media_type: 'FILM' → StarWarsFilm preview, 'SHOW' → StarWarsShow preview.
+    // ─────────────────────────────────────────────────────────────────────────
+    describe('StarWarsShow Service – Media edit_url enrichment', () => {
+        let filmId, showId
+
+        before(async () => {
+            const db = await cds.connect.to('db')
+            await db.run(INSERT.into('star.wars.Film').entries({
+                title: 'Media-Test-Film',
+                director: 'Test Director',
+                producer: 'Test Producer',
+                release_date: '1977-05-25',
+                episode_id: 0
+            }))
+            const [film] = await db.run(
+                SELECT.from('star.wars.Film').where({ title: 'Media-Test-Film' })
+            )
+            filmId = film.ID
+
+            await db.run(INSERT.into('star.wars.Show').entries({
+                title: 'Media-Test-Show',
+                show_type: 'ANIMATED_SERIES'
+            }))
+            const [show] = await db.run(
+                SELECT.from('star.wars.Show').where({ title: 'Media-Test-Show' })
+            )
+            showId = show.ID
+        })
+
+        after(async () => {
+            const db = await cds.connect.to('db')
+            if (filmId) await db.run(DELETE.from('star.wars.Film').where({ ID: filmId }))
+            if (showId) await db.run(DELETE.from('star.wars.Show').where({ ID: showId }))
+        })
+
+        it('FILM records get the StarWarsFilm preview URL', async () => {
+            const { data } = await GET(
+                `/odata/v4/StarWarsShow/Media?$filter=ID eq ${filmId}`
+            )
+            assert.ok(data.value.length >= 1, 'Expected at least one FILM record in seed data')
+            assert.equal(
+                data.value[0].edit_url,
+                '/$fiori-preview/StarWarsFilm/Film#preview-app',
+                'FILM edit_url should point to StarWarsFilm preview'
+            )
+        })
+
+        it('SHOW records get the StarWarsShow preview URL', async () => {
+            const { data } = await GET(
+                `/odata/v4/StarWarsShow/Media?$filter=ID eq ${showId}`
+            )
+            assert.ok(data.value.length >= 1, 'Expected at least one SHOW record in seed data')
+            assert.equal(
+                data.value[0].edit_url,
+                '/$fiori-preview/StarWarsShow/Show#preview-app',
+                'SHOW edit_url should point to StarWarsShow preview'
+            )
+        })
+    })
 })
