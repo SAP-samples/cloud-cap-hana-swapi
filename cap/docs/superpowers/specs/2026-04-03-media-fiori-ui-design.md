@@ -22,7 +22,7 @@ Add a new SAP Fiori Elements List Report + Object Page application that surfaces
 
 | Question | Decision |
 | -------- | -------- |
-| List columns | 6 columns: Title, show_type badge (FILM/LIVE_ACTION/ANIMATED etc.), Release Date, Director, Seasons (medium importance), Episodes (medium importance), Network (medium importance) |
+| List columns | 8 columns: Title, `media_type` (FILM/SHOW, high importance), `show_type` (LIVE_ACTION_SERIES/ANIMATED_SERIES/null for films, high importance), Release Date, Director, Seasons (medium importance), Episodes (medium importance), Network (medium importance). `media_type` and `show_type` are separate columns — `show_type` is blank for Film rows. |
 | Object page read-only? | Yes — `Media` is a UNION view; no editing |
 | Cross-app navigation | `edit_url` virtual field (String) computed by handler → used as `@UI.DataFieldWithUrl` in General facet |
 | Object page layout | Split: General tab + type-specific tab (Show Details or Film Details, hidden conditionally) + 5 association tabs |
@@ -92,13 +92,14 @@ annotate sws.Media with @(
         LineItem : [
             { $Type : 'UI.DataField', Value : title },
             { $Type : 'UI.DataField', Value : media_type,     ![@UI.Importance] : #High },
+            { $Type : 'UI.DataField', Value : show_type,      ![@UI.Importance] : #High },
             { $Type : 'UI.DataField', Value : release_date,   ![@UI.Importance] : #High },
             { $Type : 'UI.DataField', Value : director,       ![@UI.Importance] : #High },
             { $Type : 'UI.DataField', Value : seasons,        ![@UI.Importance] : #Medium },
             { $Type : 'UI.DataField', Value : episode_count,  ![@UI.Importance] : #Medium },
             { $Type : 'UI.DataField', Value : network,        ![@UI.Importance] : #Medium }
         ],
-        SelectionFields : [media_type, network, director, release_date],
+        SelectionFields : [media_type, show_type, network, director, release_date],
         HeaderInfo : {
             TypeName       : 'Media',
             TypeNamePlural : 'Media',
@@ -115,13 +116,13 @@ annotate sws.Media with @(
                 $Type          : 'UI.ReferenceFacet',
                 Label          : 'Show Details',
                 Target         : '@UI.FieldGroup#ShowDetails',
-                ![@UI.Hidden]  : { $edmJson : { '$ne' : [{ '$Path' : 'media_type' }, 'SHOW'] } }
+                ![@UI.Hidden]  : { $edmJson : { '$Ne' : [{ '$Path' : 'media_type' }, 'SHOW'] } }
             },
             {
                 $Type          : 'UI.ReferenceFacet',
                 Label          : 'Film Details',
                 Target         : '@UI.FieldGroup#FilmDetails',
-                ![@UI.Hidden]  : { $edmJson : { '$ne' : [{ '$Path' : 'media_type' }, 'FILM'] } }
+                ![@UI.Hidden]  : { $edmJson : { '$Ne' : [{ '$Path' : 'media_type' }, 'FILM'] } }
             }
         ],
         FieldGroup#General : {
@@ -157,7 +158,7 @@ annotate sws.Media with @(
 );
 ```
 
-_Conditional facet visibility logic:_
+_Conditional facet visibility logic (OData `$edmJson` — operator names are case-sensitive, use `$Ne` not `$ne`):_
 
 - Show Details: hidden when `media_type ≠ 'SHOW'` → visible only for Show records
 - Film Details: hidden when `media_type ≠ 'FILM'` → visible only for Film records
