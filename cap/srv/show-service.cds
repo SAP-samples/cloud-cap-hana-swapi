@@ -50,7 +50,10 @@ service StarWarsShow @(path : 'StarWarsShow') {
     entity Show2Vehicles   as projection on StarWars.Show2Vehicles;
 
     @readonly : true
-    entity Media            as projection on StarWars.Media;
+    entity Media as projection on StarWars.Media {
+        *,
+        virtual edit_url : String
+    };
 
     @readonly : true
     entity MediaCharacters  as projection on StarWars.MediaCharacters;
