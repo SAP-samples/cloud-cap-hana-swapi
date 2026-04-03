@@ -53,6 +53,36 @@ describe('extractSeasonLinks', () => {
         assert.equal(result.length, 1)
         assert.equal(result[0], 'Ahsoka Season 1')
     })
+
+    it('extracts sub-series links from ==Seasons== section even without "season" in title', () => {
+        const wikitext = `
+==Seasons==
+{|class="wikitable"
+|-
+|[[Star Wars: Tales of the Jedi (television series)|''Tales of the Jedi'']]
+|-
+|[[Star Wars: Tales of the Empire|''Tales of the Empire'']]
+|-
+|}
+`
+        const result = extractSeasonLinks(wikitext, 'Tales')
+        assert.ok(result.includes('Star Wars: Tales of the Jedi (television series)'), 'Tales of the Jedi included')
+        assert.ok(result.includes('Star Wars: Tales of the Empire'), 'Tales of the Empire included')
+    })
+
+    it('does not include File: links from ==Seasons== section', () => {
+        const wikitext = `
+==Seasons==
+{|class="wikitable"
+|-
+|[[File:TalesofJedi.png|150px]]
+|[[Star Wars: Tales of the Jedi (television series)|''Tales of the Jedi'']]
+|}
+`
+        const result = extractSeasonLinks(wikitext, 'Tales')
+        assert.ok(!result.some(t => t.startsWith('File:')), 'no File: links')
+        assert.ok(result.includes('Star Wars: Tales of the Jedi (television series)'))
+    })
 })
 
 describe('extractSeasonLinks — show pages without season sub-pages', () => {

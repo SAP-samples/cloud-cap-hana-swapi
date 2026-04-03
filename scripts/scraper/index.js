@@ -37,15 +37,35 @@ function extractSeasonLinks(wikitext, showTitle) {
     if (!wikitext) return []
     const keyWords = (showTitle || '').toLowerCase().split(/[\s:]+/)
         .filter(w => w.length > 2 && !SEASON_LINK_STOPWORDS.has(w))
-    const re = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g
     const titles = []
     let m
-    while ((m = re.exec(wikitext)) !== null) {
+
+    // Pass 1: links anywhere whose title contains "season" (standard multi-season shows)
+    const re1 = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g
+    while ((m = re1.exec(wikitext)) !== null) {
         const t = m[1].trim()
         if (!/season/i.test(t)) continue
         if (SEASON_LINK_BLOCKLIST.test(t)) continue
         if (keyWords.some(w => t.toLowerCase().includes(w))) titles.push(t)
     }
+
+    // Pass 2: links inside a ==Seasons== section, regardless of title
+    // Handles anthology shows (e.g. Tales) where season sub-pages are linked
+    // by series title rather than "Season N" page names.
+    const sectionMatch = wikitext.match(/==\s*Seasons?\s*==/i)
+    if (sectionMatch) {
+        const sectionStart = sectionMatch.index + sectionMatch[0].length
+        const nextSection = wikitext.indexOf('\n==', sectionStart)
+        const sectionContent = wikitext.slice(sectionStart, nextSection !== -1 ? nextSection : undefined)
+        const re2 = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g
+        while ((m = re2.exec(sectionContent)) !== null) {
+            const t = m[1].trim()
+            if (/^(File|Image|Category):/i.test(t)) continue
+            if (SEASON_LINK_BLOCKLIST.test(t)) continue
+            if (keyWords.some(w => t.toLowerCase().includes(w))) titles.push(t)
+        }
+    }
+
     return [...new Set(titles)]
 }
 
