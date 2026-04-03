@@ -54,3 +54,19 @@ describe('extractSeasonLinks', () => {
         assert.equal(result[0], 'Ahsoka Season 1')
     })
 })
+
+describe('extractSeasonLinks — show pages without season sub-pages', () => {
+    it('returns [] for Boba Fett show page wikitext (no season sub-page links)', () => {
+        const wikitext = `
+==Episodes==
+{|{{Prettytable}}
+|-
+|"[[Chapter 1: Stranger in a Strange Land]]"
+|-
+|"[[Chapter 2: The Tribes of Tatooine]]"
+|}
+`
+        const result = extractSeasonLinks(wikitext, 'Star Wars: The Book of Boba Fett')
+        assert.deepEqual(result, [])
+    })
+})

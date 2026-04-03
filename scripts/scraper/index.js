@@ -174,6 +174,16 @@ async function run() {
                         console.warn(`  [FAIL] Season ${seasonTitle}: ${err.message}`)
                     }
                 }
+                // No season sub-pages — try extracting episodes directly from the show page
+                if (seasonLinks.length === 0) {
+                    const directEpisodeTitles = extractSeasonEpisodeTitles(wikitext)
+                    for (const epTitle of directEpisodeTitles) {
+                        if (!episodes.has(epTitle)) {
+                            episodes.set(epTitle, null)
+                            episodeShowMap.set(epTitle, title)
+                        }
+                    }
+                }
             }
             stats.scraped++
         } catch (err) {
