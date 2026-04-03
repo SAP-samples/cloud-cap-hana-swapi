@@ -24,6 +24,19 @@ function extractAppSection(key, wikitext) {
     return results
 }
 
+/**
+ * Extract the link target (page title) from the raw |series= field.
+ * Wookieepedia episode infoboxes often use piped wikilinks like:
+ *   [[Star Wars: Tales of the Jedi (television series)|''Star Wars: Tales of the Jedi'']]
+ * cleanValue resolves these to the display label, but we want the page title for
+ * reliable show → episode joining.  Falls back to the already-cleaned value.
+ */
+function resolveSeriesTitle(cleanedSeries, wikitext) {
+    if (!cleanedSeries) return null
+    const m = wikitext.match(/\|series\s*=\s*\[\[([^\]|]+)/)
+    return m ? m[1].trim() : cleanedSeries
+}
+
 function extractEpisode(pageTitle, wikitext, showTitle) {
     const infobox = parseInfobox(wikitext)
     if (!infobox) return null
@@ -39,7 +52,7 @@ function extractEpisode(pageTitle, wikitext, showTitle) {
         writer:         resolveField(infobox, 'writer', ['writer', 'writers', 'written_by', 'teleplay', 'screenplay']),
         runtime:        normalizeInteger(resolveField(infobox, 'runtime', ['runtime', 'running_time', 'length', 'run_time'])),
         timeline:       normalizeString(infobox.timeline ?? infobox.timeline_position ?? null),
-        _show:          infobox.series ?? showTitle,
+        _show:          resolveSeriesTitle(infobox.series, wikitext) ?? showTitle,
         _characters:    extractAppSection('characters', wikitext),
         _planets:       extractAppSection('locations', wikitext),
         _starships:     vehicles,
