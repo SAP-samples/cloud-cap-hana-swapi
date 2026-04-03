@@ -70,9 +70,9 @@ Add one integration test that verifies the fallback path fires correctly: a show
 
 ## Test Plan
 
-1. Add a unit test in `test/index.test.js` confirming `extractSeasonEpisodeTitles` handles the inline-table format (a direct test of the function we're now relying on in the fallback path)
+1. Add a unit test in `test/extractors.test.js` (not `index.test.js`) confirming `extractSeasonEpisodeTitles` handles the inline-table format — a show page fixture with an `==Episodes==` table but no season sub-page links. This tests the function we're now relying on in the fallback path, within the file that already tests it.
 2. Run `npm run scrape` (cache-first)
-3. Verify episode counts per show in HANA — all 9 shows above should now have episodes
+3. Verify episode counts per show in HANA — all shows in the Expected Outcome table should now have episodes
 
 ## Expected Outcome
 
