@@ -39,7 +39,7 @@ function extractEpisode(pageTitle, wikitext, showTitle) {
         writer:         resolveField(infobox, 'writer', ['writer', 'writers', 'written_by', 'teleplay', 'screenplay']),
         runtime:        normalizeInteger(resolveField(infobox, 'runtime', ['runtime', 'running_time', 'length', 'run_time'])),
         timeline:       normalizeString(infobox.timeline ?? infobox.timeline_position ?? null),
-        _show:          showTitle,
+        _show:          infobox.series ?? showTitle,
         _characters:    extractAppSection('characters', wikitext),
         _planets:       extractAppSection('locations', wikitext),
         _starships:     vehicles,

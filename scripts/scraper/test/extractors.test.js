@@ -332,6 +332,7 @@ const ANDOR_S1_WIKITEXT = `
 |}
 `
 
+const { extractEpisode } = require('../extractors/episodes')
 const { extractSeasonEpisodeTitles } = require('../extractors/seasons')
 
 describe('extractSeasonEpisodeTitles', () => {
@@ -373,6 +374,50 @@ describe('extractSeasonEpisodeTitles', () => {
         const titles = extractSeasonEpisodeTitles(ANDOR_S1_WIKITEXT)
         assert.equal(titles.length, 1)
         assert.equal(titles[0], 'Kassa (episode)')
+    })
+})
+
+// ── Episode attribution fixtures ──────────────────────────────────────────────
+
+// Episode infobox WITH a |series= field (authoritative show)
+const EPISODE_WITH_SERIES_WIKITEXT = `
+{{Episode
+|series=Star Wars: The Mandalorian
+|season=One
+|number=9
+|airdate=October 30, 2020
+|director=Jon Favreau
+|writer=Jon Favreau
+|runtime=50
+}}
+`
+
+// Episode infobox WITHOUT a |series= field (fallback to showTitle)
+const EPISODE_WITHOUT_SERIES_WIKITEXT = `
+{{Episode
+|season=1
+|number=1
+|airdate=November 12, 2019
+|director=Dave Filoni
+|writer=Jon Favreau
+|runtime=39
+}}
+`
+
+describe('extractEpisode _show attribution', () => {
+    it('uses infobox series field when present, ignores showTitle', () => {
+        const ep = extractEpisode('Chapter 9: The Marshal', EPISODE_WITH_SERIES_WIKITEXT, 'Star Wars: Ahsoka')
+        assert.equal(ep._show, 'Star Wars: The Mandalorian')
+    })
+
+    it('falls back to showTitle when series field is absent', () => {
+        const ep = extractEpisode('Chapter 1: The Mandalorian', EPISODE_WITHOUT_SERIES_WIKITEXT, 'Star Wars: The Mandalorian')
+        assert.equal(ep._show, 'Star Wars: The Mandalorian')
+    })
+
+    it('falls back to showTitle when series field is empty string', () => {
+        const ep = extractEpisode('Chapter 1: The Mandalorian', EPISODE_WITHOUT_SERIES_WIKITEXT, 'Star Wars: The Clone Wars')
+        assert.equal(ep._show, 'Star Wars: The Clone Wars')
     })
 })
 

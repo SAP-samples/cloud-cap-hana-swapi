@@ -11,7 +11,7 @@ const INFOBOX_NAMES = new Set([
     // Productions
     'movie', 'film',
     'televisionseries', 'television series', 'tv series', 'tvseries', 'series',
-    'televisionepisode',
+    'televisionepisode', 'episode',
     // Characters / beings
     'character',
     'droid', 'creature',
