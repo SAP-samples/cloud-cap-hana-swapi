@@ -1,5 +1,43 @@
 using StarWarsShow as sws from './show-service';
 
+annotate sws.Media with {
+    media_type @(
+        title                          : '{i18n>media_type}',
+        Common.ValueListWithFixedValues: true,
+        Common.ValueList               : {
+            CollectionPath : 'MediaTypeValues',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterOut',
+                LocalDataProperty : media_type,
+                ValueListProperty : 'media_type'
+            }]
+        }
+    );
+    show_type @(
+        title                          : '{i18n>show_type}',
+        Common.ValueListWithFixedValues: true,
+        Common.ValueList               : {
+            CollectionPath : 'ShowTypeValues',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterOut',
+                LocalDataProperty : show_type,
+                ValueListProperty : 'show_type'
+            }]
+        }
+    );
+    network @(
+        title        : '{i18n>network}',
+        Common.ValueList : {
+            CollectionPath : 'NetworkValues',
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterOut',
+                LocalDataProperty : network,
+                ValueListProperty : 'network'
+            }]
+        }
+    );
+};
+
 annotate sws.Media with @(UI.TextArrangement : #TextOnly);
 
 annotate sws.Media with @(

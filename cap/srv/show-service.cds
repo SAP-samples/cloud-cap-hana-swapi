@@ -6,7 +6,11 @@ using {star.wars as StarWars} from '../db/schema';
 service StarWarsShow @(path : 'StarWarsShow') {
 
     @odata.draft.enabled : true
+    @cds.redirection.target : true
     entity Show            as projection on StarWars.Show;
+
+    @readonly : true
+    entity Episode as projection on StarWars.Episode;
 
     @readonly : true
     entity People          as projection on StarWars.People
@@ -69,4 +73,8 @@ service StarWarsShow @(path : 'StarWarsShow') {
 
     @readonly : true
     entity MediaVehicles    as projection on StarWars.MediaVehicles;
+
+    @readonly entity MediaTypeValues as SELECT DISTINCT key media_type FROM StarWars.Media WHERE media_type IS NOT NULL;
+    @readonly entity ShowTypeValues  as SELECT DISTINCT key show_type  FROM StarWars.Show  WHERE show_type  IS NOT NULL;
+    @readonly entity NetworkValues   as SELECT DISTINCT key network    FROM StarWars.Show  WHERE network    IS NOT NULL;
 }
