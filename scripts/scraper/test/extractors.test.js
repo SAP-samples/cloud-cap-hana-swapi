@@ -5,6 +5,7 @@ const assert = require('node:assert/strict')
 
 const { extractFilm } = require('../extractors/films')
 const { extractShow } = require('../extractors/shows')
+const { extractEpisode } = require('../extractors/episodes')
 const { normalizeInteger } = require('../normalize')
 
 // Minimal fixture wikitext for a film
@@ -332,7 +333,6 @@ const ANDOR_S1_WIKITEXT = `
 |}
 `
 
-const { extractEpisode } = require('../extractors/episodes')
 const { extractSeasonEpisodeTitles } = require('../extractors/seasons')
 
 describe('extractSeasonEpisodeTitles', () => {
@@ -415,7 +415,7 @@ describe('extractEpisode _show attribution', () => {
         assert.equal(ep._show, 'Star Wars: The Mandalorian')
     })
 
-    it('falls back to showTitle when series field is empty string', () => {
+    it('falls back to showTitle when series field is absent (different showTitle)', () => {
         const ep = extractEpisode('Chapter 1: The Mandalorian', EPISODE_WITHOUT_SERIES_WIKITEXT, 'Star Wars: The Clone Wars')
         assert.equal(ep._show, 'Star Wars: The Clone Wars')
     })
