@@ -20,5 +20,9 @@ service StarWarsEpisode @(path : 'StarWarsEpisode') {
     entity Episode2Vehicles  as projection on StarWars.Episode2Vehicles;
 
     @readonly : true
-    entity Episode2Species   as projection on StarWars.Episode2Species;
+    entity Episode2Species              as projection on StarWars.Episode2Species;
+
+    @readonly : true
+    @cds.redirection.target: false
+    entity CloneWarsChronologicalOrder  as projection on StarWars.CloneWarsChronologicalOrder;
 }

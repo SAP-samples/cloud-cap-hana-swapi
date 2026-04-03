@@ -625,6 +625,168 @@ define view Show2Species as select from Episode2Species {
     key specie.ID       as specie_ID
 };
 
+// ─── Clone Wars Chronological Episode Order ───────────────────────────────────
+// Official sequential order published by StarWars.com (March 17, 2014).
+// Positions 1–2 precede the theatrical film (not an Episode entity); positions
+// 3–133 follow.  The theatrical film itself is stored as a Film entity and is
+// intentionally excluded here.
+// Source: https://www.starwars.com/news/star-wars-the-clone-wars-chronological-episodeorder/
+// ─────────────────────────────────────────────────────────────────────────────
+define view CloneWarsChronologicalOrder as
+    select from Episode {
+        key ID,
+        show,
+        title,
+        season_number,
+        episode_number,
+        air_date,
+        director,
+        writer,
+        runtime,
+        timeline,
+        // season_number * 100 + episode_number gives a unique key per episode
+        // (e.g. Season 2 Ep 16 → 216) used in each WHEN to map to chronological position.
+        // Positions follow the official StarWars.com sequential order; position T
+        // (the 2008 theatrical film) is a Film entity and is not listed here.
+        case
+            when season_number * 100 + episode_number = 216 then 1
+            when season_number * 100 + episode_number = 116 then 2
+            when season_number * 100 + episode_number = 301 then 3
+            when season_number * 100 + episode_number = 303 then 4
+            when season_number * 100 + episode_number = 101 then 5
+            when season_number * 100 + episode_number = 102 then 6
+            when season_number * 100 + episode_number = 103 then 7
+            when season_number * 100 + episode_number = 104 then 8
+            when season_number * 100 + episode_number = 105 then 9
+            when season_number * 100 + episode_number = 106 then 10
+            when season_number * 100 + episode_number = 107 then 11
+            when season_number * 100 + episode_number = 108 then 12
+            when season_number * 100 + episode_number = 109 then 13
+            when season_number * 100 + episode_number = 110 then 14
+            when season_number * 100 + episode_number = 111 then 15
+            when season_number * 100 + episode_number = 112 then 16
+            when season_number * 100 + episode_number = 113 then 17
+            when season_number * 100 + episode_number = 114 then 18
+            when season_number * 100 + episode_number = 115 then 19
+            when season_number * 100 + episode_number = 117 then 20
+            when season_number * 100 + episode_number = 118 then 21
+            when season_number * 100 + episode_number = 119 then 22
+            when season_number * 100 + episode_number = 120 then 23
+            when season_number * 100 + episode_number = 121 then 24
+            when season_number * 100 + episode_number = 201 then 25
+            when season_number * 100 + episode_number = 202 then 26
+            when season_number * 100 + episode_number = 203 then 27
+            when season_number * 100 + episode_number = 217 then 28
+            when season_number * 100 + episode_number = 218 then 29
+            when season_number * 100 + episode_number = 219 then 30
+            when season_number * 100 + episode_number = 204 then 31
+            when season_number * 100 + episode_number = 205 then 32
+            when season_number * 100 + episode_number = 206 then 33
+            when season_number * 100 + episode_number = 207 then 34
+            when season_number * 100 + episode_number = 208 then 35
+            when season_number * 100 + episode_number = 209 then 36
+            when season_number * 100 + episode_number = 210 then 37
+            when season_number * 100 + episode_number = 211 then 38
+            when season_number * 100 + episode_number = 212 then 39
+            when season_number * 100 + episode_number = 213 then 40
+            when season_number * 100 + episode_number = 214 then 41
+            when season_number * 100 + episode_number = 220 then 42
+            when season_number * 100 + episode_number = 221 then 43
+            when season_number * 100 + episode_number = 222 then 44
+            when season_number * 100 + episode_number = 305 then 45
+            when season_number * 100 + episode_number = 306 then 46
+            when season_number * 100 + episode_number = 307 then 47
+            when season_number * 100 + episode_number = 302 then 48
+            when season_number * 100 + episode_number = 304 then 49
+            when season_number * 100 + episode_number = 308 then 50
+            when season_number * 100 + episode_number = 122 then 51
+            when season_number * 100 + episode_number = 309 then 52
+            when season_number * 100 + episode_number = 310 then 53
+            when season_number * 100 + episode_number = 311 then 54
+            when season_number * 100 + episode_number = 215 then 55
+            when season_number * 100 + episode_number = 312 then 56
+            when season_number * 100 + episode_number = 313 then 57
+            when season_number * 100 + episode_number = 314 then 58
+            when season_number * 100 + episode_number = 315 then 59
+            when season_number * 100 + episode_number = 316 then 60
+            when season_number * 100 + episode_number = 317 then 61
+            when season_number * 100 + episode_number = 318 then 62
+            when season_number * 100 + episode_number = 319 then 63
+            when season_number * 100 + episode_number = 320 then 64
+            when season_number * 100 + episode_number = 321 then 65
+            when season_number * 100 + episode_number = 322 then 66
+            when season_number * 100 + episode_number = 401 then 67
+            when season_number * 100 + episode_number = 402 then 68
+            when season_number * 100 + episode_number = 403 then 69
+            when season_number * 100 + episode_number = 404 then 70
+            when season_number * 100 + episode_number = 405 then 71
+            when season_number * 100 + episode_number = 406 then 72
+            when season_number * 100 + episode_number = 407 then 73
+            when season_number * 100 + episode_number = 408 then 74
+            when season_number * 100 + episode_number = 409 then 75
+            when season_number * 100 + episode_number = 410 then 76
+            when season_number * 100 + episode_number = 411 then 77
+            when season_number * 100 + episode_number = 412 then 78
+            when season_number * 100 + episode_number = 413 then 79
+            when season_number * 100 + episode_number = 414 then 80
+            when season_number * 100 + episode_number = 415 then 81
+            when season_number * 100 + episode_number = 416 then 82
+            when season_number * 100 + episode_number = 417 then 83
+            when season_number * 100 + episode_number = 418 then 84
+            when season_number * 100 + episode_number = 419 then 85
+            when season_number * 100 + episode_number = 420 then 86
+            when season_number * 100 + episode_number = 421 then 87
+            when season_number * 100 + episode_number = 422 then 88
+            when season_number * 100 + episode_number = 502 then 89
+            when season_number * 100 + episode_number = 503 then 90
+            when season_number * 100 + episode_number = 504 then 91
+            when season_number * 100 + episode_number = 505 then 92
+            when season_number * 100 + episode_number = 506 then 93
+            when season_number * 100 + episode_number = 507 then 94
+            when season_number * 100 + episode_number = 508 then 95
+            when season_number * 100 + episode_number = 509 then 96
+            when season_number * 100 + episode_number = 510 then 97
+            when season_number * 100 + episode_number = 511 then 98
+            when season_number * 100 + episode_number = 512 then 99
+            when season_number * 100 + episode_number = 513 then 100
+            when season_number * 100 + episode_number = 501 then 101
+            when season_number * 100 + episode_number = 514 then 102
+            when season_number * 100 + episode_number = 515 then 103
+            when season_number * 100 + episode_number = 516 then 104
+            when season_number * 100 + episode_number = 517 then 105
+            when season_number * 100 + episode_number = 518 then 106
+            when season_number * 100 + episode_number = 519 then 107
+            when season_number * 100 + episode_number = 520 then 108
+            when season_number * 100 + episode_number = 601 then 109
+            when season_number * 100 + episode_number = 602 then 110
+            when season_number * 100 + episode_number = 603 then 111
+            when season_number * 100 + episode_number = 604 then 112
+            when season_number * 100 + episode_number = 605 then 113
+            when season_number * 100 + episode_number = 606 then 114
+            when season_number * 100 + episode_number = 607 then 115
+            when season_number * 100 + episode_number = 608 then 116
+            when season_number * 100 + episode_number = 609 then 117
+            when season_number * 100 + episode_number = 610 then 118
+            when season_number * 100 + episode_number = 611 then 119
+            when season_number * 100 + episode_number = 612 then 120
+            when season_number * 100 + episode_number = 613 then 121
+            when season_number * 100 + episode_number = 705 then 122
+            when season_number * 100 + episode_number = 706 then 123
+            when season_number * 100 + episode_number = 707 then 124
+            when season_number * 100 + episode_number = 708 then 125
+            when season_number * 100 + episode_number = 701 then 126
+            when season_number * 100 + episode_number = 702 then 127
+            when season_number * 100 + episode_number = 703 then 128
+            when season_number * 100 + episode_number = 704 then 129
+            when season_number * 100 + episode_number = 709 then 130
+            when season_number * 100 + episode_number = 710 then 131
+            when season_number * 100 + episode_number = 711 then 132
+            when season_number * 100 + episode_number = 712 then 133
+            else null
+        end as![chronological_order] : Integer
+    }
+    where show.title = 'Star Wars: The Clone Wars';
+
 // ─── Unified Media Views ──────────────────────────────────────────────────────
 // Read-only UNION views across Film and Show.
 // media_type is always 'FILM' or 'SHOW' — use show_type on the Show entity
