@@ -185,6 +185,7 @@ async function run() {
                         const subSeriesRecord = extractShow(seasonTitle, seasonWikitext)
                         if (subSeriesRecord && !shows.has(seasonTitle)) {
                             shows.set(seasonTitle, subSeriesRecord)
+                            subSeriesRecord._characters.forEach(n => { people.set(n, null); rels.show2people.add(`${seasonTitle}::${n}`) })
                         }
                         const episodeTitles = extractSeasonEpisodeTitles(seasonWikitext)
                         for (const epTitle of episodeTitles) {
