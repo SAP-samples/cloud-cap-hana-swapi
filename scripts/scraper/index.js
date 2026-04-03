@@ -181,6 +181,11 @@ async function run() {
                     try {
                         const seasonWikitext = await fetchWikitext(seasonTitle, BYPASS_CACHE)
                         if (!seasonWikitext) continue
+                        // Register sub-series page as a show if it has a recognizable show infobox
+                        const subSeriesRecord = extractShow(seasonTitle, seasonWikitext)
+                        if (subSeriesRecord && !shows.has(seasonTitle)) {
+                            shows.set(seasonTitle, subSeriesRecord)
+                        }
                         const episodeTitles = extractSeasonEpisodeTitles(seasonWikitext)
                         for (const epTitle of episodeTitles) {
                             if (!episodes.has(epTitle)) {

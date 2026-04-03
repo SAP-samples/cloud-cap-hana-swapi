@@ -4,6 +4,7 @@ const { describe, it } = require('node:test')
 const assert = require('node:assert/strict')
 
 const { extractSeasonLinks } = require('../index')
+const { extractShow } = require('../extractors/shows')
 
 describe('extractSeasonLinks', () => {
     it('returns [] for empty wikitext', () => {
@@ -98,5 +99,23 @@ describe('extractSeasonLinks — show pages without season sub-pages', () => {
 `
         const result = extractSeasonLinks(wikitext, 'Star Wars: The Book of Boba Fett')
         assert.deepEqual(result, [])
+    })
+})
+
+describe('extractShow — televisionseason infobox', () => {
+    it('parses a {{TelevisionSeason}} infobox page', () => {
+        const wikitext = `
+{{TelevisionSeason
+|name = Tales of the Jedi
+|network = Disney+
+|premiere = October 26, 2022
+|episodes = 6
+}}
+`
+        const result = extractShow('Star Wars: Tales of the Jedi (television series)', wikitext)
+        assert.ok(result !== null, 'should not return null')
+        assert.equal(result.title, 'Star Wars: Tales of the Jedi (television series)')
+        assert.equal(result.show_type, 'ANIMATED_SERIES')
+        assert.equal(result.episode_count, 6)
     })
 })
