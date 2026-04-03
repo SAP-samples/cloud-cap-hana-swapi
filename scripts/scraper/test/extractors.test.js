@@ -401,7 +401,7 @@ describe('normalizeInteger', () => {
 
     it('returns null for unknown words', () => {
         assert.equal(normalizeInteger('eleven'), null)
-        assert.equal(normalizeInteger('unknown'), null)
+        assert.equal(normalizeInteger('twelve'), null)
     })
 
     it('returns null for null/undefined', () => {
