@@ -74,16 +74,26 @@ The episode title cell is uniquely identified by a quoted wikilink: `"[[Page Tit
 
 1. Extract the Episodes section (existing heading detection logic, kept as-is)
 2. Split on `|-` to get table rows
-3. For each row, search for the pattern `"[[Page Title]]"` (a wikilink surrounded by straight double quotes)
-4. Extract the page title from the first matching quoted wikilink
+3. For each row, try the following signals in order, stopping at the first match:
+   a. **Quoted wikilink:** `"[[Page Title]]"` — straight double quotes around a wikilink (most shows)
+   b. **Italic wikilink:** `''[[Page Title]]''` — italic markup around a wikilink (Rebels season premieres use this format)
+4. Extract the page title from the matched pattern
 5. Skip `File:`, `Image:`, `Category:` prefixed links (existing filter, kept as-is)
-6. **Fallback:** if no quoted wikilink is found in a row but the row contains exactly one non-File wikilink, use that link (handles format variations on some show pages)
+6. **Fallback:** if neither primary signal is found in a row but the row contains exactly one non-File, non-date wikilink, use that link (handles any remaining format variations). Date wikilinks (month names, four-digit years) are excluded from the count.
+
+### Known format variations handled
+
+| Format | Example | Signal |
+| --- | --- | --- |
+| Standard (most shows) | `"[[Chapter 1: The Mandalorian]]"` | Quoted wikilink |
+| Italic premiere (Rebels) | `''[[Star Wars Rebels: Spark of Rebellion]]''` | Italic wikilink |
 
 ### What this fixes
 
-- Character links ("Ahsoka Tano", "R2-D2/Legends") appear in episode synopsis cells but are never quoted — they are excluded
+- Character links ("Ahsoka Tano", "R2-D2/Legends") appear in episode synopsis cells but are never quoted or italic-wrapped — they are excluded
+- Airdate wikilinks (`[[November 12]]`, `[[2019]]`) are plain wikilinks excluded by the date filter in the fallback path
 - File links are excluded by the existing namespace filter
-- Episode title links are always quoted per Wookieepedia episode table convention
+- Episode title links always use quoted or italic markup per Wookieepedia episode table convention
 
 ---
 
@@ -106,18 +116,42 @@ npm run load           # full-replace load to HANA
 ## Files Changed
 
 | File | Change |
-|---|---|
+| --- | --- |
 | `scripts/scraper/extractors/films.js` | Add `parseEpisodeId()`, change `episode_id: null` → `episode_id: parseEpisodeId(pageTitle)` |
-| `scripts/scraper/extractors/seasons.js` | Replace `extractWikilinks()` with table-row parser using quoted-wikilink detection |
+| `scripts/scraper/extractors/seasons.js` | Replace `extractWikilinks()` with table-row parser using quoted and italic wikilink detection |
+| `scripts/scraper/test/extractors.test.js` | Add `episode_id` assertions to film extractor tests; add `extractSeasonEpisodeTitles` tests |
 
 No schema changes. No `convertData.js` changes. No `cap/package.json` changes.
+
+---
+
+## Test Cases Required
+
+### `extractFilm` — episode_id
+
+| Input title | Expected `episode_id` |
+| --- | --- |
+| `Star Wars: Episode I The Phantom Menace` | `1` |
+| `Star Wars: Episode IV A New Hope` | `4` |
+| `Star Wars: Episode IX The Rise of Skywalker` | `9` |
+| `Rogue One: A Star Wars Story` | `0` |
+| `Solo: A Star Wars Story` | `0` |
+
+### `extractSeasonEpisodeTitles` — episode table parsing
+
+| Input | Expected |
+| --- | --- |
+| Mandalorian Season One wikitext | 8 titles, first is `Chapter 1: The Mandalorian` |
+| Ahsoka Season 1 wikitext | 8 titles, first is `Part One: Master and Apprentice` |
+| Rebels Season One wikitext | Includes `Star Wars Rebels: Spark of Rebellion` (italic premiere) |
+| Page with no Episodes section | `[]` |
 
 ---
 
 ## Expected Outcome
 
 | Check | Before | After |
-|---|---|---|
+| --- | --- | --- |
 | `Film.episode_id` | All 0 | Episodes I–IX → 1–9, anthologies → 0 |
 | Total episode rows | 772 (693 spurious) | ~430 proper episodes |
 | Episodes with `season_number` | 79 / 772 (10%) | ~430 / ~430 (100%) |
