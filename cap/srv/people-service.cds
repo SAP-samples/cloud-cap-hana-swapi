@@ -24,7 +24,8 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
          * Showcase: virtual element — not persisted, computed in the after-READ handler.
          * Pattern: <name> (<birth_year>) e.g. "Luke Skywalker (19BBY)"
          */
-        virtual displayTitle : String
+        virtual displayTitle : String,
+        episodes : Association to many Episode2People on episodes.people.ID = ID
     } excluding { shows } actions {
         /**
          * Showcase: bound action — renames this character and emits a People.Changed.v1 event.
@@ -88,7 +89,13 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
 
     @readonly : true
     entity Episode @(cds.redirection.target : false)    as projection on StarWars.Episode {
-        ID, title, season_number, episode_number, air_date, director, writer, runtime, timeline
+        ID, title, season_number, episode_number, air_date, director, writer, runtime, timeline,
+        show : redirected to Show
+    };
+
+    @readonly : true
+    entity Show @(cds.redirection.target : false)       as projection on StarWars.Show {
+        ID, title
     };
 
     entity Species2People                               as projection on StarWars.Species2People {

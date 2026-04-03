@@ -291,6 +291,12 @@ annotate sws.Episode2People with @(
         LineItem            : [
         {
             $Type             : 'UI.DataField',
+            Value             : episode.show.title,
+            Label             : '{i18n>Show}',
+            ![@UI.Importance] : #High
+        },
+        {
+            $Type             : 'UI.DataField',
             Value             : episode.title,
             Label             : '{i18n>Episode}',
             ![@UI.Importance] : #High
