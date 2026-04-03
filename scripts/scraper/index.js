@@ -23,16 +23,28 @@ const ARGS = new Set(process.argv.slice(2))
 const BYPASS_CACHE = ARGS.has('--bypass-cache')
 const FILMS_ONLY = ARGS.has('--films-only')
 
+const SEASON_LINK_BLOCKLIST = /complete|guide|art of|score|vol\.|collector|soundtrack|handbook|encyclopedia/i
+const SEASON_LINK_STOPWORDS = new Set(['star', 'wars', 'the', 'a', 'of', 'and', 'in'])
+
 /**
  * Extract season page titles from a show's wikitext.
+ * Only returns pages that:
+ *   1. Contain "season" in the page title
+ *   2. Are not merchandise/media pages (blocklist)
+ *   3. Contain at least one distinctive word from the show's title
  */
-function extractSeasonLinks(wikitext) {
+function extractSeasonLinks(wikitext, showTitle) {
+    if (!wikitext) return []
+    const keyWords = (showTitle || '').toLowerCase().split(/[\s:]+/)
+        .filter(w => w.length > 2 && !SEASON_LINK_STOPWORDS.has(w))
     const re = /\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g
     const titles = []
     let m
     while ((m = re.exec(wikitext)) !== null) {
-        const title = m[1].trim()
-        if (/season/i.test(title)) titles.push(title)
+        const t = m[1].trim()
+        if (!/season/i.test(t)) continue
+        if (SEASON_LINK_BLOCKLIST.test(t)) continue
+        if (keyWords.some(w => t.toLowerCase().includes(w))) titles.push(t)
     }
     return [...new Set(titles)]
 }
@@ -144,7 +156,7 @@ async function run() {
                 record._vehicles.forEach(n => { vehicles.set(n, null); rels.show2vehicles.add(`${title}::${n}`) })
                 record._species.forEach(n => { speciesMap.set(n, null); rels.show2species.add(`${title}::${n}`) })
 
-                const seasonLinks = extractSeasonLinks(wikitext)
+                const seasonLinks = extractSeasonLinks(wikitext, title)
                 for (const seasonTitle of seasonLinks) {
                     try {
                         const seasonWikitext = await fetchWikitext(seasonTitle, BYPASS_CACHE)
@@ -348,7 +360,11 @@ async function run() {
     if (failed.length) console.log(`Failed pages logged to: ${FAILED_LOG}`)
 }
 
-run().catch(err => {
-    console.error(err)
-    process.exit(1)
-})
+if (require.main === module) {
+    run().catch(err => {
+        console.error(err)
+        process.exit(1)
+    })
+}
+
+module.exports = { extractSeasonLinks }
