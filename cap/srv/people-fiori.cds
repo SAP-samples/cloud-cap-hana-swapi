@@ -141,6 +141,11 @@ annotate sws.People with @( // header-level annotations
     },
     {
         $Type  : 'UI.ReferenceFacet',
+        Label  : '{i18n>Episodes}',
+        Target : 'episodes/@UI.LineItem'
+    },
+    {
+        $Type  : 'UI.ReferenceFacet',
         Label  : '{i18n>Species}',
         Target : 'species/@UI.LineItem'
     },
@@ -267,6 +272,110 @@ annotate sws.Film2People with @( // header-level annotations
     UI.Facets : [{
         $Type  : 'UI.CollectionFacet',
         ID     : 'PeopleFilmDetails',
+        Label  : '{i18n>details}',
+        Facets : [{
+            $Type  : 'UI.ReferenceFacet',
+            Label  : '{i18n>details}',
+            Target : '@UI.FieldGroup#Description'
+        }]
+    }]
+);
+
+
+annotate sws.Episode2People with @(
+    // ---------------------------------------------------------------------------
+    // List Report
+    // ---------------------------------------------------------------------------
+    UI        : {
+        TextArrangement     : #TextOnly,
+        LineItem            : [
+        {
+            $Type             : 'UI.DataField',
+            Value             : episode.title,
+            Label             : '{i18n>Episode}',
+            ![@UI.Importance] : #High
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.season_number,
+            ![@Common.FieldControl] : #ReadOnly,
+            ![@UI.Importance]       : #High
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.episode_number,
+            ![@Common.FieldControl] : #ReadOnly,
+            ![@UI.Importance]       : #High
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.air_date,
+            ![@Common.FieldControl] : #ReadOnly,
+            ![@UI.Importance]       : #High
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.director,
+            ![@Common.FieldControl] : #ReadOnly,
+            ![@UI.Importance]       : #High
+        }
+        ],
+        PresentationVariant : {SortOrder : [{
+            $Type      : 'Common.SortOrderType',
+            Property   : episode.air_date,
+            Descending : false
+        }]}
+    },
+    // ---------------------------------------------------------------------------
+    // Object Page
+    // ---------------------------------------------------------------------------
+    UI        : {
+        HeaderInfo              : {
+            Title          : {
+                $Type : 'UI.DataField',
+                Value : people.name
+            },
+            TypeName       : '{i18n>Episode}',
+            TypeNamePlural : '{i18n>Episodes}',
+            Description    : {Value : episode.title}
+        },
+        FieldGroup #Description : {Data : [
+        {
+            $Type : 'UI.DataField',
+            Value : episode.title,
+            Label : '{i18n>Episode}',
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.season_number,
+            ![@Common.FieldControl] : #ReadOnly
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.episode_number,
+            ![@Common.FieldControl] : #ReadOnly
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.air_date,
+            ![@Common.FieldControl] : #ReadOnly
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.director,
+            ![@Common.FieldControl] : #ReadOnly
+        },
+        {
+            $Type                   : 'UI.DataField',
+            Value                   : episode.writer,
+            ![@Common.FieldControl] : #ReadOnly
+        }
+        ]}
+    },
+    // Page Facets
+    UI.Facets : [{
+        $Type  : 'UI.CollectionFacet',
+        ID     : 'PeopleEpisodeDetails',
         Label  : '{i18n>details}',
         Facets : [{
             $Type  : 'UI.ReferenceFacet',

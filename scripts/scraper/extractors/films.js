@@ -33,28 +33,34 @@ function extractFilm(pageTitle, wikitext) {
     /**
      * Extract page titles listed under a named field in the {{App}} template.
      * Fields are delimited by \n| so we find the field start and scan to the next \n|.
+     * Tries each key in order, returning the first non-empty result.
+     * Episodes I-VI use c-prefixed keys (c-characters, c-locations, etc.);
+     * Episodes VII-IX and anthology films use unprefixed keys (characters, locations, etc.).
      */
-    function extractAppSection(key) {
-        const marker = `|${key}=`
-        const start = wikitext.indexOf(marker)
-        if (start === -1) return []
-        const contentStart = start + marker.length
-        const nextField = wikitext.indexOf('\n|', contentStart)
-        const content = wikitext.slice(contentStart, nextField !== -1 ? nextField : undefined)
+    function extractAppSection(...keys) {
+        for (const key of keys) {
+            const marker = `|${key}=`
+            const start = wikitext.indexOf(marker)
+            if (start === -1) continue
+            const contentStart = start + marker.length
+            const nextField = wikitext.indexOf('\n|', contentStart)
+            const content = wikitext.slice(contentStart, nextField !== -1 ? nextField : undefined)
 
-        // Extract the page title from the first [[PageTitle|...]] or [[PageTitle]] on each line.
-        // This avoids picking up trailing nicknames/annotations after the wiki link.
-        const results = []
-        for (const line of content.split('\n')) {
-            const m = line.match(/\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/)
-            if (m) results.push(m[1].trim())
+            // Extract the page title from the first [[PageTitle|...]] or [[PageTitle]] on each line.
+            // This avoids picking up trailing nicknames/annotations after the wiki link.
+            const results = []
+            for (const line of content.split('\n')) {
+                const m = line.match(/\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/)
+                if (m) results.push(m[1].trim())
+            }
+            if (results.length > 0) return results
         }
-        return results
+        return []
     }
 
-    // c-vehicles covers both starships and vehicles — assign to both so both entity
+    // c-vehicles / vehicles covers both starships and vehicles — assign to both so both entity
     // maps get populated; individual entity pages determine the actual type.
-    const vehicles = extractAppSection('c-vehicles')
+    const vehicles = extractAppSection('c-vehicles', 'vehicles')
 
     return {
         title:         pageTitle,
@@ -65,11 +71,11 @@ function extractFilm(pageTitle, wikitext) {
         episode_id:    parseEpisodeId(pageTitle),
         _legendsVariant: infobox._legendsVariant ?? false,
         // Relationship link lists — resolved to entity records by orchestrator
-        _characters:   extractAppSection('c-characters'),
-        _planets:      extractAppSection('c-locations'),
+        _characters:   extractAppSection('c-characters', 'characters'),
+        _planets:      extractAppSection('c-locations', 'locations'),
         _starships:    vehicles,
         _vehicles:     vehicles,
-        _species:      extractAppSection('c-species'),
+        _species:      extractAppSection('c-species', 'species'),
     }
 }
 

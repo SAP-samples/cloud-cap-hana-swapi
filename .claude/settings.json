@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import json,urllib.parse; data=json.load\\(open\\('d:/projects/cloud-cap-hana-swapi/scripts/data/cache/The%20Mandalorian%20Season%20One.json'\\)\\); print\\(data['wikitext'][:3000]\\)\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('d:/projects/cloud-cap-hana-swapi/scripts/data/cache/The%20Mandalorian%20Season%20One.json','utf8'\\)\\); console.log\\(d.wikitext.slice\\(0,3000\\)\\)\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('d:/projects/cloud-cap-hana-swapi/scripts/data/cache/The%20Mandalorian%20Season%20One.json','utf8'\\)\\); console.log\\(Object.keys\\(d\\)\\); console.log\\(JSON.stringify\\(d\\).slice\\(0,200\\)\\)\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('d:/projects/cloud-cap-hana-swapi/scripts/data/cache/The%20Mandalorian%20Season%20One.json','utf8'\\)\\); const wt=d.data; const idx=wt.indexOf\\('=='\\); console.log\\(wt.slice\\(idx, idx+4000\\)\\)\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('d:/projects/cloud-cap-hana-swapi/scripts/data/cache/Ahsoka%20Season%201.json','utf8'\\)\\); const wt=d.data; const idx=wt.indexOf\\('Episodes'\\); console.log\\(wt.slice\\(idx, idx+3000\\)\\)\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('d:/projects/cloud-cap-hana-swapi/scripts/data/cache/Star%20Wars%3A%20Episode%20IV%20A%20New%20Hope.json','utf8'\\)\\); const wt=d.data; console.log\\(wt.slice\\(0,1500\\)\\)\")",
+      "Bash(node --test --test-reporter=tap test/extractors.test.js)",
+      "Bash(node --test --test-reporter=tap scripts/scraper/test/extractors.test.js)",
+      "Bash(node -e ':*)",
+      "Bash(node --test --test-reporter=tap D:/projects/cloud-cap-hana-swapi/scripts/scraper/test/extractors.test.js)",
+      "Bash(grep -n \"extractSeasonEpisodeTitles\\\\|seasons\" /d/projects/cloud-cap-hana-swapi/scripts/scraper/*.js)"
+    ]
+  }
+}

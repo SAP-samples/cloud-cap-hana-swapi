@@ -82,6 +82,15 @@ service StarWarsPeople @(path : 'StarWarsPeople') {
         * , people : redirected to People
     };
 
+    entity Episode2People                               as projection on StarWars.Episode2People {
+        * , people : redirected to People
+    };
+
+    @readonly : true
+    entity Episode @(cds.redirection.target : false)    as projection on StarWars.Episode {
+        ID, title, season_number, episode_number, air_date, director, writer, runtime, timeline
+    };
+
     entity Species2People                               as projection on StarWars.Species2People {
         * , people : redirected to People
     };
