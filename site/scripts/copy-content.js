@@ -20,6 +20,7 @@ const mappings = [
   { src: 'cap/docs/pitfalls.md',                    dest: 'reference/pitfalls.md' },
   { src: 'cap/docs/value-help-migration.md',        dest: 'reference/migration.md' },
   { src: 'CHANGELOG.md',                            dest: 'reference/changelog.md' },
+  { src: 'cap/docs/v2-announcement.md',             dest: 'reference/v2-announcement.md' },
   // API (special: strip Widdershins frontmatter, inject title)
   { src: 'cap/docs/DataService_readme.md', dest: 'api/data-service.md', stripFrontmatter: true, title: 'Data Service API' },
   { src: 'cap/docs/StarWarsFilm_readme.md', dest: 'api/film.md',         stripFrontmatter: true, title: 'Film API' },

@@ -75,6 +75,7 @@ export default withMermaid(defineConfig({
       ],
       '/reference/': [
         { text: 'Reference', items: [
+          { text: 'v2.0 Announcement',    link: '/reference/v2-announcement' },
           { text: 'CDS Cheat Sheet',      link: '/reference/cheat-sheet' },
           { text: 'Common Pitfalls',      link: '/reference/pitfalls' },
           { text: 'Value-Help Migration', link: '/reference/migration' },
