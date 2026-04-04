@@ -14,12 +14,14 @@ const mappings = [
   // Architecture
   { src: 'cap/docs/cap-architecture.md',            dest: 'architecture/index.md' },
   { src: 'cap/docs/profile-comparison.md',          dest: 'architecture/profiles.md' },
+  { src: 'cap/docs/shows-episodes.md',              dest: 'architecture/shows-episodes.md' },
   // Reference
   { src: 'cap/docs/cap-cheat-sheet.md',             dest: 'reference/cheat-sheet.md' },
   { src: 'cap/docs/pitfalls.md',                    dest: 'reference/pitfalls.md' },
   { src: 'cap/docs/value-help-migration.md',        dest: 'reference/migration.md' },
-  // API (special: strip Widdershins frontmatter)
-  { src: 'cap/docs/DataService_readme.md',          dest: 'api/index.md', stripFrontmatter: true },
+  // API (special: strip Widdershins frontmatter, inject title)
+  { src: 'cap/docs/DataService_readme.md', dest: 'api/data-service.md', stripFrontmatter: true, title: 'Data Service API' },
+  { src: 'cap/docs/StarWarsFilm_readme.md', dest: 'api/film.md',         stripFrontmatter: true, title: 'Film API' },
   // HANA CLI
   { src: 'HANA_CLI_QUICKSTART.md',                  dest: 'hana-cli/quickstart.md' },
   { src: 'HANA_CLI_EXAMPLES.md',                    dest: 'hana-cli/examples.md' },
@@ -32,6 +34,12 @@ const mappings = [
   { src: 'cap/labs/lab-03-handler/README.md',        dest: 'labs/lab-03.md' },
   { src: 'cap/labs/lab-04-auth/README.md',           dest: 'labs/lab-04.md' },
   { src: 'cap/labs/lab-05-testing/README.md',        dest: 'labs/lab-05.md' },
+  // Fiori Apps
+  { src: 'cap/docs/fiori-overview.md',               dest: 'app/index.md' },
+  { src: 'cap/docs/fiori-people.md',                 dest: 'app/people.md' },
+  { src: 'cap/docs/fiori-media.md',                  dest: 'app/media.md' },
+  { src: 'cap/docs/fiori-film.md',                   dest: 'app/film.md' },
+  { src: 'cap/docs/fiori-show.md',                   dest: 'app/show.md' },
 ]
 
 // Link rewrites applied after copy: maps relative paths in original source
@@ -80,7 +88,7 @@ function applyLinkRewrites(content) {
   return content
 }
 
-for (const { src, dest, stripFrontmatter } of mappings) {
+for (const { src, dest, stripFrontmatter, title } of mappings) {
   const srcPath = resolve(root, src)
   const destPath = resolve(site, dest)
   mkdirSync(dirname(destPath), { recursive: true })
@@ -88,8 +96,9 @@ for (const { src, dest, stripFrontmatter } of mappings) {
   let content = readFileSync(srcPath, 'utf8')
 
   if (stripFrontmatter) {
+    const pageTitle = title ?? 'API Reference'
     // Replace leading ---...--- frontmatter block with minimal VitePress frontmatter
-    content = content.replace(/^---[\s\S]*?---\r?\n/, '---\ntitle: API Reference\n---\n')
+    content = content.replace(/^---[\s\S]*?---\r?\n/, `---\ntitle: ${pageTitle}\n---\n`)
   }
 
   content = applyLinkRewrites(content)
