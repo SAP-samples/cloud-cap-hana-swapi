@@ -6,6 +6,15 @@ This document explains how the layers in this sample fit together.
 
 ```mermaid
 graph TB
+    subgraph APP["Fiori Apps  (cap/app/)"]
+        direction LR
+        LAUNCH[Launchpad]
+        FPEOPLE[People App]
+        FMEDIA[Media Browser]
+        FFILM[Film Editor]
+        FSHOW[Show/Episode Editor]
+    end
+
     subgraph Clients["Client Layer"]
         UI[Fiori / Browser UI]
         REST[REST Client]
@@ -39,6 +48,7 @@ graph TB
     end
 
     UI -->|OData v4| SVCDEF
+    APP -->|OData v4| SVCDEF
     REST -->|REST| SVCDEF
     GQL -->|GraphQL| SVCDEF
     SWAGGER -->|API Discovery| SVCDEF
@@ -77,14 +87,21 @@ db/schema.cds
         ├── Planet
         ├── Species
         ├── Starship
-        ├── Vehicles
-        ├── Show          (draft-enabled)
+        ├── Vehicle
+        ├── Show          (show_type enum, draft-enabled)
         │   └── Episode   (composition child — cascade delete)
-        ├── Film2People   (M:N junction with @assert.unique)
+        ├── Show2People   (physical M:N junction — Show ↔ People)
+        ├── Film2People, Film2Planets, Film2Starships,
+        │   Film2Vehicles, Film2Species  (M:N junction tables)
         ├── Episode2People, Episode2Planets, Episode2Starships,
-        │   Episode2Vehicles, Episode2Species  (M:N junctions)
-        └── Show2Planets, Show2Starships, Show2Vehicles, Show2Species
-            (CDS define view over Episode2* — not physical tables)
+        │   Episode2Vehicles, Episode2Species  (M:N junction tables)
+        ├── Show2Planets, Show2Starships, Show2Vehicles, Show2Species
+        │   (CDS define view over Episode2* — not physical tables)
+        ├── Media          (define view — UNION of Film + Show)
+        ├── MediaCharacters, MediaPlanets, MediaStarships,
+        │   MediaVehicles, MediaSpecies  (aggregation views)
+        └── CloneWarsChronologicalOrder
+            (view — 133 episodes with canonical chronological sequence)
 ```
 
 `define view` in CDS creates a SQL view rather than a physical table. It is the right choice when the data can be fully derived from another entity — there is no value in storing it redundantly. `Show2Planets` (and its siblings) are a concrete example: Wookieepedia show pages list no per-show relationships, but each episode page lists the planets it features. By defining the show-level view as an aggregation over `Episode2Planets`, show-level data is always correct and requires no separate load step.
@@ -105,6 +122,12 @@ srv/people-service.cds (StarWarsPeople service)
   ├── action rename() ← bound action on People
   └── function countByGender() ← unbound function
 ```
+
+The **`StarWarsEpisode`** service (`srv/episode-service.cds`) exposes `Episodes` and `Episode2*`
+junctions as read-only projections across all three protocols. It has no `.js` handler because
+there is no write path — all episode data arrives through the Show draft workflow or via data loading.
+
+See [Shows & Episodes](/architecture/shows-episodes) for a full explanation of the domain model.
 
 ### Handler Lifecycle (`srv/*.js`)
 
@@ -158,6 +181,9 @@ This service exposes **three protocols simultaneously** from the same model:
 | GraphQL | `/graphql/` | Flexible querying, developer tooling |
 
 The `@protocol: ['odata-v4', 'graphql', 'rest']` annotation on each service enables all three.
+
+The four Fiori web applications (People, Media Browser, Film Editor, Show/Episode Editor) consume
+these protocols via OData v4. See [Fiori Apps](/app/) for a walkthrough of each application.
 
 ## Event Flow
 
