@@ -22,7 +22,17 @@
             "i18n labels and value helps for Media entity type selection fields",
             "Fiori annotations for Media list report and object page",
             "VitePress documentation site with animated Star Wars opening crawl homepage, Imperial Dark and Jedi Archives CSS themes, CDS syntax highlighting, and GitHub Pages CI deployment",
-            "MIDI audio (Imperial March, Jedi Theme) and hexagon SVG logos for VitePress themes"
+            "MIDI audio (Imperial March, Jedi Theme) and hexagon SVG logos for VitePress themes",
+            "VitePress Apps section with per-app documentation pages (People, Media Browser, Film editor, Show/Episode editor) and API overview page",
+            "Shows & Episodes section in VitePress API sidebar with architecture deep-dive",
+            "Generated @cds-models type definitions for all services (DataService, StarWarsEpisode, StarWarsFilm, StarWarsPeople, StarWarsPlanet, StarWarsShow, StarWarsSpecies, StarWarsStarship, StarWarsVehicle)",
+            "readme.mjs custom widdershins wrapper with circular $ref handling to prevent stack overflow during OpenAPI→Markdown generation",
+            "Generated OpenAPI 3.0 specifications for all services (OData v4 and REST variants)",
+            "Viewer app Galaxy/Light CSS themes with responsive layout, sort, filter, column-level search, and pagination",
+            "Viewer app detail panel with field-by-field display and keyboard navigation (arrow keys, Escape)",
+            "Viewer app row selection with clipboard copy (Tab-delimited), persisted rowKey cleared on entity switch or panel dismiss",
+            "jsconfig.json for CAP service layer IDE support",
+            "CAP Cheat Sheet expanded with detailed CDS modeling patterns, handler registration, and common pitfalls"
         ],
         "Changed": [
             "convertData.js rewritten to load flat JSON from scripts/data/raw instead of Django fixtures, with parallel chunk loading and SQLite-safe sequencing",
@@ -30,14 +40,22 @@
             "Scraper: episode titles extracted from table rows (not all section wikilinks); season links scoped to level-2/3 headings; show attribution uses episode infobox series field filtered by show title",
             "Episode.director and Episode.writer use unbounded String (no length limit)",
             "normalizeInteger extended to parse ordinal words (One, Two, …) for season_number",
-            "Migration handling updated and Episode Fiori annotations improved"
+            "Migration handling updated and Episode Fiori annotations improved",
+            "VitePress copy-content pipeline updated to support Fiori app docs, API restructure, and front-matter title extraction",
+            "VitePress nav/sidebar restructured: added Apps section, split API into per-service pages, added Shows & Episodes",
+            "CI docs workflow now also triggers on cap/README.md changes",
+            "Viewer app index.html rewritten with SRI hashes on all CDN resources, Content-Security-Policy meta tag, and viewport meta",
+            "README updated with current project structure, Fiori app descriptions, and revised pitfalls section"
         ],
         "Fixed": [
             "Cross-show episode attribution prevented by filtering extractSeasonLinks to the current show title",
             "Anthology shows (Tales) without season sub-pages now extract episodes directly from the show page",
             "Piped wikilinks in episode infobox now yield the series page title, not the display label",
             "Sub-series character relationships accumulated correctly when registering as a show",
-            "Data quality fixes for sequel trilogy character/planet relationships"
+            "Data quality fixes for sequel trilogy character/planet relationships",
+            "Obsolete hand-written TypeScript type definitions (cap/types/) replaced by generated @cds-models artifacts",
+            "Viewer CSP extended with unsafe-eval to allow Vue 3 runtime template compiler",
+            "Viewer pagination handles backend returning @odata.count=0 without breaking page calculation"
         ]
     },
     {
