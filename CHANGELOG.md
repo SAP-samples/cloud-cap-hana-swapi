@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.0.0] - 2026-04-04
+
+**Added**
+
+- Episode entity and Episode2* junction tables (Episode2People, Episode2Planets, Episode2Starships, Episode2Vehicles, Episode2Species) as compositions of Show
+- StarWarsEpisode service exposing Episode and Episode2* projections as read-only
+- Show2Planets, Show2Starships, Show2Vehicles, Show2Species replaced by CDS derived views aggregating over Episode2* tables
+- Wookieepedia scraper pipeline: rate-limited MediaWiki API client, disk cache, entity/episode/season extractors, orchestrator, and CLI
+- Full scrape of 11 films and 15 shows with 772 episodes and episode relationships from Wookieepedia
+- Episode data fields: director, writer, season_number, episode_number, air_date, opening_crawl, show title association
+- Clone Wars chronological episode ordering in StarWarsEpisode service
+- Opening crawl texts for main Star Wars saga films
+- Film.episode_id populated from roman numeral in Wookieepedia page title
+- Sub-series pages (e.g. Tales anthology) registered as shows and their episodes correctly attributed
+- Second-pass entity scrape to resolve entities discovered via episode back-references
+- Virtual edit_url field on Media projection in StarWarsShow service, computed by handler
+- Star Wars Media Browser Fiori webapp (list report + object page)
+- Star Wars Films Fiori webapp (list report + object page)
+- Star Wars Shows Fiori webapp with Episodes sub-navigation tab
+- Fiori launchpad page with People, Films, and Shows tiles
+- i18n labels and value helps for Media entity type selection fields
+- Fiori annotations for Media list report and object page
+- VitePress documentation site with animated Star Wars opening crawl homepage, Imperial Dark and Jedi Archives CSS themes, CDS syntax highlighting, and GitHub Pages CI deployment
+- MIDI audio (Imperial March, Jedi Theme) and hexagon SVG logos for VitePress themes
+
+**Changed**
+
+- convertData.js rewritten to load flat JSON from scripts/data/raw instead of Django fixtures, with parallel chunk loading and SQLite-safe sequencing
+- Episode loading added to data pipeline; Show2* physical table inserts removed (now derived views)
+- Scraper: episode titles extracted from table rows (not all section wikilinks); season links scoped to level-2/3 headings; show attribution uses episode infobox series field filtered by show title
+- Episode.director and Episode.writer use unbounded String (no length limit)
+- normalizeInteger extended to parse ordinal words (One, Two, …) for season_number
+- Migration handling updated and Episode Fiori annotations improved
+
+**Fixed**
+
+- Cross-show episode attribution prevented by filtering extractSeasonLinks to the current show title
+- Anthology shows (Tales) without season sub-pages now extract episodes directly from the show page
+- Piped wikilinks in episode infobox now yield the series page title, not the display label
+- Sub-series character relationships accumulated correctly when registering as a show
+- Data quality fixes for sequel trilogy character/planet relationships
+
 ## [1.8.0] - 2026-03-14
 
 **Changed**
@@ -13,9 +55,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - Update project dependencies and bump version to 1.8.0
 - Update dev container setup (Dockerfile and devcontainer.json) for Node.js LTS and Cloud Foundry CLI installation
 - Add CAP modeling and handler guidelines plus validation prompt workflows
-- Add compatibility-safe value-help entity migration (`*Values` helper entities) and keep legacy helper entities/projections with deprecation comments for phased removal
-- BREAKING: remove legacy value-help helper entities/projections (`climate`, `terrain`, `hair_colors`, `eye_colors`, `skin_colors`, `classification`, `designation`, `language`) in favor of `*Values` artifacts
-- Migration details: `cap/docs/value-help-migration.md`
+- Add compatibility-safe value-help entity migration (*Values helper entities) while retaining legacy helper entities/projections with deprecation comments
+- BREAKING: remove legacy value-help helper entities/projections (climate, terrain, hair_colors, eye_colors, skin_colors, classification, designation, language) in favor of *Values artifacts
+- Migration details: cap/docs/value-help-migration.md
 
 ## [1.4.0] - 2024-07-19
 
