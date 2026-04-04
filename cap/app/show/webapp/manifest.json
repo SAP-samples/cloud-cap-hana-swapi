@@ -1,0 +1,130 @@
+{
+    "_version": "1.29.0",
+    "sap.app": {
+        "id": "star.wars.show",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": { "version": "1.0.0" },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/odata/v4/StarWarsShow/",
+                "type": "OData",
+                "settings": { "odataVersion": "4.0" }
+            }
+        },
+        "offline": false,
+        "resources": "resources.json"
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": { "desktop": true, "tablet": true, "phone": true }
+    },
+    "sap.ui.generic.app": {
+        "settings": {
+            "objectPageHeaderType": "Dynamic",
+            "showDraftToggle": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "config": { "experimentalCAPScenario": true },
+        "resources": { "js": [], "css": [] },
+        "dependencies": {
+            "minUI5Version": "1.76.0",
+            "libs": { "sap.ui.core": {}, "sap.fe.templates": {} }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "ShowList",
+                    "target": "ShowList"
+                },
+                {
+                    "pattern": "Show({key}):?query:",
+                    "name": "ShowObjectPage",
+                    "target": "ShowObjectPage"
+                },
+                {
+                    "pattern": "Show({key})/episodes({key2}):?query:",
+                    "name": "EpisodeObjectPage",
+                    "target": "EpisodeObjectPage"
+                }
+            ],
+            "targets": {
+                "ShowList": {
+                    "type": "Component",
+                    "id": "ShowList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "initialLoad": "Enabled",
+                            "entitySet": "Show",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Show": { "detail": { "route": "ShowObjectPage" } }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "enableFullScreen": true,
+                                        "personalization": { "column": true, "sort": true, "filter": true },
+                                        "enableExport": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ShowObjectPage": {
+                    "type": "Component",
+                    "id": "ShowObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Show",
+                            "navigation": {
+                                "episodes": { "detail": { "route": "EpisodeObjectPage" } }
+                            }
+                        }
+                    }
+                },
+                "EpisodeObjectPage": {
+                    "type": "Component",
+                    "id": "EpisodeObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Episode"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": { "compact": true, "cozy": true }
+    },
+    "sap.fiori": {
+        "_version": "1.1.0",
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}
