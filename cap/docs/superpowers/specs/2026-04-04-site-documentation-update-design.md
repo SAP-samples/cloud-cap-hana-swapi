@@ -53,11 +53,29 @@ The site copy pipeline (`site/scripts/copy-content.js`) correctly syncs existing
   When `stripFrontmatter` is true and `title` is present, inject that title;
   fall back to `'API Reference'` if `title` is omitted.
   DataService mapping title: `'Data Service API'`. Film mapping title: `'Film API'`.
+  Also update the loop destructuring to include `title`:
+
+  ```js
+  for (const { src, dest, stripFrontmatter, title } of mappings) {
+  ```
 
 **`site/.vitepress/config.mts`:**
 
 - Add `{ text: 'Apps', link: '/app/' }` to nav
-- Add `/app/` sidebar (Overview + People, Media, Film, Show)
+- Add `/app/` sidebar with explicit items:
+
+  ```js
+  '/app/': [
+    { text: 'Fiori Apps', items: [
+      { text: 'Overview',      link: '/app/' },
+      { text: 'People',        link: '/app/people' },
+      { text: 'Media Browser', link: '/app/media' },
+      { text: 'Films',         link: '/app/film' },
+      { text: 'Shows',         link: '/app/show' },
+    ]},
+  ],
+  ```
+
 - Add `{ text: 'Shows & Episodes', link: '/architecture/shows-episodes' }` to Architecture sidebar
 - Restructure `/api/` sidebar with explicit items:
 
@@ -73,10 +91,10 @@ The site copy pipeline (`site/scripts/copy-content.js`) correctly syncs existing
 - Table: service name, description, link to detail page
 - The pipeline no longer maps anything to `api/index.md` (DataService moves to `api/data-service.md`), so the pipeline will never overwrite this file.
 
-**`site/.gitignore`** — two changes. **Do this first, before authoring `site/api/index.md`**, or git will silently refuse to track the file:
+**`site/.gitignore`** — two changes. **Do this as a single commit together with authoring `site/api/index.md`**, following this exact sequence to avoid git tracking the stale generated file:
 
-1. Add `app/` to the generated-dirs section (this is `site/app/`, distinct from `cap/app/` which is tracked source code)
-2. Change the `api/` ignore entry to explicit file patterns so `site/api/index.md` can be committed:
+1. Delete the existing generated `site/api/index.md` (it contains DataService content, not the new overview)
+2. Update `.gitignore`: add `app/` to generated-dirs section (`site/app/`, not `cap/app/`) and replace the `api/` directory ignore with explicit file patterns:
 
    ```gitignore
    # was: api/
@@ -84,7 +102,10 @@ The site copy pipeline (`site/scripts/copy-content.js`) correctly syncs existing
    api/film.md
    ```
 
-   This allows `site/api/index.md` to be tracked by git while keeping the large generated API pages ignored.
+3. Author the new hand-authored `site/api/index.md`
+4. Commit all three changes together — this is the moment git begins tracking the new file
+
+This allows `site/api/index.md` to be tracked by git while keeping the large generated API pages ignored.
 
 **`.github/workflows/docs.yml`:**
 
@@ -166,6 +187,8 @@ No new architectural patterns are introduced. All changes are:
 4. One static file (`site/api/index.md`) authored directly in the site for the API overview
 
 The `stripFrontmatter` transform already handles Widdershins-generated API readmes — extended with a per-mapping `title` field for `StarWarsFilm_readme.md`.
+
+All cross-references inside new `cap/docs/` source files must use absolute VitePress paths (e.g., `/architecture/shows-episodes`, `/app/`) rather than relative file paths, to avoid needing additional `linkRewrites` entries in the pipeline.
 
 ---
 
