@@ -4,8 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 'unsafe-eval' required: Vue 3 CDN build compiles in-DOM templates via new Function() at runtime.
+       Remove if switching to a pre-compiled (SFC + build step) approach.
+       sha256 hash permits the theme-init inline script without 'unsafe-inline'. -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; connect-src 'self'">
+        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-eval' 'sha256-N4WklxMrXQgruarjLCMlEllSgqwMIdw+mSI73XtOD+w='; style-src 'self' 'unsafe-inline'; connect-src 'self' https://cdn.jsdelivr.net">
   <title>Data Browser</title>
 
   <!-- Theme init: runs before body renders to avoid flash of wrong theme -->
@@ -30,67 +33,360 @@
   <script src="app.js" defer></script>
 
   <style>
-    /* placeholder — styles added in Task 2 */
+    /* ── Reset & base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+
+    /* ── Galaxy dark (default) ────────────────────────────── */
+    :root {
+      --bg-base:        #0a0e1a;
+      --bg-panel:       rgba(255,255,255,0.04);
+      --bg-panel-hover: rgba(139,92,246,0.08);
+      --bg-row-alt:     rgba(139,92,246,0.05);
+      --bg-row-active:  rgba(139,92,246,0.15);
+      --accent:         #8b5cf6;
+      --accent-soft:    rgba(139,92,246,0.2);
+      --accent-text:    #c4b5fd;
+      --accent-border:  rgba(139,92,246,0.3);
+      --text-primary:   #e2e8f0;
+      --text-muted:     #64748b;
+      --text-key:       #a78bfa;
+      --border:         rgba(255,255,255,0.07);
+      --border-strong:  rgba(255,255,255,0.12);
+      --font-mono:      ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+      --radius:         6px;
+      --shadow:         0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ── Clean Light overrides ────────────────────────────── */
+    [data-theme="light"] {
+      --bg-base:        #f8fafc;
+      --bg-panel:       #ffffff;
+      --bg-panel-hover: #eff6ff;
+      --bg-row-alt:     #fafbff;
+      --bg-row-active:  #eff6ff;
+      --accent:         #6366f1;
+      --accent-soft:    rgba(99,102,241,0.1);
+      --accent-text:    #4f46e5;
+      --accent-border:  #bfdbfe;
+      --text-primary:   #1e293b;
+      --text-muted:     #94a3b8;
+      --text-key:       #6366f1;
+      --border:         #e2e8f0;
+      --border-strong:  #cbd5e1;
+      --shadow:         0 1px 8px rgba(0,0,0,0.08);
+    }
+
+    /* ── App shell ────────────────────────────────────────── */
+    html, body { height: 100%; background: var(--bg-base); color: var(--text-primary); }
+    #app { display: flex; flex-direction: column; height: 100vh; padding: 1rem; gap: 1rem; }
+
+    /* ── Page header ─────────────────────────────────────── */
+    .app-header { display: flex; justify-content: space-between; align-items: center; }
+    .app-header h1 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+    .app-header h1 span { color: var(--accent-text); }
+    .btn-theme {
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text-primary); cursor: pointer; padding: 0.35rem 0.75rem; font-size: 1rem;
+      transition: background 0.15s;
+    }
+    .btn-theme:hover { background: var(--bg-panel-hover); }
+
+    /* ── Layout: sidebar + main ──────────────────────────── */
+    .layout { display: flex; gap: 1rem; flex: 1; min-height: 0; }
+    .sidebar {
+      flex: 0 0 220px; display: flex; flex-direction: column; gap: 0.75rem;
+      background: var(--bg-panel); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 1rem; overflow-y: auto;
+    }
+    .main {
+      flex: 1; display: flex; flex-direction: column; gap: 0.75rem;
+      background: var(--bg-panel); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 1rem; min-width: 0;
+    }
+
+    /* ── Source pill toggle ──────────────────────────────── */
+    .source-toggle { display: flex; gap: 0; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; width: fit-content; }
+    .source-toggle input[type="radio"] { display: none; }
+    .source-toggle label {
+      padding: 0.25rem 0.75rem; cursor: pointer; font-size: 12px; color: var(--text-muted);
+      background: transparent; transition: background 0.15s, color 0.15s; -webkit-user-select: none; user-select: none;
+    }
+    .source-toggle input[type="radio"]:checked + label {
+      background: var(--accent-soft); color: var(--accent-text); font-weight: 600;
+    }
+
+    /* ── Entity list ─────────────────────────────────────── */
+    .sidebar-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 700; }
+    .sidebar-label + .sidebar-label { margin-top: 0.5rem; }
+    .entity-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .entity-list li {
+      padding: 0.4rem 0.75rem; border-radius: calc(var(--radius) - 2px); cursor: pointer;
+      color: var(--text-muted); font-size: 13px; border-left: 3px solid transparent;
+      transition: background 0.12s, color 0.12s;
+    }
+    .entity-list li:hover { background: var(--bg-panel-hover); color: var(--text-primary); }
+    .entity-list li.active {
+      border-left-color: var(--accent); background: var(--bg-panel-hover);
+      color: var(--accent-text); font-weight: 600;
+    }
+
+    /* ── Table toolbar ───────────────────────────────────── */
+    .toolbar { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .search-input {
+      flex: 1; min-width: 160px; background: transparent; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0.35rem 0.65rem; color: var(--text-primary);
+      font-size: 13px; outline: none;
+    }
+    .search-input:focus { border-color: var(--accent); }
+    .search-input::placeholder { color: var(--text-muted); }
+    .record-count { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+
+    /* ── Pagination ──────────────────────────────────────── */
+    .pagination { display: flex; align-items: center; gap: 0.4rem; margin-left: auto; }
+    .btn-page {
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text-primary); cursor: pointer; padding: 0.25rem 0.6rem; font-size: 12px;
+    }
+    .btn-page:disabled { opacity: 0.35; cursor: default; }
+    .btn-page:not(:disabled):hover { background: var(--bg-panel-hover); }
+    .page-size {
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text-primary); padding: 0.2rem 0.4rem; font-size: 12px; cursor: pointer;
+    }
+
+    /* ── Column visibility gear ──────────────────────────── */
+    .col-vis-wrap { position: relative; }
+    .btn-gear {
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text-muted); cursor: pointer; padding: 0.35rem 0.6rem; font-size: 14px;
+    }
+    .btn-gear:hover { color: var(--text-primary); background: var(--bg-panel-hover); }
+    .col-panel {
+      position: absolute; right: 0; top: calc(100% + 4px); z-index: 10;
+      background: var(--bg-base); border: 1px solid var(--border-strong);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 0.5rem; min-width: 160px; max-height: 280px; overflow-y: auto;
+    }
+    .col-panel label {
+      display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.35rem;
+      cursor: pointer; color: var(--text-primary); font-size: 12px; border-radius: 3px;
+    }
+    .col-panel label:hover { background: var(--bg-panel-hover); }
+    .col-panel input[type="checkbox"] { accent-color: var(--accent); }
+
+    /* ── Data table ──────────────────────────────────────── */
+    .table-wrap { flex: 1; overflow-y: auto; min-height: 0; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      position: sticky; top: 0; z-index: 2;
+      background: var(--bg-base); color: var(--text-muted);
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border-strong);
+      cursor: pointer; -webkit-user-select: none; user-select: none; white-space: nowrap;
+    }
+    thead th:hover { color: var(--text-primary); }
+    thead th.sorted { color: var(--accent-text); }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+    tbody tr:nth-child(even) { background: var(--bg-row-alt); }
+    tbody tr:hover td { background: var(--bg-panel-hover); cursor: pointer; }
+    tbody tr.active td { background: var(--bg-row-active) !important; }
+    td {
+      padding: 0.45rem 0.75rem; font-size: 13px; color: var(--text-primary);
+      max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      cursor: pointer;
+    }
+    td.is-key { color: var(--text-key); font-family: var(--font-mono); font-size: 12px; }
+
+    /* ── Skeleton loader ─────────────────────────────────── */
+    .skeleton-bar {
+      height: 14px; border-radius: 4px;
+      background: linear-gradient(90deg, var(--bg-panel) 25%, var(--border-strong) 50%, var(--bg-panel) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer { from { background-position: 200% 0 } to { background-position: -200% 0 } }
+
+    /* ── Error message ───────────────────────────────────── */
+    .error-msg { color: #f87171; padding: 0.5rem 0; font-size: 13px; }
+
+    /* ── Row detail panel ────────────────────────────────── */
+    .detail-panel {
+      background: var(--bg-panel); border: 1px solid var(--accent-border);
+      border-radius: var(--radius); padding: 1rem; margin-top: 0.5rem;
+      transition: opacity 0.15s ease;
+    }
+    .detail-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+    }
+    .detail-header span { font-size: 13px; font-weight: 600; color: var(--accent-text); }
+    .btn-dismiss {
+      background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; line-height: 1;
+      padding: 0 0.25rem;
+    }
+    .btn-dismiss:hover { color: var(--text-primary); }
+    .detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; }
+    .field-cell { display: flex; flex-direction: column; gap: 2px; }
+    .field-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 600; }
+    .field-value-row { display: flex; align-items: center; gap: 0.35rem; }
+    .field-value { font-size: 13px; color: var(--text-primary); word-break: break-all; }
+    .field-value.is-key { color: var(--text-key); font-family: var(--font-mono); font-size: 12px; }
+    .btn-copy { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 12px; padding: 0; line-height: 1; }
+    .btn-copy:hover { color: var(--accent-text); }
+
+    /* ── Toast ───────────────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100;
+      background: var(--accent); color: #fff; padding: 0.5rem 1rem;
+      border-radius: var(--radius); font-size: 13px; font-weight: 600;
+      box-shadow: var(--shadow); pointer-events: none;
+    }
   </style>
 </head>
 
-<body class="noscroll">
-<div id='app' class="full-container">
+<body>
+<div id="app">
 
-  <h1>Data Browser &ndash; {{ entity ? entity.name : '' }}</h1>
+  <!-- Page header -->
+  <header class="app-header">
+    <h1>Data Browser<span v-if="entity"> &mdash; {{ entity.name }}</span></h1>
+    <button type="button" class="btn-theme" @click="toggleTheme" :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+      {{ theme === 'dark' ? '☀️' : '🌙' }}
+    </button>
+  </header>
 
-  <div class="with-sidebar">
-    <div class="sidebar">
-      <div class="horizontal" style="padding: 0.75rem 0;">
-        <label>Datasource:</label>
-        <input type="radio" id="dataSource-db" value="db" v-model="dataSource">
-        <label for="dataSource-db">Database</label>
-        <input type="radio" id="dataSource-srv" value="service" v-model="dataSource">
-        <label for="dataSource-srv">Service</label>
+  <!-- Main layout -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <span class="sidebar-label">Source</span>
+      <div class="source-toggle">
+        <input type="radio" id="src-db"  value="db"      v-model="dataSource" name="src">
+        <label for="src-db">Database</label>
+        <input type="radio" id="src-srv" value="service" v-model="dataSource" name="src">
+        <label for="src-srv">Service</label>
       </div>
-      <div class="sidebar-main">
-        <table id='entities' class="hovering">
+
+      <span class="sidebar-label">Entities</span>
+      <ul class="entity-list">
+        <li v-for="e in entities" :key="e.name"
+            :class="{ active: entity && e.name === entity.name }"
+            @click="inspectEntity(e)">
+          {{ e.name }}
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <!-- Toolbar: search + gear + pagination -->
+      <div class="toolbar" v-if="columns.length">
+        <input class="search-input" v-model="search" placeholder="Search all columns&hellip;" />
+        <span class="record-count">
+          <template v-if="loading">Loading&hellip;</template>
+          <template v-else-if="!search && totalCount > 0">{{ skip + 1 }}&ndash;{{ Math.min(skip + top, totalCount) }} of {{ totalCount }} rows</template>
+          <template v-else-if="!search && data.length">{{ skip + 1 }}&ndash;{{ skip + data.length }} rows</template>
+          <template v-else-if="search">{{ filteredData.length }} rows (filtered)</template>
+        </span>
+
+        <!-- Column visibility -->
+        <div class="col-vis-wrap" ref="gearWrap">
+          <button type="button" class="btn-gear" @click="showColPanel = !showColPanel" title="Column visibility">&#9881;</button>
+          <div class="col-panel" v-show="showColPanel">
+            <label v-for="(col, i) in columns" :key="col.name">
+              <input type="checkbox" :checked="!hiddenCols.has(i)" @change="toggleCol(i)">
+              {{ col.name }}
+            </label>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button type="button" class="btn-page" @click="prevPage" :disabled="skip === 0">&#8249; Prev</button>
+          <select class="page-size" v-model.number="top" title="Rows per page" aria-label="Rows per page">
+            <option :value="10">10</option>
+            <option :value="20">20</option>
+            <option :value="50">50</option>
+            <option :value="100">100</option>
+          </select>
+          <button type="button" class="btn-page" @click="nextPage" :disabled="totalCount > 0 ? skip + top >= totalCount : data.length < top">Next &#8250;</button>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div v-if="error" class="error-msg">
+        Error: {{ error.code ? error.code + ' \u2013 ' + error.message : error.message }}
+      </div>
+
+      <!-- Data table -->
+      <div class="table-wrap" v-if="columns.length">
+        <table id="data">
           <thead>
-            <th>Entity Name</th>
+            <tr>
+              <th v-for="(col, i) in columns"
+                  v-show="!hiddenCols.has(i)"
+                  :key="col.name"
+                  :class="{ sorted: sortState.col === i }"
+                  :title="col.type"
+                  @click="sortBy(i)">
+                {{ col.name }}
+                <span v-if="sortState.col === i">{{ sortState.dir === 'asc' ? '\u2191' : '\u2193' }}</span>
+              </th>
+            </tr>
           </thead>
-          <tr v-for="e in entities" :key="e.name" @click="inspectEntity" :class="{'highlight': (entity && e.name === entity.name)}">
-            <td>{{ e.name }}</td>
-          </tr>
+          <tbody>
+            <!-- Skeleton rows while loading -->
+            <template v-if="loading">
+              <tr v-for="n in 5" :key="'sk'+n" class="skeleton-row">
+                <td :colspan="columns.length - hiddenCols.size">
+                  <div class="skeleton-bar"></div>
+                </td>
+              </tr>
+            </template>
+            <!-- Data rows -->
+            <template v-else>
+              <tr v-for="(row, rowIdx) in filteredData"
+                  :key="rowIdx"
+                  :class="{ active: rowIdx === activeRowIndex }">
+                <td v-for="(cell, colIdx) in row"
+                    v-show="!hiddenCols.has(colIdx)"
+                    :key="colIdx"
+                    :class="{ 'is-key': columns[colIdx] && columns[colIdx].isKey }"
+                    :title="cell"
+                    @click="selectAndCopy(rowIdx, cell)">
+                  {{ cell }}
+                </td>
+              </tr>
+            </template>
+          </tbody>
         </table>
       </div>
-    </div>
 
-    <div class="not-sidebar">
-      <div class="horizontal">
-        <label for="skip">Skip:</label>
-        <input id="skip" v-model.lazy="skip" title="No. of entries to skip" type="number" min="0">
-        <label for="top">Top:</label>
-        <input id="top" v-model.lazy="top" title="No. of entries to read" type="number" min="0">
+      <!-- Row detail panel -->
+      <div class="detail-panel" v-if="Object.keys(rowDetails).length > 0">
+        <div class="detail-header">
+          <span>Row Detail &mdash; {{ displayKey }}</span>
+          <button type="button" class="btn-dismiss" @click="dismissDetail" title="Close">&times;</button>
+        </div>
+        <div class="detail-grid">
+          <div class="field-cell" v-for="(value, key) in rowDetails" :key="key">
+            <span class="field-label">{{ key }}</span>
+            <div class="field-value-row">
+              <span class="field-value" :class="{ 'is-key': isKeyColumn(key) }">{{ value }}</span>
+              <button type="button" class="btn-copy" @click="copyCell(value)" title="Copy">&#128203;</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div v-if="data" class="not-sidebar-main">
-        <table id='data' class="hovering striped-table condensed">
-          <thead>
-            <th v-for="col in columns" :title="col.type" :class="[col.isKey ? 'key' : 'not-key']">{{ col.name }} </th>
-          </thead>
-          <tr v-for="row in data" @click="inspectRow" :class="{'highlight': isActiveRow(row)}">
-            <td v-for="d in row" :title="d">{{ d }}</td>
-          </tr>
-        </table>
-      </div>
-      <div v-if="error" class="not-sidebar-main error">
-        Error: {{ error.code ? error.code + ' &ndash; ' + error.message : error.message }}
-      </div>
-      <p></p>
-      <div v-if="rowDetails"  class="not-sidebar-sub">
-        <table id='rowDetails'>
-          <tr v-for="(key, value) in rowDetails" >
-            <td class="key">{{ value }}</td>
-            <td>{{ key }}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+
+    </main>
   </div>
+
+  <!-- Toast -->
+  <div class="toast" v-show="toastVisible">{{ toastMessage }}</div>
 
 </div>
 </body>
