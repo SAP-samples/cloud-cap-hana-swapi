@@ -257,7 +257,7 @@ const app = Vue.createApp({
       if (this.skip > 0) this.skip = Math.max(0, this.skip - this.top)
     },
     nextPage() {
-      if (this.skip + this.top < this.totalCount) this.skip += this.top
+      if (this.skip + this.top < this.totalCount || (this.totalCount === 0 && this.data.length >= this.top)) this.skip += this.top
     },
 
     // ── Column visibility ──────────────────────────────────

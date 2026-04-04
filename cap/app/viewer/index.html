@@ -5,9 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 'unsafe-eval' required: Vue 3 CDN build compiles in-DOM templates via new Function() at runtime.
-       Remove if switching to a pre-compiled (SFC + build step) approach. -->
+       Remove if switching to a pre-compiled (SFC + build step) approach.
+       sha256 hash permits the theme-init inline script without 'unsafe-inline'. -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://cdn.jsdelivr.net">
+        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-eval' 'sha256-N4WklxMrXQgruarjLCMlEllSgqwMIdw+mSI73XtOD+w='; style-src 'self' 'unsafe-inline'; connect-src 'self' https://cdn.jsdelivr.net">
   <title>Data Browser</title>
 
   <!-- Theme init: runs before body renders to avoid flash of wrong theme -->
@@ -287,7 +288,8 @@
         <span class="record-count">
           <template v-if="loading">Loading&hellip;</template>
           <template v-else-if="!search && totalCount > 0">{{ skip + 1 }}&ndash;{{ Math.min(skip + top, totalCount) }} of {{ totalCount }} rows</template>
-          <template v-else-if="search">{{ filteredData.length }} of {{ totalCount }} rows (filtered)</template>
+          <template v-else-if="!search && data.length">{{ skip + 1 }}&ndash;{{ skip + data.length }} rows</template>
+          <template v-else-if="search">{{ filteredData.length }} rows (filtered)</template>
         </span>
 
         <!-- Column visibility -->
@@ -310,7 +312,7 @@
             <option :value="50">50</option>
             <option :value="100">100</option>
           </select>
-          <button type="button" class="btn-page" @click="nextPage" :disabled="skip + top >= totalCount">Next &#8250;</button>
+          <button type="button" class="btn-page" @click="nextPage" :disabled="totalCount > 0 ? skip + top >= totalCount : data.length < top">Next &#8250;</button>
         </div>
       </div>
 
