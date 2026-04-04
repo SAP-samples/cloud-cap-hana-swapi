@@ -9,8 +9,8 @@ module.exports = cds.service.impl(function () {
     this.after('READ', 'Media', results => {
         for (const m of [].concat(results)) {
             m.edit_url = m.media_type === 'FILM'
-                ? `/film/webapp/index.html#/Film(${m.ID})`
-                : `/show/webapp/index.html#/Show(${m.ID})`
+                ? `/film/webapp/index.html#star-wars-film&/Film(ID=${m.ID},IsActiveEntity=true)`
+                : `/show/webapp/index.html#star-wars-show&/Show(ID=${m.ID},IsActiveEntity=true)`
         }
     })
 

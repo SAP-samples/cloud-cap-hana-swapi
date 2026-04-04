@@ -35,26 +35,6 @@ annotate sws.Show with @(
                 $Type  : 'UI.ReferenceFacet',
                 Label  : '{i18n>characters}',
                 Target : 'characters/@UI.LineItem'
-            },
-            {
-                $Type  : 'UI.ReferenceFacet',
-                Label  : '{i18n>planets}',
-                Target : 'planets/@UI.LineItem'
-            },
-            {
-                $Type  : 'UI.ReferenceFacet',
-                Label  : '{i18n>starships}',
-                Target : 'starships/@UI.LineItem'
-            },
-            {
-                $Type  : 'UI.ReferenceFacet',
-                Label  : '{i18n>vehicles}',
-                Target : 'vehicles/@UI.LineItem'
-            },
-            {
-                $Type  : 'UI.ReferenceFacet',
-                Label  : '{i18n>species}',
-                Target : 'species/@UI.LineItem'
             }
         ],
         FieldGroup#Main : {
@@ -108,3 +88,7 @@ annotate sws.Episode with @(
         ]
     }
 );
+
+annotate sws.Show2People with @UI.LineItem : [
+    { $Type : 'UI.DataField', Value : people.name, Label : '{i18n>peopleName}' }
+];

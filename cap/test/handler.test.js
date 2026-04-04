@@ -262,10 +262,10 @@ describe('People Service – Handler Behavior', () => {
                 `/odata/v4/StarWarsShow/Media?$filter=ID eq ${filmId}`
             )
             assert.ok(data.value.length >= 1, 'Expected at least one FILM record in seed data')
-            assert.equal(
+            assert.match(
                 data.value[0].edit_url,
-                '/$fiori-preview/StarWarsFilm/Film#preview-app',
-                'FILM edit_url should point to StarWarsFilm preview'
+                /^\/film\/webapp\/index\.html#star-wars-film&\/Film\(ID=.+,IsActiveEntity=true\)$/,
+                'FILM edit_url should point to StarWarsFilm standalone app'
             )
         })
 
@@ -274,10 +274,10 @@ describe('People Service – Handler Behavior', () => {
                 `/odata/v4/StarWarsShow/Media?$filter=ID eq ${showId}`
             )
             assert.ok(data.value.length >= 1, 'Expected at least one SHOW record in seed data')
-            assert.equal(
+            assert.match(
                 data.value[0].edit_url,
-                '/$fiori-preview/StarWarsShow/Show#preview-app',
-                'SHOW edit_url should point to StarWarsShow preview'
+                /^\/show\/webapp\/index\.html#star-wars-show&\/Show\(ID=.+,IsActiveEntity=true\)$/,
+                'SHOW edit_url should point to StarWarsShow standalone app'
             )
         })
     })

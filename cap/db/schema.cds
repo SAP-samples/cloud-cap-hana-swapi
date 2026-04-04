@@ -589,6 +589,17 @@ entity Episode : cuid, managed {
     timeline      : String;      // e.g. "19 BBY"
 }
 
+annotate Episode with {
+    title          @title : '{i18n>title}';
+    season_number  @title : '{i18n>season_number}';
+    episode_number @title : '{i18n>episode_number}';
+    air_date       @title : '{i18n>air_date}';
+    director       @title : '{i18n>director}';
+    writer         @title : '{i18n>writer}';
+    runtime        @title : '{i18n>runtime}';
+    timeline       @title : '{i18n>timeline}';
+}
+
 entity Episode2People    : cuid, managed { episode: Association to Episode; people:   Association to People;   }
 entity Episode2Planets   : cuid, managed { episode: Association to Episode; planet:   Association to Planet;   }
 entity Episode2Starships : cuid, managed { episode: Association to Episode; starship: Association to Starship; }

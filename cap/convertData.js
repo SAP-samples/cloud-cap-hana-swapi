@@ -618,7 +618,9 @@ async function runMigration(options = {}) {
 }
 
 if (require.main === module) {
-    runMigration().catch(error => {
+    runMigration().then(() => {
+        process.exit(0)
+    }).catch(error => {
         const log = cds.log('migration')
         log.error('Migration failed')
         log.error(error)

@@ -9,7 +9,6 @@ service StarWarsShow @(path : 'StarWarsShow') {
     @cds.redirection.target : true
     entity Show            as projection on StarWars.Show;
 
-    @readonly : true
     entity Episode as projection on StarWars.Episode;
 
     @readonly : true
