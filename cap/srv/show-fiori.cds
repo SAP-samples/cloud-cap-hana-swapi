@@ -28,6 +28,11 @@ annotate sws.Show with @(
             },
             {
                 $Type  : 'UI.ReferenceFacet',
+                Label  : '{i18n>episodes}',
+                Target : 'episodes/@UI.LineItem'
+            },
+            {
+                $Type  : 'UI.ReferenceFacet',
                 Label  : '{i18n>characters}',
                 Target : 'characters/@UI.LineItem'
             },
@@ -64,5 +69,42 @@ annotate sws.Show with @(
                 { $Type : 'UI.DataField', Value : release_date }
             ]
         }
+    }
+);
+
+annotate sws.Episode with @(
+    UI.TextArrangement : #TextOnly,
+    UI.LineItem : [
+        { $Type : 'UI.DataField', Value : season_number,  ![@UI.Importance] : #High },
+        { $Type : 'UI.DataField', Value : episode_number, ![@UI.Importance] : #High },
+        { $Type : 'UI.DataField', Value : title,          ![@UI.Importance] : #High },
+        { $Type : 'UI.DataField', Value : air_date,       ![@UI.Importance] : #High },
+        { $Type : 'UI.DataField', Value : director },
+        { $Type : 'UI.DataField', Value : writer },
+        { $Type : 'UI.DataField', Value : runtime },
+        { $Type : 'UI.DataField', Value : timeline }
+    ],
+    UI.HeaderInfo : {
+        TypeName       : 'Episode',
+        TypeNamePlural : 'Episodes',
+        Title          : { Value : title },
+        Description    : { Value : season_number }
+    },
+    UI.Facets : [{
+        $Type  : 'UI.ReferenceFacet',
+        Label  : 'Episode Details',
+        Target : '@UI.FieldGroup#EpisodeDetails'
+    }],
+    UI.FieldGroup#EpisodeDetails : {
+        Data : [
+            { $Type : 'UI.DataField', Value : season_number },
+            { $Type : 'UI.DataField', Value : episode_number },
+            { $Type : 'UI.DataField', Value : title },
+            { $Type : 'UI.DataField', Value : air_date },
+            { $Type : 'UI.DataField', Value : director },
+            { $Type : 'UI.DataField', Value : writer },
+            { $Type : 'UI.DataField', Value : runtime },
+            { $Type : 'UI.DataField', Value : timeline }
+        ]
     }
 );
