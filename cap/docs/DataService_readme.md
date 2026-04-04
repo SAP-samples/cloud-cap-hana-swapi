@@ -1220,19 +1220,7 @@ func main() {
 {
   "@count": 0,
   "value": [
-    {
-      "name": "string",
-      "columns": [
-        {
-          "up_": {},
-          "up__name": "string",
-          "name": "string",
-          "type": "string",
-          "isKey": true
-        }
-      ],
-      "columns@count": 0
-    }
+    {}
   ]
 }
 ```
@@ -1270,17 +1258,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» value|[[DataService.Entities](#schemadataservice.entities)]|false|none|none|
-|»» Metadata like name and columns/elements|[DataService.Entities](#schemadataservice.entities)|false|none|none|
-|»»» name|string|false|none|none|
-|»»» columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
-|»»»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
-|»»»»» up__name|string|false|none|none|
-|»»»»» name|string¦null|false|none|none|
-|»»»»» type|string¦null|false|none|none|
-|»»»»» isKey|boolean¦null|false|none|none|
-|»»» columns@count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|» value|[object]|false|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -1471,31 +1449,24 @@ func main() {
 > 201 Response
 
 ```json
-{
-  "name": "string",
-  "columns": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [],
-        "columns@count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
-  ],
-  "columns@count": 0
-}
+{}
 ```
 
 <h3 id="creates-a-single-entity.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created entity|[DataService.Entities](#schemadataservice.entities)|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created entity|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="creates-a-single-entity.-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+*See DataService.Entities*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 
 <aside class="success">
 This operation does not require authentication
@@ -1663,31 +1634,24 @@ func main() {
 > 200 Response
 
 ```json
-{
-  "name": "string",
-  "columns": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [],
-        "columns@count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
-  ],
-  "columns@count": 0
-}
+{}
 ```
 
 <h3 id="retrieves-a-single-entity.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entity|[DataService.Entities](#schemadataservice.entities)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entity|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="retrieves-a-single-entity.-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*See DataService.Entities*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 
 <aside class="success">
 This operation does not require authentication
@@ -2267,19 +2231,7 @@ func main() {
 {
   "@count": 0,
   "value": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [
-          {}
-        ],
-        "columns@count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
+    {}
   ]
 }
 ```
@@ -2317,17 +2269,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» value|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
-|»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
-|»»»» name|string|false|none|none|
-|»»»» columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
-|»»»»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»»» columns@count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
-|»»» up__name|string|false|none|none|
-|»»» name|string¦null|false|none|none|
-|»»» type|string¦null|false|none|none|
-|»»» isKey|boolean¦null|false|none|none|
+|» value|[object]|false|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -2509,33 +2451,24 @@ func main() {
 > 201 Response
 
 ```json
-{
-  "up_": {
-    "name": "string",
-    "columns": [
-      {
-        "up_": {},
-        "up__name": "string",
-        "name": "string",
-        "type": "string",
-        "isKey": true
-      }
-    ],
-    "columns@count": 0
-  },
-  "up__name": "string",
-  "name": "string",
-  "type": "string",
-  "isKey": true
-}
+{}
 ```
 
 <h3 id="creates-a-single-column-of-a-entity.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created column|[DataService.Entities_columns](#schemadataservice.entities_columns)|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created column|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="creates-a-single-column-of-a-entity.-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+*See DataService.Entities_columns*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 
 <aside class="success">
 This operation does not require authentication
@@ -2724,19 +2657,7 @@ func main() {
 {
   "@count": 0,
   "value": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [
-          {}
-        ],
-        "columns@count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
+    {}
   ]
 }
 ```
@@ -2774,17 +2695,7 @@ Status Code **200**
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» value|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
-|»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»» up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
-|»»»» name|string|false|none|none|
-|»»»» columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
-|»»»»» Entities_columns|[DataService.Entities_columns](#schemadataservice.entities_columns)|false|none|none|
-|»»»» columns@count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
-|»»» up__name|string|false|none|none|
-|»»» name|string¦null|false|none|none|
-|»»» type|string¦null|false|none|none|
-|»»» isKey|boolean¦null|false|none|none|
+|» value|[object]|false|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -2965,33 +2876,24 @@ func main() {
 > 201 Response
 
 ```json
-{
-  "up_": {
-    "name": "string",
-    "columns": [
-      {
-        "up_": {},
-        "up__name": "string",
-        "name": "string",
-        "type": "string",
-        "isKey": true
-      }
-    ],
-    "columns@count": 0
-  },
-  "up__name": "string",
-  "name": "string",
-  "type": "string",
-  "isKey": true
-}
+{}
 ```
 
 <h3 id="creates-a-single-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created entities_column|[DataService.Entities_columns](#schemadataservice.entities_columns)|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created entities_column|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="creates-a-single-entities_column.-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+*See DataService.Entities_columns*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 
 <aside class="success">
 This operation does not require authentication
@@ -3162,33 +3064,24 @@ func main() {
 > 200 Response
 
 ```json
-{
-  "up_": {
-    "name": "string",
-    "columns": [
-      {
-        "up_": {},
-        "up__name": "string",
-        "name": "string",
-        "type": "string",
-        "isKey": true
-      }
-    ],
-    "columns@count": 0
-  },
-  "up__name": "string",
-  "name": "string",
-  "type": "string",
-  "isKey": true
-}
+{}
 ```
 
 <h3 id="retrieves-a-single-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entities_column|[DataService.Entities_columns](#schemadataservice.entities_columns)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved entities_column|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="retrieves-a-single-entities_column.-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*See DataService.Entities_columns*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 
 <aside class="success">
 This operation does not require authentication
@@ -3738,31 +3631,24 @@ func main() {
 > 200 Response
 
 ```json
-{
-  "name": "string",
-  "columns": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [],
-        "columns@count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
-  ],
-  "columns@count": 0
-}
+{}
 ```
 
 <h3 id="retrieves-up_-of-a-entities_column.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved up_|[DataService.Entities](#schemadataservice.entities)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved up_|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="retrieves-up_-of-a-entities_column.-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*See DataService.Entities*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 
 <aside class="success">
 This operation does not require authentication
@@ -4135,17 +4021,7 @@ Data_record (for update)
 {
   "name": "string",
   "columns": [
-    {
-      "up_": {
-        "name": "string",
-        "columns": [],
-        "columns@count": 0
-      },
-      "up__name": "string",
-      "name": "string",
-      "type": "string",
-      "isKey": true
-    }
+    {}
   ],
   "columns@count": 0
 }
@@ -4159,7 +4035,7 @@ Metadata like name and columns/elements
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |name|string|false|none|none|
-|columns|[[DataService.Entities_columns](#schemadataservice.entities_columns)]|false|none|none|
+|columns|[object]|false|none|none|
 |columns@count|[count](#schemacount)|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 
 <h2 id="tocS_DataService.Entities-create">DataService.Entities-create</h2>
@@ -4231,19 +4107,7 @@ Metadata like name and columns/elements (for update)
 
 ```json
 {
-  "up_": {
-    "name": "string",
-    "columns": [
-      {
-        "up_": {},
-        "up__name": "string",
-        "name": "string",
-        "type": "string",
-        "isKey": true
-      }
-    ],
-    "columns@count": 0
-  },
+  "up_": {},
   "up__name": "string",
   "name": "string",
   "type": "string",
@@ -4258,7 +4122,7 @@ Entities_columns
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|up_|[DataService.Entities](#schemadataservice.entities)|false|none|none|
+|up_|object|false|none|See DataService.Entities|
 |up__name|string|false|none|none|
 |name|string¦null|false|none|none|
 |type|string¦null|false|none|none|

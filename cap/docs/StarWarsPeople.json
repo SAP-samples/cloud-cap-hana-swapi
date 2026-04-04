@@ -188,8 +188,7 @@
           },
           "height": {
             "type": "string",
-            "title": "{i18n>height}",
-            "default": "Test"
+            "title": "{i18n>height}"
           },
           "mass": {
             "type": "string",
@@ -197,8 +196,7 @@
           },
           "hair_color": {
             "type": "string",
-            "title": "{i18n>hair_color}",
-            "description": "Person's Hair Color"
+            "title": "{i18n>hair_color}"
           },
           "skin_color": {
             "type": "string",
@@ -439,13 +437,34 @@
               ]
             },
             "title": "{i18n>starships}"
+          },
+          "displayTitle": {
+            "type": "string"
+          },
+          "episodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": "string",
+                  "format": "uuid",
+                  "example": [
+                    "e78f1eb8-ada8-49b0-8c8f-a5d316e82952"
+                  ]
+                }
+              },
+              "required": [
+                "ID"
+              ]
+            }
           }
         },
         "required": [
-          "ID"
+          "ID",
+          "name"
         ],
-        "title": "{i18n>People}",
-        "description": "All People and Aliens in Star Wars"
+        "title": "{i18n>People}"
       }
     }
   }
