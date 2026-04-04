@@ -1,8 +1,10 @@
 guide/
 architecture/
+app/
 labs/
 reference/
-api/
+api/data-service.md
+api/film.md
 hana-cli/
 .vitepress/dist/
 .vitepress/cache/
