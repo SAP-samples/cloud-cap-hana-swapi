@@ -2,32 +2,35 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; connect-src 'self'">
   <title>Data Browser</title>
-  <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+
+  <!-- Theme init: runs before body renders to avoid flash of wrong theme -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('data-viewer:theme')
+      if (saved) {
+        if (saved === 'light') document.documentElement.dataset.theme = 'light'
+      } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.dataset.theme = 'light'
+      }
+    })()
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.21/dist/vue.global.prod.js"
+          integrity="sha384-6pS1WSZJY7wOk6qQTa9C9U2W1/qzqL7iYoMil7qn9KFeN5fZDAwIExgCd7U5AH+X"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.8/dist/axios.min.js"
+          integrity="sha384-ftvHQsVsFt/CYVdJ1acqn4sKGIZ77bziRNFfeph9Ww9C4vQa5zY/ev4cfR5vyYrZ"
+          crossorigin="anonymous"></script>
+
   <script src="app.js" defer></script>
 
   <style>
-    th { position: sticky; top:0; z-index: 2; background-color: white; }
-    .noscroll { overflow: hidden; }
-    .hovering tr:hover td { background: #ebeefc; cursor: pointer; }
-    .highlight { background: #ebeefc !important; }
-    .rating-stars { color:teal }
-    .succeeded { color:teal }
-    .failed { color:red }
-    .condensed { max-width: 100px; text-overflow: ellipsis; white-space: nowrap; }
-    .key { font-weight: bold }
-    .not-key { font-weight: lighter;}
-    .with-sidebar { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .sidebar    { flex-basis: 20rem; flex-grow: 1; }
-    .sidebar-main { height: 100vh; overflow-y: scroll; }
-    .not-sidebar  { flex-basis: 0; flex-grow: 999; min-inline-size: 50%; align-items: stretch;}
-    .not-sidebar-main { max-height: 40vh; overflow-y: scroll; }
-    .not-sidebar-sub {  max-height: 40vh; overflow-y: scroll; }
-    .horizontal label { display: inline; }
-    .horizontal input { width: initial; display: inline; }
-    .error { color: red; }
+    /* placeholder — styles added in Task 2 */
   </style>
 </head>
 
