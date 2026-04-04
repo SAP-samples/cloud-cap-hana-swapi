@@ -9,6 +9,7 @@ on:
       - 'cap/README.md'
       - 'cap/labs/**/README.md'
       - 'HANA_CLI_*.md'
+      - 'CHANGELOG.md'
       - '.github/workflows/docs.yml'
 
 jobs:

@@ -78,6 +78,7 @@ export default withMermaid(defineConfig({
           { text: 'CDS Cheat Sheet',      link: '/reference/cheat-sheet' },
           { text: 'Common Pitfalls',      link: '/reference/pitfalls' },
           { text: 'Value-Help Migration', link: '/reference/migration' },
+          { text: 'Changelog',            link: '/reference/changelog' },
         ]},
       ],
       '/hana-cli/': [
