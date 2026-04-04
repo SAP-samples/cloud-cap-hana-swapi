@@ -21,7 +21,7 @@ A learning-focused SAP Cloud Application Programming Model (CAP) sample built on
 | `test/` | Automated tests by layer (model, service, handler) |
 | `docs/` | Architecture, learning path, cheat sheet, pitfalls |
 | `labs/` | Hands-on exercises with guided steps |
-| `app/` | UI frontends and Fiori Launchpad previews |
+| `app/` | Fiori web apps (People, Media, Film, Show) + launchpad (`launchpadPage.html`) |
 | `../scripts/scraper/` | Wookieepedia scraper — rate-limited MediaWiki API crawler |
 | `../scripts/data/raw/` | Scraped JSON output loaded by `convertData.js` |
 
@@ -74,6 +74,7 @@ See [docs/cap-architecture.md](docs/cap-architecture.md) for the full annotated 
 | 4 | Understand how `@mandatory`, `@assert.range`, `@assert.format` work | [db/schema.cds](db/schema.cds) |
 | 5 | Find the `Episode` entity and its parent `Show` — notice the `Composition of many` | [db/schema.cds](db/schema.cds) |
 | 6 | Complete **Lab 01** (add a new entity) | [labs/lab-01-model/](labs/lab-01-model/README.md) |
+| 7 | Open the Fiori launchpad at `http://localhost:4004/launchpadPage.html` and explore all four apps | [app/](app/) |
 
 ### 🟡 Intermediate Track
 
