@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 'unsafe-eval' required: Vue 3 CDN build compiles in-DOM templates via new Function() at runtime.
+       Remove if switching to a pre-compiled (SFC + build step) approach. -->
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; connect-src 'self'">
+        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://cdn.jsdelivr.net">
   <title>Data Browser</title>
 
   <!-- Theme init: runs before body renders to avoid flash of wrong theme -->
