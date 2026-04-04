@@ -25,7 +25,7 @@ const app = Vue.createApp({
       top:  Number(storageGet('top', 20)),
       totalCount: 0,
       // Entities + columns
-      entity:   storageGet('entity') ? JSON.parse(storageGet('entity')) : undefined,
+      entity:   (() => { try { const v = storageGet('entity'); return v ? JSON.parse(v) : undefined } catch { return undefined } })(),
       entities: [],
       columns:  [],
       // Raw data (string[][])
@@ -79,12 +79,21 @@ const app = Vue.createApp({
   watch: {
     dataSource(v) { storageSet('data-source', v); this.fetchEntities() },
     skip(v)       { storageSet('skip', v); if (this.entity) this.fetchData() },
-    top(v)        { storageSet('top', v);  this.skip = 0; if (this.entity) this.fetchData() },
+    top(v) {
+      storageSet('top', v)
+      // Avoid double fetch: if skip changes, the skip watcher calls fetchData().
+      // Only call fetchData directly when skip is already 0 (watcher won't fire).
+      if (this.skip === 0) {
+        if (this.entity) this.fetchData()
+      } else {
+        this.skip = 0  // skip watcher will call fetchData()
+      }
+    },
 
     showColPanel(open) {
       if (open) {
         this._colPanelHandler = (e) => {
-          if (!this.$refs.gearWrap.contains(e.target)) this.showColPanel = false
+          if (!e.composedPath().includes(this.$refs.gearWrap)) this.showColPanel = false
         }
         document.addEventListener('click', this._colPanelHandler)
       } else {
@@ -113,20 +122,25 @@ const app = Vue.createApp({
 
     // ── Entity fetching ────────────────────────────────────
     async fetchEntities() {
+      this.error = undefined
       let url = '/Entities'
       if (this.dataSource === 'db') url += '?dataSource=db'
-      const { data } = await GET(url)
-      this.entities = data.value
-      this.entities.forEach(e => e.columns.sort(columnKeysFirst))
-      const entity = this.entity && this.entities.find(e => e.name === this.entity.name)
-      if (entity) {
-        this.columns = entity.columns
-        await this.fetchData()
-      } else {
-        this.entity = undefined
-        this.columns = []
-        this.data = []
-        this.rowDetails = {}
+      try {
+        const { data } = await GET(url)
+        this.entities = data.value
+        this.entities.forEach(e => e.columns.sort(columnKeysFirst))
+        const entity = this.entity && this.entities.find(e => e.name === this.entity.name)
+        if (entity) {
+          this.columns = entity.columns
+          await this.fetchData()
+        } else {
+          this.entity = undefined
+          this.columns = []
+          this.data = []
+          this.rowDetails = {}
+        }
+      } catch (err) {
+        this.error = err.response?.data?.error ?? { code: err.code, message: err.message }
       }
     },
 
@@ -138,13 +152,18 @@ const app = Vue.createApp({
       this.search = ''
       this.hiddenCols = new Set()
       this.sortState = { col: null, dir: null }
-      this.skip = 0
       this.activeRowIndex = -1
       this.rowDetails = {}
       this.rowKey = ''
       storageSet('row-key', '')
       document.title = 'Data Browser \u2014 ' + entity.name
-      return this.fetchData()
+      // If skip is already 0, the skip watcher won't fire — call fetchData explicitly.
+      // If skip > 0, setting it triggers the skip watcher which calls fetchData.
+      if (this.skip === 0) {
+        return this.fetchData()
+      } else {
+        this.skip = 0
+      }
     },
 
     // ── Data fetching ──────────────────────────────────────

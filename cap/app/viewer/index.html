@@ -283,8 +283,9 @@
       <div class="toolbar" v-if="columns.length">
         <input class="search-input" v-model="search" placeholder="Search all columns&hellip;" />
         <span class="record-count">
-          <template v-if="!search">{{ skip + 1 }}&ndash;{{ Math.min(skip + top, totalCount) }} of {{ totalCount }} rows</template>
-          <template v-else>{{ filteredData.length }} of {{ totalCount }} rows (filtered)</template>
+          <template v-if="loading">Loading&hellip;</template>
+          <template v-else-if="!search && totalCount > 0">{{ skip + 1 }}&ndash;{{ Math.min(skip + top, totalCount) }} of {{ totalCount }} rows</template>
+          <template v-else-if="search">{{ filteredData.length }} of {{ totalCount }} rows (filtered)</template>
         </span>
 
         <!-- Column visibility -->
