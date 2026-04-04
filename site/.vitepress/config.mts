@@ -33,6 +33,7 @@ export default withMermaid(defineConfig({
     nav: [
       { text: 'Getting Started', link: '/guide/overview' },
       { text: 'Architecture',    link: '/architecture/' },
+      { text: 'Apps',            link: '/app/' },
       { text: 'Labs',            link: '/labs/' },
       { text: 'Reference',       link: '/reference/cheat-sheet' },
       { text: 'HANA CLI',        link: '/hana-cli/quickstart' },
@@ -48,8 +49,18 @@ export default withMermaid(defineConfig({
       ],
       '/architecture/': [
         { text: 'Architecture', items: [
-          { text: 'CAP Architecture',  link: '/architecture/' },
-          { text: 'Profile Comparison', link: '/architecture/profiles' },
+          { text: 'CAP Architecture',    link: '/architecture/' },
+          { text: 'Profile Comparison',  link: '/architecture/profiles' },
+          { text: 'Shows & Episodes',    link: '/architecture/shows-episodes' },
+        ]},
+      ],
+      '/app/': [
+        { text: 'Fiori Apps', items: [
+          { text: 'Overview',      link: '/app/' },
+          { text: 'People',        link: '/app/people' },
+          { text: 'Media Browser', link: '/app/media' },
+          { text: 'Films',         link: '/app/film' },
+          { text: 'Shows',         link: '/app/show' },
         ]},
       ],
       '/labs/': [
@@ -79,7 +90,9 @@ export default withMermaid(defineConfig({
       ],
       '/api/': [
         { text: 'API', items: [
-          { text: 'API Reference', link: '/api/' },
+          { text: 'Overview',      link: '/api/' },
+          { text: 'Data Service',  link: '/api/data-service' },
+          { text: 'Film',          link: '/api/film' },
         ]},
       ],
     },
