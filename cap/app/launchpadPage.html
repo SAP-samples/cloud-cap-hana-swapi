@@ -26,6 +26,18 @@
                                 applicationType: 'URL',
                                 url: './media/webapp/',
                                 navigationMode: 'embedded'
+                            },
+                            'star-wars-film-Display': {
+                                additionalInformation: 'SAPUI5.Component=star.wars.film',
+                                applicationType: 'URL',
+                                url: './film/webapp/',
+                                navigationMode: 'embedded'
+                            },
+                            'star-wars-show-Display': {
+                                additionalInformation: 'SAPUI5.Component=star.wars.show',
+                                applicationType: 'URL',
+                                url: './show/webapp/',
+                                navigationMode: 'embedded'
                             }
                         }
                     }
@@ -58,6 +70,26 @@
                                                 subtitle: 'Media Browser',
                                                 icon: 'sap-icon://media-play',
                                                 targetURL: '#star-wars-media-Display'
+                                            }
+                                        },
+                                        {
+                                            id: 'tile-film',
+                                            tileType: 'sap.ushell.ui.tile.StaticTile',
+                                            properties: {
+                                                title: 'Star Wars Films',
+                                                subtitle: 'Film Details',
+                                                icon: 'sap-icon://cinema',
+                                                targetURL: '#star-wars-film-Display'
+                                            }
+                                        },
+                                        {
+                                            id: 'tile-show',
+                                            tileType: 'sap.ushell.ui.tile.StaticTile',
+                                            properties: {
+                                                title: 'Star Wars Shows',
+                                                subtitle: 'Show Details',
+                                                icon: 'sap-icon://tv-show',
+                                                targetURL: '#star-wars-show-Display'
                                             }
                                         }
                                     ]
