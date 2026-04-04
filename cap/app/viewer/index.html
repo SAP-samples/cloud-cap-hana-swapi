@@ -345,14 +345,13 @@
             <template v-else>
               <tr v-for="(row, rowIdx) in filteredData"
                   :key="rowIdx"
-                  :class="{ active: rowIdx === activeRowIndex }"
-                  @click="selectRow(rowIdx)">
+                  :class="{ active: rowIdx === activeRowIndex }">
                 <td v-for="(cell, colIdx) in row"
                     v-show="!hiddenCols.has(colIdx)"
                     :key="colIdx"
                     :class="{ 'is-key': columns[colIdx] && columns[colIdx].isKey }"
                     :title="cell"
-                    @click.stop="copyCell(cell)">
+                    @click="selectAndCopy(rowIdx, cell)">
                   {{ cell }}
                 </td>
               </tr>

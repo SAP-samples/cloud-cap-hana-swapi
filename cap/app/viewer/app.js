@@ -142,6 +142,7 @@ const app = Vue.createApp({
       this.activeRowIndex = -1
       this.rowDetails = {}
       this.rowKey = ''
+      storageSet('row-key', '')
       document.title = 'Data Browser \u2014 ' + entity.name
       return this.fetchData()
     },
@@ -190,6 +191,12 @@ const app = Vue.createApp({
       this._setRowDetails(row)
     },
 
+    // Select row and copy the clicked cell value (single click on <td>)
+    selectAndCopy(rowIdx, cellValue) {
+      this.selectRow(rowIdx)
+      this.copyCell(cellValue)
+    },
+
     _setRowDetails(row) {
       this.rowDetails = {}
       row.forEach((val, i) => {
@@ -206,6 +213,7 @@ const app = Vue.createApp({
     dismissDetail() {
       this.rowDetails = {}
       this.rowKey = ''
+      storageSet('row-key', '')
       this.activeRowIndex = -1
     },
 
