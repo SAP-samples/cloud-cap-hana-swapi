@@ -190,16 +190,23 @@ Note: `cds.connect.to` already returns a cached promise after the first call per
 
 ## 10. `npm run build` doesn't update types after schema change
 
-**Symptom:** After adding a new entity to `schema.cds`, TypeScript files in `types/` are stale.
+**Symptom:** After adding a new entity to `schema.cds`, TypeScript type files are stale.
 
-**Cause:** `npm run build` runs `cds build` which only regenerates `gen/`. The TypeScript type stubs in `types/` were generated separately.
+**Cause:** `npm run build` runs `cds build` which only regenerates `gen/`. TypeScript types are generated separately by [`@cap-js/cds-typer`](https://www.npmjs.com/package/@cap-js/cds-typer).
 
 **Fix:**
 
 ```bash
 npm run build
 # Then regenerate TypeScript types:
-cds compile '*' --to ts
+npx @cap-js/cds-typer "*" --outputDirectory @cds-models
 ```
 
-Types live in `cap/types/` and reflect the service/schema definitions at generation time.
+To set up `cds-typer` in a project that doesn't have it yet:
+
+```bash
+cds add typer
+npm i
+```
+
+Once installed, saving any `.cds` file in VS Code (with SAP CDS Language Support) automatically regenerates types into `@cds-models/`.

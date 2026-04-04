@@ -10,20 +10,20 @@ A learning-focused SAP Cloud Application Programming Model (CAP) sample built on
 
 | Path | Purpose |
 | --- | --- |
-| `db/schema.cds` | Domain model – entities, types, associations |
-| `db/hana/` `db/sqlite/` `db/postgres/` | Profile-specific model extensions |
-| `srv/*-service.cds` | Service definitions – projections, actions, functions |
-| `srv/*-fiori.cds` | Fiori/UI5 annotations (kept separate from service contracts) |
-| `srv/episode-service.cds` | Read-only `StarWarsEpisode` service (OData v4, GraphQL, REST) |
-| `srv/episode-fiori.cds` | Fiori annotations for the Episodes list |
-| `srv/services-auth.cds` | Centralized authorization – `@requires` / `@restrict` |
-| `srv/*.js` | Service handlers – `before` / `on` / `after` hooks |
-| `test/` | Automated tests by layer (model, service, handler) |
-| `docs/` | Architecture, learning path, cheat sheet, pitfalls |
-| `labs/` | Hands-on exercises with guided steps |
-| `app/` | Fiori web apps (People, Media, Film, Show) + launchpad (`launchpadPage.html`) |
-| `../scripts/scraper/` | Wookieepedia scraper — rate-limited MediaWiki API crawler |
-| `../scripts/data/raw/` | Scraped JSON output loaded by `convertData.js` |
+| [`db/schema.cds`](https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/db/schema.cds) | Domain model – entities, types, associations |
+| [`db/hana/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/db/hana) [`db/sqlite/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/db/sqlite) [`db/postgres/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/db/postgres) | Profile-specific model extensions |
+| [`srv/*-service.cds`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/srv) | Service definitions – projections, actions, functions |
+| [`srv/*-fiori.cds`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/srv) | Fiori/UI5 annotations (kept separate from service contracts) |
+| [`srv/episode-service.cds`](https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/episode-service.cds) | Read-only `StarWarsEpisode` service (OData v4, GraphQL, REST) |
+| [`srv/episode-fiori.cds`](https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/episode-fiori.cds) | Fiori annotations for the Episodes list |
+| [`srv/services-auth.cds`](https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/services-auth.cds) | Centralized authorization – `@requires` / `@restrict` |
+| [`srv/*.js`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/srv) | Service handlers – `before` / `on` / `after` hooks |
+| [`test/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/test) | Automated tests by layer (model, service, handler) |
+| [`docs/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/docs) | Architecture, learning path, cheat sheet, pitfalls |
+| [`labs/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/labs) | Hands-on exercises with guided steps |
+| [`app/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/cap/app) | Fiori web apps (People, Media, Film, Show) + launchpad (`launchpadPage.html`) |
+| [`../scripts/scraper/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/scripts/scraper) | Wookieepedia scraper — rate-limited MediaWiki API crawler |
+| [`../scripts/data/raw/`](https://github.com/SAP-samples/cloud-cap-hana-swapi/tree/main/scripts/data/raw) | Scraped JSON output loaded by `convertData.js` |
 
 ## Architecture at a Glance
 

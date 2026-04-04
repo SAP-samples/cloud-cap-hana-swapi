@@ -44,41 +44,64 @@ const mappings = [
 
 // Link rewrites applied after copy: maps relative paths in original source
 // to their final VitePress URLs so internal doc-to-doc links work.
+// ORDER MATTERS: more specific patterns (with path prefixes) must come before
+// bare patterns, otherwise the bare rule fires first and the specific one never matches.
 const linkRewrites = [
-  // labs/index.md: lab-NN-name/README.md → lab-NN.md
-  { pattern: /lab-01-model\/README\.md/g,    replacement: 'lab-01.md' },
-  { pattern: /lab-02-service\/README\.md/g,  replacement: 'lab-02.md' },
-  { pattern: /lab-03-handler\/README\.md/g,  replacement: 'lab-03.md' },
-  { pattern: /lab-04-auth\/README\.md/g,     replacement: 'lab-04.md' },
-  { pattern: /lab-05-testing\/README\.md/g,  replacement: 'lab-05.md' },
   // guide/learning-path.md: ../labs/lab-NN-name/README.md → /labs/lab-NN
   { pattern: /\.\.\/labs\/lab-01-model\/README\.md/g,   replacement: '/labs/lab-01' },
   { pattern: /\.\.\/labs\/lab-02-service\/README\.md/g, replacement: '/labs/lab-02' },
   { pattern: /\.\.\/labs\/lab-03-handler\/README\.md/g, replacement: '/labs/lab-03' },
   { pattern: /\.\.\/labs\/lab-04-auth\/README\.md/g,    replacement: '/labs/lab-04' },
   { pattern: /\.\.\/labs\/lab-05-testing\/README\.md/g, replacement: '/labs/lab-05' },
-  // guide/overview.md: ./docs/cap-architecture → /architecture/
-  { pattern: /\.\/docs\/cap-architecture\.md/g,   replacement: '/architecture/' },
-  { pattern: /\.\/docs\/cap-architecture/g,        replacement: '/architecture/' },
-  { pattern: /\.\/docs\/profile-comparison\.md/g, replacement: '/architecture/profiles' },
-  { pattern: /\.\/docs\/profile-comparison/g,      replacement: '/architecture/profiles' },
-  { pattern: /\.\/docs\/learning-path\.md/g,       replacement: '/guide/learning-path' },
-  { pattern: /\.\/docs\/learning-path/g,            replacement: '/guide/learning-path' },
-  { pattern: /\.\/docs\/cap-cheat-sheet\.md/g,     replacement: '/reference/cheat-sheet' },
-  { pattern: /\.\/docs\/cap-cheat-sheet/g,          replacement: '/reference/cheat-sheet' },
-  { pattern: /\.\/docs\/pitfalls\.md/g,             replacement: '/reference/pitfalls' },
-  { pattern: /\.\/docs\/pitfalls/g,                 replacement: '/reference/pitfalls' },
-  { pattern: /\.\/docs\/value-help-migration\.md/g, replacement: '/reference/migration' },
-  { pattern: /\.\/docs\/value-help-migration/g,     replacement: '/reference/migration' },
-  { pattern: /\.\/labs\/README\.md/g,               replacement: '/labs/' },
-  { pattern: /\.\/labs\/lab-01-model\/README\.md/g, replacement: '/labs/lab-01' },
-  { pattern: /\.\/labs\/lab-02-service\/README\.md/g, replacement: '/labs/lab-02' },
-  { pattern: /\.\/labs\/lab-03-handler\/README\.md/g, replacement: '/labs/lab-03' },
-  { pattern: /\.\/labs\/lab-04-auth\/README\.md/g,  replacement: '/labs/lab-04' },
-  { pattern: /\.\/labs\/lab-05-testing\/README\.md/g, replacement: '/labs/lab-05' },
-  // architecture/index.md: profile-comparison relative link
-  { pattern: /\.\/profile-comparison\.md/g,   replacement: './profiles.md' },
-  { pattern: /\.\/profile-comparison(?!\.)/g,  replacement: './profiles' },
+  // guide/overview.md + any other file: (./)?labs/lab-NN-name/README.md → /labs/lab-NN
+  { pattern: /(?:\.\/)?labs\/lab-01-model\/README\.md/g, replacement: '/labs/lab-01' },
+  { pattern: /(?:\.\/)?labs\/lab-02-service\/README\.md/g, replacement: '/labs/lab-02' },
+  { pattern: /(?:\.\/)?labs\/lab-03-handler\/README\.md/g, replacement: '/labs/lab-03' },
+  { pattern: /(?:\.\/)?labs\/lab-04-auth\/README\.md/g,  replacement: '/labs/lab-04' },
+  { pattern: /(?:\.\/)?labs\/lab-05-testing\/README\.md/g, replacement: '/labs/lab-05' },
+  // guide/overview.md: bare labs/README.md → /labs/
+  { pattern: /(?:\.\/)?labs\/README\.md/g,               replacement: '/labs/' },
+  // labs/index.md: bare lab-NN-name/README.md → lab-NN.md (relative, within /labs/)
+  // These must come AFTER the more specific labs/lab-NN-name rules above.
+  { pattern: /lab-01-model\/README\.md/g,    replacement: 'lab-01.md' },
+  { pattern: /lab-02-service\/README\.md/g,  replacement: 'lab-02.md' },
+  { pattern: /lab-03-handler\/README\.md/g,  replacement: 'lab-03.md' },
+  { pattern: /lab-04-auth\/README\.md/g,     replacement: 'lab-04.md' },
+  { pattern: /lab-05-testing\/README\.md/g,  replacement: 'lab-05.md' },
+  // guide/overview.md: ./docs/… and bare docs/… → site URLs
+  { pattern: /(?:\.\/)?docs\/cap-architecture\.md/g,     replacement: '/architecture/' },
+  { pattern: /(?:\.\/)?docs\/cap-architecture(?![\w.-])/g, replacement: '/architecture/' },
+  { pattern: /(?:\.\/)?docs\/profile-comparison\.md/g,   replacement: '/architecture/profiles' },
+  { pattern: /(?:\.\/)?docs\/profile-comparison(?![\w.-])/g, replacement: '/architecture/profiles' },
+  { pattern: /(?:\.\/)?docs\/learning-path\.md/g,        replacement: '/guide/learning-path' },
+  { pattern: /(?:\.\/)?docs\/learning-path(?![\w.-])/g,  replacement: '/guide/learning-path' },
+  { pattern: /(?:\.\/)?docs\/cap-cheat-sheet\.md/g,      replacement: '/reference/cheat-sheet' },
+  { pattern: /(?:\.\/)?docs\/cap-cheat-sheet(?![\w.-])/g, replacement: '/reference/cheat-sheet' },
+  { pattern: /(?:\.\/)?docs\/pitfalls\.md/g,             replacement: '/reference/pitfalls' },
+  { pattern: /(?:\.\/)?docs\/pitfalls(?![\w.-])/g,       replacement: '/reference/pitfalls' },
+  { pattern: /(?:\.\/)?docs\/value-help-migration\.md/g, replacement: '/reference/migration' },
+  { pattern: /(?:\.\/)?docs\/value-help-migration(?![\w.-])/g, replacement: '/reference/migration' },
+  // architecture/index.md: profile-comparison relative link (with or without ./ prefix)
+  { pattern: /(?:\.\/)?profile-comparison\.md/g,   replacement: './profiles.md' },
+  { pattern: /(?:\.\/)?profile-comparison(?![\w.-])/g, replacement: './profiles' },
+  // guide/overview.md + architecture/index.md: source code file links → GitHub
+  // These are relative links to .cds/.js files that don't exist as VitePress pages.
+  { pattern: /\(db\/schema\.cds\)/g,              replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/db/schema.cds)' },
+  { pattern: /\(srv\/people-service\.cds\)/g,     replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/people-service.cds)' },
+  { pattern: /\(srv\/people-service\.js\)/g,      replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/people-service.js)' },
+  { pattern: /\(srv\/server\.js\)/g,              replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/server.js)' },
+  { pattern: /\(srv\/episode-service\.cds\)/g,    replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/episode-service.cds)' },
+  { pattern: /\(srv\/services-auth\.cds\)/g,      replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/services-auth.cds)' },
+  { pattern: /\(test\/handler\.test\.js\)/g,      replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/test/handler.test.js)' },
+  // architecture/index.md: ../srv/ links (relative to cap/docs/) → GitHub
+  { pattern: /\(\.\.\/srv\/people-service\.js\)/g,  replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/people-service.js)' },
+  { pattern: /\(\.\.\/srv\/services-auth\.cds\)/g,  replacement: '(https://github.com/SAP-samples/cloud-cap-hana-swapi/blob/main/cap/srv/services-auth.cds)' },
+  // guide/overview.md: bare app/ link → /app/ VitePress page
+  { pattern: /\(app\/\)/g, replacement: '(/app/)' },
+  // guide/overview.md: anchor links use GitHub-style IDs (no emoji); VitePress includes emoji in IDs
+  { pattern: /#-beginner-track/g,    replacement: '#🟢-beginner-track' },
+  { pattern: /#-intermediate-track/g, replacement: '#🟡-intermediate-track' },
+  { pattern: /#-advanced-track/g,    replacement: '#🔴-advanced-track' },
 ]
 
 function applyLinkRewrites(content) {

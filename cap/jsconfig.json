@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "paths": {
+      "#cds-models/*": [
+        "./@cds-models/*"
+      ],
+      "@sap/cds": [
+        "./node_modules/@cap-js/cds-types"
+      ]
+    }
+  }
+}

@@ -30,7 +30,8 @@
   "scripts": {
     "start-local": "npm run generate-entry-point && npm run watch",
     "generate-entry-point": "node -e \"require('fs').cpSync('node_modules/@sap/dev-cap-tools/dist/templates/assets', 'app/assets', {recursive:true, force:true})\"",
-    "build": "cds build",
+    "build": "cds build && npm run types",
+    "types": "npx @cap-js/cds-typer \"*\" --outputDirectory @cds-models",
     "build_sqlite": "cds deploy --profile sqlite",
     "build_pg": "cds deploy --profile pg",
     "prehana": "cds build",
@@ -166,6 +167,10 @@
     "@sap/hdi-deploy": "^5.6.1",
     "eslint": "10.2.0",
     "stringify-changelog": "^0.2.1",
-    "widdershins": "^4.0.1"
+    "widdershins": "^4.0.1",
+    "@cap-js/cds-typer": ">=0.1"
+  },
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
   }
 }
