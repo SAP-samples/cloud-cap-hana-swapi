@@ -6,9 +6,7 @@ title: "From the Cinema to the Cloud: Announcing v2.0 of the Cloud CAP HANA SWAP
 
 ## A Long Time Ago in a Cinema Far, Far Away
 
-I was six years old in 1980.
-
-Which means I was exactly the right age to have my brain completely rewired by *Star Wars: The Empire Strikes Back*.
+I was six years old when I saw my first Star Wars movie. Which means I was exactly the right age to have my brain completely rewired by *Star Wars: The Empire Strikes Back*.
 
 I remember sitting in that darkened theater, eyes wide, watching Star Destroyers that filled the entire screen, an asteroid field that felt genuinely dangerous, and a revelation at the end that I'm still not going to spoil even though everyone on earth has had 45 years to catch up. I walked out of that cinema convinced of two things: space was really interesting and stories mattered.
 
@@ -20,9 +18,9 @@ I became a developer, but I never stopped being someone who believed that the *w
 
 ## The API a Universe Deserves
 
-If you've spent any time in web development over the last decade, you've probably used [SWAPI](https://swapi.dev/) — the Star Wars API.
+If you've spent any time in web development over the last decade, you've probably used [SWAPI](https://swapi.dev/) the Star Wars API.
 
-Paul Hallett built it in 2014 as a REST learning tool, and it became something of a cultural fixture in developer education. Every tutorial that needed "some real data to work with" reached for SWAPI. It has 87 characters, 60 planets, 37 starships, 39 vehicles, 14 species, and 6 films — all neatly organized, consistently structured, and immediately recognizable.
+Paul Hallett built it in 2014 as a REST learning tool, and it became something of a cultural fixture in developer education. Every tutorial that needed "some real data to work with" reached for SWAPI. It has 87 characters, 60 planets, 37 starships, 39 vehicles, 14 species, and 6 films all neatly organized, consistently structured, and immediately recognizable.
 
 The brilliance of SWAPI as a teaching tool is that so many of **you already know the data**. When a tutorial shows you `{"name": "Luke Skywalker", "height": "172", "homeworld": "Tatooine"}`, you don't need to understand the domain. You already live there. That frees your brain to focus on what the tutorial is actually teaching.
 
