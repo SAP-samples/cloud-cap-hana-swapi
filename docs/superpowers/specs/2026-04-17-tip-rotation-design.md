@@ -32,9 +32,9 @@ type Config struct {
 }
 ```
 
-`Default()` sets `Tip: TipConfig{Rotation: "daily"}`. An empty `Rotation` string is treated as `"daily"` so existing config files without the key continue to work.
+`Default()` leaves `Rotation` as `""` (the Go zero value). `tipSeed` treats `""` as `"daily"` at runtime, so existing config files without a `tip` block behave identically to new configs.
 
-The `tip` block is omitted from `config.yaml` until the user explicitly sets a value (`omitempty`).
+The `tip` block is omitted from `config.yaml` until the user explicitly sets a value — `TipConfig{Rotation: ""}` is the zero value and `omitempty` suppresses it.
 
 ---
 

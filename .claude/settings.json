@@ -11,7 +11,33 @@
       "Bash(node --test --test-reporter=tap scripts/scraper/test/extractors.test.js)",
       "Bash(node -e ':*)",
       "Bash(node --test --test-reporter=tap D:/projects/cloud-cap-hana-swapi/scripts/scraper/test/extractors.test.js)",
-      "Bash(grep -n \"extractSeasonEpisodeTitles\\\\|seasons\" /d/projects/cloud-cap-hana-swapi/scripts/scraper/*.js)"
+      "Bash(grep -n \"extractSeasonEpisodeTitles\\\\|seasons\" /d/projects/cloud-cap-hana-swapi/scripts/scraper/*.js)",
+      "Bash(node -e \"const data = require\\('./scripts/data/raw/planets.json'\\); console.log\\('Planet count:', data.length || Object.keys\\(data\\).length\\);\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('Count:', len\\(d\\)\\)\")"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(echo \"$TOOL_INPUT\" | sed -n \"s/.*\\\"file_path\\\"[[:space:]]*:[[:space:]]*\\\"\\([^\\\"]*\\)\\\".*/\\1/p\"); case \"$FILE\" in *cdsrc-private*|*default-env*) echo \"BLOCKED: $FILE contains credentials — do not read or modify\"; exit 1;; *) exit 0;; esac'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(echo \"$TOOL_INPUT\" | sed -n \"s/.*\\\"file_path\\\"[[:space:]]*:[[:space:]]*\\\"\\([^\\\"]*\\)\\\".*/\\1/p\"); case \"$FILE\" in *.cds) cd d:/projects/cloud-cap-hana-swapi/cap && node node_modules/eslint/bin/eslint.js --no-error-on-unmatched-pattern \"$FILE\" 2>&1 | tail -20 || true;; *) exit 0;; esac'"
+          }
+        ]
+      }
     ]
   }
 }

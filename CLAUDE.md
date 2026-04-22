@@ -25,7 +25,8 @@ npm run test:profile  # Fast regression gate — use before committing
 npm run test:migration # Data conversion/loading tests
 
 # Build & Deploy
-npm run build         # CDS build + generate artifacts (required before HANA deployment)
+npm run build         # CDS build + generate typed models (required before HANA deployment)
+npm run types         # Regenerate CDS typed models → @cds-models/
 npm run build_sqlite  # Deploy schema to SQLite
 npm run build_pg      # Deploy schema to PostgreSQL
 npm run hana          # Deploy to HANA HDI container ("starwars")
@@ -33,6 +34,7 @@ npm run hana          # Deploy to HANA HDI container ("starwars")
 # Data loading
 npm run load          # Load Star Wars fixture data (hybrid/HANA profile)
 npm run load_sqlite   # Load fixture data into SQLite
+npm run load_pg       # Load fixture data into PostgreSQL
 
 # Data scraping
 npm run scrape               # full run, cache-first (fast — uses committed cache)
@@ -57,12 +59,16 @@ After any CDS model changes, run `npm run build` in `cap/` to regenerate artifac
 
 ```
 cap/db/          Domain model + persistence (*.cds), profile-specific extensions
+cap/db/src/      HANA migration tables (.hdbmigrationtable) for schema evolution
+cap/db/last-dev/ Last-deployed CSN snapshot (used by HANA schema migration)
 cap/srv/         Service layer: contracts (*-service.cds), Fiori annotations (*-fiori.cds),
                  authorization (services-auth.cds), runtime handlers (*.js), server config (server.js)
-cap/app/         UI frontends (Fiori preview)
+cap/app/         UI frontends — five apps: film/, people/, show/, media/ (Fiori Elements),
+                 viewer/ (custom HTML/JS app)
 cap/test/        Automated tests by layer (model, handler, data migration)
 cap/docs/        Generated docs (OpenAPI, AsyncAPI) and learning materials
 cap/labs/        Hands-on exercises (lab-01 through lab-05)
+cap/@cds-models/ Generated CDS typed models (via @cap-js/cds-typer, git-ignored)
 ```
 
 ### Domain Model (`cap/db/schema.cds`)
@@ -77,13 +83,20 @@ Profile-specific extensions live in `cap/db/hana/`, `cap/db/sqlite/`, `cap/db/po
 
 ### Service Layer (`cap/srv/`)
 
-Six domain services (one per entity): `StarWarsFilm`, `StarWarsPeople`, `StarWarsPlanet`, `StarWarsSpecies`, `StarWarsStarship`, `StarWarsVehicle`. A seventh service, `StarWarsEpisode`, exposes `Episodes` and `Episode2*` junctions as read-only projections (no handler logic required). Protocols: OData v4 (primary), OData v2 (adapter), GraphQL (`/graphql`), REST.
+Nine services total:
+
+- **Six core entity services**: `StarWarsFilm`, `StarWarsPeople`, `StarWarsPlanet`, `StarWarsSpecies`, `StarWarsStarship`, `StarWarsVehicle`
+- **`StarWarsShow`**: Full service exposing `Show`, `Episode`, `Media`, `MediaCharacters`, `Show2People`, `Show2Planets`, and related projections. Has handler logic in `show-service.js` (computes virtual `edit_url` on `Media` reads).
+- **`StarWarsEpisode`**: Read-only projections of `Episodes` and `Episode2*` junctions (no handler logic). Separate CDS file with its own Fiori annotations.
+- **`DataService`** (`/-data`): Entity metadata/introspection service exposing entity names, columns, and types. Handler in `data-service.js`.
+
+Protocols: OData v4 (primary), OData v2 (adapter), GraphQL (`/graphql`), REST.
 
 **Critical file separation rule:**
 - Service contracts → `*-service.cds`
 - Fiori/UI annotations → `*-fiori.cds` (never mix into service contracts)
-- Authorization → `services-auth.cds` (centralized; roles: `Viewer`, `Editor`, `Admin`)
-- Runtime logic → `*.js` handlers
+- Authorization → `services-auth.cds` (centralized; currently all services use `@requires: 'any'` — fully public. Roles `Viewer`, `Editor`, `Admin` exist as commented-out showcase examples)
+- Runtime logic → `*.js` handlers (four files: `server.js`, `people-service.js`, `show-service.js`, `data-service.js`)
 
 ### Handler Patterns (`cap/srv/*.js`)
 
@@ -124,14 +137,19 @@ npm run build      # copies content + builds to site/.vitepress/dist/
 npm run preview    # preview the built site
 ```
 
-GitHub Actions auto-deploys to GitHub Pages on push to `main` when files under `site/**`, `cap/docs/**`, `cap/labs/**/README.md`, or `HANA_CLI_*.md` change (`.github/workflows/docs.yml`).
-
 **Do not commit generated dirs** (`site/guide/`, `site/architecture/`, `site/labs/`, `site/reference/`, `site/api/`, `site/hana-cli/`) — they are git-ignored and regenerated at build time.
+
+## CI/CD
+
+Two GitHub Actions workflows in `.github/workflows/`:
+
+- **`docs.yml`** — auto-deploys the VitePress site to GitHub Pages on push to `main` when `site/**`, `cap/docs/**`, `cap/labs/**/README.md`, `HANA_CLI_*.md`, or `CHANGELOG.md` change.
+- **`migration-tests.yml`** — runs migration unit tests (`npm run test:migration`) on push/PR when `convertData.js`, `convertDataLite.js`, or their tests change.
 
 ## Key Conventions
 
 - **CDS modeling**: Preserve namespace and `managed`/`cuid` patterns. Prefer explicit many-to-many junction entities. Keep `Common.ValueList` and `UI.*` patterns consistent.
-- **Breaking changes**: Avoid renames/removals without migration intent. See `docs/value-help-migration.md` for a past breaking-change example.
-- **Data loading**: Use `convertData.js` for all profiles (handles parallel chunk loading; SQLite-safe). The `load_sqlite` npm script invokes this directly.
-- **Generated folders**: `cap/gen/` is auto-generated. After HANA deployment, re-run `npm run build` if `gen/srv` is cleared.
+- **Breaking changes**: Avoid renames/removals without migration intent. See `cap/docs/value-help-migration.md` for a past breaking-change example.
+- **Data loading**: `convertData.js` handles all profiles (parallel chunk loading; SQLite-safe). `convertDataLite.js` is a lightweight wrapper used by CI. The `load_sqlite` npm script invokes `convertData.js` directly.
+- **Generated folders**: `cap/gen/` and `cap/@cds-models/` are auto-generated. After HANA deployment, re-run `npm run build` if `gen/srv` is cleared.
 - **cds-mcp**: When editing CDS files, resolve entity/field definitions with `cds-mcp` before modifying models, and check CAP docs via `cds-mcp` before proposing CDS syntax or API usage.

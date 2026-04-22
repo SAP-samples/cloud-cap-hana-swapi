@@ -1,6 +1,6 @@
 {
   "name": "cap-hana-swapi",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
@@ -14,15 +14,15 @@
     "@cap-js/postgres": "^2.2.0",
     "@cap-js/sqlite": "^2.2.0",
     "@cap-js/telemetry": "^1.6.0",
-    "@sap-cloud-sdk/resilience": "^4.5.1",
-    "@sap/cds": "9.8.4",
+    "@sap-cloud-sdk/resilience": "^4.6.0",
+    "@sap/cds": "9.8.5",
     "@sap/cds-common-content": "^3.1.0",
     "@sap/cds-fiori": "^2.3.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
     "cds-swagger-ui-express": "^0.11.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "uuid": "^13.0.0"
+    "uuid": "^14.0.0"
   },
   "engines": {
     "node": ">=20"
@@ -162,10 +162,10 @@
   },
   "devDependencies": {
     "@cap-js/cds-test": "^0.4.1",
-    "@sap/dev-cap-tools": "^1.53.1",
+    "@sap/dev-cap-tools": "^1.53.2",
     "@sap/eslint-plugin-cds": "^4.2.1",
     "@sap/hdi-deploy": "^5.6.1",
-    "eslint": "10.2.0",
+    "eslint": "10.2.1",
     "stringify-changelog": "^0.2.1",
     "widdershins": "^4.0.1",
     "@cap-js/cds-typer": ">=0.1"
