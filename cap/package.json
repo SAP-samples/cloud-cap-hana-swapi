@@ -11,6 +11,7 @@
     "@cap-js/graphql": "0.14.0",
     "@cap-js/hana": "^2.7.0",
     "@cap-js/notifications": "0.3.0",
+    "@cap-js/ord": "1.6.0",
     "@cap-js/postgres": "^2.2.0",
     "@cap-js/sqlite": "^2.2.0",
     "@cap-js/telemetry": "^1.6.0",

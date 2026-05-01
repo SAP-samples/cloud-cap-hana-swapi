@@ -22,7 +22,8 @@
             "Enable parallel $batch GET processing (max_batch_parallelization: 3) for concurrent read-only batch atomicity groups"
         ],
         "Added": [
-            "cds-test-v1.test.js — showcase test demonstrating @cap-js/cds-test v1.0 features: Chai assertions, Fetch-based HTTP shortcuts, native sqlite verification"
+            "cds-test-v1.test.js — showcase test demonstrating @cap-js/cds-test v1.0 features: Chai assertions, Fetch-based HTTP shortcuts, native sqlite verification",
+            "@cap-js/ord plugin (v1.6.0) — exposes Open Resource Discovery endpoints (/.well-known/open-resource-discovery, /ord/v1/documents/ord-document) for machine-readable application metadata"
         ]
     },
     {
