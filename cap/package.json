@@ -1,21 +1,22 @@
 {
   "name": "cap-hana-swapi",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "SAP Cloud Application Programming Model fun sample to demonstrate many-to-many relationships.",
   "repository": "https://github.com/SAP-samples/cloud-cap-hana-swapi",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.15.10",
-    "@cap-js/change-tracking": "^1.2.1",
+    "@cap-js/change-tracking": "^2.0.0-beta.11",
     "@cap-js/graphql": "0.14.0",
     "@cap-js/hana": "^2.7.0",
     "@cap-js/notifications": "0.3.0",
+    "@cap-js/ord": "1.6.0",
     "@cap-js/postgres": "^2.2.0",
     "@cap-js/sqlite": "^2.2.0",
     "@cap-js/telemetry": "^1.6.0",
     "@sap-cloud-sdk/resilience": "^4.6.0",
-    "@sap/cds": "9.8.5",
+    "@sap/cds": "^9.9.1",
     "@sap/cds-common-content": "^3.1.0",
     "@sap/cds-fiori": "^2.3.0",
     "@sap/xb-msg-amqp-v100": "^0.9.58",
@@ -25,7 +26,7 @@
     "uuid": "^14.0.0"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "start-local": "npm run generate-entry-point && npm run watch",
@@ -43,7 +44,7 @@
     "scrape": "node ../scripts/scraper/index.js",
     "scrape:films": "node ../scripts/scraper/index.js --films-only",
     "scrape:bypass-cache": "node ../scripts/scraper/index.js --bypass-cache",
-    "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js test/handler.test.js",
+    "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js test/handler.test.js test/cds-test-v1.test.js",
     "test:handler": "node --env-file=test/test.env --test --test-timeout 60000 test/handler.test.js",
     "test:profile": "node --env-file=test/test.env --test --test-timeout 60000 --test-name-pattern \"Profile-specific model exposure\" test/model.test.js",
     "test:migration": "node --test test/convertData.test.js test/convertData.report.test.js",
@@ -70,6 +71,9 @@
         "_i18n"
       ]
     },
+    "odata": {
+      "max_batch_parallelization": 3
+    },
     "fiori": {
       "preview": {
         "ui5": {
@@ -87,11 +91,14 @@
       "native_hana_associations": false
     },
     "requires": {
-      "queue": true,
+      "queue": {
+        "legacyLocking": false
+      },
       "middlewares": true,
       "db": {
         "kind": "sqlite",
         "impl": "@cap-js/sqlite",
+        "driver": "node",
         "credentials": {
           "url": "db.sqlite"
         },
@@ -161,14 +168,14 @@
     }
   },
   "devDependencies": {
-    "@cap-js/cds-test": "^0.4.1",
+    "@cap-js/cds-test": "^1.0.1",
+    "@cap-js/cds-typer": ">=0.1",
     "@sap/dev-cap-tools": "^1.53.2",
     "@sap/eslint-plugin-cds": "^4.2.1",
     "@sap/hdi-deploy": "^5.6.1",
-    "eslint": "10.2.1",
+    "eslint": "^10.3.0",
     "stringify-changelog": "^0.2.1",
-    "widdershins": "^4.0.1",
-    "@cap-js/cds-typer": ">=0.1"
+    "widdershins": "^4.0.1"
   },
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"

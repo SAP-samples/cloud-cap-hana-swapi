@@ -28,6 +28,14 @@ const Film_episode_id = {
 } as const;
 type Film_episode_id = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 0
 
+// enum
+const ChangeView_modification = {
+  Create: "create",
+  Update: "update",
+  Delete: "delete",
+} as const;
+type ChangeView_modification = "create" | "update" | "delete"
+
 export function _FilmAspect<TBase extends new (...args: any[]) => object>(Base: TBase) {
   return class Film extends Base {
     declare ID?: __.Key<string>
@@ -93,6 +101,7 @@ export function _PeopleAspect<TBase extends new (...args: any[]) => object>(Base
     */
     declare displayTitle?: string | null
     declare episodes?: __.Association.to.many<Episode2People_>
+    declare changes?: __.Association.to.many<ChangeView_>
     static readonly kind: 'entity' | 'type' | 'aspect' = 'entity';
     declare static readonly keys: __.KeysOf<People>;
     declare static readonly elements: __.ElementsOf<People>;
@@ -644,6 +653,63 @@ Object.defineProperty(Planet2People, 'name', { value: 'StarWarsPeople.Planet2Peo
 Object.defineProperty(Planet2People, 'is_singular', { value: true })
 export class Planet2People_ extends Array<Planet2People> {$count?: number}
 Object.defineProperty(Planet2People_, 'name', { value: 'StarWarsPeople.Planet2People' })
+
+export function _ChangeViewAspect<TBase extends new (...args: any[]) => object>(Base: TBase) {
+  return class ChangeView extends Base {
+    declare ID?: __.Key<string>
+    declare parent?: __.Association.to<ChangeView> | null
+    declare parent_ID?: string | null
+    declare children?: __.Composition.of.many<ChangeView_>
+    declare locale?: string | null
+    declare text?: string | null
+    declare attribute?: string | null
+    declare valueChangedFrom?: string | null
+    declare valueChangedTo?: string | null
+    declare valueChangedFromLabel?: string | null
+    declare valueChangedToLabel?: string | null
+    declare entity?: string | null
+    declare entityKey?: string | null
+    declare objectID?: string | null
+    declare modification?: ChangeView_modification | null
+    declare valueDataType?: string | null
+    declare createdAt?: __.DeepRequired<_.managed>['createdAt'] | null
+    /** Canonical user ID */
+    declare createdBy?: __.DeepRequired<_.managed>['createdBy'] | null
+    declare transactionID?: number | null
+    declare attributeLabel?: string | null
+    declare entityLabel?: string | null
+    declare modificationLabel?: string | null
+    declare valueChangedFromLabelDateTime?: __.CdsDateTime | null
+    declare valueChangedFromLabelDateTimeWTZ?: __.CdsDateTime | null
+    declare valueChangedFromLabelTime?: __.CdsTime | null
+    declare valueChangedFromLabelDate?: __.CdsDate | null
+    declare valueChangedFromLabelTimestamp?: __.CdsTimestamp | null
+    declare valueChangedToLabelDateTime?: __.CdsDateTime | null
+    declare valueChangedToLabelDateTimeWTZ?: __.CdsDateTime | null
+    declare valueChangedToLabelTime?: __.CdsTime | null
+    declare valueChangedToLabelDate?: __.CdsDate | null
+    declare valueChangedToLabelTimestamp?: __.CdsTimestamp | null
+    declare valueTimeZone?: string | null
+    declare LimitedDescendantCount?: number | null
+    declare DistanceFromRoot?: number | null
+    declare DrillState?: string | null
+    declare LimitedRank?: number | null
+    declare parent_entityKey?: string | null
+    declare parent_entity?: string | null
+    declare parent_parent_entityKey?: string | null
+    declare parent_parent_entity?: string | null
+    static modification = ChangeView_modification;
+    static readonly kind: 'entity' | 'type' | 'aspect' = 'entity';
+    declare static readonly keys: __.KeysOf<ChangeView>;
+    declare static readonly elements: __.ElementsOf<ChangeView>;
+    declare static readonly actions: globalThis.Record<never, never>;
+  };
+}
+export class ChangeView extends _ChangeViewAspect(__.Entity) {}
+Object.defineProperty(ChangeView, 'name', { value: 'StarWarsPeople.ChangeView' })
+Object.defineProperty(ChangeView, 'is_singular', { value: true })
+export class ChangeView_ extends Array<ChangeView> {$count?: number}
+Object.defineProperty(ChangeView_, 'name', { value: 'StarWarsPeople.ChangeView' })
 
 /**
 * Showcase: unbound function — returns the count of characters matching the given gender.

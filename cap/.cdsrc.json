@@ -3,5 +3,16 @@
         "asyncapi": {
             "application_namespace": "sap.swapi"
         }
+    },
+    "features": {
+        "ieee754compatible": true,
+        "consistent_params": true,
+        "compat_srv_getters": false,
+        "compat_texts_entities": false,
+        "compat_assert_not_null": false,
+        "compat_save_drafts": false
+    },
+    "fiori": {
+        "calc_elements": true
     }
 }

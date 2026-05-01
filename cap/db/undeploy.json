@@ -1,0 +1,5 @@
+[
+    "src/gen/**/sap.changelog.Changes.hdbtable",
+    "src/gen/**/sap.changelog.ChangeLog.hdbtable",
+    "src/gen/**/*.hdbtrigger"
+]

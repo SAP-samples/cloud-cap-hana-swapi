@@ -76,8 +76,12 @@ module.exports.Film2Species_ = createEntityProxy(['StarWarsPeople', 'Film2Specie
 // Planet2People
 module.exports.Planet2People = createEntityProxy(['StarWarsPeople', 'Planet2People'], { target: { is_singular: true } })
 module.exports.Planet2People_ = createEntityProxy(['StarWarsPeople', 'Planet2People'], { target: { is_singular: false }})
+// ChangeView
+module.exports.ChangeView = createEntityProxy(['StarWarsPeople', 'ChangeView'], { target: { is_singular: true }, customProps: ["modification"] })
+module.exports.ChangeView_ = createEntityProxy(['StarWarsPeople', 'ChangeView'], { target: { is_singular: false }})
 // events
 // actions
 module.exports.countByGender = 'countByGender'
 // enums
 module.exports.Film.episode_id ??= { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10, OTHER: 0 }
+module.exports.ChangeView.modification ??= { Create: "create", Update: "update", Delete: "delete" }

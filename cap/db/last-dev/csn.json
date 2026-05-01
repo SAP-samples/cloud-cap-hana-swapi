@@ -68,7 +68,6 @@
           "@cds.persistence.name": "RELEASE_DATE"
         }
       },
-      "change-tracking-isRootEntity": true,
       "@cds.persistence.name": "STAR_WARS_SHOW"
     },
     "star.wars.Film": {
@@ -129,16 +128,99 @@
           "@cds.persistence.name": "RELEASE_DATE"
         }
       },
-      "change-tracking-isRootEntity": true,
       "@cds.persistence.name": "STAR_WARS_FILM"
+    },
+    "sap.changelog.Changes": {
+      "kind": "entity",
+      "@cds.persistence.journal": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 36,
+          "@cds.persistence.name": "ID"
+        },
+        "parent_ID": {
+          "type": "cds.String",
+          "length": 36,
+          "@odata.foreignKey4": "parent",
+          "@cds.persistence.name": "PARENT_ID"
+        },
+        "attribute": {
+          "type": "cds.String",
+          "length": 127,
+          "@cds.persistence.name": "ATTRIBUTE"
+        },
+        "valueChangedFrom": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "VALUECHANGEDFROM"
+        },
+        "valueChangedTo": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "VALUECHANGEDTO"
+        },
+        "valueChangedFromLabel": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "VALUECHANGEDFROMLABEL"
+        },
+        "valueChangedToLabel": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "VALUECHANGEDTOLABEL"
+        },
+        "entity": {
+          "type": "cds.String",
+          "length": 150,
+          "@cds.persistence.name": "ENTITY"
+        },
+        "entityKey": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "ENTITYKEY"
+        },
+        "objectID": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "OBJECTID"
+        },
+        "modification": {
+          "type": "cds.String",
+          "length": 6,
+          "@cds.persistence.name": "MODIFICATION"
+        },
+        "valueDataType": {
+          "type": "cds.String",
+          "length": 5000,
+          "@cds.persistence.name": "VALUEDATATYPE"
+        },
+        "createdAt": {
+          "type": "cds.Timestamp",
+          "@cds.persistence.name": "CREATEDAT"
+        },
+        "createdBy": {
+          "type": "cds.String",
+          "length": 255,
+          "@cds.persistence.name": "CREATEDBY"
+        },
+        "transactionID": {
+          "type": "cds.Int64",
+          "@cds.persistence.name": "TRANSACTIONID"
+        }
+      },
+      "@cds.persistence.name": "SAP_CHANGELOG_CHANGES"
     }
   },
   "meta": {
-    "creator": "CDS Compiler v6.8.0",
-    "compilerCsnFlavor": "inferred",
-    "minified": true,
+    "creator": "CDS Compiler v6.9.0",
+    "compilerVersion": "6.9.0",
+    "compilerCsnFlavor": "$internal",
+    "flavor": "inferred",
     "sap.changelog.enhanced": true,
-    "build": "CDS Build v9.8.3"
+    "minified": true,
+    "build": "CDS Build v9.9.1"
   },
   "$version": "2.0"
 }
