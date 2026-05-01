@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.0.2] - 2026-05-01
+
+**Changed**
+
+- Update @sap/cds from 9.8.5 to 9.9.1
+- Update @cap-js/cds-test from 0.4.1 to 1.0.1 (stable release)
+- Update eslint from 10.2.1 to 10.3.0
+- Update @cap-js/hana from 2.7.0 to 2.8.0
+- Update @cap-js/sqlite from 2.2.0 to 2.4.0
+- Update @cap-js/postgres from 2.2.0 to 2.3.0
+- Update @sap/cds-common-content from 3.1.0 to 3.2.0
+- Update @sap/dev-cap-tools from 1.53.2 to 1.53.3
+- Update @cap-js/change-tracking from 1.2.1 to 2.0.0-beta.11 (trigger-based architecture with ~2.4-50x performance improvement)
+- Update site dependencies (mermaid 11.13→11.14, vue 3.5.31→3.5.33)
+- Update scraper dependencies (axios 1.14→1.15)
+- Raise minimum Node.js version from 20 to 22 (CDS 10 requirement)
+- Enable CDS 10 forward-compatibility flags: ieee754compatible, consistent_params, compat_srv_getters, compat_texts_entities, compat_assert_not_null, compat_save_drafts, calc_elements
+- Disable legacy queue locking (queue.legacyLocking: false) in preparation for CDS 10
+- Add HANA migration table (sap.changelog.Changes.hdbmigrationtable) for change-tracking v2 schema migration
+- Enable native node:sqlite driver (driver: "node") — uses Node.js built-in SQLite instead of better-sqlite3
+- Enable parallel $batch GET processing (max_batch_parallelization: 3) for concurrent read-only batch atomicity groups
+
+**Added**
+
+- cds-test-v1.test.js — showcase test demonstrating @cap-js/cds-test v1.0 features: Chai assertions, Fetch-based HTTP shortcuts, native sqlite verification
+- @cap-js/ord plugin (v1.6.0) — exposes Open Resource Discovery endpoints (/.well-known/open-resource-discovery, /ord/v1/documents/ord-document) for machine-readable application metadata
+
 ## [2.0.0] - 2026-04-04
 
 **Added**
