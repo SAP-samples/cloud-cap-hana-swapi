@@ -17,7 +17,12 @@
             "Raise minimum Node.js version from 20 to 22 (CDS 10 requirement)",
             "Enable CDS 10 forward-compatibility flags: ieee754compatible, consistent_params, compat_srv_getters, compat_texts_entities, compat_assert_not_null, compat_save_drafts, calc_elements",
             "Disable legacy queue locking (queue.legacyLocking: false) in preparation for CDS 10",
-            "Add HANA migration table (sap.changelog.Changes.hdbmigrationtable) for change-tracking v2 schema migration"
+            "Add HANA migration table (sap.changelog.Changes.hdbmigrationtable) for change-tracking v2 schema migration",
+            "Enable native node:sqlite driver (driver: \"node\") — uses Node.js built-in SQLite instead of better-sqlite3",
+            "Enable parallel $batch GET processing (max_batch_parallelization: 3) for concurrent read-only batch atomicity groups"
+        ],
+        "Added": [
+            "cds-test-v1.test.js — showcase test demonstrating @cap-js/cds-test v1.0 features: Chai assertions, Fetch-based HTTP shortcuts, native sqlite verification"
         ]
     },
     {

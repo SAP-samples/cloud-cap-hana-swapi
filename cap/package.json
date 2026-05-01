@@ -43,7 +43,7 @@
     "scrape": "node ../scripts/scraper/index.js",
     "scrape:films": "node ../scripts/scraper/index.js --films-only",
     "scrape:bypass-cache": "node ../scripts/scraper/index.js --bypass-cache",
-    "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js test/handler.test.js",
+    "test": "node --env-file=test/test.env --test --test-timeout 60000 test/model.test.js test/handler.test.js test/cds-test-v1.test.js",
     "test:handler": "node --env-file=test/test.env --test --test-timeout 60000 test/handler.test.js",
     "test:profile": "node --env-file=test/test.env --test --test-timeout 60000 --test-name-pattern \"Profile-specific model exposure\" test/model.test.js",
     "test:migration": "node --test test/convertData.test.js test/convertData.report.test.js",
@@ -70,6 +70,9 @@
         "_i18n"
       ]
     },
+    "odata": {
+      "max_batch_parallelization": 3
+    },
     "fiori": {
       "preview": {
         "ui5": {
@@ -94,6 +97,7 @@
       "db": {
         "kind": "sqlite",
         "impl": "@cap-js/sqlite",
+        "driver": "node",
         "credentials": {
           "url": "db.sqlite"
         },
