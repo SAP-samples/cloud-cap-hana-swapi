@@ -7,7 +7,7 @@
   "private": false,
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.15.10",
-    "@cap-js/change-tracking": "^1.2.1",
+    "@cap-js/change-tracking": "^2.0.0-beta.11",
     "@cap-js/graphql": "0.14.0",
     "@cap-js/hana": "^2.7.0",
     "@cap-js/notifications": "0.3.0",
