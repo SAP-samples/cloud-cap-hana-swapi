@@ -56,7 +56,6 @@
     "build2": "cp ./gen/db/.env ./ && cds build && cp ./.env ./gen/db/",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
     "asyncapi": "cds compile srv --service all -o docs --to asyncapi",
-    "readme": "node readme.mjs",
     "helm": "helm upgrade --install swapi ./chart --namespace teched22",
     "changeLog": "node CHANGELOG.mjs",
     "packDb": "pack build cap-hana-swapi-hana-deployer --path gen/db --builder paketobuildpacks/builder-jammy-base",
@@ -174,8 +173,10 @@
     "@sap/eslint-plugin-cds": "^4.2.1",
     "@sap/hdi-deploy": "^5.6.1",
     "eslint": "^10.3.0",
-    "stringify-changelog": "^0.2.1",
-    "widdershins": "^4.0.1"
+    "stringify-changelog": "^0.2.1"
+  },
+  "overrides": {
+    "brace-expansion": "^5.0.6"
   },
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"

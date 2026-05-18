@@ -37,7 +37,6 @@ export default withMermaid(defineConfig({
       { text: 'Labs',            link: '/labs/' },
       { text: 'Reference',       link: '/reference/cheat-sheet' },
       { text: 'HANA CLI',        link: '/hana-cli/quickstart' },
-      { text: 'API',             link: '/api/' },
     ],
 
     sidebar: {
@@ -88,13 +87,6 @@ export default withMermaid(defineConfig({
           { text: 'Examples',         link: '/hana-cli/examples' },
           { text: 'Workflows',        link: '/hana-cli/workflows' },
           { text: 'Command Reference', link: '/hana-cli/reference' },
-        ]},
-      ],
-      '/api/': [
-        { text: 'API', items: [
-          { text: 'Overview',      link: '/api/' },
-          { text: 'Data Service',  link: '/api/data-service' },
-          { text: 'Film',          link: '/api/film' },
         ]},
       ],
     },
