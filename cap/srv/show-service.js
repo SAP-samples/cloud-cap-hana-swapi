@@ -4,6 +4,9 @@ const cds = require('@sap/cds')
 
 module.exports = cds.service.impl(function () {
 
+    // CAP 10 Event Queues scheduling showcase — see srv/scheduled.js
+    require('./scheduled').register(this)
+
     // Populate the virtual edit_url field after every Media READ.
     // Directs the user to the real Film/Show webapps using deep-link URLs.
     this.after('READ', 'Media', results => {
