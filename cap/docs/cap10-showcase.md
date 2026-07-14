@@ -1,6 +1,6 @@
 # CAP 10 Feature Showcase
 
-This project uses [reCAP 2025](https://cap.cloud.sap) as a live showcase of six CAP 10 capabilities — from production-tier features down to developer-quality-of-life improvements. Each section describes what was installed, what changed, and how to try it.
+This project uses [reCAP 2026](https://cap.cloud.sap) as a live showcase of six CAP 10 capabilities — from production-tier features down to developer-quality-of-life improvements. Each section describes what was installed, what changed, and how to try it.
 
 ---
 
