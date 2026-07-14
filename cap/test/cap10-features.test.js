@@ -21,7 +21,7 @@ process.env.CDS_REQUIRES_DB_CREDENTIALS_URL = ':memory:'
 const { describe, it } = require('node:test')
 const assert = require('node:assert/strict')
 const cds = require('@sap/cds')
-const { INSERT, SELECT, DELETE } = cds.ql
+const { INSERT, DELETE } = cds.ql
 
 describe('CAP 10 — bypass drafts + .affected', () => {
   const { GET } = cds.test(__dirname + '/..')
@@ -38,6 +38,7 @@ describe('CAP 10 — bypass drafts + .affected', () => {
     )
     assert.equal(status, 200, 'OData endpoint should return 200')
     assert.ok(Array.isArray(data.value), 'response should have a value array')
+    assert.ok(data.value.length >= 1, 'seeded Show must appear in active-entity results')
 
     // Every row returned must be the active entity (IsActiveEntity = true)
     for (const row of data.value) {
