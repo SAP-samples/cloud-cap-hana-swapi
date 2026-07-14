@@ -8,7 +8,10 @@ const { extractShow } = require('../extractors/shows')
 const { extractEpisode } = require('../extractors/episodes')
 const { normalizeInteger } = require('../normalize')
 
-// Minimal fixture wikitext for a film
+// Minimal fixture wikitext for a film.
+// Infobox holds scalar fields; relationship links live in the {{App}} template
+// in the article body (matching real Wookieepedia structure), which is where
+// the extractor reads _characters/_planets/_starships/_species from.
 const FILM_WIKITEXT = `
 {{Film
 |name = A New Hope
@@ -17,15 +20,29 @@ const FILM_WIKITEXT = `
 |release = May 25, 1977
 |episode = IV
 |opening crawl = It is a period of civil war.
-|characters = [[Luke Skywalker]], [[Princess Leia Organa|Princess Leia]], [[Han Solo]]
-|planets = [[Tatooine]], [[Alderaan]], [[Yavin 4]]
-|starships = [[Millennium Falcon]], [[Star Destroyer]]
-|vehicles = [[AT-AT walker|AT-AT]]
-|species = [[Human]], [[Wookiee]]
+}}
+A New Hope is the first film in the Star Wars saga.
+{{App
+|c-characters=
+*[[Luke Skywalker]]
+*[[Princess Leia Organa|Princess Leia]]
+*[[Han Solo]]
+|c-locations=
+*[[Tatooine]]
+*[[Alderaan]]
+*[[Yavin 4]]
+|c-vehicles=
+*[[Millennium Falcon]]
+*[[Star Destroyer]]
+|c-species=
+*[[Human]]
+*[[Wookiee]]
 }}
 `
 
-// Minimal fixture wikitext for a show
+// Minimal fixture wikitext for a show.
+// Infobox holds scalar fields; characters come from the {{Credits}} cast field,
+// where each line follows: as '''[[CharacterPage|DisplayName]]'''.
 const SHOW_WIKITEXT = `
 {{Television series
 |name = The Mandalorian
@@ -35,8 +52,12 @@ const SHOW_WIKITEXT = `
 |episodes = 24
 |director = Jon Favreau, Dave Filoni
 |producer = Jon Favreau
-|characters = [[Din Djarin]], [[Grogu]]
-|planets = [[Nevarro]]
+}}
+The Mandalorian is a live-action Star Wars series.
+{{Credits
+|cast=
+* [[Pedro Pascal]] as '''[[Din Djarin]]'''
+* [[Grogu]] as '''[[Grogu]]'''
 }}
 `
 
