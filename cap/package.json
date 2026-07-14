@@ -7,6 +7,7 @@
   "private": false,
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.16.0",
+    "@cap-js/ai": "1.0.1",
     "@cap-js/change-tracking": "^2.0.2",
     "@cap-js/graphql": "^0.14.0",
     "@cap-js/hana": "^3.0.1",
