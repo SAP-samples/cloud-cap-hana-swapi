@@ -17,7 +17,9 @@ function register(srv) {
   // Handle the scheduled event: rotate the featured show and emit a domain event.
   srv.on('rotateFeaturedShow', async req => {
     const shows = await SELECT.from(Show).columns('ID', 'title')
-    const featured = pickFeaturedShow(shows, req.data?.tick ?? 0)
+    // Rotate based on elapsed minutes so each scheduled tick features a different show.
+    const seed = req.data?.tick ?? Math.floor(Date.now() / 60000)
+    const featured = pickFeaturedShow(shows, seed)
     if (!featured) return LOG.warn('No shows to feature')
     LOG.info('Featured show rotated to', featured.title, featured.ID)
     await srv.emit('Show.Refreshed.v1', { ID: featured.ID })
@@ -26,7 +28,7 @@ function register(srv) {
   // Register a named singleton schedule over the outbox (CAP 10 Event Queues scheduling API).
   cds.once('served', async () => {
     try {
-      await srv.schedule('rotateFeaturedShow', { tick: 0 }).every('10m').as('featured-show-rotation')
+      await srv.schedule('rotateFeaturedShow', {}).every('10m').as('featured-show-rotation')
       LOG.info('Scheduled featured-show-rotation every 10m')
     } catch (e) {
       LOG.warn('Could not register schedule:', e.message)
