@@ -7,9 +7,12 @@
   "private": false,
   "dependencies": {
     "@cap-js-community/odata-v2-adapter": "^1.16.0",
+    "@cap-js/ai": "1.0.1",
     "@cap-js/change-tracking": "^2.0.2",
+    "@cap-js/data-inspector": "1.0.5",
     "@cap-js/graphql": "^0.14.0",
     "@cap-js/hana": "^3.0.1",
+    "@cap-js/mcp": "1.1.1",
     "@cap-js/notifications": "^0.3.0",
     "@cap-js/ord": "^1.9.1",
     "@cap-js/postgres": "^3.0.1",
@@ -159,6 +162,10 @@
         "path": "/graphql",
         "impl": "@cap-js/graphql"
       }
+    },
+    "mcp": {
+      "prefix": true,
+      "toon_format": true
     },
     "log": {
       "service": true
