@@ -14,6 +14,13 @@ try {
   cds.log('sse').warn('SSE bridge not loaded:', e.message)
 }
 
+// Serves the built galaxy app at /galaxy/ in production (yields to Vite in dev).
+try {
+  require('./galaxy-serve')
+} catch (e) {
+  cds.log('galaxy').warn('Galaxy static serving not loaded:', e.message)
+}
+
 cds
   .on('bootstrap', _app => {
     app = _app

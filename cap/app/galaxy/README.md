@@ -18,7 +18,7 @@ Where the sibling [`../viewer`](../viewer) app breaks *away* from Fiori with a c
 
 The app is served two ways:
 
-### Via `cds watch` (recommended)
+### Via `cds watch` (recommended for dev)
 
 CAP has native Vite integration — it detects `vite.config.js` and serves the app with Vite dev middleware (HMR included). From `cap/`:
 
@@ -27,6 +27,20 @@ npm run sqlite        # or: npm run watch (HANA)
 ```
 
 Then open <http://localhost:4004/galaxy/>.
+
+### Via `cds serve` / deployed runtime (production)
+
+There is no Vite dev server outside `cds watch`, so the **built** app is served
+instead. Build it first, then start the server:
+
+```bash
+cd app/galaxy && npm run build   # → dist/
+cd ../.. && npx cds serve         # serves app/galaxy/dist at /galaxy/
+```
+
+[`../../srv/galaxy-serve.js`](../../srv/galaxy-serve.js) mounts the built `dist/`
+at `/galaxy/` (guarded — warns if the build is missing). Under `cds watch` the
+Vite dev middleware takes precedence, so this mount is a production fallback.
 
 ### Standalone Vite dev server
 
@@ -53,7 +67,7 @@ npm test              # Vitest — API-layer query construction (odata/graphql/m
 
 ## Architecture
 
-```
+```text
 src/
   main.js             App entry — registers UI5 components, mounts Vue
   ui5.js              Central UI5 Web Components + theme + icon imports
