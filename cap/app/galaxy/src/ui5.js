@@ -35,6 +35,10 @@ import '@ui5/webcomponents-fiori/dist/SideNavigation.js'
 import '@ui5/webcomponents-fiori/dist/SideNavigationItem.js'
 import '@ui5/webcomponents-fiori/dist/NavigationLayout.js'
 import '@ui5/webcomponents-fiori/dist/IllustratedMessage.js'
+// Illustration assets are lazy modules — import each one we reference by name.
+import '@ui5/webcomponents-fiori/dist/illustrations/UnableToLoad.js'
+import '@ui5/webcomponents-fiori/dist/illustrations/NoData.js'
+import '@ui5/webcomponents-fiori/dist/illustrations/NoActivities.js'
 import '@ui5/webcomponents-fiori/dist/Timeline.js'
 import '@ui5/webcomponents-fiori/dist/TimelineItem.js'
 

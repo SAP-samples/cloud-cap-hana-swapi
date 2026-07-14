@@ -30,7 +30,12 @@ module.exports = cds.service.impl(function () {
         // Use the DB layer directly to bypass the OData draft machinery.
         const db = await cds.connect.to('db')
         await db.run(UPDATE('star.wars.People').set({ name: newName }).where({ ID }))
-        return db.run(SELECT.one.from('star.wars.People').where({ ID }))
+        const updated = await db.run(SELECT.one.from('star.wars.People').where({ ID }))
+        // Emit the domain event promised in people-service.cds. The generic
+        // after-UPDATE hook below does NOT fire for this custom `on` handler,
+        // so we emit explicitly here to keep documented behavior accurate.
+        await this.emit('People.Changed.v1', updated)
+        return updated
     })
 
     // ─── Showcase: on hook (unbound function handler) ─────────────────────────

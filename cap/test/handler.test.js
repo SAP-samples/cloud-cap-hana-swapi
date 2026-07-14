@@ -180,6 +180,22 @@ describe('People Service – Handler Behavior', () => {
             }
             assert.equal(thrownStatus, 400, 'rename should reject blank newName with HTTP 400')
         })
+
+        it('rename action emits People.Changed.v1 with the updated record', async () => {
+            // The SSE bridge (srv/events-stream.js) relays this domain event to the
+            // galaxy app's live feed. Subscribe at the service layer and assert it fires.
+            const srv = await cds.connect.to('StarWarsPeople')
+            const received = new Promise((resolve) => {
+                srv.on('People.Changed.v1', (msg) => resolve(msg.data))
+            })
+            await POST(
+                `/odata/v4/StarWarsPeople/People(ID=${personId},IsActiveEntity=true)/rename`,
+                { newName: 'Emitter Test Name' }
+            )
+            const data = await received
+            assert.equal(data.name, 'Emitter Test Name', 'emitted event should carry the new name')
+            assert.equal(data.ID, personId, 'emitted event should carry the person ID')
+        })
     })
 
     // ─────────────────────────────────────────────────────────────────────────

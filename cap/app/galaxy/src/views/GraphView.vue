@@ -139,7 +139,7 @@ function retry() { state.value = 'loading'; location.reload() }
         </div>
         <div class="graph__slider">
           <ui5-label>Link distance</ui5-label>
-          <ui5-slider min="40" max="200" :value="linkDist"
+          <ui5-slider :min="40" :max="200" :value="linkDist"
                       @input="linkDist = $event.target.value" style="width:180px"></ui5-slider>
         </div>
       </div>
