@@ -10,6 +10,24 @@ function normalizeString(value) {
     return s
 }
 
+/**
+ * Format a parsed Date as YYYY-MM-DD without shifting the calendar day.
+ *
+ * JS parses bare ISO dates ("1977-05-25") and strings with an explicit
+ * Z/offset as UTC, but locale strings ("May 25, 1977") as *local* midnight.
+ * Using toISOString() on a locale-parsed date shifts it to the previous day
+ * in any timezone ahead of UTC. So we read the calendar parts from the same
+ * frame the input was parsed in: UTC getters for UTC-framed inputs, local
+ * getters otherwise.
+ */
+function toISODate(input, d) {
+    const utcFramed = /^\d{4}-\d{2}-\d{2}$/.test(input) || /[Zz]$|[+-]\d{2}:?\d{2}$/.test(input)
+    const year  = utcFramed ? d.getUTCFullYear() : d.getFullYear()
+    const month = (utcFramed ? d.getUTCMonth() : d.getMonth()) + 1
+    const day   = utcFramed ? d.getUTCDate() : d.getDate()
+    return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+}
+
 function normalizeDate(value) {
     const s = normalizeString(value)
     if (!s) return null
@@ -19,21 +37,22 @@ function normalizeDate(value) {
     const spacedComma = s.split(/\s+,\s+|\n/)[0].trim()
     // If the first segment already parses as a date, use it
     let d = new Date(spacedComma)
-    if (!Number.isNaN(d.getTime())) return d.toISOString().slice(0, 10)
+    if (!Number.isNaN(d.getTime())) return toISODate(spacedComma, d)
 
     // Fall back: split on ', ' after a 4-digit year (optionally followed by parenthetical)
     // e.g. "May 19, 1999, February..." → take "May 19, 1999"
     // e.g. "December 15, 2016 (UK), December 16, 2016 (US)" → take "December 15, 2016"
     const yearBoundary = spacedComma.match(/^(.*?\d{4})\s*(?:\([^)]*\))?\s*,\s+/)
     if (yearBoundary) {
-        d = new Date(yearBoundary[1].trim())
-        if (!Number.isNaN(d.getTime())) return d.toISOString().slice(0, 10)
+        const seg = yearBoundary[1].trim()
+        d = new Date(seg)
+        if (!Number.isNaN(d.getTime())) return toISODate(seg, d)
     }
 
     // Last attempt: just the first space-delimited segment that has a year
     const firstDate = spacedComma.replace(/\*\s*/, '').trim()
     d = new Date(firstDate)
-    return Number.isNaN(d.getTime()) ? null : d.toISOString().slice(0, 10)
+    return Number.isNaN(d.getTime()) ? null : toISODate(firstDate, d)
 }
 
 const ORDINAL_TO_INT = {

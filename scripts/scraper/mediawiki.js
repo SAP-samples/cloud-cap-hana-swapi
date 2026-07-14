@@ -1,6 +1,5 @@
 'use strict'
 
-const axios = require('axios')
 const pThrottle = require('p-throttle')
 const cache = require('./cache')
 
@@ -10,8 +9,38 @@ const USER_AGENT = 'cloud-cap-hana-swapi-scraper/1.0 (educational project; githu
 // 1 request per second — respects Wookieepedia rate limits
 const throttle = pThrottle({ limit: 1, interval: 1000 })
 
+/**
+ * Error carrying the HTTP status of a failed response, so the retry loop can
+ * back off on 429/503 the same way it did with axios's err.response.status.
+ */
+class HttpError extends Error {
+    constructor(status, statusText) {
+        super(`HTTP ${status} ${statusText}`.trim())
+        this.name = 'HttpError'
+        this.status = status
+    }
+}
+
+// Native fetch GET against the MediaWiki API. Builds the query string from
+// params, sends the User-Agent, and aborts after 15s (replacing axios timeout).
+async function apiGet(params) {
+    const url = `${API_URL}?${new URLSearchParams(params)}`
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15000)
+    try {
+        const response = await fetch(url, {
+            headers: { 'User-Agent': USER_AGENT },
+            signal: controller.signal,
+        })
+        if (!response.ok) throw new HttpError(response.status, response.statusText)
+        return await response.json()
+    } finally {
+        clearTimeout(timeout)
+    }
+}
+
 const rawFetch = throttle(async (pageTitle) => {
-    const params = {
+    const data = await apiGet({
         action: 'query',
         prop: 'revisions',
         titles: pageTitle,
@@ -20,15 +49,9 @@ const rawFetch = throttle(async (pageTitle) => {
         format: 'json',
         formatversion: '2',
         redirects: '1',  // follow redirects automatically
-    }
-
-    const response = await axios.get(API_URL, {
-        params,
-        headers: { 'User-Agent': USER_AGENT },
-        timeout: 15000,
     })
 
-    const pages = response.data?.query?.pages ?? []
+    const pages = data?.query?.pages ?? []
     if (!pages.length) return null
     return pages[0]?.revisions?.[0]?.slots?.main?.content ?? null
 })
@@ -49,7 +72,7 @@ async function fetchWikitext(pageTitle, bypassCache = false) {
             return wikitext
         } catch (err) {
             lastError = err
-            const status = err?.response?.status
+            const status = err?.status
             if (status === 429 || status === 503) {
                 await new Promise(r => setTimeout(r, 1000 * Math.pow(2, attempt)))
             } else {
@@ -65,7 +88,7 @@ async function fetchWikitext(pageTitle, bypassCache = false) {
  * Uses the same throttle wrapper as wikitext fetches — 1 req/s.
  */
 const rawCategoryFetch = throttle(async (category, cmcontinue) => {
-    const params = {
+    const data = await apiGet({
         action: 'query',
         list: 'categorymembers',
         cmtitle: `Category:${category}`,
@@ -73,14 +96,8 @@ const rawCategoryFetch = throttle(async (category, cmcontinue) => {
         cmtype: 'page',
         format: 'json',
         ...(cmcontinue ? { cmcontinue } : {}),
-    }
-
-    const response = await axios.get(API_URL, {
-        params,
-        headers: { 'User-Agent': USER_AGENT },
-        timeout: 15000,
     })
-    return response.data
+    return data
 })
 
 async function fetchCategoryMembers(category) {
