@@ -39,7 +39,8 @@ describe('normalizeInteger', () => {
     it('returns null for "unknown"', () => assert.equal(normalizeInteger('unknown'), null))
     it('parses integer string', () => assert.equal(normalizeInteger('3'), 3))
     it('parses actual integer', () => assert.equal(normalizeInteger(3), 3))
-    it('returns null for non-numeric', () => assert.equal(normalizeInteger('three'), null))
+    it('parses ordinal words (Wookieepedia season values)', () => assert.equal(normalizeInteger('three'), 3))
+    it('returns null for non-numeric non-ordinal', () => assert.equal(normalizeInteger('eleventy'), null))
 })
 
 describe('resolveField', () => {
