@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
+## [2.1.0] - 2026-07-14
+
+**Changed**
+
+- Upgrade to SAP CAP 10: @sap/cds from 9.9.1 to 10.0.3 (@sap/cds-compiler 7.0.1)
+- Update @cap-js/sqlite from 2.x to 3.0.2, @cap-js/hana from 2.x to 3.0.1, @cap-js/postgres from 2.x to 3.0.1 (CAP 10 driver majors)
+- Update @cap-js/telemetry from 1.x to 2.0.1
+- Update @cap-js/change-tracking to 2.0.2, @cap-js-community/odata-v2-adapter to 1.16.0, @cap-js/ord to 1.9.1, @sap/cds-common-content to 3.2.0
+- Update eslint to 10.7.0 and @sap/dev-cap-tools to 1.53.4
+- Remove CAP 10-obsolete feature flags from .cdsrc.json (ieee754compatible, consistent_params, compat_srv_getters, compat_texts_entities, compat_assert_not_null, compat_save_drafts, calc_elements) — now defaults or removed in CAP 10
+- Simplify cds.requires.queue to `true` (legacyLocking flag obsolete in CAP 10)
+- Scraper: replace axios with Node.js native fetch in mediawiki.js, preserving throttle, 15s AbortController timeout, and 429/503 retry/backoff — removes axios and unused uuid dependency (clears 10 Dependabot alerts, npm audit reports 0 vulnerabilities)
+
+**Fixed**
+
+- Scraper normalizeDate returned a date one day early in any timezone ahead of UTC — locale date strings (e.g. "May 25, 1977") parsed as local midnight but were formatted via toISOString(); now formatted from the matching parse frame, verified timezone-independent from UTC-12 to UTC+14
+- Scraper extractor test fixtures updated to the {{App}} (films) and {{Credits}} (shows) template formats the extractors actually read, and a stale normalizeInteger ordinal-word assertion corrected — full scraper suite now 87/87 passing
+
+**Removed**
+
+- Empty 0-byte cap/db/src/TEST.hdbcalculationview scratch file that caused HANA HDI deployment to fail with an XML parse error
+
 ## [2.0.2] - 2026-05-01
 
 **Changed**
