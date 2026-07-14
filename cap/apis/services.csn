@@ -1,0 +1,113 @@
+{
+  "definitions": {
+    "DataService": {
+      "@source": "srv/data-service.cds",
+      "kind": "service",
+      "doc": "Exposes data + entity metadata",
+      "@protocol": [
+        "odata-v4",
+        "graphql",
+        "rest"
+      ],
+      "@path": "-data",
+      "@cds.external": 2
+    },
+    "DataService.Entities": {
+      "kind": "entity",
+      "doc": "Metadata like name and columns/elements",
+      "elements": {
+        "name": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "columns": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "targetAspect": {
+            "elements": {
+              "name": {
+                "type": "cds.String"
+              },
+              "type": {
+                "type": "cds.String"
+              },
+              "isKey": {
+                "type": "cds.Boolean"
+              }
+            }
+          },
+          "target": "DataService.Entities.columns",
+          "on": [
+            {
+              "ref": [
+                "columns",
+                "up_"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "DataService.Entities.columns": {
+      "kind": "entity",
+      "elements": {
+        "up_": {
+          "key": true,
+          "type": "cds.Association",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          },
+          "target": "DataService.Entities",
+          "notNull": true
+        },
+        "name": {
+          "type": "cds.String"
+        },
+        "type": {
+          "type": "cds.String"
+        },
+        "isKey": {
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "DataService.Data": {
+      "kind": "entity",
+      "doc": "The actual data, organized by column name",
+      "elements": {
+        "dummy": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "record": {
+          "items": {
+            "elements": {
+              "column": {
+                "type": "cds.String"
+              },
+              "data": {
+                "type": "cds.String"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v7.0.1",
+    "compilerCsnFlavor": "inferred",
+    "flavor": "inferred",
+    "minified": true
+  },
+  "$version": "2.0"
+}
