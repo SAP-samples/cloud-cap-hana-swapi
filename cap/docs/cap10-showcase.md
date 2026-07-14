@@ -17,6 +17,55 @@ This project uses [reCAP 2025](https://cap.cloud.sap) as a live showcase of six 
 
 ---
 
+## Demo Walkthrough
+
+A sequential path to see all six features in one sitting. Do the one-time setup once, then follow the numbered steps. All links assume the server is running locally at `http://localhost:4004`.
+
+### One-time setup
+
+```bash
+cd cap
+npm install                 # first time only
+npm run build               # generates CDS artifacts + typed models
+npm run load_sqlite         # loads Star Wars fixture data into SQLite
+```
+
+For the AI Core step (feature 2) you also need the binding once — see [step 2](#step-2-ai-core-recommendations-p0). Everything else works against SQLite with no cloud services.
+
+Then start the server and leave it running:
+
+```bash
+npm run sqlite              # serves at http://localhost:4004
+```
+
+> For the AI Core demo against real RPT-1, use `npm run watch` (hybrid → SAP HANA + AI Core) instead of `npm run sqlite`. Warm up the RPT-1 deployment before the talk — first inference provisions it and can take a few minutes.
+
+### Landmark URLs (server must be running)
+
+| # | Feature | Open / run |
+|---|---------|-----------|
+| — | App launchpad | [http://localhost:4004/launchpadPage.html](http://localhost:4004/launchpadPage.html) |
+| 1 | MCP tools list (Film) | `curl -X POST http://localhost:4004/mcp/StarWarsFilm -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'` |
+| 1 | MCP tools list (Show) | [http://localhost:4004/mcp/StarWarsShow](http://localhost:4004/mcp/StarWarsShow) (POST — see [feature 1](#1-mcp-adapter)) |
+| 2 | AI Core recs — Media app | [http://localhost:4004/media/webapp/index.html](http://localhost:4004/media/webapp/index.html) |
+| 3 | Scheduling — server log | watch for `[scheduled] - Scheduled featured-show-rotation every 10m` |
+| 4 | Data Inspector UI | [http://localhost:4004/data-inspector-ui/](http://localhost:4004/data-inspector-ui/) (login `alice`, no password) |
+| 5 | cds export output | `cap/apis/` (see [feature 5](#5-cds-export)) |
+| 6 | bypass-drafts + `.affected` | `node --env-file=test/test.env --test test/cap10-features.test.js` |
+
+Other Fiori apps: [Film](http://localhost:4004/film/webapp/index.html) · [People](http://localhost:4004/people/webapp/index.html) · [Show](http://localhost:4004/show/webapp/index.html) · [Viewer (custom app)](http://localhost:4004/viewer/index.html)
+
+### Suggested demo order
+
+1. **MCP (P0)** — In Claude Code, ask a question against the [StarWarsFilm MCP server](#1-mcp-adapter) (e.g. *"which planets appear in the most films?"*). Claude calls `describe` then `query` — no SQL written by you. This is the headline "AI-ready CAP" moment.
+2. **AI Core (P0)** — Open the [Media app](http://localhost:4004/media/webapp/index.html), create/edit a record, open the `media_type` / `show_type` / `network` value helps, and point out the RPT-1 recommendations above the standard list.
+3. **Scheduling (P1)** — Show the [`srv.schedule()` code](#3-event-queues-scheduling) and the startup log line proving the named singleton task registered over the outbox.
+4. **Data Inspector (P1)** — Open the [Data Inspector](http://localhost:4004/data-inspector-ui/), log in as `alice`, and drill into a junction table like `Film2People` to show the many-to-many data live.
+5. **cds export (P2)** — Show the committed [`cap/apis/`](#5-cds-export) package — a lossless, publishable client others can `npm add`.
+6. **Bypass drafts + `.affected` (P2)** — Run the [test file](#6-bypass-drafts--affected) to show the two API-level improvements green.
+
+---
+
 ## 1. MCP Adapter
 
 **What it is:** CAP 10 ships a built-in MCP (Model Context Protocol) adapter that exposes any `@mcp`-annotated service as a tool server consumable by AI agents (Claude Code, VS Code Copilot, etc.). Each service gets its own MCP endpoint with automatically generated `describe`, `query`, and `call_action` tools derived from the CDS model.
