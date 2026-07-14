@@ -42,8 +42,9 @@ export default withMermaid(defineConfig({
     sidebar: {
       '/guide/': [
         { text: 'Getting Started', items: [
-          { text: 'Overview',      link: '/guide/overview' },
-          { text: 'Learning Path', link: '/guide/learning-path' },
+          { text: 'Overview',          link: '/guide/overview' },
+          { text: 'Learning Path',     link: '/guide/learning-path' },
+          { text: 'CAP 10 Showcase',   link: '/guide/cap10-showcase' },
         ]},
       ],
       '/architecture/': [

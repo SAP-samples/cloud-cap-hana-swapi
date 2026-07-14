@@ -11,6 +11,7 @@ const mappings = [
   // Guide
   { src: 'cap/README.md',                           dest: 'guide/overview.md' },
   { src: 'cap/docs/learning-path.md',               dest: 'guide/learning-path.md' },
+  { src: 'cap/docs/cap10-showcase.md',              dest: 'guide/cap10-showcase.md' },
   // Architecture
   { src: 'cap/docs/cap-architecture.md',            dest: 'architecture/index.md' },
   { src: 'cap/docs/profile-comparison.md',          dest: 'architecture/profiles.md' },
